@@ -1,0 +1,6 @@
+"*.ts":
+  - prettier --parser typescript --write
+"*.html":
+  - prettier --parser angular --write
+"*.scss":
+  - prettier --parser scss --write

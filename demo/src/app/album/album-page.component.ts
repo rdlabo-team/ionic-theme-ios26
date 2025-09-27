@@ -20,5 +20,5 @@ import {
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonButton, IonButtons, IonFab, IonFabButton],
 })
 export class AlbumPage {
-  readonly sourceIonIcons = [...Array(60)].map((_, i) => i)
+  readonly sourceIonIcons = [...Array(60)].map((_, i) => i);
 }
