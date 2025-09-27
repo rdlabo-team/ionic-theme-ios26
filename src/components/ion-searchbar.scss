@@ -1,0 +1,44 @@
+@use '../ios-variables';
+
+.ios {
+  .toolbar-searchbar::part(container) {
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+
+  ion-modal {
+    ion-searchbar:not(.area-searchbar) {
+      .searchbar-input-container {
+        margin: 0 6px;
+        input.searchbar-input {
+          // Modal表示でのアイコン非表示の不具合の対応
+          backdrop-filter: none;
+        }
+      }
+    }
+  }
+
+  ion-searchbar:not(.area-searchbar) {
+    min-height: 60px;
+    padding: 0;
+
+    ion-icon.searchbar-search-icon {
+      inset-inline-start: 12px;
+    }
+
+    .searchbar-input-container {
+      margin: 0 8px 0 16px;
+      align-self: center;
+      justify-self: center;
+      input.searchbar-input {
+        min-height: 44px;
+        @include ios-variables.glass-background;
+        border-radius: 20px;
+        padding-inline-start: 2.4rem !important;
+      }
+      .searchbar-clear-button {
+        padding-inline-end: 2rem !important;
+      }
+    }
+  }
+}

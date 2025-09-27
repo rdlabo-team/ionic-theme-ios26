@@ -1,0 +1,12 @@
+.ios {
+  ion-toolbar:not(.minimum-segment-toolbar) {
+    ion-segment {
+      width: calc(100% - 16px);
+      border-radius: 16px;
+
+      ion-segment-button::part(indicator-background) {
+        border-radius: 16px;
+      }
+    }
+  }
+}

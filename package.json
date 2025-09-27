@@ -1,0 +1,41 @@
+{
+  "name": "@rdlabo/ionic-theme-ios26",
+  "version": "0.0.2",
+  "description": "iOS26 CSS Theme for Ionic Framework",
+  "exports": {
+    "./src/*": {
+      "style": "./src/*"
+    },
+    "./css/*": {
+      "style": "./css/*"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    }
+  },
+  "scripts": {
+    "build": "sass src/ios-design.scss css/ios-design.css && sass src/ion-list-inset.scss css/ion-list-inset.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rdlabo-team/ionic-theme-ios26.git"
+  },
+  "keywords": [
+    "ionic",
+    "framework",
+    "theme",
+    "css",
+    "ios26"
+  ],
+  "author": "Masahiko Sakakibara <sakakibara@rdlabo.jp>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rdlabo-team/ionic-theme-ios26/issues"
+  },
+  "homepage": "https://github.com/rdlabo-team/ionic-theme-ios26#readme",
+  "devDependencies": {
+    "@ionic/angular": "^8.7.5",
+    "sass": "^1.93.2",
+    "typescript": "^5.9.2"
+  }
+}

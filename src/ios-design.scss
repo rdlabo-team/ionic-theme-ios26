@@ -1,0 +1,110 @@
+@use 'ios-variables';
+
+@use 'components/ion-popover';
+@use 'components/ion-searchbar';
+@use 'components/ion-tabs';
+@use 'components/ion-button';
+@use 'components/ion-segment';
+@use 'components/ion-toggle';
+@use 'components/ios-design-dark';
+
+.ios {
+  ion-toast {
+    --border-radius: 24px;
+  }
+
+  ion-card {
+    border-radius: 24px;
+  }
+
+  ion-action-sheet {
+    --button-color: var(--ion-color-medium);
+  }
+
+  .can-go-back ion-header ion-toolbar:not(.md):first-child,
+  .enable-back-button ion-header ion-toolbar:not(.md):first-child {
+    --border-width: 0;
+  }
+  ion-header.header-translucent,
+  ion-footer.footer-translucent {
+    .header-background,
+    .footer-background {
+      backdrop-filter: none;
+    }
+    ion-toolbar {
+      --border-width: 0;
+      --background: transparent;
+      --opacity: 1 !important;
+    }
+  }
+  ion-header ion-toolbar:first-child {
+    padding-right: calc(var(--ion-safe-area-right) + 4px);
+    padding-left: calc(var(--ion-safe-area-left) + 4px);
+  }
+  ion-content:not(:has(cdk-virtual-scroll-viewport)) {
+    --padding-bottom: calc(56px + var(--max-safe-area));
+  }
+
+  .ion-page {
+    :not(:has(ion-footer)) cdk-virtual-scroll-viewport {
+      margin-bottom: calc(calc(56px + var(--max-safe-area)) * -1);
+      padding-bottom: calc(56px + var(--max-safe-area));
+    }
+    ion-content > ion-header > ion-toolbar:first-child {
+      --min-height: 66px;
+    }
+
+    &.enable-back-button,
+    &.ion-page.can-go-back {
+      ion-content > ion-header > ion-toolbar:first-child {
+        --min-height: auto;
+      }
+    }
+  }
+
+  .ion-page ion-header > ion-toolbar.ion-color-primary > ion-buttons * {
+    &::part(native) {
+      box-shadow: none !important;
+      border-radius: 25px;
+      background: var(--ion-color-primary) !important;
+      border-color: var(--ion-color-primary-contrast) !important;
+      border-width: 1px !important;
+    }
+    &.ion-activated {
+      opacity: 0.4;
+      ion-icon {
+        border-color: var(--ion-color-primary-contrast) !important;
+      }
+      &::part(native) {
+        &::after {
+          background: transparent !important;
+        }
+      }
+    }
+  }
+  .ion-page ion-content:not(.background-transparent)::after,
+  ion-footer.footer-translucent::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: calc(56px + var(--max-safe-area));
+    box-shadow:
+      inset 0 0 0 0 rgba(var(--system-background-rgb), 0),
+      inset 0 calc(-56px - var(--max-safe-area)) 40px -40px rgba(var(--system-background-rgb), 0.8);
+    pointer-events: none;
+    z-index: 1;
+  }
+  ion-header.header-translucent::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: calc(66px + var(--ion-safe-area-top));
+    box-shadow:
+      inset 0 0 0 0 rgba(var(--system-background-rgb), 0),
+      inset 0 calc(66px + var(--ion-safe-area-top)) 20px -20px rgba(var(--system-background-rgb), 1);
+    pointer-events: none;
+    z-index: 1;
+  }
+}

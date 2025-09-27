@@ -1,0 +1,68 @@
+@use '../ios-variables';
+
+.ios {
+  .ion-page ion-header > ion-toolbar > ion-buttons ion-button:not(.link-setting),
+  .ion-page ion-header > ion-toolbar > ion-buttons ion-back-button,
+  ion-buttons.liquid-glass-buttons ion-button {
+    max-height: inherit;
+    &::part(native) {
+      @include ios-variables.glass-background();
+      border-radius: 25px;
+    }
+    margin: 8px;
+
+    font-size: 1.05rem !important;
+
+    transition: transform 100ms ease-out;
+    will-change: transform;
+    color: var(--ion-text-color, #000);
+    &.ion-activated {
+      transform: scale(1.2);
+      box-shadow: none;
+      ion-icon {
+        // 色を指定しなくても半透明に
+        //color: var(--ion-color-medium-tint);
+      }
+    }
+    &[color='primary'][fill='outline'] {
+      color: rgba(var(--ion-color-primary-rgb), 1);
+      transition:
+        transform 100ms ease-out,
+        color 50ms ease;
+    }
+    &[color='primary'][fill='outline'].ion-activated {
+      &::part(native) {
+        color: rgba(var(--ion-color-primary-rgb), 0.2);
+        &::after {
+          transform: scale(1.2);
+          @include ios-variables.glass-background;
+          box-shadow: none;
+        }
+      }
+    }
+
+    &.button-has-icon-only,
+    &.back-button-has-icon-only {
+      &::part(native) {
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        padding: 2px;
+      }
+
+      ion-icon {
+        font-size: 1.4rem !important;
+        &[name='close-outline'] {
+          font-size: 2rem !important;
+        }
+      }
+    }
+
+    &:not(.button-has-icon-only):not(.back-button-has-icon-only) {
+      &::part(native) {
+        padding: 0 16px;
+        min-height: 44px;
+      }
+    }
+  }
+}
