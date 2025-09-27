@@ -15,8 +15,9 @@
   },
   "scripts": {
     "build": "sass src/ios-design.scss css/ios-design.css && sass src/ion-list-inset.scss css/ion-list-inset.css",
+    "build:demo": "cd demo && npm install && npm run build -- --configuration=production",
     "prepare": "husky install",
-    "fmt": "prettier --parser scss --write \"./**/*.scss\" && prettier --parser typescript --write \"./**/*.ts\" &&  prettier --parser angular --write \"./**/*.html\""
+    "fmt": "prettier --write \"./**/*.{scss,ts}\" &&  prettier --parser angular --write \"./**/*.html\""
   },
   "repository": {
     "type": "git",
