@@ -1,0 +1,34 @@
+---
+description: SCSS to CSS compilation process and build workflow
+globs: *.scss,*.css,package.json
+---
+
+# CSS Compilation Process
+
+## ビルドプロセス
+
+### ソースファイル
+- **入力**: `src/` ディレクトリ内のSCSSファイル
+- **メインファイル**: [src/ios-design.scss](mdc:src/ios-design.scss)
+
+### 出力ファイル
+- **出力**: `css/` ディレクトリ内のCSSファイル
+- **生成ファイル**: 
+  - [css/ios-design.css](mdc:css/ios-design.css): メインCSSファイル
+  - [css/ios-design.css.map](mdc:css/ios-design.css.map): ソースマップ
+  - [css/ion-list-inset.css](mdc:css/ion-list-inset.css): インセットリスト専用CSS
+  - [css/ion-list-inset.css.map](mdc:css/ion-list-inset.css.map): ソースマップ
+
+## コンパイル時の注意事項
+
+1. **依存関係**: [package.json](mdc:package.json)でビルドツールの依存関係を確認
+2. **ソースマップ**: 開発時のデバッグ用にソースマップファイルも生成
+3. **最適化**: 本番用にはCSSの最適化（minify）を検討
+4. **テスト**: コンパイル後は`demo/`アプリケーションで動作確認
+
+## ファイル構造の一貫性
+
+- SCSSファイルは`src/`に配置
+- コンパイル後のCSSファイルは`css/`に配置
+- デモアプリケーションは`demo/`に配置
+- スクリーンショットなどのリソースは`screenshots/`に配置

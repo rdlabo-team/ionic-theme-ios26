@@ -1,0 +1,35 @@
+---
+description: Development workflow and directory structure guidelines
+alwaysApply: true
+---
+
+# Development Workflow
+
+## ディレクトリ構造の詳細
+
+### src/ ディレクトリ
+- **src/components/**: 個別のIonicコンポーネント用のSCSSファイル
+  - [ion-button.scss](mdc:src/components/ion-button.scss): ボタンスタイル
+  - [ion-list.scss](mdc:src/components/ion-list.scss): リストスタイル
+  - [ion-popover.scss](mdc:src/components/ion-popover.scss): ポップオーバースタイル
+  - [ion-searchbar.scss](mdc:src/components/ion-searchbar.scss): 検索バースタイル
+  - [ion-tabs.scss](mdc:src/components/ion-tabs.scss): タブスタイル
+  - [ion-toggle.scss](mdc:src/components/ion-toggle.scss): トグルスタイル
+
+- **src/utils/**: ユーティリティファイル
+  - [ion-list-inset.scss](mdc:src/utils/ion-list-inset.scss): インセットリスト用ユーティリティ
+  - [ios-variables.scss](mdc:src/utils/ios-variables.scss): iOS用変数定義
+
+- **src/ios-design.scss**: メインのSCSSファイル（全てのコンポーネントを統合）
+
+### demo/ ディレクトリ
+- Angular 20ベースのデモアプリケーション
+- 各ページコンポーネントでテーマの動作確認
+- [demo/src/theme/theme-ios26.scss](mdc:demo/src/theme/theme-ios26.scss): デモアプリ用テーマファイル
+
+## 開発時の注意事項
+
+1. **SCSSファイルの編集**: `src/` ディレクトリ内のSCSSファイルを編集
+2. **コンパイル**: 変更後は適切なビルドコマンドでCSSファイルを生成
+3. **確認**: `demo/` アプリケーションでスタイルの動作確認
+4. **ドキュメント**: READMEは英語で記述（OSS配布のため）

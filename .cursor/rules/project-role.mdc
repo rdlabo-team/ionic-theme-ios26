@@ -1,0 +1,21 @@
+---
+description: Ionic iOS26 Theme Library Project Overview
+alwaysApply: true
+---
+
+# Ionic iOS26 Theme Library Project
+
+このプロジェクトは、Ionic FrameworkをiOS26のルックアンドフィールにするためのCSSライブラリです。OSSで配布するため、READMEの記述は基本的に英語になります。
+
+## プロジェクト構造
+
+- **src/**: コンパイル前のSCSSファイルが配置されます
+- **css/**: コンパイル後のCSSファイルが配置されます  
+- **demo/**: 開発と確認に用いるAngularプロジェクトです
+
+## 主要なファイル
+
+- [package.json](mdc:package.json): プロジェクトの依存関係とビルドスクリプト
+- [src/ios-design.scss](mdc:src/ios-design.scss): メインのSCSSファイル
+- [demo/](mdc:demo/): Angularデモアプリケーション
+- [README.md](mdc:README.md): プロジェクトの説明（英語）

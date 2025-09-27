@@ -1,0 +1,39 @@
+---
+description: Angular demo application structure and usage
+globs: demo/**/*
+---
+
+# Demo Application (Angular)
+
+## デモアプリケーションの目的
+
+`demo/` ディレクトリには、Ionic iOS26テーマの動作確認用のAngularアプリケーションが含まれています。
+
+## 主要なコンポーネント
+
+### ページコンポーネント
+- [album-page.component](mdc:demo/src/app/album/): アルバムページ（リスト表示の確認）
+- [health-page.component](mdc:demo/src/app/health/): ヘルスページ（ヘルス関連UIの確認）
+- [settings-page.component](mdc:demo/src/app/settings/): 設定ページ（設定UIの確認）
+- [simple-page.component](mdc:demo/src/app/simple/): シンプルページ（基本的なコンポーネントの確認）
+
+### ナビゲーション
+- [tabs.page](mdc:demo/src/app/tabs/): タブベースのナビゲーション
+
+## テーマファイル
+
+- [demo/src/theme/theme-ios26.scss](mdc:demo/src/theme/theme-ios26.scss): デモアプリ用のテーマ設定
+- [demo/src/global.scss](mdc:demo/src/global.scss): グローバルスタイル
+
+## 使用方法
+
+1. **開発サーバー起動**: `cd demo && npm start` または `ionic serve`
+2. **テーマ確認**: 各ページでiOS26テーマの適用状況を確認
+3. **スタイル調整**: `src/` のSCSSファイルを編集後、デモアプリで確認
+
+## 設定ファイル
+
+- [demo/angular.json](mdc:demo/angular.json): Angular CLI設定
+- [demo/package.json](mdc:demo/package.json): デモアプリの依存関係
+- [demo/ionic.config.json](mdc:demo/ionic.config.json): Ionic設定
+- [demo/capacitor.config.ts](mdc:demo/capacitor.config.ts): Capacitor設定
