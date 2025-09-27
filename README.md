@@ -2,6 +2,8 @@
 
 A CSS theme library that applies iOS26 design system to Ionic applications.
 
+![](demo/screenshots/ios26.png)
+
 DEMO is here: https://ionic-theme-ios26.netlify.app/
 
 ## Overview
