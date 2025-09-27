@@ -27,18 +27,18 @@ Sponsoring means you directly contribute to new features, improvements, and main
 npm install @rdlabo/ionic-theme-ios26
 ```
 
-And import the theme in your project's main CSS file (e.g., `src/styles.scss`) and set the `--max-safe-area` variable:
+And import the theme in your project's main CSS file (e.g., `src/styles.scss`) and set the `--floating-safe-area-bottom` variable:
 
 ```scss
 @import '@rdlabo/ionic-theme-ios26/css/ionic-theme-ios26.css';
 
 /* Required: Safe area configuration */
 :root {
-  --max-safe-area: calc(max(10px, var(--ion-safe-area-bottom, 0px)) + var(--admob-safe-area, 0px));
+  --floating-safe-area-bottom: calc(max(10px, var(--ion-safe-area-bottom, 0px)) + var(--admob-safe-area, 0px));
 }
 ```
 
-> **Important**: The theme will not work correctly without the `--max-safe-area` setting. This configuration is mandatory.
+> **Important**: The theme will not work correctly without the `--floating-safe-area-bottom` setting. This configuration is mandatory.
 
 ## Important Notes
 

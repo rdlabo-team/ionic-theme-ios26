@@ -8,7 +8,7 @@
 @use '../../../src/ios-design';
 
 :root {
-  --max-safe-area: calc(max(10px, var(--ion-safe-area-bottom, 0px)) + var(--admob-safe-area, 0px));
+  --floating-safe-area-bottom: calc(max(10px, var(--ion-safe-area-bottom, 0px)) + var(--admob-safe-area, 0px));
 }
 
 ion-searchbar .searchbar-input-container {

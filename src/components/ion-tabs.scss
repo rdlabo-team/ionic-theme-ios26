@@ -3,7 +3,7 @@
 .ios {
   ion-fab.inner-tab-bar {
     right: calc(16px + var(--ion-safe-area-right, 0px));
-    bottom: var(--max-safe-area);
+    bottom: var(--floating-safe-area-bottom);
     ion-fab-button {
       &::part(native) {
         @include ios-variables.glass-background;
@@ -22,7 +22,7 @@
     width: calc(100% - 56px - 16px - 16px - 4px - 16px);
     max-width: 400px;
     padding: 2px 2px;
-    bottom: var(--max-safe-area);
+    bottom: var(--floating-safe-area-bottom);
     left: calc(16px + var(--ion-safe-area-left, 0px));
     position: absolute;
     margin: auto;
