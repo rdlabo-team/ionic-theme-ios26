@@ -14,16 +14,10 @@ export class TabsPage implements OnInit {
   readonly #el = inject(ElementRef);
   ngOnInit() {
     this.#router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((params) => {
-      const routePage = this.#el.nativeElement.querySelector('.ion-page:not(.ion-page-hidden)');
-      if (routePage.querySelector('ion-back-button')) {
-        routePage.classList.add('enable-back-button');
-      }
       const tabBar = this.#el.nativeElement.querySelector('ion-tab-bar');
       if (!tabBar) {
         return;
       }
-      console.log(params.urlAfterRedirects);
-
       if (['/main/settings'].includes(params.urlAfterRedirects)) {
         tabBar.classList.add('tab-bar-hide');
       } else if (tabBar) {

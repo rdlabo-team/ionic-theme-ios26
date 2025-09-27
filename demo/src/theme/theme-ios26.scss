@@ -7,10 +7,6 @@
 @use '../../../src/utils/ion-list-inset';
 @use '../../../src/ios-design';
 
-:root {
-  --floating-safe-area-bottom: calc(max(10px, var(--ion-safe-area-bottom, 0px)) + var(--admob-safe-area, 0px));
-}
-
 ion-searchbar .searchbar-input-container {
   margin: 0 20px !important;
 }

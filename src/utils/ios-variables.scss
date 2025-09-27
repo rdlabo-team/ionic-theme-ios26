@@ -1,4 +1,6 @@
 :root {
+  --ios-floating-safe-area-bottom: max(10px, var(--ion-safe-area-bottom, 0px));
+
   --system-dark-rgb: 0, 0, 0;
   --system-light-rgb: 255, 255, 255;
   --system-tab-active-rgb: 16, 16, 16;

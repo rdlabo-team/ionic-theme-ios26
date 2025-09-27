@@ -27,18 +27,20 @@ Sponsoring means you directly contribute to new features, improvements, and main
 npm install @rdlabo/ionic-theme-ios26
 ```
 
-And import the theme in your project's main CSS file (e.g., `src/styles.scss`) and set the `--floating-safe-area-bottom` variable:
+And import the theme in your project's main CSS file (e.g., `src/styles.scss`) and set the `--ios-floating-safe-area-bottom` variable:
 
 ```scss
 @import '@rdlabo/ionic-theme-ios26/css/ionic-theme-ios26.css';
 
-/* Required: Safe area configuration */
 :root {
-  --floating-safe-area-bottom: calc(max(10px, var(--ion-safe-area-bottom, 0px)) + var(--admob-safe-area, 0px));
+  /*
+   * This is default value. If you should change value, update this variable.
+   * ex) Using admob banner ad.
+   *   --ios-floating-safe-area-bottom: calc(max(10px, var(--ion-safe-area-bottom, 0px)) + var(--admob-safe-area, 0px));
+   */
+  --ios-floating-safe-area-bottom: max(10px, var(--ion-safe-area-bottom, 0px));
 }
 ```
-
-> **Important**: The theme will not work correctly without the `--floating-safe-area-bottom` setting. This configuration is mandatory.
 
 ## Important Notes
 
@@ -46,37 +48,35 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`) a
 
 Under specific conditions, you need to use `ion-item-group`. For details, please refer to [USING_ION_ITEM_GROUP.md](./USING_ION_ITEM_GROUP.md).
 
+### You can also use the liquid glass mixin
 
-## CSS Utility Classes
+You can use the liquid glass mixin by importing SCSS files from the main package.
 
-### .enable-back-button
+```scss
+@use '@rdlabo/ionic-theme-ios26/src/utils/ios-variables';
 
-In Ionic, pages navigated via push automatically have the `.can-go-back` class added to the Page Component to indicate that pop navigation is possible. However, even if `ion-back-button` is placed, when accessing the page directly, `.can-go-back` is not added. This class is an alternative for manually adding it.
-
-- `.ion-page.enable-back-button`
-
-```typescript
-const routePage = pageComponent.querySelector('.ion-page:not(.ion-page-hidden)');
-if (routePage.querySelector('ion-back-button')) {
-  routePage.classList.add('enable-back-button');
+ion-textarea label.textarea-wrapper {
+  @include ios-variables.glass-background;
 }
 ```
 
-### .liquid-glass
+## CSS Utility Classes
+
+### .ios-liquid-glass
 
 Apply this class to components where you want to use the iOS26 design that is not automatically applied. Supported selectors are as follows:
 
-- `ion-button.liquid-glass`
+- `ion-button.ios-liquid-glass`
 
-### .exclude-liquid-glass
+### .ios-no-liquid-glass
 
 Many components automatically have the iOS26 design applied, but apply this class when you don't want it. Supported selectors are as follows:
 
-- `ion-header > ion-toolbar > ion-buttons > ion-button.exclude-liquid-glass`
-- `ion-popover.exclude-liquid-glass`
+- `ion-header > ion-toolbar > ion-buttons > ion-button.ios-no-liquid-glass`
+- `ion-popover.ios-no-liquid-glass`
 
 ### .outer-ion-list-inset
 
 When you want to use `ion-list-inset` outside of `ion-content` with a `color` attribute, apply this class to the parent element.
 
-- `div.outer-ion-list-inset ion-list[inset=true]`
+- `.outer-ion-list-inset ion-list[inset=true]`
