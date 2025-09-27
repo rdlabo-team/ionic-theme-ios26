@@ -65,15 +65,15 @@ if (routePage.querySelector('ion-back-button')) {
 }
 ```
 
-### .liquid-glass-buttons
+### .liquid-glass
 
-`ion-buttons > ion-button` にiOS26デザインを適用するため、手動で付与するClassです。
+iOS26デザインが適用されないコンポーネントに適用したい場合は、Classを付与してください。サポートしてるセレクタは以下の通りです。
 
-- `ion-buttons.liquid-glass-buttons`
+- `ion-button.liquid-glass`
 
 ### .exclude-liquid-glass
 
-多くのコンポーネントに自動的にiOS26デザインが適用されますが、適用したくない場合にClassを付与してください。
+多くのコンポーネントに自動的にiOS26デザインが適用されますが、適用したくない場合にClassを付与してください。サポートしてるセレクタは以下の通りです。
 
 - `ion-header > ion-toolbar > ion-buttons > ion-button.exclude-liquid-glass`
 - `ion-popover.exclude-liquid-glass`

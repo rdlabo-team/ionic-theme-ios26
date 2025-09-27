@@ -3,7 +3,7 @@
 .ios {
   .ion-page ion-header > ion-toolbar > ion-buttons ion-button:not(.exclude-liquid-glass),
   .ion-page ion-header > ion-toolbar > ion-buttons ion-back-button,
-  ion-buttons.liquid-glass-buttons ion-button {
+  ion-button.liquid-glass {
     max-height: inherit;
     &::part(native) {
       @include ios-variables.glass-background();
