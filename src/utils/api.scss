@@ -1,12 +1,12 @@
 @mixin glass-background($opacity: 0.4, $blur: 6px) {
   background: rgba(var(--ios26-color-light-rgb), $opacity);
-  backdrop-filter: saturate(240%) blur($blur);
+  backdrop-filter: saturate(180%) blur($blur);
   box-shadow:
     inset 0 0 8px 0 rgba(var(--ios26-color-shadow-rgb), 0.2),
     0 0 12px 0 rgba(var(--ios26-color-shadow-rgb), 0.8);
-  border-top: 0.5px solid rgba(var(--ios26-color-edge-rgb), 2);
+  border-top: 0.5px solid rgba(var(--ios26-color-edge-rgb), 1);
   border-right: 0.5px solid rgba(var(--ios26-color-edge-rgb), 0.8);
-  border-bottom: 0.5px solid rgba(var(--ios26-color-edge-rgb), 2);
+  border-bottom: 0.5px solid rgba(var(--ios26-color-edge-rgb), 1);
   border-left: 0.5px solid rgba(var(--ios26-color-edge-rgb), 0.6);
   transition: box-shadow 0.1s ease;
 }
