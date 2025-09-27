@@ -42,19 +42,16 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`) a
 
 ## Important Notes
 
-__For development purposes, this is written in Japanese. It will be translated into English when it becomes stable.__
-
 ### Using `ion-item-group`
 
 Under specific conditions, you need to use `ion-item-group`. For details, please refer to [USING_ION_ITEM_GROUP.md](./USING_ION_ITEM_GROUP.md).
 
 
-## CSS Utility Class
-__For development purposes, this is written in Japanese. It will be translated into English when it becomes stable.__
+## CSS Utility Classes
 
 ### .enable-back-button
 
-Ionicでは、Pushで遷移したページは、Popが可能だとフラグを立てるためにPage Componentに `.can-go-back` が自動的に付与されます。しかし、 `ion-back-button` を設置していても、ダイレクトにそのページにアクセスした場合は `.can-go-back` は付与されないため、代替で手動で付与するためのClassです。
+In Ionic, pages navigated via push automatically have the `.can-go-back` class added to the Page Component to indicate that pop navigation is possible. However, even if `ion-back-button` is placed, when accessing the page directly, `.can-go-back` is not added. This class is an alternative for manually adding it.
 
 - `.ion-page.enable-back-button`
 
@@ -67,19 +64,19 @@ if (routePage.querySelector('ion-back-button')) {
 
 ### .liquid-glass
 
-iOS26デザインが適用されないコンポーネントに適用したい場合は、Classを付与してください。サポートしてるセレクタは以下の通りです。
+Apply this class to components where you want to use the iOS26 design that is not automatically applied. Supported selectors are as follows:
 
 - `ion-button.liquid-glass`
 
 ### .exclude-liquid-glass
 
-多くのコンポーネントに自動的にiOS26デザインが適用されますが、適用したくない場合にClassを付与してください。サポートしてるセレクタは以下の通りです。
+Many components automatically have the iOS26 design applied, but apply this class when you don't want it. Supported selectors are as follows:
 
 - `ion-header > ion-toolbar > ion-buttons > ion-button.exclude-liquid-glass`
 - `ion-popover.exclude-liquid-glass`
 
 ### .outer-ion-list-inset
 
-`color` 属性をつけた `ion-content` 以外のところで、`ion-list-inset` を使いたい場合、親の要素につけてください。
+When you want to use `ion-list-inset` outside of `ion-content` with a `color` attribute, apply this class to the parent element.
 
 - `div.outer-ion-list-inset ion-list[inset=true]`
