@@ -7,9 +7,9 @@
     ion-fab-button {
       &::part(native) {
         @include ios-variables.glass-background;
-        color: rgb(var(--system-dark-rgb));
+        color: rgb(var(--ios-theme-dark-rgb));
       }
-      --background-activated: rgba(var(--system-light-rgb), 0.3);
+      --background-activated: rgba(var(--ios-theme-light-rgb), 0.3);
     }
   }
 
@@ -37,7 +37,7 @@
       & > ion-icon {
         font-size: 30px;
       }
-      background: rgba(var(--system-light-rgb), 0);
+      background: rgba(var(--ios-theme-light-rgb), 0);
       height: auto;
       &::part(native) {
         overflow: visible;
@@ -46,13 +46,13 @@
       &.tab-selected {
         &::part(native) {
           backdrop-filter: blur(7px);
-          background: rgba(var(--system-tab-active-rgb), 0.1);
+          background: rgba(var(--ios-theme-tab-active-rgb), 0.1);
           transition: background 0.2s ease;
           border-radius: 32px;
         }
 
         &.ion-activated::part(native) {
-          background: rgba(var(--system-shadow-rgb), 0.02);
+          background: rgba(var(--ios-theme-shadow-rgb), 0.02);
         }
       }
     }

@@ -1,40 +1,40 @@
 :root {
   --ios-floating-safe-area-bottom: max(10px, var(--ion-safe-area-bottom, 0px));
 
-  --system-dark-rgb: 0, 0, 0;
-  --system-light-rgb: 255, 255, 255;
-  --system-tab-active-rgb: 16, 16, 16;
-  --system-shadow-rgb: 224, 224, 224;
-  --system-background-rgb: 255, 255, 255;
-  --system-edge-rgb: 255, 255, 255;
+  --ios-theme-dark-rgb: 0, 0, 0;
+  --ios-theme-light-rgb: 255, 255, 255;
+  --ios-theme-tab-active-rgb: 16, 16, 16;
+  --ios-theme-shadow-rgb: 224, 224, 224;
+  --ios-theme-background-rgb: 255, 255, 255;
+  --ios-theme-edge-rgb: 255, 255, 255;
 }
 
 .ion-palette-dark {
-  --system-dark-rgb: 255, 255, 255;
-  --system-light-rgb: 58, 58, 58;
-  --system-tab-active-rgb: 255, 255, 255;
-  --system-shadow-rgb: translarent;
-  --system-background-rgb: 0, 0, 0;
-  --system-edge-rgb: 120, 120, 120;
+  --ios-theme-dark-rgb: 255, 255, 255;
+  --ios-theme-light-rgb: 58, 58, 58;
+  --ios-theme-tab-active-rgb: 255, 255, 255;
+  --ios-theme-shadow-rgb: translarent;
+  --ios-theme-background-rgb: 0, 0, 0;
+  --ios-theme-edge-rgb: 120, 120, 120;
 }
 
 @mixin glass-background($opacity: 0.4, $blur: 6px) {
-  background: rgba(var(--system-light-rgb), $opacity);
+  background: rgba(var(--ios-theme-light-rgb), $opacity);
   backdrop-filter: saturate(240%) blur($blur);
   box-shadow:
-    inset 0 0 8px 0 rgba(var(--system-shadow-rgb), 0.2),
-    0 0 12px 0 rgba(var(--system-shadow-rgb), 0.8);
-  border-top: 0.5px solid rgba(var(--system-edge-rgb), 1);
-  border-right: 0.5px solid rgba(var(--system-edge-rgb), 0.8);
-  border-bottom: 0.5px solid rgba(var(--system-edge-rgb), 1);
-  border-left: 0.5px solid rgba(var(--system-edge-rgb), 0.6);
+    inset 0 0 8px 0 rgba(var(--ios-theme-shadow-rgb), 0.2),
+    0 0 12px 0 rgba(var(--ios-theme-shadow-rgb), 0.8);
+  border-top: 0.5px solid rgba(var(--ios-theme-edge-rgb), 1);
+  border-right: 0.5px solid rgba(var(--ios-theme-edge-rgb), 0.8);
+  border-bottom: 0.5px solid rgba(var(--ios-theme-edge-rgb), 1);
+  border-left: 0.5px solid rgba(var(--ios-theme-edge-rgb), 0.6);
   transition: box-shadow 0.1s ease;
 }
 
 @mixin glass-background-dark-active($opacity: 0.25, $blur: 7px) {
-  background: rgba(var(--system-tab-active-rgb), $opacity);
+  background: rgba(var(--ios-theme-tab-active-rgb), $opacity);
   backdrop-filter: saturate(180%) blur($blur);
-  box-shadow: inset 0 0 8px 0 rgba(var(--system-tab-active-rgb), 0.2);
-  border: 0.5px solid rgba(var(--system-tab-active-rgb), 0.7);
+  box-shadow: inset 0 0 8px 0 rgba(var(--ios-theme-tab-active-rgb), 0.2);
+  border: 0.5px solid rgba(var(--ios-theme-tab-active-rgb), 0.7);
   transition: box-shadow 0.1s ease;
 }
