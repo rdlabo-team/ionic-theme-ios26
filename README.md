@@ -12,7 +12,6 @@ This library provides CSS files to apply the iOS26 design system used in real pr
 
 > **⚠️ Under Development**: This library is currently in the development and consideration phase as an OSS project, based on files copied from real projects. We are working on API stability and documentation improvement before full-scale use.
 
-
 ## Setup
 
 > **⚠️ Warning**: This library is under development. API changes and breaking changes may occur before full-scale use.
