@@ -75,39 +75,11 @@ if (routePage.querySelector('ion-back-button')) {
 
 多くのコンポーネントに自動的にiOS26デザインが適用されますが、適用したくない場合にClassを付与してください。
 
-#### Support
 - `ion-header > ion-toolbar > ion-buttons > ion-button.exclude-liquid-glass`
 - `ion-popover.exclude-liquid-glass`
 
-## Developer Information
+### .inner-ion-list-inset
 
-### Build
+`color` 属性をつけた `ion-content` 以外のところで、`ion-list-inset` を使いたい場合、親の要素につけてください。
 
-```bash
-ng build ionic-theme-ios26
-```
-
-### Test
-
-```bash
-ng test
-```
-
-## License
-
-MIT License
-
-## Contributing
-
-This project is under development. We welcome feedback and suggestions:
-
-- Issue reporting
-- Feature requests
-- Documentation improvements
-- Code review participation
-
-## Support
-
-- **Under Development**: No formal support is provided
-- **Feedback**: Please report issues on GitHub Issues page
-- **Community**: Participate in developer community discussions
+- `div.inner-ion-list-inset ion-list[inset=true]`

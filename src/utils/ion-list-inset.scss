@@ -2,12 +2,16 @@
   ion-content.ion-color,
   .inner-ion-list-inset {
     ion-list.list-inset {
+      background: transparent;
+
       ion-list-header {
         display: flex;
         align-items: center;
 
-        &.ios ion-label {
-          font-size: 1.1rem;
+        ion-label {
+          font-size: 0.9rem;
+          margin: 8px 4px 4px;
+          color: var(--ion-color-medium-tint);
         }
 
         &.md {
@@ -16,12 +20,6 @@
           ion-label {
             font-size: 1.1rem;
           }
-        }
-
-        ion-label {
-          font-size: 0.9rem;
-          margin: 8px 4px 4px;
-          color: var(--ion-color-medium-tint);
         }
 
         ion-button {
@@ -54,8 +52,6 @@
           transform: translateY(4px);
         }
       }
-
-      background: transparent;
 
       &.md:not(:last-child) {
         margin-bottom: 0;

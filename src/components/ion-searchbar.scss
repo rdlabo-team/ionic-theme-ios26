@@ -1,13 +1,8 @@
 @use '../utils/ios-variables';
 
 .ios {
-  .toolbar-searchbar::part(container) {
-    padding-top: 3px;
-    padding-bottom: 3px;
-  }
-
   ion-modal {
-    ion-searchbar {
+    ion-searchbar:not(.exclude-liquid-glass) {
       .searchbar-input-container {
         margin: 0 6px;
         input.searchbar-input {
@@ -18,7 +13,7 @@
     }
   }
 
-  ion-searchbar {
+  ion-searchbar:not(.exclude-liquid-glass) {
     min-height: 60px;
     padding: 0;
 
