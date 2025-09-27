@@ -1,3 +1,7 @@
+:host {
+  --system-background-rgb: var(--ion-color-light-rgb);
+}
+
 ion-content:not(.background-transparent)::after {
   box-shadow: none !important;
 }
