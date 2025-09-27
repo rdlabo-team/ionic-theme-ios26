@@ -12,6 +12,12 @@ This library provides CSS files to apply the iOS26 design system used in real pr
 
 > **⚠️ Under Development**: This library is currently in the development and consideration phase as an OSS project, based on files copied from real projects. We are working on API stability and documentation improvement before full-scale use.
 
+## Sponsors
+
+If you find this project helpful, consider supporting it! Your sponsorship helps me maintain and improve this project.
+
+[Become a Sponsor →](https://github.com/sponsors/rdlabo)
+
 ## Setup
 
 > **⚠️ Warning**: This library is under development. API changes and breaking changes may occur before full-scale use.
