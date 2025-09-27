@@ -1,20 +1,8 @@
-@use '../utils/ios-variables';
+@use '../utils/api';
 
 .ios {
-  ion-fab.inner-tab-bar {
-    right: calc(16px + var(--ion-safe-area-right, 0px));
-    bottom: var(--ios26-floating-safe-area-bottom);
-    ion-fab-button {
-      &::part(native) {
-        @include ios-variables.glass-background;
-        color: rgb(var(--ios26-color-dark-rgb));
-      }
-      --background-activated: rgba(var(--ios26-color-light-rgb), 0.3);
-    }
-  }
-
   ion-tab-bar {
-    @include ios-variables.glass-background;
+    @include api.glass-background;
     z-index: 2;
 
     border-radius: 40px;
@@ -31,6 +19,7 @@
     will-change: transform;
     &:active {
       transform: scale(1.02);
+      backdrop-filter: saturate(360%);
     }
 
     ion-tab-button {

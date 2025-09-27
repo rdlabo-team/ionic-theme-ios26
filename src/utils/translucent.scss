@@ -1,0 +1,50 @@
+@use 'api';
+
+.ios {
+  ion-header.header-translucent,
+  ion-footer.footer-translucent {
+    .header-background,
+    .footer-background {
+      backdrop-filter: none;
+    }
+
+    ion-toolbar {
+      --border-width: 0;
+      --background: transparent;
+      --opacity: 1 !important;
+    }
+  }
+}
+
+.ios {
+  ion-content::after,
+  ion-footer.footer-translucent::after,
+  ion-header.header-translucent::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  ion-content::after,
+  ion-footer.footer-translucent::after {
+    bottom: 0;
+    height: calc(56px + var(--ios26-floating-safe-area-bottom));
+    box-shadow:
+      inset 0 0 0 0 rgba(var(--ios26-color-background-rgb), 0),
+      inset 0 calc(-56px - var(--ios26-floating-safe-area-bottom)) 40px -40px rgba(var(--ios26-color-background-rgb), 0.8);
+  }
+  ion-header.header-translucent::after {
+    top: 0;
+    height: calc(66px + var(--ion-safe-area-top));
+    box-shadow:
+      inset 0 0 0 0 rgba(var(--ios26-color-background-rgb), 0),
+      inset 0 calc(66px + var(--ion-safe-area-top)) 20px -20px rgba(var(--ios26-color-background-rgb), 1);
+  }
+  .ion-page:has(ion-footer:not(.footer-translucent)) {
+    ion-content::after {
+      content: none;
+    }
+  }
+}

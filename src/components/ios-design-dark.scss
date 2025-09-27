@@ -1,4 +1,4 @@
-@use '../utils/ios-variables';
+@use '../utils/api';
 
 .ion-palette-dark.ios {
   .ion-page ion-header > ion-toolbar > ion-buttons *,
@@ -12,7 +12,7 @@
 
     &.ion-activated {
       &::part(native) {
-        @include ios-variables.glass-background-dark-active;
+        @include api.glass-background-dark-active;
       }
       ion-icon {
         color: rgb(255, 255, 255) !important;

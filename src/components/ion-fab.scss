@@ -1,0 +1,18 @@
+@use '../utils/api';
+
+.ios {
+  ion-fab {
+    ion-fab-button {
+      &::part(native) {
+        @include api.glass-background;
+        color: rgb(var(--ios26-color-dark-rgb));
+      }
+      --background-activated: rgba(var(--ios26-color-light-rgb), 0.3);
+    }
+    // TODO: これはUtility Classにマイグレートする必要があります
+    &.inner-tab-bar {
+      right: calc(16px + var(--ion-safe-area-right, 0px));
+      bottom: var(--ios26-floating-safe-area-bottom);
+    }
+  }
+}

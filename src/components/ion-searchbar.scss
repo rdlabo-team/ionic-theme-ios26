@@ -1,4 +1,4 @@
-@use '../utils/ios-variables';
+@use '../utils/api';
 
 .ios {
   ion-modal {
@@ -27,7 +27,7 @@
       justify-self: center;
       input.searchbar-input {
         min-height: 44px;
-        @include ios-variables.glass-background;
+        @include api.glass-background;
         border-radius: 20px;
         padding-inline-start: 2.4rem !important;
       }

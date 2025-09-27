@@ -1,0 +1,19 @@
+:root {
+  --ios26-floating-safe-area-bottom: max(10px, var(--ion-safe-area-bottom, 0px));
+
+  --ios26-color-dark-rgb: 0, 0, 0;
+  --ios26-color-light-rgb: 255, 255, 255;
+  --ios26-color-tab-active-rgb: 16, 16, 16;
+  --ios26-color-shadow-rgb: 224, 224, 224;
+  --ios26-color-background-rgb: 255, 255, 255;
+  --ios26-color-edge-rgb: 255, 255, 255;
+}
+
+.ion-palette-dark {
+  --ios26-color-dark-rgb: 255, 255, 255;
+  --ios26-color-light-rgb: 58, 58, 58;
+  --ios26-color-tab-active-rgb: 255, 255, 255;
+  --ios26-color-shadow-rgb: translarent;
+  --ios26-color-background-rgb: 0, 0, 0;
+  --ios26-color-edge-rgb: 120, 120, 120;
+}

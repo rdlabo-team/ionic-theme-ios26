@@ -1,4 +1,4 @@
-@use '../utils/ios-variables';
+@use '../utils/api';
 
 .ios {
   .ion-page ion-header > ion-toolbar > ion-buttons ion-button:not(.ios26-no-liquid-glass),
@@ -6,10 +6,16 @@
   ion-button.ios26-liquid-glass {
     max-height: inherit;
     &::part(native) {
-      @include ios-variables.glass-background();
+      @include api.glass-background();
       border-radius: 25px;
     }
-    margin: 8px;
+    margin: 8px 4px;
+    &:first-child {
+      margin-left: 12px;
+    }
+    &:last-child {
+      margin-right: 12px;
+    }
 
     font-size: 1.05rem !important;
 
@@ -35,7 +41,7 @@
         color: rgba(var(--ion-color-primary-rgb), 0.2);
         &::after {
           transform: scale(1.2);
-          @include ios-variables.glass-background;
+          @include api.glass-background;
           box-shadow: none;
         }
       }

@@ -30,7 +30,7 @@ npm install @rdlabo/ionic-theme-ios26
 And import the theme in your project's main CSS file (e.g., `src/styles.scss`) and set the `--ios26-floating-safe-area-bottom` variable:
 
 ```scss
-@import '@rdlabo/ionic-theme-ios26/css/ionic-theme-ios26.css';
+@import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.min.css';
 
 :root {
   /*
@@ -53,10 +53,10 @@ Under specific conditions, you need to use `ion-item-group`. For details, please
 You can use the liquid glass mixin by importing SCSS files from the main package.
 
 ```scss
-@use '@rdlabo/ionic-theme-ios26/src/utils/ios-variables';
+@use '@rdlabo/ionic-theme-ios26/src/utils/api';
 
 ion-textarea label.textarea-wrapper {
-  @include ios-variables.glass-background;
+  @include api.glass-background;
 }
 ```
 
