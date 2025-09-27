@@ -23,15 +23,11 @@ Sponsoring means you directly contribute to new features, improvements, and main
 
 > **⚠️ Warning**: This library is under development. API changes and breaking changes may occur before full-scale use.
 
-### 1. Installation
-
 ```bash
 npm install @rdlabo/ionic-theme-ios26
 ```
 
-### 2. CSS File Import (Required)
-
-Import the theme in your project's main CSS file (e.g., `src/styles.scss`) and set the `--max-safe-area` variable:
+And import the theme in your project's main CSS file (e.g., `src/styles.scss`) and set the `--max-safe-area` variable:
 
 ```scss
 @import '@rdlabo/ionic-theme-ios26/css/ionic-theme-ios26.css';
@@ -45,73 +41,6 @@ Import the theme in your project's main CSS file (e.g., `src/styles.scss`) and s
 
 > **Important**: The theme will not work correctly without the `--max-safe-area` setting. This configuration is mandatory.
 
-### 3. Framework-specific Configuration Examples
-
-#### For Angular Projects
-
-Add CSS file to `angular.json`:
-
-```json
-{
-  "styles": [
-    "node_modules/@rdlabo/ionic-theme-ios26/css/ionic-theme-ios26.css",
-    "node_modules/@rdlabo/ionic-theme-ios26/css/ion-list-inset.css"
-  ]
-}
-```
-
-**Required**: Set `--max-safe-area` in `src/styles.scss`:
-
-```scss
-:root {
-  --max-safe-area: calc(max(10px, var(--ion-safe-area-bottom, 0px)) + var(--admob-safe-area, 0px));
-}
-```
-
-#### For React Projects
-
-Import CSS file in `index.js` or `App.js`:
-
-```javascript
-import '@rdlabo/ionic-theme-ios26/css/ionic-theme-ios26.css';
-import '@rdlabo/ionic-theme-ios26/css/ion-list-inset.css';
-```
-
-**Required**: Set `--max-safe-area` in main CSS file:
-
-```css
-:root {
-  --max-safe-area: calc(max(10px, var(--ion-safe-area-bottom, 0px)) + var(--admob-safe-area, 0px));
-}
-```
-
-#### For Vue.js Projects
-
-Import CSS file in `main.js`:
-
-```javascript
-import '@rdlabo/ionic-theme-ios26/css/ionic-theme-ios26.css';
-import '@rdlabo/ionic-theme-ios26/css/ion-list-inset.css';
-```
-
-**Required**: Set `--max-safe-area` in main CSS file:
-
-```css
-:root {
-  --max-safe-area: calc(max(10px, var(--ion-safe-area-bottom, 0px)) + var(--admob-safe-area, 0px));
-}
-```
-
-
-## Development Status
-
-This library is currently in the development and consideration phase. We are working on the following tasks:
-
-- [ ] API stabilization
-- [ ] Documentation improvement
-- [ ] Test coverage enhancement
-- [ ] Performance optimization
-- [ ] Community feedback collection
 
 ## CSS Utility Class
 __For development purposes, this is written in Japanese. It will be translated into English when it becomes stable.__
