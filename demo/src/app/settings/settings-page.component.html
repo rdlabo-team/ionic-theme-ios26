@@ -1,0 +1,120 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Settings</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="dark" href="https://github.com/rdlabo-team/ionic-angular-library/tree/main/projects/ionic-theme-ios26#readme"
+        ><ion-icon name="logo-github" slot="icon-only"></ion-icon
+      ></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" color="light">
+  <ion-header collapse="condense">
+    <ion-toolbar color="light">
+      <ion-title size="large">Settings</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list [inset]="true" class="user-info">
+    <ion-item-group>
+      <ion-item [detail]="true">
+        <ion-avatar slot="start"><ion-img src="https://picsum.photos/150/150"></ion-img></ion-avatar>
+        <div>
+          <ion-label>Masahiko Sakakibara</ion-label>
+          <ion-note>Apple Account, iCloud+, and more</ion-note>
+        </div>
+      </ion-item>
+      <ion-item></ion-item>
+    </ion-item-group>
+  </ion-list>
+  <ion-list [inset]="true">
+    <ion-item-group>
+      <ion-item>
+        <ion-icon name="airplane" slot="start" style="background: linear-gradient(#f8b250, #f79407)"></ion-icon>
+        <ion-label>Airplane Mode</ion-label>
+        <ion-toggle slot="end" color="success"></ion-toggle>
+      </ion-item>
+      <ion-item [detail]="true">
+        <ion-icon name="wifi" slot="start" style="background: linear-gradient(#489bfd, #2b77f4)"></ion-icon>
+        <ion-label>WiFi</ion-label>
+        <ion-note>ionic-framework-a</ion-note>
+      </ion-item>
+      <ion-item [detail]="true">
+        <ion-icon name="bluetooth" slot="start" style="background: linear-gradient(#459cfa, #2d7afc)"></ion-icon>
+        <ion-label>Bluetooth</ion-label>
+        <ion-note>On</ion-note>
+      </ion-item>
+      <ion-item [detail]="true">
+        <ion-icon name="stats-chart" slot="start" style="background: linear-gradient(#6fdc83, #3ec75d)"></ion-icon>
+        <ion-label>Cellular</ion-label>
+        <ion-note>Off</ion-note>
+      </ion-item>
+      <ion-item [detail]="true" [disabled]="true">
+        <ion-icon name="unlink" slot="start" style="background: linear-gradient(#6fdc83, #3ec75d)"></ion-icon>
+        <ion-label>Personal Hotspot</ion-label>
+        <ion-note>Off</ion-note>
+      </ion-item>
+      <ion-item [detail]="true">
+        <ion-icon name="battery-full" slot="start" style="background: linear-gradient(#6fdc83, #3ec75d)"></ion-icon>
+        <ion-label>Battery</ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+  <ion-list [inset]="true">
+    <ion-item-group>
+      <ion-item [detail]="true">
+        <ion-icon name="cog-outline" slot="start" style="background: linear-gradient(#afafb4, #8e8e93)"></ion-icon>
+        <ion-label>General</ion-label>
+      </ion-item>
+      <ion-item [detail]="true">
+        <ion-icon name="accessibility" slot="start" style="background: linear-gradient(#43a6ff, #0288ff)"></ion-icon>
+        <ion-label>Accessibility</ion-label>
+      </ion-item>
+      <ion-item [detail]="true">
+        <ion-icon name="log-in-outline" slot="start" style="background: linear-gradient(#43a6ff, #0288ff)"></ion-icon>
+        <ion-label>Action Button</ion-label>
+      </ion-item>
+      <ion-item [detail]="true">
+        <ion-icon name="logo-angular" slot="start" style="background: linear-gradient(#f9a432, #e193fb)"></ion-icon>
+        <ion-label>Apple Intelligence & Siri</ion-label>
+      </ion-item>
+      <ion-item [detail]="true">
+        <ion-icon name="camera" slot="start" style="background: linear-gradient(#afafb4, #8e8e93)"></ion-icon>
+        <ion-label>Camera</ion-label>
+      </ion-item>
+      <ion-item [detail]="true">
+        <ion-icon name="calculator" slot="start" style="background: linear-gradient(#43a6ff, #0288ff)"></ion-icon>
+        <ion-label>Home Screen & App Library</ion-label>
+      </ion-item>
+      <ion-item [detail]="true">
+        <ion-icon name="search-outline" slot="start" style="background: linear-gradient(#afafb4, #8e8e93)"></ion-icon>
+        <ion-label>Search</ion-label>
+      </ion-item>
+      <ion-item [detail]="true">
+        <ion-icon name="snow" slot="start" style="background: var(--ion-text-color, #000)"></ion-icon>
+        <ion-label>StandBy</ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+  <ion-list [inset]="true">
+    <ion-item-group>
+      <ion-item [detail]="true">
+        <ion-icon name="hourglass" slot="start" style="background: linear-gradient(#887dff, #6055f5)"></ion-icon>
+        <ion-label>Screen Time</ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+  <ion-list [inset]="true">
+    <ion-item-group>
+      <ion-item [detail]="true">
+        <ion-icon name="hand-left" slot="start" style="background: linear-gradient(#43a6ff, #0288ff)"></ion-icon>
+        <ion-label>Privacy & Security</ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>
+<ion-footer [translucent]="true">
+  <ion-toolbar><ion-searchbar></ion-searchbar></ion-toolbar>
+</ion-footer>

@@ -1,0 +1,33 @@
+ion-content:not(.background-transparent)::after {
+  box-shadow: none !important;
+}
+
+ion-list.list-inset {
+  margin-bottom: 40px;
+}
+
+ion-item > ion-icon[slot='start'] {
+  border-radius: 20%;
+  padding: 4px;
+  color: var(--ion-background-color, #fff);
+  position: relative;
+  font-size: 1.3rem;
+}
+
+ion-list.user-info {
+  margin-top: 0;
+  ion-avatar {
+    width: 64px;
+    height: 64px;
+    margin: 16px 16px 16px 0;
+  }
+  div {
+    ion-label {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    ion-note {
+      font-size: 0.9rem;
+    }
+  }
+}

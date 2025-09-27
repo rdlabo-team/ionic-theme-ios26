@@ -1,0 +1,16 @@
+/**
+ * You should use:
+ * @use '@rdlabo/ionic-theme-ios26/css/ion-list-inset';
+ * @use '@rdlabo/ionic-theme-ios26/css/ios-design';
+ * Here for development:
+ */
+@use '../../../src/ion-list-inset';
+@use '../../../src/ios-design';
+
+:root {
+  --max-safe-area: calc(max(10px, var(--ion-safe-area-bottom, 0px)) + var(--admob-safe-area, 0px));
+}
+
+ion-searchbar:not(.area-searchbar) .searchbar-input-container {
+  margin: 0 20px !important;
+}

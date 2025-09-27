@@ -1,0 +1,9 @@
+ion-label {
+  margin-bottom: 4px;
+}
+
+ion-tab-bar {
+  &.tab-bar-hide {
+    display: none;
+  }
+}
