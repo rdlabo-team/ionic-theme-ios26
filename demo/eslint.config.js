@@ -2,10 +2,14 @@
 const eslint = require("@eslint/js");
 const tseslint = require("typescript-eslint");
 const angular = require("angular-eslint");
+const rdlabo = require('@rdlabo/eslint-plugin-rules');
 
 module.exports = tseslint.config(
   {
     files: ["**/*.ts"],
+    plugins: {
+      '@rdlabo/rules': rdlabo,
+    },
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
@@ -18,14 +22,26 @@ module.exports = tseslint.config(
       "@typescript-eslint/no-unused-vars": "off",
       "@angular-eslint/directive-selector": "off",
       "@angular-eslint/component-selector": "off",
+      '@rdlabo/rules/deny-constructor-di': 'error',
+      '@rdlabo/rules/deny-import-from-ionic-module': 'error',
+      '@rdlabo/rules/implements-ionic-lifecycle': 'error',
+      '@rdlabo/rules/deny-soft-private-modifier': 'error',
+      '@rdlabo/rules/signal-use-as-signal': 'error',
+      '@rdlabo/rules/signal-use-as-signal-template': 'error',
+      '@rdlabo/rules/component-property-use-readonly': 'error',
     },
   },
   {
     files: ["**/*.html"],
+    plugins: {
+      '@rdlabo/rules': rdlabo,
+    },
     extends: [
       ...angular.configs.templateRecommended,
       ...angular.configs.templateAccessibility,
     ],
-    rules: {},
+    rules: {
+      '@rdlabo/rules/ionic-attr-type-check': 'error',
+    },
   }
 );
