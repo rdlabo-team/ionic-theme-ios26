@@ -1,0 +1,5 @@
+@use '../utils/ion-list-inset';
+
+.ios {
+  @include ion-list-inset.ion-list-inset();
+}

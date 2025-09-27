@@ -2,7 +2,7 @@
 
 A CSS theme library that applies iOS26 design system to Ionic applications.
 
-![](demo/screenshots/ios26.png)
+![](screenshots/ios26.png)
 
 DEMO is here: https://ionic-theme-ios26.netlify.app/
 
@@ -31,7 +31,6 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`) a
 
 ```scss
 @import '@rdlabo/ionic-theme-ios26/css/ionic-theme-ios26.css';
-@import '@rdlabo/ionic-theme-ios26/css/ion-list-inset.css';
 
 /* Required: Safe area configuration */
 :root {
@@ -40,6 +39,14 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`) a
 ```
 
 > **Important**: The theme will not work correctly without the `--max-safe-area` setting. This configuration is mandatory.
+
+## Important Notes
+
+__For development purposes, this is written in Japanese. It will be translated into English when it becomes stable.__
+
+### Using `ion-item-group`
+
+Under specific conditions, you need to use `ion-item-group`. For details, please refer to [USING_ION_ITEM_GROUP.md](./USING_ION_ITEM_GROUP.md).
 
 
 ## CSS Utility Class

@@ -1,4 +1,4 @@
-@use 'ios-variables';
+@use 'utils/ios-variables';
 
 @use 'components/ion-popover';
 @use 'components/ion-searchbar';
@@ -6,6 +6,7 @@
 @use 'components/ion-button';
 @use 'components/ion-segment';
 @use 'components/ion-toggle';
+@use 'components/ion-list';
 @use 'components/ios-design-dark';
 
 .ios {
