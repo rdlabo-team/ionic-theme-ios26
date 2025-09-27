@@ -1,6 +1,6 @@
 @mixin ion-list-inset() {
   ion-content.ion-color,
-  .inner-ion-list-inset {
+  .outer-ion-list-inset {
     ion-list.list-inset {
       background: transparent;
 
@@ -12,14 +12,6 @@
           font-size: 0.9rem;
           margin: 8px 4px 4px;
           color: var(--ion-color-medium-tint);
-        }
-
-        &.md {
-          font-weight: bold;
-          margin-top: 16px;
-          ion-label {
-            font-size: 1.1rem;
-          }
         }
 
         ion-button {

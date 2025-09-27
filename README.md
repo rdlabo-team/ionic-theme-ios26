@@ -78,8 +78,8 @@ if (routePage.querySelector('ion-back-button')) {
 - `ion-header > ion-toolbar > ion-buttons > ion-button.exclude-liquid-glass`
 - `ion-popover.exclude-liquid-glass`
 
-### .inner-ion-list-inset
+### .outer-ion-list-inset
 
 `color` 属性をつけた `ion-content` 以外のところで、`ion-list-inset` を使いたい場合、親の要素につけてください。
 
-- `div.inner-ion-list-inset ion-list[inset=true]`
+- `div.outer-ion-list-inset ion-list[inset=true]`
