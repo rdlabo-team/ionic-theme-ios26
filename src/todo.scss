@@ -10,25 +10,4 @@
   ion-action-sheet {
     --button-color: var(--ion-color-medium);
   }
-
-  ion-header > ion-toolbar.ion-color-primary > ion-buttons * {
-    &::part(native) {
-      box-shadow: none !important;
-      border-radius: 25px;
-      background: var(--ion-color-primary) !important;
-      border-color: var(--ion-color-primary-contrast) !important;
-      border-width: 1px !important;
-    }
-    &.ion-activated {
-      opacity: 0.4;
-      ion-icon {
-        border-color: var(--ion-color-primary-contrast) !important;
-      }
-      &::part(native) {
-        &::after {
-          background: transparent !important;
-        }
-      }
-    }
-  }
 }
