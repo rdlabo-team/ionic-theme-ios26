@@ -27,7 +27,7 @@ Sponsoring means you directly contribute to new features, improvements, and main
 npm install @rdlabo/ionic-theme-ios26
 ```
 
-And import the theme in your project's main CSS file (e.g., `src/styles.scss`) and set the `--ios-floating-safe-area-bottom` variable:
+And import the theme in your project's main CSS file (e.g., `src/styles.scss`) and set the `--ios26-floating-safe-area-bottom` variable:
 
 ```scss
 @import '@rdlabo/ionic-theme-ios26/css/ionic-theme-ios26.css';
@@ -36,9 +36,9 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`) a
   /*
    * This is default value. If you should change value, update this variable.
    * ex) Using admob banner ad.
-   *   --ios-floating-safe-area-bottom: calc(max(10px, var(--ion-safe-area-bottom, 0px)) + var(--admob-safe-area, 0px));
+   *   --ios26-floating-safe-area-bottom: calc(max(10px, var(--ion-safe-area-bottom, 0px)) + var(--admob-safe-area, 0px));
    */
-  --ios-floating-safe-area-bottom: max(10px, var(--ion-safe-area-bottom, 0px));
+  --ios26-floating-safe-area-bottom: max(10px, var(--ion-safe-area-bottom, 0px));
 }
 ```
 
@@ -62,18 +62,18 @@ ion-textarea label.textarea-wrapper {
 
 ## CSS Utility Classes
 
-### .ios-liquid-glass
+### .ios26-liquid-glass
 
 Apply this class to components where you want to use the iOS26 design that is not automatically applied. Supported selectors are as follows:
 
-- `ion-button.ios-liquid-glass`
+- `ion-button.ios26-liquid-glass`
 
-### .ios-no-liquid-glass
+### .ios26-no-liquid-glass
 
 Many components automatically have the iOS26 design applied, but apply this class when you don't want it. Supported selectors are as follows:
 
-- `ion-header > ion-toolbar > ion-buttons > ion-button.ios-no-liquid-glass`
-- `ion-popover.ios-no-liquid-glass`
+- `ion-header > ion-toolbar > ion-buttons > ion-button.ios26-no-liquid-glass`
+- `ion-popover.ios26-no-liquid-glass`
 
 ### .outer-ion-list-inset
 

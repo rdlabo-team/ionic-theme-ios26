@@ -5,7 +5,7 @@
  * Here for development:
  */
 @use '../../../src/utils/ion-list-inset';
-@use '../../../src/ios-design';
+@use '../../../src/theme-ios26';
 
 ion-searchbar .searchbar-input-container {
   margin: 0 20px !important;

@@ -20,7 +20,7 @@ alwaysApply: true
   - [ion-list-inset.scss](mdc:src/utils/ion-list-inset.scss): インセットリスト用ユーティリティ
   - [ios-variables.scss](mdc:src/utils/ios-variables.scss): iOS用変数定義
 
-- **src/ios-design.scss**: メインのSCSSファイル（全てのコンポーネントを統合）
+- **src/theme-ios26.scss**: メインのSCSSファイル（全てのコンポーネントを統合）
 
 ### demo/ ディレクトリ
 - Angular 20ベースのデモアプリケーション

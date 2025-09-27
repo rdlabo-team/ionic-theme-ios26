@@ -6,7 +6,7 @@
     &::part(arrow) {
       //display: none;
     }
-    &:not(.ios-no-liquid-glass) {
+    &:not(.ios26-no-liquid-glass) {
       &::part(content) {
         @include ios-variables.glass-background(0.6);
         border-radius: 24px;

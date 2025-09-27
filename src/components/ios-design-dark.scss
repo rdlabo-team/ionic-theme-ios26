@@ -3,7 +3,7 @@
 .ion-palette-dark.ios {
   .ion-page ion-header > ion-toolbar > ion-buttons *,
   .ion-page ion-footer > ion-toolbar > ion-buttons * {
-    &:not(.ios-no-liquid-glass) {
+    &:not(.ios26-no-liquid-glass) {
       opacity: 1;
       &::part(native) {
         opacity: 1;
