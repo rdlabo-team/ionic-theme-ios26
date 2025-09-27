@@ -113,6 +113,36 @@ This library is currently in the development and consideration phase. We are wor
 - [ ] Performance optimization
 - [ ] Community feedback collection
 
+## CSS Utility Class
+__For development purposes, this is written in Japanese. It will be translated into English when it becomes stable.__
+
+### .enable-back-button
+
+Ionicでは、Pushで遷移したページは、Popが可能だとフラグを立てるためにPage Componentに `.can-go-back` が自動的に付与されます。しかし、 `ion-back-button` を設置していても、ダイレクトにそのページにアクセスした場合は `.can-go-back` は付与されないため、代替で手動で付与するためのClassです。
+
+- `.ion-page.enable-back-button`
+
+```typescript
+const routePage = pageComponent.querySelector('.ion-page:not(.ion-page-hidden)');
+if (routePage.querySelector('ion-back-button')) {
+  routePage.classList.add('enable-back-button');
+}
+```
+
+### .liquid-glass-buttons
+
+`ion-buttons > ion-button` にiOS26デザインを適用するため、手動で付与するClassです。
+
+- `ion-buttons.liquid-glass-buttons`
+
+### .exclude-liquid-glass
+
+多くのコンポーネントに自動的にiOS26デザインが適用されますが、適用したくない場合にClassを付与してください。
+
+#### Support
+- `ion-header > ion-toolbar > ion-buttons > ion-button.exclude-liquid-glass`
+- `ion-popover.exclude-liquid-glass`
+
 ## Developer Information
 
 ### Build

@@ -11,6 +11,6 @@
   --max-safe-area: calc(max(10px, var(--ion-safe-area-bottom, 0px)) + var(--admob-safe-area, 0px));
 }
 
-ion-searchbar:not(.area-searchbar) .searchbar-input-container {
+ion-searchbar .searchbar-input-container {
   margin: 0 20px !important;
 }

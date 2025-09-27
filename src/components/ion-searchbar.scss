@@ -7,7 +7,7 @@
   }
 
   ion-modal {
-    ion-searchbar:not(.area-searchbar) {
+    ion-searchbar {
       .searchbar-input-container {
         margin: 0 6px;
         input.searchbar-input {
@@ -18,7 +18,7 @@
     }
   }
 
-  ion-searchbar:not(.area-searchbar) {
+  ion-searchbar {
     min-height: 60px;
     padding: 0;
 

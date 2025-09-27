@@ -55,7 +55,7 @@
     }
 
     &.enable-back-button,
-    &.ion-page.can-go-back {
+    &.can-go-back {
       ion-content > ion-header > ion-toolbar:first-child {
         --min-height: auto;
       }

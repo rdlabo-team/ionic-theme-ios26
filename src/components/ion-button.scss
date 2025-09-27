@@ -1,7 +1,7 @@
 @use '../ios-variables';
 
 .ios {
-  .ion-page ion-header > ion-toolbar > ion-buttons ion-button:not(.link-setting),
+  .ion-page ion-header > ion-toolbar > ion-buttons ion-button:not(.exclude-liquid-glass),
   .ion-page ion-header > ion-toolbar > ion-buttons ion-back-button,
   ion-buttons.liquid-glass-buttons ion-button {
     max-height: inherit;

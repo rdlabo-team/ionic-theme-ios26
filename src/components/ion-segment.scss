@@ -1,5 +1,5 @@
 .ios {
-  ion-toolbar:not(.minimum-segment-toolbar) {
+  ion-toolbar:not(.md) {
     ion-segment {
       width: calc(100% - 16px);
       border-radius: 16px;
