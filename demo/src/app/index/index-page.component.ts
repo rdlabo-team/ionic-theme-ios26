@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -12,6 +12,7 @@ import {
   IonLabel,
   IonList,
   IonListHeader,
+  IonNote,
   IonText,
   IonTitle,
   IonToolbar,
@@ -43,11 +44,12 @@ interface IComponent {
     IonListHeader,
     IonItemGroup,
     IonText,
+    IonNote,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IndexPageComponent {
-  readonly components: IComponent[] = [
+  readonly components = signal<IComponent[]>([
     { name: 'accordion', enable: false },
     { name: 'action-sheet', enable: true },
     { name: 'alert', enable: true },
@@ -84,7 +86,9 @@ export class IndexPageComponent {
     { name: 'toggle', enable: false },
     { name: 'toolbar', enable: false },
     { name: 'typography', enable: false },
-  ];
+  ]);
+  readonly enableComponents = computed(() => this.components().filter((c) => c.enable));
+  readonly disableComponents = computed(() => this.components().filter((c) => !c.enable));
 
   readonly #router = inject(Router);
   readonly #route = inject(ActivatedRoute);

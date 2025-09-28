@@ -15,16 +15,27 @@
     </ion-toolbar>
   </ion-header>
   <ion-list [inset]="true">
-    <ion-list-header><ion-label>Demo</ion-label></ion-list-header>
+    <ion-list-header><ion-label>Enable Demo</ion-label></ion-list-header>
     <ion-item-group>
-      @for (item of components; track item.name) {
+      @for (item of enableComponents(); track item.name) {
         <ion-item [disabled]="!item.enable" [button]="item.enable" (click)="navigateComponent(item)">
           <ion-label>{{ item.name }}</ion-label>
-          @if (!item.enable) {
-            <ion-text>WIP</ion-text>
-          }
         </ion-item>
       }
     </ion-item-group>
+    <ion-note>These components have largely finalized their APIs. However, please note that they are not yet stable.</ion-note>
+  </ion-list>
+
+  <ion-list [inset]="true">
+    <ion-list-header><ion-label>Disable Demo</ion-label></ion-list-header>
+    <ion-item-group>
+      @for (item of disableComponents(); track item.name) {
+        <ion-item [disabled]="!item.enable" [button]="item.enable">
+          <ion-label>{{ item.name }}</ion-label>
+          <ion-text>WIP</ion-text>
+        </ion-item>
+      }
+    </ion-item-group>
+    <ion-note>These components are under development. However, that doesn't mean they can't be used.</ion-note>
   </ion-list>
 </ion-content>
