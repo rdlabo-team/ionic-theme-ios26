@@ -4,3 +4,11 @@
  * Here for development:
  */
 @use '../../../src/ionic-theme-ios26';
+
+/**
+ * 個別ページで使っているスタイルだが、グローバルにスタイリングしないといけないため記述。
+ * このテーマを使う上では必要でないことに留意
+ */
+ion-searchbar .searchbar-input-container {
+  margin: 0 20px !important;
+}
