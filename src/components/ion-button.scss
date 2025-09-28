@@ -1,88 +1,104 @@
 @use '../utils/api';
 
-.ios {
-  .ion-page ion-header > ion-toolbar > ion-buttons ion-button:not(.ios26-no-liquid-glass),
-  .ion-page ion-header > ion-toolbar > ion-buttons ion-back-button,
-  ion-button.ios26-liquid-glass {
-    max-height: inherit;
-    &::part(native) {
-      @include api.glass-background();
-      border-radius: 25px;
-    }
-    margin: 8px 4px;
-    &:first-child {
-      margin-left: 12px;
-    }
-    &:last-child {
-      margin-right: 12px;
-    }
+@mixin theme-button {
+  max-height: inherit;
+  &::part(native) {
+    @include api.glass-background();
+    border-radius: 25px;
+  }
+  margin: 8px 4px;
+  &:first-child {
+    margin-left: 12px;
+  }
+  &:last-child {
+    margin-right: 12px;
+  }
 
-    font-size: 1.05rem !important;
+  font-size: 1.05rem !important;
 
-    transition: transform 100ms ease-out;
-    will-change: transform;
-    color: var(--ion-text-color, #000);
-    &.ion-activated {
-      transform: scale(1.2);
-      box-shadow: none;
-      ion-icon {
-        // 色を指定しなくても半透明に
-        //color: var(--ion-color-medium-tint);
-      }
+  transition: transform 100ms ease-out;
+  will-change: transform;
+  color: var(--ion-text-color, #000);
+  &.ion-activated {
+    transform: scale(1.2);
+    box-shadow: none;
+    ion-icon {
+      // 色を指定しなくても半透明に
+      //color: var(--ion-color-medium-tint);
     }
+  }
 
-    &.button-outline,
+  &.button-outline,
     // TODO: これはUtility Classにマイグレートする必要があります
-    &.ios26-button-outline {
-      color: rgba(var(--ion-color-primary-rgb), 1);
-      transition:
-        transform 100ms ease-out,
-        color 50ms ease;
+  &.ios26-button-outline {
+    color: rgba(var(--ion-color-primary-rgb), 1);
+    transition:
+      transform 100ms ease-out,
+      color 50ms ease;
 
-      &::part(native) {
-        box-shadow: none !important;
-        border-radius: 25px;
-        background: var(--ion-color-primary) !important;
-        border-color: var(--ion-color-primary-contrast) !important;
-        border-width: 1px !important;
-      }
-
-      &.ion-activated {
-        opacity: 0.4;
-
-        &::part(native) {
-          &::after {
-            transform: scale(1.2);
-            @include api.glass-background;
-            background: transparent !important;
-            box-shadow: none;
-          }
-        }
-      }
+    &::part(native) {
+      box-shadow: none !important;
+      border-radius: 25px;
+      background: var(--ion-color-primary) !important;
+      border-color: var(--ion-color-primary-contrast) !important;
+      border-width: 1px !important;
     }
 
-    &.button-has-icon-only,
-    &.back-button-has-icon-only {
-      &::part(native) {
-        border-radius: 50%;
-        width: 44px;
-        height: 44px;
-        padding: 2px;
-      }
+    &.ion-activated {
+      opacity: 0.4;
 
-      ion-icon {
-        font-size: 1.4rem !important;
-        &[name='close-outline'] {
-          font-size: 2rem !important;
+      &::part(native) {
+        &::after {
+          transform: scale(1.2);
+          @include api.glass-background;
+          background: transparent !important;
+          box-shadow: none;
         }
-      }
-    }
-
-    &:not(.button-has-icon-only):not(.back-button-has-icon-only) {
-      &::part(native) {
-        padding: 0 16px;
-        min-height: 44px;
       }
     }
   }
+
+  &.button-has-icon-only,
+  &.back-button-has-icon-only {
+    &::part(native) {
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      padding: 2px;
+    }
+
+    ion-icon {
+      font-size: 1.4rem !important;
+      &[name='close-outline'] {
+        font-size: 2rem !important;
+      }
+    }
+  }
+
+  &:not(.button-has-icon-only):not(.back-button-has-icon-only) {
+    &::part(native) {
+      padding: 0 16px;
+      min-height: 44px;
+    }
+  }
+}
+
+/**
+ * .ios26-no-liquid-glass を適用しない限り、デフォルトスタイル
+ */
+ion-header.ios,
+ion-footer.ios {
+  ion-buttons:not(.ios26-no-liquid-glass) ion-button:not(.ios26-no-liquid-glass),
+  ion-buttons:not(.ios26-no-liquid-glass) ion-back-button:not(.ios26-no-liquid-glass) {
+    @include theme-button;
+  }
+}
+
+/**
+ * .ios26-liquid-glass を任意で適用した場合のスタイル
+ */
+ion-buttons.ios.ios26-liquid-glass ion-button:not(.ios26-no-liquid-glass),
+ion-buttons.ios.ios26-liquid-glass ion-back-button:not(.ios26-no-liquid-glass),
+ion-button.ios.ios26-liquid-glass {
+  @include theme-button;
 }
