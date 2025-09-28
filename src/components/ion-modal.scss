@@ -1,18 +1,6 @@
 .ios {
-  ion-toast {
-    --border-radius: 24px;
-  }
-
   ion-modal ion-toolbar {
     padding-right: calc(var(--ion-safe-area-right) + 4px) !important;
     padding-left: calc(var(--ion-safe-area-left) + 4px) !important;
-  }
-
-  ion-card {
-    border-radius: 24px;
-  }
-
-  ion-action-sheet {
-    --button-color: var(--ion-color-medium);
   }
 }
