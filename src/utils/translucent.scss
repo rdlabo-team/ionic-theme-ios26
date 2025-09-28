@@ -14,8 +14,8 @@
       /**
        * TODO: Not expect work.
        * https://github.com/ionic-team/ionic-framework/blob/3b80473f2fd5ad4da5a9f5d66f783a69909c8965/core/src/utils/transition/ios.transition.ts#L829C51-L829C60
+       * --opacity: 0;
        */
-      --opacity: 0 !important;
       .toolbar-background {
         background: transparent !important;
       }
