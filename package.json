@@ -14,10 +14,11 @@
     }
   },
   "scripts": {
-    "build": "rm -rf dist && sass src/ionic-theme-ios26.scss dist/css/ionic-theme-ios26.min.css --style compressed && sass src/md-ion-list-inset.scss dist/css/md-ion-list-inset.min.css --style compressed",
+    "build": "node build-sass.js",
     "build:demo": "cd demo && npm install && npm run build -- --configuration=production",
     "prepare": "husky install",
-    "fmt": "prettier --write \"./**/*.{scss,ts}\" &&  prettier --parser angular --write \"./**/*.html\""
+    "fmt": "prettier --write \"./**/*.{scss,ts}\" &&  prettier --parser angular --write \"./**/*.html\"",
+    "release": "np --no-tests"
   },
   "repository": {
     "type": "git",
