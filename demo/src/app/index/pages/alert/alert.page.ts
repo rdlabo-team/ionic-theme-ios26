@@ -45,9 +45,7 @@ import { alertUtil } from './alert.util';
 export class AlertPage implements OnInit {
   readonly overlayCtrl = inject(AlertController);
 
-  ngOnInit() {
-    this.present('all');
-  }
+  ngOnInit() {}
 
   async present(type: 'all' | 'button-only' | 'no-cancel' | 'force-dark-mode') {
     const applyConfig = ((type) => {
