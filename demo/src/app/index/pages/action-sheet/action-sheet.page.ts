@@ -17,7 +17,7 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 import { ActionSheetController } from '@ionic/angular';
-import { sheetConfig } from './action-sheet.util';
+import { actionSheetUtil } from './action-sheet.util';
 
 @Component({
   selector: 'app-action-sheet',
@@ -43,33 +43,33 @@ import { sheetConfig } from './action-sheet.util';
   ],
 })
 export class ActionSheetPage implements OnInit {
-  readonly actionSheetCtrl = inject(ActionSheetController);
+  readonly overlayCtrl = inject(ActionSheetController);
 
   ngOnInit() {}
 
-  async presentActionSheet(type: 'all' | 'button-only' | 'no-cancel' | 'force-dark-mode') {
+  async present(type: 'all' | 'button-only' | 'no-cancel' | 'force-dark-mode') {
     const applyConfig = ((type) => {
       if (type === 'button-only') {
         return {
-          ...sheetConfig(),
+          ...actionSheetUtil(),
           header: undefined,
           subHeader: undefined,
         };
       } else if (type === 'no-cancel') {
         return {
-          ...sheetConfig(),
-          buttons: sheetConfig().buttons.filter((button) => button.role !== 'cancel'),
+          ...actionSheetUtil(),
+          buttons: actionSheetUtil().buttons.filter((button) => button.role !== 'cancel'),
         };
       } else if (type === 'force-dark-mode') {
         return {
-          ...sheetConfig(),
+          ...actionSheetUtil(),
           cssClass: 'ion-palette-dark',
         };
       }
-      return sheetConfig();
+      return actionSheetUtil();
     })(type);
 
-    const actionSheet = await this.actionSheetCtrl.create(applyConfig);
+    const actionSheet = await this.overlayCtrl.create(applyConfig);
     await actionSheet.present();
   }
 }

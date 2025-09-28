@@ -1,4 +1,4 @@
-export const sheetConfig = () => ({
+export const actionSheetUtil = () => ({
   header: 'Actions',
   subHeader: 'Action Sheet',
   buttons: [

@@ -1,0 +1,31 @@
+@use '../utils/api';
+
+ion-alert.ios {
+  --backdrop-opacity: 0.2;
+
+  .alert-wrapper {
+    @include api.glass-background(0.9);
+    border-radius: 32px;
+
+    .alert-head,
+    .alert-message {
+      text-align: left;
+    }
+
+    .alert-button-group {
+      padding: 0 8px 12px;
+      .alert-button {
+        border: none;
+        border-radius: 32px;
+        margin: 0 4px;
+        min-width: calc(50% - 8px);
+        background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.08);
+        color: var(--ion-text-color);
+      }
+    }
+
+    button.action-sheet-cancel {
+      margin-top: 12px;
+    }
+  }
+}

@@ -50,7 +50,7 @@ export class IndexPageComponent {
   readonly components: IComponent[] = [
     { name: 'accordion', enable: false },
     { name: 'action-sheet', enable: true },
-    { name: 'alert', enable: false },
+    { name: 'alert', enable: true },
     { name: 'badge', enable: false },
     { name: 'breadcrumbs', enable: false },
     { name: 'button', enable: false },
