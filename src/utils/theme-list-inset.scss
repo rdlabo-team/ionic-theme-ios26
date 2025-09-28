@@ -28,12 +28,23 @@
       text-align: center;
       padding: 32px 16px 16px;
 
+      /**
+       * ion-header.header-collapse-condenseを使って、スクロールによってHeaderを変化させるトリック
+       */
+      ion-header.header-collapse-condense > ion-toolbar {
+        --min-height: 0;
+        visibility: hidden;
+      }
+
       ion-icon {
         font-size: 2.8rem;
+        color: #ffffff;
+        border-radius: 20%;
+        padding: 6px;
       }
 
       h2 {
-        font-size: 1rem;
+        font-size: 1.2rem;
         font-weight: bold;
         margin-top: 8px;
       }

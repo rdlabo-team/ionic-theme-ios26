@@ -1,3 +1,53 @@
+@use '../utils/api';
+
 ion-action-sheet.ios {
-  --button-color: var(--ion-color-medium);
+  --button-color: var(--ion-text-color);
+  --button-background-selected: transparent;
+  --backdrop-opacity: 0.3;
+
+  .action-sheet-container {
+    @include api.glass-background(0.85);
+    margin: 0 8px 8px;
+    border-radius: 32px;
+
+    .action-sheet-group {
+      border-radius: 32px;
+      @include api.glass-background(1);
+
+      button {
+        padding: 0 14px;
+        min-height: 52px;
+        span.action-sheet-button-inner {
+          font-size: 1rem;
+          justify-content: start;
+          ion-icon {
+            font-size: 1.2rem;
+          }
+        }
+        position: relative;
+        &:not(:last-child)::after {
+          content: '';
+          opacity: 1;
+          z-index: 20002;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: calc(100% - 28px);
+          margin-left: 14px;
+          height: calc(100% - 1px);
+          border-bottom: 0.55px solid
+            var(--ion-item-border-color, var(--ion-border-color, var(--ion-color-step-250, var(--ion-background-color-step-250, #c8c7cc))));
+        }
+      }
+    }
+
+    button.action-sheet-cancel {
+      padding: 0 8px;
+      min-height: 36px;
+      span.action-sheet-button-inner {
+        justify-content: center;
+        font-weight: normal;
+      }
+    }
+  }
 }
