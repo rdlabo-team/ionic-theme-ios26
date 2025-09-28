@@ -55,7 +55,7 @@ export class IndexPageComponent {
     { name: 'alert', enable: true },
     { name: 'badge', enable: false },
     { name: 'breadcrumbs', enable: false },
-    { name: 'button', enable: false },
+    { name: 'button', enable: true },
     { name: 'card', enable: false },
     { name: 'checkbox', enable: true },
     { name: 'chip', enable: false },

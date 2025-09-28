@@ -9,6 +9,10 @@
   --ios26-color-background-rgb: var(--ion-color-light-rgb);
 }
 
+ion-back-button {
+  --color: var(--ion-color-dark);
+}
+
 section.section-example {
   background: var(--ion-background-color, #fff);
   border-radius: 24px;

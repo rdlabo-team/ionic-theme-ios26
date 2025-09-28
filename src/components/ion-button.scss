@@ -2,10 +2,6 @@
 
 @mixin theme-button {
   max-height: inherit;
-  &::part(native) {
-    @include api.glass-background();
-    border-radius: 25px;
-  }
   margin: 8px 4px;
   &:first-child {
     margin-left: 12px;
@@ -14,11 +10,11 @@
     margin-right: 12px;
   }
 
-  font-size: 1.05rem !important;
-
-  transition: transform 100ms ease-out;
+  transition:
+    transform 100ms ease-out,
+    color 50ms ease;
   will-change: transform;
-  color: var(--ion-text-color, #000);
+
   &.ion-activated {
     transform: scale(1.2);
     box-shadow: none;
@@ -28,31 +24,46 @@
     }
   }
 
-  // TODO: これはUtility Classにマイグレートする必要があります
-  &.ios26-button-outline,
-  &.button-outline {
-    color: rgba(var(--ion-color-primary-rgb), 1);
-    transition:
-      transform 100ms ease-out,
-      color 50ms ease;
+  // button size default
+  font-size: 1.05rem;
+  &:not(.button-has-icon-only):not(.back-button-has-icon-only)::part(native) {
+    padding: 0 16px;
+    min-height: 44px;
+  }
 
-    &::part(native) {
-      box-shadow: none !important;
-      border-radius: 25px;
-      background: var(--ion-color-primary) !important;
-      border-color: var(--ion-color-primary-contrast) !important;
-      border-width: 1px !important;
+  &.button-small {
+    font-size: 1.04rem;
+    &:not(.button-has-icon-only):not(.back-button-has-icon-only)::part(native) {
+      padding: 0 12px;
+      min-height: 36px;
     }
+  }
 
+  &.button-large {
+    font-size: 1.06rem;
+    &:not(.button-has-icon-only):not(.back-button-has-icon-only)::part(native) {
+      padding: 0 20px;
+      min-height: 52px;
+    }
+  }
+
+  &::part(native) {
+    border-radius: 25px;
+  }
+
+  &:not(.button-solid):not(.ios26-button-solid):not(.button-outline):not(.ios26-button-outline):not(.button-clear):not(
+      .ios26-button-clear
+    )::part(native) {
+    @include api.glass-background;
+    border-radius: 25px;
+  }
+
+  &:not(.button-solid):not(.ios26-button-solid):not(.button-clear):not(.ios26-button-clear) {
+    color: var(--color);
     &.ion-activated {
-      opacity: 0.4;
-
       &::part(native) {
         &::after {
-          transform: scale(1.2);
-          @include api.glass-background;
           background: transparent !important;
-          box-shadow: none;
         }
       }
     }
@@ -74,25 +85,7 @@
       }
     }
   }
-
-  &:not(.button-has-icon-only):not(.back-button-has-icon-only) {
-    &::part(native) {
-      padding: 0 16px;
-      min-height: 44px;
-    }
-  }
 }
-
-/**
- * collapseのanimateBackButton対策。これがあると、表示が狂うため。
- * https://github.com/ionic-team/ionic-framework/blob/3b80473f2fd5ad4da5a9f5d66f783a69909c8965/core/src/utils/transition/ios.transition.ts#L150
- */
-//ion-back-button {
-//  opacity: 0;
-//}
-//ion-buttons ion-back-button {
-//  opacity: 1;
-//}
 
 /**
  * .ios26-no-liquid-glass を適用しない限り、デフォルトスタイル
