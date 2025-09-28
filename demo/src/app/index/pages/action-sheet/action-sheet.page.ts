@@ -11,6 +11,7 @@ import {
   IonItemGroup,
   IonLabel,
   IonList,
+  IonNote,
   IonText,
   IonTitle,
   IonToolbar,
@@ -38,6 +39,7 @@ import { sheetConfig } from './action-sheet.util';
     IonLabel,
     IonIcon,
     IonText,
+    IonNote,
   ],
 })
 export class ActionSheetPage implements OnInit {
@@ -45,7 +47,7 @@ export class ActionSheetPage implements OnInit {
 
   ngOnInit() {}
 
-  async presentActionSheet(type: 'all' | 'button-only' | 'no-cancel') {
+  async presentActionSheet(type: 'all' | 'button-only' | 'no-cancel' | 'force-dark-mode') {
     const applyConfig = ((type) => {
       if (type === 'button-only') {
         return {
@@ -57,6 +59,11 @@ export class ActionSheetPage implements OnInit {
         return {
           ...sheetConfig(),
           buttons: sheetConfig().buttons.filter((button) => button.role !== 'cancel'),
+        };
+      } else if (type === 'force-dark-mode') {
+        return {
+          ...sheetConfig(),
+          cssClass: 'ion-palette-dark',
         };
       }
       return sheetConfig();
