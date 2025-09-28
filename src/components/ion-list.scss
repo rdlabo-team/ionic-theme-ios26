@@ -1,5 +1,32 @@
-@use '../utils/ion-list-inset';
+@use '../utils/theme-list-inset';
 
-.ios {
-  @include ion-list-inset.ion-list-inset();
+ion-list.list-inset.ios {
+  @include theme-list-inset.ion-list-inset();
+
+  ion-item-group,
+  ion-reorder-group {
+    border-radius: 24px;
+    overflow: hidden;
+
+    ion-item {
+      --inner-padding-end: 0;
+      &:first-child {
+        --padding-top: 4px;
+      }
+      &:last-child {
+        --padding-bottom: 4px;
+      }
+      &::part(native) {
+        padding-right: 16px;
+      }
+
+      & > ion-input[labelplacement='floating'] {
+        transition: transform 0.2s ease;
+
+        &:not(.label-floating) {
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
 }

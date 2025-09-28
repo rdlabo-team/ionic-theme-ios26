@@ -1,5 +1,19 @@
-@use 'utils/ion-list-inset';
+@use 'utils/theme-list-inset';
 
-.md {
-  @include ion-list-inset.ion-list-inset();
+ion-list.list-inset.md {
+  @include theme-list-inset.ion-list-inset();
+
+  ion-item-group > ion-item {
+    & > ion-input[labelplacement='floating'] {
+      transition: transform 0.2s ease;
+
+      &:not(.label-floating) {
+        transform: translateY(-7px);
+      }
+
+      &.label-floating {
+        transform: translateY(-4px);
+      }
+    }
+  }
 }

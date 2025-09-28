@@ -80,9 +80,3 @@ Many components automatically have the iOS26 design applied, but apply this clas
   - `ion-header > ion-toolbar > ion-buttons > ion-button.ios26-no-liquid-glass`
   - `ion-header > ion-toolbar > ion-buttons > ion-back-button.ios26-no-liquid-glass`
 - `ion-popover.ios26-no-liquid-glass`
-
-### .outer-ion-list-inset
-
-When you want to use `ion-list-inset` outside of `ion-content` with a `color` attribute, apply this class to the parent element.
-
-- `.outer-ion-list-inset ion-list[inset=true]`

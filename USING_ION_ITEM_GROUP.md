@@ -6,7 +6,6 @@ This theme aims to bring Ionic Framework applications as close as possible to iO
 
 It is only required when **both** of the following conditions are met:
 
-- You have set a `color` attribute on `ion-content`
 - You have enabled the `inset` property on `ion-list`
 
 Only when these conditions apply, you need to wrap your list items with `ion-item-group`.
@@ -55,5 +54,5 @@ This will apply the same `ion-item-group` pattern to the Material Design theme a
 ## Summary
 
 - **Most cases**: You can use your existing Ionic code as-is
-- **Specific conditions only**: `ion-item-group` is only required when setting `color` on `ion-content` + using `inset` on `ion-list`
+- **Specific conditions only**: `ion-item-group` is only required when setting using `inset` on `ion-list`
 - **Purpose**: To accurately reproduce iOS 26's native design patterns

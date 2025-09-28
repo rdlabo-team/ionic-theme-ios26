@@ -1,0 +1,85 @@
+@mixin ion-list-inset() {
+  background: transparent;
+
+  ion-list-header {
+    display: flex;
+    align-items: center;
+
+    ion-label {
+      font-size: 0.9rem;
+      margin: 8px 4px 4px;
+      color: var(--ion-color-medium-tint);
+    }
+
+    ion-button {
+      margin-top: 8px;
+    }
+
+    ion-note {
+      font-size: 0.9rem;
+      margin: 8px 16px 4px 0;
+    }
+  }
+
+  ion-item-group {
+    margin: 16px 0;
+  }
+
+  // TODO: これはUtility Classにマイグレートする必要があります
+  ion-item-group.header-item-group {
+    & > ion-item > ion-label {
+      width: 100%;
+      text-align: center;
+      padding: 32px 16px 16px;
+
+      ion-icon {
+        font-size: 2.8rem;
+      }
+
+      h2 {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-top: 8px;
+      }
+
+      ion-text {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  ion-item-group ion-item {
+    ion-text[slot='end'] {
+      padding-left: 8px;
+    }
+
+    &.item-disabled {
+      opacity: 1;
+
+      & > * {
+        opacity: 0.4;
+      }
+
+      &::part(detail-icon) {
+        opacity: 0.1;
+      }
+    }
+
+    ion-button[slot='end'] {
+      &.ion-align-self-end {
+        transform: translateY(-7px);
+      }
+      ion-icon[slot='icon-only'] {
+        font-size: 1.2rem !important;
+        transform: translateY(4px);
+      }
+    }
+  }
+
+  & > ion-note {
+    color: var(--ion-color-medium-tint);
+    font-size: 0.9rem;
+    display: block;
+    margin: 8px 16px;
+  }
+}
