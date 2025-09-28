@@ -16,6 +16,6 @@ alwaysApply: true
 ## 主要なファイル
 
 - [package.json](mdc:package.json): プロジェクトの依存関係とビルドスクリプト
-- [src/theme-ios26.scss](mdc:src/theme-ios26.scss): メインのSCSSファイル
+- [src/ionic-theme-ios26.scss](mdc:src/ionic-theme-ios26.scss): メインのSCSSファイル
 - [demo/](mdc:demo/): Angularデモアプリケーション
 - [README.md](mdc:README.md): プロジェクトの説明（英語）

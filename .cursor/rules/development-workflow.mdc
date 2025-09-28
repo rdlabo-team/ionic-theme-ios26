@@ -17,10 +17,16 @@ alwaysApply: true
   - [ion-toggle.scss](mdc:src/components/ion-toggle.scss): トグルスタイル
 
 - **src/utils/**: ユーティリティファイル
-  - [ion-list-inset.scss](mdc:src/utils/ion-list-inset.scss): インセットリスト用ユーティリティ
-  - [ios-variables.scss](mdc:src/utils/ios-variables.scss): iOS用変数定義
+  - [api.scss](mdc:src/utils/api.scss): API関連ユーティリティ
+  - [theme-dark.scss](mdc:src/utils/theme-dark.scss): ダークテーマ用ユーティリティ
+  - [theme-list-inset.scss](mdc:src/utils/theme-list-inset.scss): インセットリスト用ユーティリティ
+  - [translucent.scss](mdc:src/utils/translucent.scss): 半透明効果用ユーティリティ
 
-- **src/theme-ios26.scss**: メインのSCSSファイル（全てのコンポーネントを統合）
+- **src/**: ルートレベルのファイル
+  - [default-variables.scss](mdc:src/default-variables.scss): デフォルト変数定義
+  - [md-ion-list-inset.scss](mdc:src/md-ion-list-inset.scss): Material Design用インセットリスト
+
+- **src/ionic-theme-ios26.scss**: メインのSCSSファイル（全てのコンポーネントを統合）
 
 ### demo/ ディレクトリ
 - Angular 20ベースのデモアプリケーション

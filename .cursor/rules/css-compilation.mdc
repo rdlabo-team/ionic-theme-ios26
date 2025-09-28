@@ -9,15 +9,15 @@ globs: *.scss,*.css,package.json
 
 ### ソースファイル
 - **入力**: `src/` ディレクトリ内のSCSSファイル
-- **メインファイル**: [src/ios-design.scss](mdc:src/ios-design.scss)
+- **メインファイル**: [src/ionic-theme-ios26.scss](mdc:src/ionic-theme-ios26.scss)
 
 ### 出力ファイル
-- **出力**: `css/` ディレクトリ内のCSSファイル
+- **出力**: `dist/css/` ディレクトリ内のCSSファイル
 - **生成ファイル**: 
-  - [css/ios-design.css](mdc:css/ios-design.css): メインCSSファイル
-  - [css/ios-design.css.map](mdc:css/ios-design.css.map): ソースマップ
-  - [css/ion-list-inset.css](mdc:css/ion-list-inset.css): インセットリスト専用CSS
-  - [css/ion-list-inset.css.map](mdc:css/ion-list-inset.css.map): ソースマップ
+  - [dist/css/ionic-theme-ios26.min.css](mdc:dist/css/ionic-theme-ios26.min.css): メインCSSファイル（圧縮版）
+  - [dist/css/ionic-theme-ios26.min.css.map](mdc:dist/css/ionic-theme-ios26.min.css.map): ソースマップ
+  - [dist/css/md-ion-list-inset.min.css](mdc:dist/css/md-ion-list-inset.min.css): インセットリスト専用CSS（圧縮版）
+  - [dist/css/md-ion-list-inset.min.css.map](mdc:dist/css/md-ion-list-inset.min.css.map): ソースマップ
 
 ## コンパイル時の注意事項
 
@@ -29,6 +29,6 @@ globs: *.scss,*.css,package.json
 ## ファイル構造の一貫性
 
 - SCSSファイルは`src/`に配置
-- コンパイル後のCSSファイルは`css/`に配置
+- コンパイル後のCSSファイルは`dist/css/`に配置
 - デモアプリケーションは`demo/`に配置
 - スクリーンショットなどのリソースは`screenshots/`に配置

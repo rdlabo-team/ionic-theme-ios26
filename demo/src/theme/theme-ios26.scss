@@ -1,12 +1,6 @@
 /**
  * You should use:
- * @use '@rdlabo/ionic-theme-ios26/css/ion-list-inset';
- * @use '@rdlabo/ionic-theme-ios26/css/ios-design';
+ * @use '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.min.css';
  * Here for development:
  */
-@use '../../../src/utils/theme-list-inset';
 @use '../../../src/ionic-theme-ios26';
-
-ion-searchbar .searchbar-input-container {
-  margin: 0 20px !important;
-}
