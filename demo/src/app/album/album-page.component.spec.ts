@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AlbumPage } from './album-page.component';
-import { testConfig } from '../../../../util/test.config';
+import { testConfig } from '../../../util/test.config';
 
 describe('ScrollHeaderPage', () => {
   let component: AlbumPage;

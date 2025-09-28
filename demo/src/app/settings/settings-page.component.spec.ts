@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SettingsPage } from './settings-page.component';
-import { testConfig } from '../../../../util/test.config';
+import { testConfig } from '../../../util/test.config';
 
-describe('VirtualScrollHeaderPage', () => {
+describe('SettingsPage', () => {
   let component: SettingsPage;
   let fixture: ComponentFixture<SettingsPage>;
 

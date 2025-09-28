@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HealthPage } from './health-page.component';
-import { testConfig } from '../../../../util/test.config';
+import { testConfig } from '../../../util/test.config';
 
-describe('VirtualScrollHeaderPage', () => {
+describe('HealthPage', () => {
   let component: HealthPage;
   let fixture: ComponentFixture<HealthPage>;
 

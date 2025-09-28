@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TabsPage } from './tabs.page';
-import { testConfig } from '../../../../util/test.config';
+import { testConfig } from '../../../util/test.config';
 
 describe('TabsPage', () => {
   let component: TabsPage;
