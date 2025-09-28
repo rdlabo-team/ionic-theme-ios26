@@ -55,7 +55,7 @@ export class IndexPageComponent {
     { name: 'breadcrumbs', enable: false },
     { name: 'button', enable: false },
     { name: 'card', enable: false },
-    { name: 'checkbox', enable: false },
+    { name: 'checkbox', enable: true },
     { name: 'chip', enable: false },
     { name: 'content', enable: false },
     { name: 'date-and-time-pickers', enable: false },

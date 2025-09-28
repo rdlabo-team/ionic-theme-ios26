@@ -18,7 +18,7 @@
     <ion-list-header><ion-label>Demo</ion-label></ion-list-header>
     <ion-item-group>
       @for (item of components; track item.name) {
-        <ion-item [button]="item.enable" (click)="navigateComponent(item)">
+        <ion-item [disabled]="!item.enable" [button]="item.enable" (click)="navigateComponent(item)">
           <ion-label>{{ item.name }}</ion-label>
           @if (!item.enable) {
             <ion-text>WIP</ion-text>
