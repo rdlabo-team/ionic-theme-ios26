@@ -16,6 +16,7 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 import { ActionSheetController } from '@ionic/angular';
+import { sheetConfig } from './action-sheet.util';
 
 @Component({
   selector: 'app-action-sheet',
@@ -44,36 +45,24 @@ export class ActionSheetPage implements OnInit {
 
   ngOnInit() {}
 
-  async presentActionSheet() {
-    const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Actions',
-      subHeader: 'Action Sheet',
-      buttons: [
-        {
-          text: 'Delete',
-          role: 'destructive',
-          icon: 'trash-outline',
-          data: {
-            action: 'delete',
-          },
-        },
-        {
-          text: 'Share',
-          icon: 'share-outline',
-          data: {
-            action: 'share',
-          },
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          data: {
-            action: 'cancel',
-          },
-        },
-      ],
-    });
+  async presentActionSheet(type: 'all' | 'button-only' | 'no-cancel') {
+    const applyConfig = ((type) => {
+      if (type === 'button-only') {
+        return {
+          ...sheetConfig(),
+          header: undefined,
+          subHeader: undefined,
+        };
+      } else if (type === 'no-cancel') {
+        return {
+          ...sheetConfig(),
+          buttons: sheetConfig().buttons.filter((button) => button.role !== 'cancel'),
+        };
+      }
+      return sheetConfig();
+    })(type);
 
+    const actionSheet = await this.actionSheetCtrl.create(applyConfig);
     await actionSheet.present();
   }
 }
