@@ -21,10 +21,6 @@
     }
   }
 
-  ion-item-group {
-    margin: 16px 0;
-  }
-
   // TODO: これはUtility Classにマイグレートする必要があります
   ion-item-group.header-item-group {
     & > ion-item > ion-label {
