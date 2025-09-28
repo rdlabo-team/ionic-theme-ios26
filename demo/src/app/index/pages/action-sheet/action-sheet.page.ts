@@ -47,6 +47,7 @@ export class ActionSheetPage implements OnInit {
   async presentActionSheet() {
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Actions',
+      subHeader: 'Action Sheet',
       buttons: [
         {
           text: 'Delete',
