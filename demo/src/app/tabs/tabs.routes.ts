@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
-import { SimplePageComponent } from '../simple/simple-page.component';
+import { IndexPageComponent } from '../index/index-page.component';
 import { AlbumPage } from '../album/album-page.component';
 import { SettingsPage } from '../settings/settings-page.component';
 import { HealthPage } from '../health/health-page.component';
@@ -11,8 +11,8 @@ export const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'simple',
-        component: SimplePageComponent,
+        path: 'index',
+        loadChildren: () => import('../index/index.routes').then((m) => m.routes),
       },
       {
         path: 'album',
@@ -28,14 +28,14 @@ export const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/main/photo-editor',
+        redirectTo: '/main/index',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/main/simple',
+    redirectTo: '/main/index',
     pathMatch: 'full',
   },
 ];

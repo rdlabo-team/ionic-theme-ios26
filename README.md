@@ -54,6 +54,23 @@ We support Ionic Dark Mode. More information is here: https://ionicframework.com
 | System    | @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-system.min.css' |
 | CSS Class | @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-class.min.css'  |
 
+### `ion-back-button` は `ion-buttons` に入れないで使う必要があります
+
+以下の条件を満たす時、Ionic Frameworkは `ion-back-button` をプログラムで生成して、アニメーションで表示します。
+
+- 遷移前のページに `ion-header[collapse='condense']` を使用している
+- 遷移後のページに、 `ion-buttons ion-back-button` がある
+
+これはiOS26のUIではなく、このプログラムを避けるために以下の実装を行う必要があります。
+
+```diff
+  <ion-header>
+-   <ion-buttons slot="start">
+-   <ion-back-button></ion-back-button>
+-   </ion-buttons>
++   <ion-back-button slot=start></ion-back-button>
+  </ion-header>
+```
 
 ### Using `ion-item-group`
 

@@ -18,10 +18,10 @@
     <ion-list-header><ion-label>Demo</ion-label></ion-list-header>
     <ion-item-group>
       @for (item of components; track item.name) {
-        <ion-item [button]="item.detail">
+        <ion-item [button]="item.enable" (click)="navigateComponent(item)">
           <ion-label>{{ item.name }}</ion-label>
-          @if (item.end) {
-            <ion-text>{{ item.end }}</ion-text>
+          @if (!item.enable) {
+            <ion-text>WIP</ion-text>
           }
         </ion-item>
       }

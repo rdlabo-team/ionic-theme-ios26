@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DemoPhotoEditorPage } from './simple-page.component';
+import { DemoPhotoEditorPage } from './index-page.component';
 import { testConfig } from '../../../../util/test.config';
 
 describe('PhotoEditorPage', () => {

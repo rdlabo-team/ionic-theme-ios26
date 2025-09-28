@@ -84,12 +84,25 @@
 }
 
 /**
+ * collapseのanimateBackButton対策。これがあると、表示が狂うため。
+ * https://github.com/ionic-team/ionic-framework/blob/3b80473f2fd5ad4da5a9f5d66f783a69909c8965/core/src/utils/transition/ios.transition.ts#L150
+ */
+//ion-back-button {
+//  opacity: 0;
+//}
+//ion-buttons ion-back-button {
+//  opacity: 1;
+//}
+
+/**
  * .ios26-no-liquid-glass を適用しない限り、デフォルトスタイル
  */
 ion-header.ios,
 ion-footer.ios {
   ion-buttons:not(.ios26-no-liquid-glass) ion-button:not(.ios26-no-liquid-glass),
-  ion-buttons:not(.ios26-no-liquid-glass) ion-back-button:not(.ios26-no-liquid-glass) {
+  ion-buttons:not(.ios26-no-liquid-glass) ion-back-button:not(.ios26-no-liquid-glass),
+  /* collapseのanimateBackButton対策 */
+  ion-back-button:not(.ios26-no-liquid-glass) {
     @include theme-button;
   }
 }
@@ -99,6 +112,7 @@ ion-footer.ios {
  */
 ion-buttons.ios.ios26-liquid-glass ion-button:not(.ios26-no-liquid-glass),
 ion-buttons.ios.ios26-liquid-glass ion-back-button:not(.ios26-no-liquid-glass),
-ion-button.ios.ios26-liquid-glass {
+ion-button.ios.ios26-liquid-glass,
+ion-back-button.ios.ios26-liquid-glass {
   @include theme-button;
 }
