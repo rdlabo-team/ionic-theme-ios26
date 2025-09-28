@@ -9,15 +9,17 @@ ion-list.list-inset.ios {
     overflow: hidden;
 
     ion-item {
+      // To draw lines inside
       --inner-padding-end: 0;
+      &::part(native) {
+        padding-right: 16px;
+      }
+
       &:first-child {
         --padding-top: 4px;
       }
       &:last-child {
         --padding-bottom: 4px;
-      }
-      &::part(native) {
-        padding-right: 16px;
       }
 
       & > ion-input[labelplacement='floating'] {
