@@ -1,10 +1,8 @@
-.ios {
-  ion-toggle {
-    --handle-width: 38px;
-    --handle-height: 28px;
-    &::part(track) {
-      height: 28px;
-      width: 64px;
-    }
+ion-toggle.ios {
+  --handle-width: 38px;
+  --handle-height: 28px;
+  &::part(track) {
+    height: 28px;
+    width: 64px;
   }
 }

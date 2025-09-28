@@ -1,48 +1,46 @@
 @use '../utils/api';
 
-.ios {
-  ion-tab-bar {
-    @include api.glass-background;
-    z-index: 2;
+ion-tab-bar.ios {
+  @include api.glass-background;
+  z-index: 2;
 
-    border-radius: 40px;
+  border-radius: 40px;
 
-    width: calc(100% - 56px - 16px - 16px - 4px - 16px);
-    max-width: 400px;
-    padding: 2px 2px;
-    bottom: var(--ios26-floating-safe-area-bottom);
-    left: calc(16px + var(--ion-safe-area-left, 0px));
-    position: absolute;
-    margin: auto;
+  width: calc(100% - 56px - 16px - 16px - 4px - 16px);
+  max-width: 400px;
+  padding: 2px 2px;
+  bottom: var(--ios26-floating-safe-area-bottom);
+  left: calc(16px + var(--ion-safe-area-left, 0px));
+  position: absolute;
+  margin: auto;
 
-    transition: transform 100ms ease-out;
-    will-change: transform;
-    &:active {
-      transform: scale(1.02);
-      backdrop-filter: saturate(360%);
+  transition: transform 100ms ease-out;
+  will-change: transform;
+  &:active {
+    transform: scale(1.02);
+    backdrop-filter: saturate(360%);
+  }
+
+  ion-tab-button {
+    & > ion-icon {
+      font-size: 30px;
+    }
+    background: rgba(var(--ios26-color-light-rgb), 0);
+    height: auto;
+    &::part(native) {
+      overflow: visible;
     }
 
-    ion-tab-button {
-      & > ion-icon {
-        font-size: 30px;
-      }
-      background: rgba(var(--ios26-color-light-rgb), 0);
-      height: auto;
+    &.tab-selected {
       &::part(native) {
-        overflow: visible;
+        backdrop-filter: blur(7px);
+        background: rgba(var(--ios26-color-tab-active-rgb), 0.1);
+        transition: background 0.2s ease;
+        border-radius: 32px;
       }
 
-      &.tab-selected {
-        &::part(native) {
-          backdrop-filter: blur(7px);
-          background: rgba(var(--ios26-color-tab-active-rgb), 0.1);
-          transition: background 0.2s ease;
-          border-radius: 32px;
-        }
-
-        &.ion-activated::part(native) {
-          background: rgba(var(--ios26-color-shadow-rgb), 0.02);
-        }
+      &.ion-activated::part(native) {
+        background: rgba(var(--ios26-color-shadow-rgb), 0.02);
       }
     }
   }

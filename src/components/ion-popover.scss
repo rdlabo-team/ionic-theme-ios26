@@ -1,23 +1,21 @@
 @use '../utils/api';
 
-.ios {
-  ion-popover {
-    --backdrop-opacity: 0.04;
-    &::part(arrow) {
-      //display: none;
+ion-popover.ios {
+  --backdrop-opacity: 0.04;
+  &::part(arrow) {
+    //display: none;
+  }
+  &:not(.ios26-no-liquid-glass) {
+    &::part(content) {
+      @include api.glass-background(0.6);
+      border-radius: 24px;
+      padding: 0;
     }
-    &:not(.ios26-no-liquid-glass) {
-      &::part(content) {
-        @include api.glass-background(0.6);
-        border-radius: 24px;
-        padding: 0;
-      }
-    }
-    ion-list {
-      background: transparent;
-      ion-item {
-        --background: transparent;
-      }
+  }
+  ion-list {
+    background: transparent;
+    ion-item {
+      --background: transparent;
     }
   }
 }

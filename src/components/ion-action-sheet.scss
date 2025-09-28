@@ -1,5 +1,3 @@
-.ios {
-  ion-action-sheet {
-    --button-color: var(--ion-color-medium);
-  }
+ion-action-sheet.ios {
+  --button-color: var(--ion-color-medium);
 }

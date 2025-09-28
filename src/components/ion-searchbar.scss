@@ -1,39 +1,37 @@
 @use '../utils/api';
 
-.ios {
-  ion-modal {
-    ion-searchbar:not(.ios26-no-liquid-glass) {
-      .searchbar-input-container {
-        margin: 0 6px;
-        input.searchbar-input {
-          // Modal表示でのアイコン非表示の不具合の対応
-          backdrop-filter: none;
-        }
+ion-modal.ios {
+  ion-searchbar:not(.ios26-no-liquid-glass) {
+    .searchbar-input-container {
+      margin: 0 6px;
+      input.searchbar-input {
+        // Modal表示でのアイコン非表示の不具合の対応
+        backdrop-filter: none;
       }
     }
   }
+}
 
-  ion-searchbar:not(.ios26-no-liquid-glass) {
-    min-height: 60px;
-    padding: 0;
+ion-searchbar.ios:not(.ios26-no-liquid-glass) {
+  min-height: 60px;
+  padding: 0;
 
-    ion-icon.searchbar-search-icon {
-      inset-inline-start: 12px;
+  ion-icon.searchbar-search-icon {
+    inset-inline-start: 12px;
+  }
+
+  .searchbar-input-container {
+    margin: 0 8px 0 16px;
+    align-self: center;
+    justify-self: center;
+    input.searchbar-input {
+      min-height: 44px;
+      @include api.glass-background;
+      border-radius: 20px;
+      padding-inline-start: 2.4rem !important;
     }
-
-    .searchbar-input-container {
-      margin: 0 8px 0 16px;
-      align-self: center;
-      justify-self: center;
-      input.searchbar-input {
-        min-height: 44px;
-        @include api.glass-background;
-        border-radius: 20px;
-        padding-inline-start: 2.4rem !important;
-      }
-      .searchbar-clear-button {
-        padding-inline-end: 2rem !important;
-      }
+    .searchbar-clear-button {
+      padding-inline-end: 2rem !important;
     }
   }
 }

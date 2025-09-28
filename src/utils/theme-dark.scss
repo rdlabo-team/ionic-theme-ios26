@@ -1,0 +1,26 @@
+@use 'api';
+
+@mixin theme-dark-button {
+  &:not(.ios26-no-liquid-glass) {
+    opacity: 1;
+    &::part(native) {
+      opacity: 1;
+    }
+  }
+
+  &.ion-activated {
+    &::part(native) {
+      @include api.glass-background-dark-active;
+    }
+    ion-icon {
+      color: rgb(255, 255, 255) !important;
+    }
+  }
+
+  &.ios26-button-outline,
+  &.button-outline {
+    &::part(native) {
+      color: var(--ion-color-primary-contrast) !important;
+    }
+  }
+}
