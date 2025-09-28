@@ -2,15 +2,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ios26-color-dark-rgb: 255, 255, 255;
-    --ios26-color-light-rgb: 58, 58, 58;
-    --ios26-color-tab-active-rgb: 255, 255, 255;
-    --ios26-color-shadow-rgb: translarent;
-    --ios26-color-background-rgb: 0, 0, 0;
-    --ios26-color-edge-rgb: 120, 120, 120;
+    @include theme-dark.default-variables;
   }
-}
-
-@media (prefers-color-scheme: dark) {
   @include theme-dark.theme-dark;
 }
