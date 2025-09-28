@@ -1,4 +1,11 @@
 :root {
+  --ion-color-light: #f2f2f7;
+  --ion-color-light-rgb: 242, 242, 247;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #d5d5d9;
+  --ion-color-light-tint: #f3f3f8;
+
   --ios26-floating-safe-area-bottom: max(10px, var(--ion-safe-area-bottom, 0px));
 
   --ios26-color-dark-rgb: 0, 0, 0;

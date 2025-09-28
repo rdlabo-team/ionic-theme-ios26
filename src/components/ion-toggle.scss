@@ -20,13 +20,13 @@
 
 ion-toggle.ios {
   --handle-width: 38px;
-  --handle-height: 20px;
+  --handle-height: 24px;
   --handle-max-width: none;
   --handle-max-height: none;
-  --track-background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.2);
-  --track-background-checked: var(--ion-color-primary, #0054e9);
+  --track-background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.23);
   transition: transform 0.3s ease;
   &.toggle-activated::part(handle) {
+    //border-radius: 80px;
     transform: scale(1.2, 1.6) translateX(calc(38px * -0.1));
     @include api.glass-background(0.1, 0.5px, 120%);
     box-shadow:
@@ -34,12 +34,12 @@ ion-toggle.ios {
       0 0 6px 0 rgba(var(--ios26-color-shadow-rgb), 0.8);
   }
   &.toggle-checked.toggle-activated::part(track) {
-    width: 56px;
+    width: 60px;
     margin-right: 4px;
   }
   &::part(track) {
     overflow: visible;
-    width: 60px;
-    height: 24px;
+    width: 64px;
+    height: 28px;
   }
 }

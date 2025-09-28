@@ -7,12 +7,13 @@ ion-content:not(.background-transparent)::after {
 }
 
 ion-list.list-inset {
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
 ion-item > ion-icon[slot='start'] {
-  border-radius: 20%;
+  border-radius: 8px;
   padding: 4px;
+  margin-right: 14px;
   color: var(--ion-background-color, #fff);
   font-size: 1.3rem;
 }
