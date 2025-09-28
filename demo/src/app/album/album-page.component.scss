@@ -8,7 +8,7 @@ ion-header {
   left: 0;
   ion-title,
   ion-button::part(native) {
-    color: var(--ion-background-color, #fff);
+    color: var(--ion-text-color, #fff);
   }
   &.header-translucent::after {
     // Overwrite default settings

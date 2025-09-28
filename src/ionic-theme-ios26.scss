@@ -1,4 +1,4 @@
-@use 'default-variables';
+@use 'utils/default-variables';
 
 @use 'utils/api';
 @use 'utils/translucent';
@@ -15,8 +15,6 @@
 @use 'components/ion-tabs';
 @use 'components/ion-toast';
 @use 'components/ion-toggle';
-
-@use 'utils/theme-dark';
 
 .ios {
   /**

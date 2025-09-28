@@ -32,11 +32,16 @@
  * https://ionicframework.com/docs/theming/dark-mode
  */
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-//@use '@ionic/angular/css/palettes/dark.system.css';
-
-/**
- *
- */
 @use 'theme/theme-ios26';
+
+//@use "@ionic/angular/css/palettes/dark.always.css";
+
+//@use "@ionic/angular/css/palettes/dark.class.css";
+/**
+ * 任意でダークモードを使うことができて便利なため、インポートしています（Library）。
+ * 一般的な用途では不要です。
+ */
+@use '../../src/ionic-theme-dark-class';
+
+@use '@ionic/angular/css/palettes/dark.system.css';
+@use '../../src/ionic-theme-dark-system';

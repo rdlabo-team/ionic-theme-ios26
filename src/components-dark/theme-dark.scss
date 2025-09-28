@@ -1,0 +1,5 @@
+@use '../components-dark/ion-button';
+
+@mixin theme-dark {
+  @include ion-button.ion-button-dark;
+}

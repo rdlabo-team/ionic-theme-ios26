@@ -1,5 +1,4 @@
 @use '../utils/api';
-@use '../utils/theme-dark';
 
 @mixin theme-button {
   max-height: inherit;
@@ -95,16 +94,6 @@ ion-footer.ios {
   }
 }
 
-.ion-palette-dark {
-  ion-header.ios,
-  ion-footer.ios {
-    ion-buttons:not(.ios26-no-liquid-glass) ion-button:not(.ios26-no-liquid-glass),
-    ion-buttons:not(.ios26-no-liquid-glass) ion-back-button:not(.ios26-no-liquid-glass) {
-      @include theme-dark.theme-dark-button;
-    }
-  }
-}
-
 /**
  * .ios26-liquid-glass を任意で適用した場合のスタイル
  */
@@ -112,12 +101,4 @@ ion-buttons.ios.ios26-liquid-glass ion-button:not(.ios26-no-liquid-glass),
 ion-buttons.ios.ios26-liquid-glass ion-back-button:not(.ios26-no-liquid-glass),
 ion-button.ios.ios26-liquid-glass {
   @include theme-button;
-}
-
-.ion-palette-dark {
-  ion-buttons.ios.ios26-liquid-glass ion-button:not(.ios26-no-liquid-glass),
-  ion-buttons.ios.ios26-liquid-glass ion-back-button:not(.ios26-no-liquid-glass),
-  ion-button.ios.ios26-liquid-glass {
-    @include theme-dark.theme-dark-button;
-  }
 }

@@ -44,6 +44,17 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`) a
 
 ## Important Notes
 
+### Support Dark Mode
+
+We support Ionic Dark Mode. More information is here: https://ionicframework.com/docs/theming/dark-mode
+
+| Mode      | Code                                                                         |
+|-----------|------------------------------------------------------------------------------|
+| Always    | Overwrite library colors on the :root selector.                              |
+| System    | @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-system.min.css' |
+| CSS Class | @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-class.min.css'  |
+
+
 ### Using `ion-item-group`
 
 Under specific conditions, you need to use `ion-item-group`. For details, please refer to [USING_ION_ITEM_GROUP.md](./USING_ION_ITEM_GROUP.md).

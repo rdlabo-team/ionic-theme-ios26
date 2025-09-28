@@ -1,0 +1,42 @@
+@use '../utils/api';
+
+@mixin theme-dark-button {
+  &:not(.ios26-no-liquid-glass) {
+    opacity: 1;
+    &::part(native) {
+      opacity: 1;
+    }
+  }
+
+  &.ion-activated {
+    &::part(native) {
+      @include api.glass-background-dark-active;
+    }
+    ion-icon {
+      color: rgb(255, 255, 255) !important;
+    }
+  }
+
+  &.ios26-button-outline,
+  &.button-outline {
+    &::part(native) {
+      color: var(--ion-color-primary-contrast) !important;
+    }
+  }
+}
+
+@mixin ion-button-dark {
+  ion-header.ios,
+  ion-footer.ios {
+    ion-buttons:not(.ios26-no-liquid-glass) ion-button:not(.ios26-no-liquid-glass),
+    ion-buttons:not(.ios26-no-liquid-glass) ion-back-button:not(.ios26-no-liquid-glass) {
+      @include theme-dark-button;
+    }
+  }
+
+  ion-buttons.ios.ios26-liquid-glass ion-button:not(.ios26-no-liquid-glass),
+  ion-buttons.ios.ios26-liquid-glass ion-back-button:not(.ios26-no-liquid-glass),
+  ion-button.ios.ios26-liquid-glass {
+    @include theme-dark-button;
+  }
+}
