@@ -24,22 +24,24 @@ ion-toggle.ios {
   --handle-max-width: none;
   --handle-max-height: none;
   --track-background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.23);
-  transition: transform 0.3s ease;
+  ::part(handle) {
+    transition: transform 0.3s ease;
+  }
   &.toggle-activated::part(handle) {
-    //border-radius: 80px;
     transform: scale(1.2, 1.6) translateX(calc(38px * -0.1));
     @include api.glass-background(0.1, 0.5px, 120%);
     box-shadow:
       inset 0 0 4px 0 rgba(var(--ios26-color-shadow-rgb), 0.2),
       0 0 6px 0 rgba(var(--ios26-color-shadow-rgb), 0.8);
   }
-  &.toggle-checked.toggle-activated::part(track) {
-    width: 60px;
-    margin-right: 4px;
-  }
   &::part(track) {
     overflow: visible;
     width: 64px;
     height: 28px;
+    transition: transform 0.3s ease;
+  }
+  &.toggle-checked.toggle-activated::part(track) {
+    transform-origin: left center;
+    transform: scaleX(0.937);
   }
 }
