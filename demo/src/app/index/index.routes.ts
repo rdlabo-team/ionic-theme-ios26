@@ -22,4 +22,16 @@ export const routes: Routes = [
     path: 'checkbox',
     loadComponent: () => import('./pages/checkbox/checkbox.page').then((m) => m.CheckboxPage),
   },
+  {
+    path: 'range',
+    loadComponent: () => import('./pages/range/range.page').then((m) => m.RangePage),
+  },
+  {
+    path: 'toast',
+    loadComponent: () => import('./pages/toast/toast.page').then((m) => m.ToastPage),
+  },
+  {
+    path: 'toggle',
+    loadComponent: () => import('./pages/toggle/toggle.page').then((m) => m.TogglePage),
+  },
 ];
