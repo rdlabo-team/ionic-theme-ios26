@@ -20,12 +20,11 @@ import {
   ModalController,
 } from '@ionic/angular/standalone';
 import { alertUtil } from '../alert/alert.util';
-import { ToastController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-toast',
-  templateUrl: './toast.page.html',
-  styleUrls: ['./toast.page.scss'],
+  selector: 'app-modal',
+  templateUrl: './modal.page.html',
+  styleUrls: ['./modal.page.scss'],
   standalone: true,
   imports: [
     IonContent,
@@ -42,32 +41,39 @@ import { ToastController } from '@ionic/angular';
     IonList,
     IonNote,
     IonText,
-    IonButton,
     IonButtons,
+    IonButton,
   ],
 })
-export class ToastPage implements OnInit {
-  readonly overlayCtrl = inject(ToastController);
+export class ModalPage implements OnInit {
+  readonly overlayCtrl = inject(ModalController);
+  readonly #el = inject(ElementRef);
+
+  readonly isModal = input<boolean>();
 
   ngOnInit() {}
 
-  async present(type: 'top' | 'middle' | 'bottom' | 'anchor') {
-    const toastDefault = {
-      message: 'Hello World!',
-      buttons: ['Close'],
+  async present(type: 'normal' | 'card' | 'sheet') {
+    const modalDefault = {
+      component: ModalPage,
+      componentProps: {
+        isModal: true,
+      },
     };
     const applyConfig = ((type) => {
-      if (type === 'anchor') {
+      if (type === 'card') {
         return {
-          ...toastDefault,
-          positionAnchor: 'tab-bar-bottom',
-          position: 'bottom' as 'top' | 'middle' | 'bottom',
+          ...modalDefault,
+          presentingElement: this.#el.nativeElement,
+        };
+      } else if (type === 'sheet') {
+        return {
+          ...modalDefault,
+          breakpoints: [0, 0.5, 0.8],
+          initialBreakpoint: 0.8,
         };
       }
-      return {
-        ...toastDefault,
-        position: type as 'top' | 'middle' | 'bottom',
-      };
+      return modalDefault;
     })(type);
     const actionSheet = await this.overlayCtrl.create(applyConfig);
     await actionSheet.present();

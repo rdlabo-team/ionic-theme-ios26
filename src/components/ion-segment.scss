@@ -1,10 +1,44 @@
-ion-toolbar.ios {
-  ion-segment {
-    width: calc(100% - 24px);
-    border-radius: 16px;
+@use '../utils/api';
 
-    ion-segment-button::part(indicator-background) {
-      border-radius: 16px;
+ion-toolbar.ios {
+  &:has(ion-segment) {
+    overflow: visible;
+  }
+  ion-segment {
+    @include api.glass-background;
+    min-height: 44px;
+    border-radius: 25px;
+
+    transition: transform 100ms ease-out;
+    will-change: transform;
+    overflow: visible;
+
+    ion-segment-button {
+      --border-width: 0;
+
+      &::part(indicator-background) {
+        border-radius: 25px;
+        box-shadow: none;
+        background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.06);
+      }
+    }
+
+    &.segment-activated {
+      transform: scale(1.1);
+      overflow: visible;
+
+      ion-segment-button {
+        &.segment-button-checked {
+          transform: scale(1.1);
+        }
+        &::part(indicator-background) {
+          position: relative;
+          z-index: 1;
+          @include api.glass-background;
+          transform: scale(1.1);
+          transform-origin: center center;
+        }
+      }
     }
   }
 }

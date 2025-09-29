@@ -1,6 +1,26 @@
+@use '../utils/api';
+
 ion-modal.ios {
   ion-toolbar {
     padding-right: calc(var(--ion-safe-area-right) + 4px) !important;
     padding-left: calc(var(--ion-safe-area-left) + 4px) !important;
+  }
+  &::part(handle) {
+    width: 80px;
+  }
+
+  &.modal-card {
+    /**
+     * IonicでCardModalのborder-radiusはハードコーディングされています。
+     * また、iOS26のドキュメントで見つからないため、サポートは行いません。
+     * https://github.com/ionic-team/ionic-framework/blob/3b80473f2fd5ad4da5a9f5d66f783a69909c8965/core/src/components/modal/animations/ios.enter.ts#L82-L83
+     */
+  }
+
+  &.modal-sheet {
+    --border-radius: 30px;
+    &::part(content) {
+      @include api.glass-background(1);
+    }
   }
 }

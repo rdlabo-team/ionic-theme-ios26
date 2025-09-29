@@ -34,4 +34,12 @@ export const routes: Routes = [
     path: 'toggle',
     loadComponent: () => import('./pages/toggle/toggle.page').then((m) => m.TogglePage),
   },
+  {
+    path: 'segment',
+    loadComponent: () => import('./pages/segment/segment.page').then((m) => m.SegmentPage),
+  },
+  {
+    path: 'modal',
+    loadComponent: () => import('./pages/modal/modal.page').then((m) => m.ModalPage),
+  },
 ];

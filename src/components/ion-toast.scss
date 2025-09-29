@@ -1,3 +1,12 @@
+@use '../utils/api';
+
 ion-toast.ios {
-  --border-radius: 24px;
+  --background: transparent;
+  --start: 16px;
+  --end: 16px;
+
+  &::part(container) {
+    @include api.glass-background;
+    border-radius: 24px;
+  }
 }

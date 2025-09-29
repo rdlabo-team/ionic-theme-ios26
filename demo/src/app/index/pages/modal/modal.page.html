@@ -1,7 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-back-button slot="start" defaultHref="/main/index"></ion-back-button>
-    <ion-title>toast</ion-title>
+    @if (this.isModal()) {
+      <ion-buttons class="ios26-liquid-glass" slot="end">
+        <ion-button (click)="overlayCtrl.dismiss()"><ion-icon name="close-outline" slot="icon-only"></ion-icon></ion-button>
+      </ion-buttons>
+    } @else {
+      <ion-back-button slot="start" defaultHref="/main/index"></ion-back-button>
+    }
+    <ion-title>modal</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +17,7 @@
       <ion-item>
         <ion-label>
           <ion-icon name="logo-ionic" style="background: linear-gradient(#489bfd, #2b77f4)"></ion-icon>
-          <h2>toast</h2>
+          <h2>modal</h2>
           <ion-header collapse="condense">
             <ion-toolbar></ion-toolbar>
           </ion-header>
@@ -23,10 +29,9 @@
 
   <ion-list [inset]="true">
     <ion-item-group>
-      <ion-item (click)="present('top')" [button]="true">present:top</ion-item>
-      <ion-item (click)="present('middle')" [button]="true">present:middle</ion-item>
-      <ion-item (click)="present('bottom')" [button]="true">present:bottom</ion-item>
-      <ion-item (click)="present('anchor')" [button]="true">present:anchor</ion-item>
+      <ion-item (click)="present('normal')" [button]="true">present:normal</ion-item>
+      <ion-item (click)="present('card')" [button]="true">present:card</ion-item>
+      <ion-item (click)="present('sheet')" [button]="true">present:sheet</ion-item>
     </ion-item-group>
   </ion-list>
 </ion-content>

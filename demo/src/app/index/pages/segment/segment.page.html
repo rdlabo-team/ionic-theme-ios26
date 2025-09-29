@@ -1,0 +1,102 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/main/index"></ion-back-button>
+    <ion-title>segment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+  <ion-list [inset]="true">
+    <ion-item-group class="header-item-group">
+      <ion-item>
+        <ion-label>
+          <ion-icon name="logo-ionic" style="background: linear-gradient(#489bfd, #2b77f4)"></ion-icon>
+          <h2>segment</h2>
+          <ion-header collapse="condense">
+            <ion-toolbar></ion-toolbar>
+          </ion-header>
+          <ion-text><code>This page is a component demo for &#64;rdlabo/ionic-theme-ios26.</code></ion-text>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <section style="padding: 0 12px">
+    <ion-toolbar>
+      <ion-segment value="default">
+        <ion-segment-button value="default">
+          <ion-label>Default</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="segment">
+          <ion-label>Segment</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button class="ios26-liquid-glass" fill="default"><ion-icon name="images" slot="icon-only"></ion-icon></ion-button>
+      </ion-buttons>
+      <ion-segment value="Years">
+        <ion-segment-button value="Years">
+          <ion-label>Years</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Months">
+          <ion-label>Months</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="All">
+          <ion-label>All</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      <ion-buttons slot="end">
+        <ion-button class="ios26-liquid-glass" fill="default"><ion-icon name="search" slot="icon-only"></ion-icon></ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+
+    <ion-toolbar>
+      <ion-segment [disabled]="true" value="disabled">
+        <ion-segment-button value="disabled">
+          <ion-label>Disabled</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="segment">
+          <ion-label>Segment</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+
+    <ion-toolbar>
+      <ion-segment [scrollable]="true" value="heart">
+        <ion-segment-button value="home">
+          <ion-icon name="home"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="heart">
+          <ion-icon name="heart"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="pin">
+          <ion-icon name="pin"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="star">
+          <ion-icon name="star"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="call">
+          <ion-icon name="call"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="globe">
+          <ion-icon name="globe"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="basket">
+          <ion-icon name="basket"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="barbell">
+          <ion-icon name="barbell"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="trash">
+          <ion-icon name="trash"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="person">
+          <ion-icon name="person"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </section>
+</ion-content>
