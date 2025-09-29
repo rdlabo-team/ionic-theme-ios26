@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import {
   AlertController,
   IonBackButton,
-  IonButton,
-  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -13,7 +11,6 @@ import {
   IonItemGroup,
   IonLabel,
   IonList,
-  IonNote,
   IonText,
   IonTitle,
   IonToolbar,
@@ -40,10 +37,7 @@ import { ToastController } from '@ionic/angular';
     IonItemGroup,
     IonLabel,
     IonList,
-    IonNote,
     IonText,
-    IonButton,
-    IonButtons,
   ],
 })
 export class ToastPage implements OnInit {

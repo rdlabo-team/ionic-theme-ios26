@@ -42,4 +42,24 @@ export const routes: Routes = [
     path: 'modal',
     loadComponent: () => import('./pages/modal/modal.page').then((m) => m.ModalPage),
   },
+  {
+    path: 'card',
+    loadComponent: () => import('./pages/card/card.page').then((m) => m.CardPage),
+  },
+  {
+    path: 'chip',
+    loadComponent: () => import('./pages/chip/chip.page').then((m) => m.ChipPage),
+  },
+  {
+    path: 'breadcrumbs',
+    loadComponent: () => import('./pages/breadcrumbs/breadcrumbs.page').then((m) => m.BreadcrumbsPage),
+  },
+  {
+    path: 'searchbar',
+    loadComponent: () => import('./pages/searchbar/searchbar.page').then((m) => m.SearchbarPage),
+  },
+  {
+    path: 'menu',
+    loadComponent: () => import('./pages/menu/menu.page').then((m) => m.MenuPage),
+  },
 ];

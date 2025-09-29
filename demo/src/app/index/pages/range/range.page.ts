@@ -15,7 +15,6 @@ import {
   IonRange,
   IonText,
   IonTitle,
-  IonToggle,
   IonToolbar,
 } from '@ionic/angular/standalone';
 
@@ -40,7 +39,6 @@ import {
     IonListHeader,
     IonNote,
     IonText,
-    IonToggle,
     IonRange,
   ],
 })

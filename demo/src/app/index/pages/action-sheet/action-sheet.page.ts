@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
-  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -31,7 +30,6 @@ import { actionSheetUtil } from './action-sheet.util';
     IonToolbar,
     CommonModule,
     FormsModule,
-    IonButtons,
     IonBackButton,
     IonList,
     IonItem,

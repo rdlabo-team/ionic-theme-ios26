@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
-  IonButton,
-  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -33,8 +31,6 @@ import {
     CommonModule,
     FormsModule,
     IonBackButton,
-    IonButton,
-    IonButtons,
     IonIcon,
     IonItem,
     IonItemGroup,
