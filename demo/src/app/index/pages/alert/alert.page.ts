@@ -16,8 +16,6 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
-import { ActionSheetController } from '@ionic/angular';
-import { actionSheetUtil } from '../action-sheet/action-sheet.util';
 import { alertUtil } from './alert.util';
 
 @Component({

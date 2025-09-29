@@ -1,8 +1,7 @@
-import { Component, ElementRef, inject, input, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  AlertController,
   IonBackButton,
   IonContent,
   IonHeader,
@@ -14,10 +13,8 @@ import {
   IonText,
   IonTitle,
   IonToolbar,
-  ModalController,
+  ToastController,
 } from '@ionic/angular/standalone';
-import { alertUtil } from '../alert/alert.util';
-import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-toast',

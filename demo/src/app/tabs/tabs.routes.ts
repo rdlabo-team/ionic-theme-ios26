@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
-import { IndexPageComponent } from '../index/index-page.component';
 import { AlbumPage } from '../album/album-page.component';
 import { SettingsPage } from '../settings/settings-page.component';
 import { HealthPage } from '../health/health-page.component';

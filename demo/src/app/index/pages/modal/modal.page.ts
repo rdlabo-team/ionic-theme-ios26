@@ -2,7 +2,6 @@ import { Component, ElementRef, inject, input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  AlertController,
   IonBackButton,
   IonButton,
   IonButtons,
@@ -18,7 +17,6 @@ import {
   IonToolbar,
   ModalController,
 } from '@ionic/angular/standalone';
-import { alertUtil } from '../alert/alert.util';
 
 @Component({
   selector: 'app-modal',
