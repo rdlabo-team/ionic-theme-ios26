@@ -5,5 +5,9 @@
  * }
  */
 ion-header.ios ion-toolbar:first-of-type {
-  padding-top: max(var(--ion-safe-area-top, 0), 16px);
+  padding-top: max(calc(var(--ion-safe-area-top, 0) - 12px), 4px);
+}
+
+ion-toolbar.ios {
+  --min-height: 68px;
 }

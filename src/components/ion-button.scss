@@ -36,7 +36,7 @@
   will-change: transform;
 
   &.ion-activated {
-    transform: scale(1.2);
+    transform: scale(1.28);
     box-shadow: none;
     ion-icon {
       // 色を指定しなくても半透明に
@@ -73,9 +73,20 @@
 
   &:not(.button-solid):not(.ios26-button-solid):not(.button-outline):not(.ios26-button-outline):not(.button-clear):not(
       .ios26-button-clear
-    )::part(native) {
-    @include api.glass-background;
-    border-radius: 25px;
+    ) {
+    &::part(native) {
+      @include api.glass-background;
+      border-radius: 25px;
+    }
+    &.ion-activated {
+      *,
+      &::part(icon) {
+        opacity: 0.1;
+      }
+      &::part(native) {
+        opacity: 1;
+      }
+    }
   }
 
   &:not(.button-solid):not(.ios26-button-solid):not(.button-clear):not(.ios26-button-clear) {

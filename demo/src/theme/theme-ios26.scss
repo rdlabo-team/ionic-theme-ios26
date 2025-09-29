@@ -9,8 +9,13 @@
   --ios26-color-background-rgb: var(--ion-color-light-rgb);
 }
 
-ion-back-button {
-  --color: var(--ion-color-dark);
+ion-header.ios,
+ion-footer.ios {
+  ion-buttons:not(.ios26-no-liquid-glass),
+  ion-button:not(.ios26-no-liquid-glass),
+  ion-back-button:not(.ios26-no-liquid-glass) {
+    --color: var(--ion-text-color, #000);
+  }
 }
 
 section.section-example {
