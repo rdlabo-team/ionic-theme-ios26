@@ -1,0 +1,9 @@
+/**
+ * https://github.com/ionic-team/ionic-framework/blob/main/core/src/components/header/header.scss#L17-L19
+ * ion-header ion-toolbar:first-of-type {
+ *  padding-top: var(--ion-safe-area-top, 0);
+ * }
+ */
+ion-header.ios ion-toolbar:first-of-type {
+  padding-top: max(var(--ion-safe-area-top, 0), 16px);
+}
