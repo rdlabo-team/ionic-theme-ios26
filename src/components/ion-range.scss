@@ -10,10 +10,8 @@ ion-range.ios {
     transition: transform 0.3s ease;
   }
   &.range-pressed::part(knob) {
-    transform: scale(1.2, 1.6) translateX(calc(38px * -0.1));
+    transform: scale(1.4, 1.6) translateX(calc(38px * -0.1));
     @include api.glass-background(0.1, 0.5px, 120%);
-    box-shadow:
-      inset 0 0 4px 0 rgba(var(--ios26-color-shadow-rgb), 0.2),
-      0 0 6px 0 rgba(var(--ios26-color-shadow-rgb), 0.8);
+    box-shadow: inset 0 0 8px 0 rgba(0, 0, 0, 0.2);
   }
 }
