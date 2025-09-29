@@ -75,7 +75,7 @@ export class IndexPageComponent {
     { name: 'segment', enable: false },
     { name: 'select', enable: false },
     { name: 'tabs', enable: false },
-    { name: 'toast', enable: true },
+    { name: 'toast', enable: false },
     { name: 'toggle', enable: true },
     { name: 'toolbar', enable: false },
   ]);
