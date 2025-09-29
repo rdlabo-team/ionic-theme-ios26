@@ -66,7 +66,7 @@ export class ActionSheetPage implements OnInit {
       }
       return actionSheetUtil();
     })(type);
-
+    console.log(applyConfig);
     const actionSheet = await this.overlayCtrl.create(applyConfig);
     await actionSheet.present().then(() => console.log(type));
   }
