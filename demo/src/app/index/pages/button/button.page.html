@@ -48,6 +48,24 @@
         </ion-buttons>
       </ion-item>
       <ion-item>
+        <ion-label><code>buttons.ios26-liquid-glass > button[fill=default]</code></ion-label>
+        <ion-buttons class="ios26-liquid-glass" slot="end">
+          <ion-button fill="default">Link</ion-button>
+        </ion-buttons>
+      </ion-item>
+      <ion-item>
+        <ion-label><code>buttons.ios26-liquid-glass > button[fill=default][size=default]</code></ion-label>
+        <ion-buttons class="ios26-liquid-glass" slot="end">
+          <ion-button fill="default" size="default">Link</ion-button>
+        </ion-buttons>
+      </ion-item>
+      <ion-item>
+        <ion-label><code>buttons > button.ios26-liquid-glass[fill=default]</code></ion-label>
+        <ion-buttons slot="end">
+          <ion-button class="ios26-liquid-glass" fill="default">Link</ion-button>
+        </ion-buttons>
+      </ion-item>
+      <ion-item>
         <ion-label><code>buttons > button.ios26-liquid-glass[fill=outline]</code></ion-label>
         <ion-buttons slot="end">
           <ion-button class="ios26-liquid-glass" fill="outline">Link</ion-button>
@@ -79,12 +97,16 @@
   </ion-list>
 
   <section class="section-example">
-    <ion-button class="ios26-liquid-glass" size="small">small</ion-button>
-    <ion-button class="ios26-liquid-glass" size="default">default</ion-button>
-    <ion-button class="ios26-liquid-glass" size="large">large</ion-button><br />
+    <ion-buttons>
+      <ion-button class="ios26-liquid-glass" size="small" fill="solid" color="primary">small</ion-button>
+      <ion-button class="ios26-liquid-glass" size="default" fill="solid" color="primary">default</ion-button>
+      <ion-button class="ios26-liquid-glass" size="large" fill="solid" color="primary">large</ion-button>
+    </ion-buttons>
 
-    <ion-button class="ios26-liquid-glass" size="small" fill="default">small</ion-button>
-    <ion-button class="ios26-liquid-glass" size="default" fill="default">default</ion-button>
-    <ion-button class="ios26-liquid-glass" size="large" fill="default">large</ion-button>
+    <ion-buttons>
+      <ion-button class="ios26-liquid-glass" size="small" fill="default">small</ion-button>
+      <ion-button class="ios26-liquid-glass" size="default" fill="default">default</ion-button>
+      <ion-button class="ios26-liquid-glass" size="large" fill="default">large</ion-button>
+    </ion-buttons>
   </section>
 </ion-content>

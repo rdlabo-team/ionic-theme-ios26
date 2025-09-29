@@ -1,14 +1,35 @@
 @use '../utils/api';
 
-@mixin theme-button {
+/**
+ * Note: ion-back-button should not put inner ion-button.
+ * feat(): ion-config new property for disable ion-back-button Animation
+ */
+
+@mixin theme-buttons {
+  @include api.glass-background;
+  border-radius: 25px;
+  overflow: hidden;
+
+  ion-button {
+    margin: 0;
+    :first-child {
+      margin-left: -8px;
+    }
+    :last-child {
+      margin-right: -8px;
+    }
+    :only-child {
+      margin: 0;
+    }
+  }
+
+  :has(ion-back-button) {
+    margin: 0;
+  }
+}
+
+@mixin theme-button() {
   max-height: inherit;
-  margin: 8px 4px;
-  &:first-child {
-    margin-left: 12px;
-  }
-  &:last-child {
-    margin-right: 12px;
-  }
 
   transition:
     transform 100ms ease-out,
@@ -92,20 +113,37 @@
  */
 ion-header.ios,
 ion-footer.ios {
-  ion-buttons:not(.ios26-no-liquid-glass) ion-button:not(.ios26-no-liquid-glass),
-  ion-buttons:not(.ios26-no-liquid-glass) ion-back-button:not(.ios26-no-liquid-glass),
-  /* collapseのanimateBackButton対策 */
+  ion-buttons:not(.ios26-no-liquid-glass) {
+    @include theme-buttons;
+    margin-left: calc(12px + var(--ion-safe-area-left));
+    margin-right: calc(12px + var(--ion-safe-area-right));
+  }
+  ion-button:not(.ios26-no-liquid-glass) {
+    @include theme-button;
+  }
   ion-back-button:not(.ios26-no-liquid-glass) {
     @include theme-button;
+    margin-left: calc(12px + var(--ion-safe-area-left));
+    margin-right: calc(12px + var(--ion-safe-area-right));
   }
 }
 
 /**
  * .ios26-liquid-glass を任意で適用した場合のスタイル
  */
-ion-buttons.ios.ios26-liquid-glass ion-button:not(.ios26-no-liquid-glass),
-ion-buttons.ios.ios26-liquid-glass ion-back-button:not(.ios26-no-liquid-glass),
-ion-button.ios.ios26-liquid-glass,
+ion-buttons.ios.ios26-liquid-glass {
+  @include theme-buttons;
+  ion-button,
+  ion-back-button {
+    @include theme-button;
+  }
+}
+
+ion-button.ios.ios26-liquid-glass {
+  @include theme-button;
+}
 ion-back-button.ios.ios26-liquid-glass {
   @include theme-button;
+  margin-left: calc(12px + var(--ion-safe-area-left));
+  margin-right: calc(12px + var(--ion-safe-area-right));
 }
