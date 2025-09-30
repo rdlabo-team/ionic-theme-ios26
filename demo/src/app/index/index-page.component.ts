@@ -69,7 +69,7 @@ export class IndexPageComponent {
     { name: 'radio', enable: false },
     { name: 'range', enable: true },
     { name: 'reorder', enable: false },
-    { name: 'searchbar', enable: false },
+    { name: 'searchbar', enable: true },
     { name: 'segment', enable: true },
     { name: 'select', enable: false },
     { name: 'tabs', enable: false },
