@@ -34,7 +34,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-        working-directory: './demo'
       - run: npm install
         working-directory: './demo'
       - run: npm run lint
