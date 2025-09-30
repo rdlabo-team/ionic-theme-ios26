@@ -104,11 +104,11 @@
     }
     &.ion-activated {
       --color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
-      &::part(native) {
-        opacity: 1; // for ion-back-button
-      }
       &.ion-color {
         --color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 0.1);
+      }
+      &::part(native) {
+        opacity: 1; // for ion-back-button
       }
     }
   }
