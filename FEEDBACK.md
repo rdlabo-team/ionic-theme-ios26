@@ -3,6 +3,22 @@
 ### Note
 - When scaling `ion-segment-button`, the effect should extend beyond the `ion-segment` boundaries
 
+## docs(): Naming conventions for Ionic theme classes
+
+After the Ionic Modular release, I expect many themes to be distributed through community activities. Therefore, I would like to establish naming conventions for theme application classes. I would appreciate the Ionic team's opinion on this matter.
+
+- Classes for manually applying themes
+  - .theme-[theme-name] (ex: .theme-ios26)
+  - .theme-[theme-name]-enabled (ex: .theme-ios26-enabled)
+  - .[theme-name]-enabled (ex: .ios26-enabled)
+  - .ion-[theme-name]-enabled (ex: .ion-ios26-enabled)
+- Classes for manually removing themes
+  - .theme-no-[theme-name] (ex: .theme-no-ios26)
+  - .theme-[theme-name]-disabled (ex: .theme-ios26-disabled)
+  - .[theme-name]-disabled (ex: .ios26-disabled)
+  - .ion-[theme-name]-disabled (ex: .ion-ios26-disabled)
+
+
 ## feat(): ion-config new property for `collapse`
 
 Currently, `collapse` behavior is automatically enabled in iOS mode, but this should be configurable through `ion-config` for better control.
