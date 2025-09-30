@@ -77,6 +77,20 @@ After:
 
 ## feat(): add native shadow-part for design
 
+### native-inner(or item-inner) part to ion-item
+`ion-item[lines=inset]` のスタイルは、 `.item-inner` にあてられており、これを直接スタイリングできません。このことで、iOS26スタイルでは、 `::part(native)` にpadding-rightでしかborder-bottomのスタイルを変更することができませんでした。このことで、 `ion-item` の右側まですべてを使うことができません。`::part(native-inner)` を追加することで、スタイリングの自由度をあげます。
+
+```diff
+  <ion-item>
+    <button type="button" class="item-native" part="native">
+-     <div class="item-inner">
++     <div class="item-inner" part="native-inner">
+      ...
+      </div>
+    </button>
+  </ion-item>
+```
+
 ### native part to ion-toast
 `ion-toast` のデフォルトスタイルは `div.toast-wrapper` に適用されており、 CSS Custom Propertiesのオーバーライドも同様である。しかし、`div.toast-wrapper` を直接上書きする手段はなく、現在、このスタイルを CSS Custom Properties を使って無効化した上で `::part(container)` に新しいスタイルを当てている。これはスタイリングとしては適切ではないので、`::part(native)` を追加して、 `div.toast-wrapper` を直接上書きできることが望ましい。
 
