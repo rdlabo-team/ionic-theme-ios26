@@ -75,8 +75,16 @@ After:
 ```
 
 
-## feat(): add native part to ion-toast
+## feat(): add native shadow-part for design
 
+### native part to ion-toast
 `ion-toast` のデフォルトスタイルは `div.toast-wrapper` に適用されており、 CSS Custom Propertiesのオーバーライドも同様である。しかし、`div.toast-wrapper` を直接上書きする手段はなく、現在、このスタイルを CSS Custom Properties を使って無効化した上で `::part(container)` に新しいスタイルを当てている。これはスタイリングとしては適切ではないので、`::part(native)` を追加して、 `div.toast-wrapper` を直接上書きできることが望ましい。
+
+```diff
+  <ion-toast>
+-   <div class="toast-wrapper">...</div>
++   <div class="toast-wrapper" part="native">...</div>
+  </ion-toast>
+```
 
 
