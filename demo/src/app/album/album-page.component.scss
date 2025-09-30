@@ -1,15 +1,7 @@
-:host {
-  --ios26-color-background-rgb: var(--ion-color-dark-rgb);
-}
-
 ion-header {
   position: absolute;
   top: 0;
   left: 0;
-  ion-title,
-  ion-button::part(native) {
-    color: var(--ion-text-color, #fff);
-  }
 }
 
 ion-content {
