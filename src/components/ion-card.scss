@@ -1,3 +1,7 @@
 ion-card.ios {
   border-radius: 24px;
+
+  ion-list ion-item {
+    --padding-start: 0;
+  }
 }
