@@ -97,6 +97,8 @@ Apply this class to components where you want to use the iOS26 design that is no
 - `ion-buttons.ios26-liquid-glass ion-button`
 - `ion-button.ios26-liquid-glass`
 - `ion-back-button.ios26-liquid-glass`
+- `ion-chip.ios26-liquid-glass`
+- `ion-breadcrumbs.ios26-liquid-glass`
 
 ### .ios26-no-liquid-glass
 

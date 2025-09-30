@@ -1,0 +1,13 @@
+@use '../utils/api';
+
+ion-breadcrumbs.ios.ios26-liquid-glass {
+  ion-breadcrumb::part(native) {
+    @include api.glass-background;
+    border-radius: 24px;
+    margin-inline: 12px;
+
+    padding-inline: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+}
