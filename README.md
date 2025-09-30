@@ -107,4 +107,5 @@ Many components automatically have the iOS26 design applied, but apply this clas
 - `ion-header > ion-toolbar > ion-buttons.ios26-no-liquid-glass`
 - `ion-header > ion-toolbar > ion-buttons > ion-button.ios26-no-liquid-glass`
 - `ion-header > ion-toolbar > ion-buttons > ion-back-button.ios26-no-liquid-glass`
+- `ion-header > ion-toolbar > ion-back-button.ios26-no-liquid-glass`
 - `ion-popover.ios26-no-liquid-glass`
