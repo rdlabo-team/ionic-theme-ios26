@@ -22,6 +22,8 @@ module.exports = tseslint.config(
       "@typescript-eslint/no-unused-vars": "off",
       "@angular-eslint/directive-selector": "off",
       "@angular-eslint/component-selector": "off",
+      "@angular-eslint/no-empty-lifecycle-method": "off",
+      "@typescript-eslint/no-empty-function": "off",
       '@rdlabo/rules/deny-constructor-di': 'error',
       '@rdlabo/rules/deny-import-from-ionic-module': 'error',
       '@rdlabo/rules/implements-ionic-lifecycle': 'error',
