@@ -90,14 +90,83 @@ ion-textarea label.textarea-wrapper {
 }
 ```
 
-## CSS Utility Classes
+## Selective Theme Application
 
-### .ios26-disabled
+You may want to apply the iOS26 theme to your Ionic project but find it difficult to apply it to all components. We provide two approaches to selectively control theme application.
 
-Many components automatically have the iOS26 design applied, but apply this class when you don't want it. Supported selectors are as follows:
+### Method 1: Import Components Individually
 
-- `ion-header > ion-toolbar > ion-buttons.ios26-disabled`
-- `ion-header > ion-toolbar > ion-buttons > ion-button.ios26-disabled`
-- `ion-header > ion-toolbar > ion-buttons > ion-back-button.ios26-disabled`
-- `ion-header > ion-toolbar > ion-back-button.ios26-disabled`
-- `ion-popover.ios26-disabled`
+**Recommended for**: When you want to apply the iOS26 theme only to specific components, or when you want to minimize bundle size.
+
+While `@import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.min.css'` applies styling to all components at once, you can also import them individually.
+
+```css
+@import '@rdlabo/ionic-theme-ios26/dist/css/utils/translucent';
+@import '@rdlabo/ionic-theme-ios26/dist/css/components/ion-action-sheet';
+@import '@rdlabo/ionic-theme-ios26/dist/css/components/ion-alert';
+@import '@rdlabo/ionic-theme-ios26/dist/css/components/ion-breadcrumbs';
+@import '@rdlabo/ionic-theme-ios26/dist/css/components/ion-button';
+...
+```
+
+#### Individual Import for Dark Mode Components
+
+If you're using dark mode, you need to use SCSS because the selectors differ between `Always`, `System`, and `Class` modes, which cannot be handled with CSS files alone.
+
+> **Note**: Currently, only `ion-button` has separate dark mode styling applied.
+
+Always (Always Dark Mode):
+```scss
+@use '@rdlabo/ionic-theme-ios26/src/utils/theme-dark';
+@use '@rdlabo/ionic-theme-ios26/src/utils/dark/ion-button';
+
+:root {
+    @include theme-dark.default-variables;
+}
+@include ion-button.ion-button;
+```
+
+System (Follow System Settings):
+```scss
+@use '@rdlabo/ionic-theme-ios26/src/utils/theme-dark';
+@use '@rdlabo/ionic-theme-ios26/src/utils/dark/ion-button';
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        @include theme-dark.default-variables;
+    }
+    @include ion-button.ion-button;
+}
+```
+
+Class (Toggle with CSS Class):
+```scss
+@use '@rdlabo/ionic-theme-ios26/src/utils/theme-dark';
+@use '@rdlabo/ionic-theme-ios26/src/utils/dark/ion-button';
+
+.ion-palette-dark {
+    @include theme-dark.default-variables;
+    @include ion-button.ion-button;
+}
+```
+
+
+### Method 2: Using the `.ios26-disabled` Class
+
+**Recommended for**: When you want to apply the iOS26 theme to all components in general, but use standard Ionic styling in specific places.
+
+After importing all components, you can disable the iOS26 theme for specific component instances by adding the `.ios26-disabled` class.
+
+```html
+<!-- iOS26 theme applied -->
+<ion-button>iOS26 Design</ion-button>
+
+<!-- Standard Ionic styling -->
+<ion-button class="ios26-disabled">Standard Ionic Design</ion-button>
+```
+
+This method is useful in the following scenarios:
+
+- When you want to use standard styling only within specific modals or popovers
+- When you want to perform a gradual migration (add `.ios26-disabled` to some screens and remove it later)
+- When you want to conduct A/B testing for designs

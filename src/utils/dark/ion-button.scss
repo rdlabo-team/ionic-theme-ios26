@@ -18,8 +18,8 @@
 }
 
 @mixin ion-button {
-  ion-header.ios,
-  ion-footer.ios {
+  ion-header.ios:not(.ios26-disabled),
+  ion-footer.ios:not(.ios26-disabled) {
     ion-buttons:not(.ios26-disabled) ion-button:not(.ios26-disabled),
     ion-buttons:not(.ios26-disabled) ion-back-button:not(.ios26-disabled),
     ion-back-button:not(.ios26-disabled) {
@@ -27,10 +27,10 @@
     }
   }
 
-  ion-buttons.ios ion-button:not(.ios26-disabled),
-  ion-buttons.ios ion-back-button:not(.ios26-disabled),
-  ion-button.ios,
-  ion-back-button.ios {
+  ion-buttons.ios:not(.ios26-disabled) ion-button:not(.ios26-disabled),
+  ion-buttons.ios:not(.ios26-disabled) ion-back-button:not(.ios26-disabled),
+  ion-button.ios:not(.ios26-disabled),
+  ion-back-button.ios:not(.ios26-disabled) {
     @include theme-dark-button;
   }
 }
