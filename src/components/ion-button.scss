@@ -144,32 +144,7 @@
   }
 }
 
-/**
- * .ios26-no-liquid-glass を適用しない限り、デフォルトスタイル
- */
-ion-header.ios,
-ion-footer.ios {
-  ion-buttons {
-    &:not(.ios26-no-liquid-glass) {
-      @include theme-buttons;
-    }
-    margin-left: calc(12px + var(--ion-safe-area-left));
-    margin-right: calc(12px + var(--ion-safe-area-right));
-  }
-  ion-button:not(.ios26-no-liquid-glass) {
-    @include theme-button;
-  }
-  ion-back-button:not(.ios26-no-liquid-glass) {
-    @include theme-button;
-    margin-left: calc(12px + var(--ion-safe-area-left));
-    margin-right: calc(12px + var(--ion-safe-area-right));
-  }
-}
-
-/**
- * .ios26-liquid-glass を任意で適用した場合のスタイル
- */
-ion-buttons.ios.ios26-liquid-glass {
+ion-buttons.ios {
   @include theme-buttons;
   ion-button:not(.ios26-no-liquid-glass),
   ion-back-button:not(.ios26-no-liquid-glass) {
@@ -177,10 +152,10 @@ ion-buttons.ios.ios26-liquid-glass {
   }
 }
 
-ion-button.ios.ios26-liquid-glass {
+ion-button.ios {
   @include theme-button;
 }
-ion-back-button.ios.ios26-liquid-glass {
+ion-back-button.ios {
   @include theme-button;
   margin-left: calc(12px + var(--ion-safe-area-left));
   margin-right: calc(12px + var(--ion-safe-area-right));

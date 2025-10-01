@@ -1,5 +1,5 @@
 @use '../utils/api';
 
-ion-chip.ios.ios26-liquid-glass {
+ion-chip.ios {
   @include api.glass-background;
 }

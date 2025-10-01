@@ -1,6 +1,6 @@
 @use '../utils/api';
 
-ion-breadcrumbs.ios.ios26-liquid-glass {
+ion-breadcrumbs.ios {
   ion-breadcrumb::part(native) {
     @include api.glass-background;
     border-radius: 24px;

@@ -27,10 +27,10 @@
     }
   }
 
-  ion-buttons.ios.ios26-liquid-glass ion-button:not(.ios26-no-liquid-glass),
-  ion-buttons.ios.ios26-liquid-glass ion-back-button:not(.ios26-no-liquid-glass),
-  ion-button.ios.ios26-liquid-glass,
-  ion-back-button.ios.ios26-liquid-glass {
+  ion-buttons.ios ion-button:not(.ios26-no-liquid-glass),
+  ion-buttons.ios ion-back-button:not(.ios26-no-liquid-glass),
+  ion-button.ios,
+  ion-back-button.ios {
     @include theme-dark-button;
   }
 }

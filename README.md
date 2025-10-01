@@ -90,16 +90,6 @@ ion-textarea label.textarea-wrapper {
 
 ## CSS Utility Classes
 
-### .ios26-liquid-glass
-
-Apply this class to components where you want to use the iOS26 design that is not automatically applied. Supported selectors are as follows:
-
-- `ion-buttons.ios26-liquid-glass ion-button`
-- `ion-button.ios26-liquid-glass`
-- `ion-back-button.ios26-liquid-glass`
-- `ion-chip.ios26-liquid-glass`
-- `ion-breadcrumbs.ios26-liquid-glass`
-
 ### .ios26-no-liquid-glass
 
 Many components automatically have the iOS26 design applied, but apply this class when you don't want it. Supported selectors are as follows:
