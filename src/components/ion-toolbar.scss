@@ -16,16 +16,11 @@ ion-toolbar.ios:not(.toolbar-title-large):not(.ios26-disabled) {
 
 ion-header.ios:not(.ios26-disabled),
 ion-footer.ios:not(.ios26-disabled) {
-  ion-buttons:not(.ios26-disabled) {
-    @include ion-button.theme-buttons;
+  ion-buttons {
     margin-left: calc(12px + var(--ion-safe-area-left));
     margin-right: calc(12px + var(--ion-safe-area-right));
   }
-  ion-button:not(.ios26-disabled) {
-    @include ion-button.theme-button;
-  }
-  ion-back-button:not(.ios26-disabled) {
-    @include ion-button.theme-button;
+  ion-back-button {
     margin-left: calc(12px + var(--ion-safe-area-left));
     margin-right: calc(12px + var(--ion-safe-area-right));
   }

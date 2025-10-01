@@ -157,6 +157,4 @@ ion-button.ios:not(.ios26-disabled) {
 }
 ion-back-button.ios:not(.ios26-disabled) {
   @include theme-button;
-  margin-left: calc(12px + var(--ion-safe-area-left));
-  margin-right: calc(12px + var(--ion-safe-area-right));
 }
