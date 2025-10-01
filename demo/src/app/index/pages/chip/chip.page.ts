@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {
   IonAvatar,
   IonBackButton,
+  IonBreadcrumbs,
   IonCheckbox,
   IonChip,
   IonContent,
@@ -40,6 +41,7 @@ import {
     IonText,
     IonChip,
     IonAvatar,
+    IonBreadcrumbs,
   ],
 })
 export class ChipPage implements OnInit {
