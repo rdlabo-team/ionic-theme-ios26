@@ -32,16 +32,34 @@
  * https://ionicframework.com/docs/theming/dark-mode
  */
 
-@use 'theme/theme-ios26';
-
 //@use "@ionic/angular/css/palettes/dark.always.css";
-
 //@use "@ionic/angular/css/palettes/dark.class.css";
-/**
- * 任意でダークモードを使うことができて便利なため、インポートしています（Library）。
- * 一般的な用途では不要です。
- */
-@use '../../src/ionic-theme-dark-class';
-
 @use '@ionic/angular/css/palettes/dark.system.css';
-@use '../../src/ionic-theme-dark-system';
+
+@use '../../src/default-variables';
+@use '../../src/ionic-theme-ios26';
+@use '../../src/ionic-theme-ios26-dark-system';
+
+:root {
+  --ios26-color-background-rgb: var(--ion-color-light-rgb);
+}
+
+ion-header.ios,
+ion-footer.ios {
+  ion-buttons:not(.ios26-no-liquid-glass),
+  ion-button:not(.ios26-no-liquid-glass),
+  ion-back-button:not(.ios26-no-liquid-glass) {
+    --color: var(--ion-text-color, #000);
+  }
+}
+
+section.section-example {
+  background: var(--ion-background-color, #fff);
+  border-radius: 24px;
+  padding: 16px;
+  margin: 16px;
+}
+
+ion-searchbar .searchbar-input-container {
+  margin: 0 20px !important;
+}

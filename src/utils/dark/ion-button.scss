@@ -1,4 +1,4 @@
-@use '../utils/api';
+@use '../api';
 
 @mixin theme-dark-button {
   &.ion-activated:not(.button-solid):not(.ios26-button-solid):not(.button-outline):not(.ios26-button-outline):not(.button-clear):not(
@@ -17,7 +17,7 @@
   }
 }
 
-@mixin ion-button-dark {
+@mixin ion-button {
   ion-header.ios,
   ion-footer.ios {
     ion-buttons:not(.ios26-no-liquid-glass) ion-button:not(.ios26-no-liquid-glass),

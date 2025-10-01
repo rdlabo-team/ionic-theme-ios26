@@ -1,4 +1,4 @@
-@use 'components-dark/theme-dark';
+@use 'utils/theme-dark';
 
 .ion-palette-dark {
   @include theme-dark.default-variables;

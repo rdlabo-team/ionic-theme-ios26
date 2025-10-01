@@ -14,7 +14,7 @@
     }
   },
   "scripts": {
-    "build": "node build-sass.js",
+    "build": "rm -rf dist/css && sass src:dist/css --style=compressed --no-source-map",
     "build:demo": "cd demo && npm install && npm run build -- --configuration=production",
     "prepare": "husky install",
     "lint": "prettier --check \"./**/*.{scss,ts}\" &&  prettier --parser angular --check \"./**/*.html\"",
