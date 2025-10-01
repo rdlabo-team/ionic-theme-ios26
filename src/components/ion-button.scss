@@ -19,12 +19,6 @@
   ion-back-button:not(.ios26-disabled) {
     transform: none;
 
-    // overwrite default sheet.
-    --border-radius: 24px;
-    &.button-large {
-      --border-radius: 30px;
-    }
-
     &::part(native) {
       /**
        * TODO: remove !important.
@@ -71,10 +65,9 @@
     }
   }
 
-  --border-radius: 24px;
-
+  --border-radius: 24px !important;
   &.button-large {
-    --border-radius: 30px;
+    --border-radius: 30px !important;
   }
 
   &:not(.button-clear):not(.ios26-button-clear) {

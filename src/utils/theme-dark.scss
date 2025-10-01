@@ -1,5 +1,5 @@
 @forward 'dark/ion-button';
-@use 'dark/ion-button';
+@use 'dark/ion-button' as *;
 
 @mixin default-variables {
   --ios26-color-dark-rgb: 255, 255, 255;
@@ -12,5 +12,5 @@
 }
 
 @mixin theme-dark {
-  @include ion-button.ion-button;
+  @include ion-button;
 }
