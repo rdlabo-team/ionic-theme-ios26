@@ -18,6 +18,13 @@
   ion-button:not(.ios26-disabled),
   ion-back-button:not(.ios26-disabled) {
     transform: none;
+
+    // overwrite default sheet.
+    --border-radius: 24px;
+    &.button-large {
+      --border-radius: 30px;
+    }
+
     &::part(native) {
       /**
        * TODO: remove !important.
