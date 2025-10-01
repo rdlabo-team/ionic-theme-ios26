@@ -1,17 +1,42 @@
 @use '../utils/api';
 
+/**
+ * Adjustments have been made to prevent the right edge from being cut off within the ion-item.
+ * When the native-inner part be added to the ion-item, it will be removed.
+ */
+ion-item.ios:not(.ios26-disabled) ion-toggle.ios:not(.ios26-disabled) {
+  &.toggle-checked.toggle-activated::part(track) {
+    transform-origin: left;
+    transform: scaleX(0.894);
+  }
+  &.toggle-activated::part(handle) {
+    transform: scale(1.4, 1.6) translateX(calc(38px * -0.15));
+  }
+}
+
 ion-toggle.ios:not(.ios26-disabled) {
   --handle-width: 38px;
   --handle-height: 24px;
   --handle-max-width: none;
   --handle-max-height: none;
   --track-background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.23);
-  ::part(handle) {
+  &::part(track) {
+    overflow: visible;
+    width: 64px;
+    height: 28px;
     transition: transform 0.3s ease;
   }
+  &.toggle-activated:not(.toggle-checked)::part(handle) {
+    transform: translateX(-4px) scale(1.4, 1.6);
+  }
   &.toggle-activated::part(handle) {
-    transform: scale(1.4, 1.6) translateX(calc(38px * -0.15));
+    transform: scale(1.4, 1.6);
     @include api.glass-background(0.1, 0.5px, 120%);
+    transition:
+      transform 300ms,
+      width 120ms ease-in-out 80ms,
+      left 110ms ease-in-out 80ms,
+      right 110ms ease-in-out 80ms;
     box-shadow: inset 0 0 8px 0 var(--track-background);
   }
   &.ion-color.toggle-checked.toggle-activated::part(handle) {
@@ -27,14 +52,5 @@ ion-toggle.ios:not(.ios26-disabled) {
       inset 8px 0 8px -8px var(--track-background),
       inset 8px 0 8px -8px var(--track-background),
       inset -8px 0 8px -8px var(--track-background-checked);
-  }
-  &::part(track) {
-    overflow: visible;
-    width: 64px;
-    height: 28px;
-    transition: transform 0.3s ease;
-  }
-  &.toggle-checked.toggle-activated::part(track) {
-    transform: translateX(-4px);
   }
 }
