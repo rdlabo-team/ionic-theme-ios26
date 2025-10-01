@@ -55,11 +55,6 @@
     color 50ms ease;
   will-change: transform;
 
-  &.ion-activated {
-    transform: scale(1.28);
-    box-shadow: none;
-  }
-
   // button size default
   &:not(.button-small):not(.button-large) {
     font-size: 1.05rem;
@@ -69,8 +64,18 @@
     }
   }
 
-  &::part(native) {
-    border-radius: 25px;
+  --border-radius: 24px;
+  &.ion-activated {
+    transform: scale(1.28);
+    box-shadow: none;
+  }
+
+  &.button-large {
+    --border-radius: 30px;
+    &.ion-activated {
+      transform: scale(1.18);
+      box-shadow: none;
+    }
   }
 
   // fill:default only
@@ -81,7 +86,6 @@
     --background-activated: transparent;
     &::part(native) {
       @include api.glass-background;
-      border-radius: 25px;
     }
     opacity: 1; // for ion-back-button
     --color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 1);
@@ -105,8 +109,8 @@
 
   &.button-has-icon-only,
   &.back-button-has-icon-only {
+    border-radius: 50%;
     &::part(native) {
-      border-radius: 50%;
       width: 44px;
       height: 44px;
       padding: 2px;
