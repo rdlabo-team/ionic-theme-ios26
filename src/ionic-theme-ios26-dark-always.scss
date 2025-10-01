@@ -1,0 +1,6 @@
+@use 'utils/theme-dark';
+
+:root {
+  @include theme-dark.default-variables;
+}
+@include theme-dark.theme-dark;

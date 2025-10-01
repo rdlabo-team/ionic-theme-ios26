@@ -13,15 +13,13 @@ Only when these conditions apply, you need to wrap your list items with `ion-ite
 ## Implementation Example
 
 ```diff
-  <ion-content color="light">
-    <ion-list inset=true>
-      <ion-list-header><ion-label>Label</ion-label></ion-list-header>
-+     <ion-item-group>
-        <ion-item>...</ion-item>
-        <ion-item>...</ion-item>
-+     </ion-item-group>
-    </ion-list>
-  </ion-content>
+  <ion-list inset=true>
+    <ion-list-header><ion-label>Label</ion-label></ion-list-header>
++   <ion-item-group>
+      <ion-item>...</ion-item>
+      <ion-item>...</ion-item>
++   </ion-item-group>
+  </ion-list>
 ```
 
 ## Why is this change necessary?

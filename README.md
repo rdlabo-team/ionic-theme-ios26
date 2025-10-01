@@ -30,20 +30,19 @@ npm install @rdlabo/ionic-theme-ios26
 And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
 
 ```css
+@import '@rdlabo/ionic-theme-ios26/dist/css/default-variables.css';
 @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.min.css';
+
+/*
+ * Support Dark Mode
+ * We support Ionic Dark Mode. More information is here: https://ionicframework.com/docs/theming/dark-mode
+ * use Always:    @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-always.min.css'
+ * use System:    @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-system.min.css'
+ * use CSS Class: @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-class.min.css'
+ */
 ```
 
 ## Important Notes
-
-### Support Dark Mode
-
-We support Ionic Dark Mode. More information is here: https://ionicframework.com/docs/theming/dark-mode
-
-| Mode      | Code                                                                         |
-|-----------|------------------------------------------------------------------------------|
-| Always    | Overwrite library colors on the :root selector.                              |
-| System    | @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-system.min.css' |
-| CSS Class | @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-class.min.css'  |
 
 ### `ion-back-button` は `ion-buttons` に入れないで使う必要があります
 
@@ -65,7 +64,19 @@ We support Ionic Dark Mode. More information is here: https://ionicframework.com
 
 ### Using `ion-item-group`
 
-Under specific conditions, you need to use `ion-item-group`. For details, please refer to [USING_ION_ITEM_GROUP.md](./USING_ION_ITEM_GROUP.md).
+Under specific conditions, you need to use `ion-item-group`.
+
+```diff
+  <ion-list inset=true>
+    <ion-list-header><ion-label>Label</ion-label></ion-list-header>
++   <ion-item-group>
+      <ion-item>...</ion-item>
+      <ion-item>...</ion-item>
++   </ion-item-group>
+  </ion-list>
+```
+
+For details, please refer to [USING_ION_ITEM_GROUP.md](./USING_ION_ITEM_GROUP.md).
 
 ### You can also use the liquid glass mixin
 
