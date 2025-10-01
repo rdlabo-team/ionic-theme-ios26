@@ -8,7 +8,6 @@
   border-right: 0.5px solid rgba(var(--ios26-color-edge-rgb), 0.8);
   border-bottom: 0.5px solid rgba(var(--ios26-color-edge-rgb), 1);
   border-left: 0.5px solid rgba(var(--ios26-color-edge-rgb), 0.6);
-  transition: box-shadow 0.1s ease;
 }
 
 @mixin glass-background-dark-active($opacity: 0.4, $blur: 7px, $saturate: 180%) {
@@ -19,5 +18,4 @@
   border-right: 0.5px solid rgba(var(--ios26-color-tab-active-rgb), 0.2);
   border-bottom: 0.5px solid rgba(var(--ios26-color-tab-active-rgb), 0.4);
   border-left: 0.5px solid rgba(var(--ios26-color-tab-active-rgb), 0.3);
-  transition: box-shadow 0.1s ease;
 }
