@@ -46,9 +46,9 @@
 
 ion-header.ios,
 ion-footer.ios {
-  ion-buttons:not(.ios26-no-liquid-glass),
-  ion-button:not(.ios26-no-liquid-glass),
-  ion-back-button:not(.ios26-no-liquid-glass) {
+  ion-buttons:not(.ios26-disabled),
+  ion-button:not(.ios26-disabled),
+  ion-back-button:not(.ios26-disabled) {
     --color: var(--ion-text-color, #000);
   }
 }

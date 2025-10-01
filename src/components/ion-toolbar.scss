@@ -6,27 +6,25 @@
  *  padding-top: var(--ion-safe-area-top, 0);
  * }
  */
-ion-header.ios ion-toolbar:first-of-type {
+ion-header.ios:not(.ios26-disabled) ion-toolbar:not(.ios26-disabled):first-of-type {
   padding-top: max(calc(var(--ion-safe-area-top) - 12px), 4px);
 }
 
-ion-toolbar.ios:not(.toolbar-title-large) {
+ion-toolbar.ios:not(.toolbar-title-large):not(.ios26-disabled) {
   --min-height: 68px;
 }
 
-ion-header.ios,
-ion-footer.ios {
-  ion-buttons {
-    &:not(.ios26-no-liquid-glass) {
-      @include ion-button.theme-buttons;
-    }
+ion-header.ios:not(.ios26-disabled),
+ion-footer.ios:not(.ios26-disabled) {
+  ion-buttons:not(.ios26-disabled) {
+    @include ion-button.theme-buttons;
     margin-left: calc(12px + var(--ion-safe-area-left));
     margin-right: calc(12px + var(--ion-safe-area-right));
   }
-  ion-button:not(.ios26-no-liquid-glass) {
+  ion-button:not(.ios26-disabled) {
     @include ion-button.theme-button;
   }
-  ion-back-button:not(.ios26-no-liquid-glass) {
+  ion-back-button:not(.ios26-disabled) {
     @include ion-button.theme-button;
     margin-left: calc(12px + var(--ion-safe-area-left));
     margin-right: calc(12px + var(--ion-safe-area-right));

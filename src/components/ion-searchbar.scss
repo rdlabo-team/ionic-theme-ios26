@@ -1,7 +1,7 @@
 @use '../utils/api';
 
 ion-modal.ios {
-  ion-searchbar:not(.ios26-no-liquid-glass) {
+  ion-searchbar:not(.ios26-disabled) {
     .searchbar-input-container {
       margin: 0 6px;
       input.searchbar-input {
@@ -12,7 +12,7 @@ ion-modal.ios {
   }
 }
 
-ion-searchbar.ios:not(.ios26-no-liquid-glass) {
+ion-searchbar.ios:not(.ios26-disabled) {
   min-height: 60px;
   padding: 0;
 

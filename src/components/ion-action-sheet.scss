@@ -1,6 +1,6 @@
 @use '../utils/api';
 
-ion-action-sheet.ios {
+ion-action-sheet.ios:not(.ios26-disabled) {
   --button-color: var(--ion-text-color);
   --button-background-selected: transparent;
   --backdrop-opacity: 0.2;

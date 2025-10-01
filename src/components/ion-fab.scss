@@ -1,6 +1,6 @@
 @use '../utils/api';
 
-ion-fab.ios {
+ion-fab.ios:not(.ios26-disabled) {
   ion-fab-button {
     &::part(native) {
       @include api.glass-background;

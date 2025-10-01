@@ -1,6 +1,6 @@
 @use '../utils/theme-list-inset';
 
-ion-list.list-inset.ios {
+ion-list.list-inset.ios:not(.ios26-disabled) {
   @include theme-list-inset.ion-list-inset();
 
   ion-item-group,

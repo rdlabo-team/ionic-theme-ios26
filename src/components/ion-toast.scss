@@ -1,6 +1,6 @@
 @use '../utils/api';
 
-ion-toast.ios {
+ion-toast.ios:not(.ios26-disabled) {
   --background: transparent;
   --start: 16px;
   --end: 16px;

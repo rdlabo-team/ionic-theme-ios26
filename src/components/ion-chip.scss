@@ -1,5 +1,5 @@
 @use '../utils/api';
 
-ion-chip.ios {
+ion-chip.ios:not(.ios26-disabled) {
   @include api.glass-background;
 }

@@ -1,4 +1,4 @@
-ion-card.ios {
+ion-card.ios:not(.ios26-disabled) {
   border-radius: 24px;
 
   ion-list ion-item {

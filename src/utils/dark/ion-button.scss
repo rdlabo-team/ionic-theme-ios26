@@ -20,15 +20,15 @@
 @mixin ion-button {
   ion-header.ios,
   ion-footer.ios {
-    ion-buttons:not(.ios26-no-liquid-glass) ion-button:not(.ios26-no-liquid-glass),
-    ion-buttons:not(.ios26-no-liquid-glass) ion-back-button:not(.ios26-no-liquid-glass),
-    ion-back-button:not(.ios26-no-liquid-glass) {
+    ion-buttons:not(.ios26-disabled) ion-button:not(.ios26-disabled),
+    ion-buttons:not(.ios26-disabled) ion-back-button:not(.ios26-disabled),
+    ion-back-button:not(.ios26-disabled) {
       @include theme-dark-button;
     }
   }
 
-  ion-buttons.ios ion-button:not(.ios26-no-liquid-glass),
-  ion-buttons.ios ion-back-button:not(.ios26-no-liquid-glass),
+  ion-buttons.ios ion-button:not(.ios26-disabled),
+  ion-buttons.ios ion-back-button:not(.ios26-disabled),
   ion-button.ios,
   ion-back-button.ios {
     @include theme-dark-button;

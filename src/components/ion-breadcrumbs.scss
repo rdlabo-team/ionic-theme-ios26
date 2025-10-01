@@ -1,6 +1,6 @@
 @use '../utils/api';
 
-ion-breadcrumbs.ios {
+ion-breadcrumbs.ios:not(.ios26-disabled) {
   ion-breadcrumb::part(native) {
     @include api.glass-background;
     border-radius: 24px;

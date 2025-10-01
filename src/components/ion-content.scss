@@ -1,4 +1,4 @@
-.ios {
+.ios:not(.ios26-disabled) {
   /**
    * iOS26から上下のセーフエリアいっぱいまでコンテンツを表示するようになったため、
    * コンテンツのmarginとpaddingを調整します。なお、Angular CDK Scrollingにも対応しています。

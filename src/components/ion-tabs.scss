@@ -1,6 +1,6 @@
 @use '../utils/api';
 
-ion-tab-bar.ios {
+ion-tab-bar.ios:not(.ios26-disabled) {
   @include api.glass-background;
   z-index: 2;
 

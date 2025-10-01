@@ -1,6 +1,6 @@
 @use '../utils/api';
 
-ion-alert.ios {
+ion-alert.ios:not(.ios26-disabled) {
   --backdrop-opacity: 0.2;
 
   .alert-wrapper {

@@ -1,6 +1,6 @@
 @use '../utils/api';
 
-ion-toolbar.ios {
+ion-toolbar.ios:not(.ios26-disabled) {
   &:has(ion-segment) {
     overflow: visible;
   }

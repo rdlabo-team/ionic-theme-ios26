@@ -1,6 +1,6 @@
 @use '../utils/api';
 
-ion-range.ios {
+ion-range.ios:not(.ios26-disabled) {
   --knob-size: 20px;
   --knob-border-radius: 24px;
   padding-right: 36px;

@@ -1,6 +1,6 @@
 @use '../utils/api';
 
-ion-toggle.ios {
+ion-toggle.ios:not(.ios26-disabled) {
   --handle-width: 38px;
   --handle-height: 24px;
   --handle-max-width: none;

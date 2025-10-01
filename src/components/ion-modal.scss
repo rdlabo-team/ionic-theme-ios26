@@ -1,6 +1,6 @@
 @use '../utils/api';
 
-ion-modal.ios {
+ion-modal.ios:not(.ios26-disabled) {
   ion-toolbar {
     padding-right: calc(var(--ion-safe-area-right) + 4px) !important;
     padding-left: calc(var(--ion-safe-area-left) + 4px) !important;

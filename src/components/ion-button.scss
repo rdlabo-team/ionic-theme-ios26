@@ -15,8 +15,8 @@
     transform: scale(1.28);
   }
 
-  ion-button:not(.ios26-no-liquid-glass),
-  ion-back-button:not(.ios26-no-liquid-glass) {
+  ion-button:not(.ios26-disabled),
+  ion-back-button:not(.ios26-disabled) {
     transform: none;
     &::part(native) {
       /**
@@ -29,7 +29,7 @@
     }
   }
 
-  ion-button {
+  ion-button:not(.ios26-disabled) {
     margin: 0;
     :first-child {
       margin-left: -8px;
@@ -144,18 +144,18 @@
   }
 }
 
-ion-buttons.ios {
+ion-buttons.ios:not(.ios26-disabled) {
   @include theme-buttons;
-  ion-button:not(.ios26-no-liquid-glass),
-  ion-back-button:not(.ios26-no-liquid-glass) {
+  ion-button:not(.ios26-disabled),
+  ion-back-button:not(.ios26-disabled) {
     @include theme-button;
   }
 }
 
-ion-button.ios {
+ion-button.ios:not(.ios26-disabled) {
   @include theme-button;
 }
-ion-back-button.ios {
+ion-back-button.ios:not(.ios26-disabled) {
   @include theme-button;
   margin-left: calc(12px + var(--ion-safe-area-left));
   margin-right: calc(12px + var(--ion-safe-area-right));
