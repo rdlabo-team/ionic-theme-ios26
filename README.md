@@ -120,35 +120,32 @@ If you're using dark mode, you need to use SCSS because the selectors differ bet
 Always (Always Dark Mode):
 ```scss
 @use '@rdlabo/ionic-theme-ios26/src/utils/theme-dark';
-@use '@rdlabo/ionic-theme-ios26/src/utils/dark/ion-button';
 
 :root {
     @include theme-dark.default-variables;
 }
-@include ion-button.ion-button;
+@include theme-dark.ion-button;
 ```
 
 System (Follow System Settings):
 ```scss
 @use '@rdlabo/ionic-theme-ios26/src/utils/theme-dark';
-@use '@rdlabo/ionic-theme-ios26/src/utils/dark/ion-button';
 
 @media (prefers-color-scheme: dark) {
     :root {
         @include theme-dark.default-variables;
     }
-    @include ion-button.ion-button;
+    @include theme-dark.ion-button;
 }
 ```
 
 Class (Toggle with CSS Class):
 ```scss
 @use '@rdlabo/ionic-theme-ios26/src/utils/theme-dark';
-@use '@rdlabo/ionic-theme-ios26/src/utils/dark/ion-button';
 
 .ion-palette-dark {
     @include theme-dark.default-variables;
-    @include ion-button.ion-button;
+    @include theme-dark.ion-button;
 }
 ```
 
