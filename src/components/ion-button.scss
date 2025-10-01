@@ -72,16 +72,20 @@
   }
 
   --border-radius: 24px;
-  &.ion-activated {
-    transform: scale(1.28);
-    box-shadow: none;
-  }
 
   &.button-large {
     --border-radius: 30px;
+  }
+
+  &:not(.button-clear):not(.ios26-button-clear) {
     &.ion-activated {
-      transform: scale(1.18);
-      box-shadow: none;
+      transform: scale(0.95);
+      &.button-small {
+        transform: scale(0.94);
+      }
+      &.button-large {
+        transform: scale(0.96);
+      }
     }
   }
 
@@ -95,6 +99,14 @@
       @include api.glass-background;
     }
     opacity: 1; // for ion-back-button
+    &.ion-activated {
+      transform: scale(1.28);
+
+      &.button-large {
+        transform: scale(1.18);
+      }
+    }
+
     --color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 1);
     &.ion-color {
       --color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 1);
