@@ -8,9 +8,15 @@ ion-fab.ios:not(.ios26-disabled) {
     }
     --background-activated: rgba(var(--ios26-color-light-rgb), 0.3);
   }
-  // TODO: これはUtility Classにマイグレートする必要があります
-  &.inner-tab-bar {
-    right: calc(16px + var(--ion-safe-area-right, 0px));
+  &.fab-vertical-bottom {
     bottom: var(--ios26-floating-safe-area-bottom);
+  }
+
+  &.fab-horizontal-start {
+    right: calc(16px + var(--ion-safe-area-left, 0px));
+  }
+
+  &.fab-horizontal-end {
+    right: calc(16px + var(--ion-safe-area-right, 0px));
   }
 }
