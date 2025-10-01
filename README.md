@@ -44,14 +44,14 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
 
 ## Important Notes
 
-### `ion-back-button` は `ion-buttons` に入れないで使う必要があります
+### `ion-back-button` must be used without `ion-buttons`
 
-以下の条件を満たす時、Ionic Frameworkは `ion-back-button` をプログラムで生成して、アニメーションで表示します。
+When the following conditions are met, the Ionic Framework programmatically generates and animates the `ion-back-button`:
 
-- 遷移前のページに `ion-header[collapse='condense']` を使用している
-- 遷移後のページに、 `ion-buttons ion-back-button` がある
+- The previous page uses `ion-header[collapse='condense']`
+- The navigated page has `ion-buttons ion-back-button`
 
-これはiOS26のUIではなく、このプログラムを避けるために以下の実装を行う必要があります。
+This is not the iOS26 UI behavior. To avoid this programmatic behavior, you need to implement it as follows:
 
 ```diff
   <ion-header>
