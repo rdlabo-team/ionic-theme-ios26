@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonAvatar,
   IonBackButton,
   IonButton,
   IonCard,
@@ -10,7 +9,6 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
-  IonChip,
   IonContent,
   IonHeader,
   IonIcon,
@@ -36,9 +34,7 @@ import {
     IonToolbar,
     CommonModule,
     FormsModule,
-    IonAvatar,
     IonBackButton,
-    IonChip,
     IonIcon,
     IonItem,
     IonItemGroup,

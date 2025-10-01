@@ -2,12 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonAvatar,
   IonBackButton,
   IonBreadcrumb,
   IonBreadcrumbs,
-  IonCheckbox,
-  IonChip,
   IonContent,
   IonHeader,
   IonIcon,
@@ -33,15 +30,12 @@ import {
     CommonModule,
     FormsModule,
     IonBackButton,
-    IonCheckbox,
     IonIcon,
     IonItem,
     IonItemGroup,
     IonLabel,
     IonList,
     IonText,
-    IonAvatar,
-    IonChip,
     IonBreadcrumbs,
     IonBreadcrumb,
   ],
