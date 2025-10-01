@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DOCUMENT, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -15,9 +15,11 @@ import {
   IonNote,
   IonText,
   IonTitle,
+  IonToggle,
   IonToolbar,
 } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToggleCustomEvent } from '@ionic/angular';
 
 interface IComponent {
   name: string;
@@ -45,6 +47,7 @@ interface IComponent {
     IonItemGroup,
     IonText,
     IonNote,
+    IonToggle,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -82,11 +85,16 @@ export class IndexPageComponent {
 
   readonly #router = inject(Router);
   readonly #route = inject(ActivatedRoute);
+  readonly #document = inject(DOCUMENT);
 
   async navigateComponent(item: IComponent) {
     if (!item.enable) {
       return;
     }
     await this.#router.navigate([item.name], { relativeTo: this.#route });
+  }
+
+  changeColorMode(event: ToggleCustomEvent) {
+    this.#document.documentElement.classList.toggle('ion-palette-dark', event.detail.checked);
   }
 }

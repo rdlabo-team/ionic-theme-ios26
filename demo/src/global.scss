@@ -33,12 +33,12 @@
  */
 
 //@use "@ionic/angular/css/palettes/dark.always.css";
-//@use "@ionic/angular/css/palettes/dark.class.css";
-@use '@ionic/angular/css/palettes/dark.system.css';
+//@use '@ionic/angular/css/palettes/dark.system.css';
+@use '@ionic/angular/css/palettes/dark.class.css';
 
 @use '../../src/default-variables';
 @use '../../src/ionic-theme-ios26';
-@use '../../src/ionic-theme-ios26-dark-system';
+@use '../../src/ionic-theme-ios26-dark-class';
 
 :root {
   --ios26-color-background-rgb: var(--ion-color-light-rgb);

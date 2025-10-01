@@ -16,6 +16,13 @@
     </ion-toolbar>
   </ion-header>
   <ion-list [inset]="true">
+    <ion-list-header><ion-label>Settings</ion-label></ion-list-header>
+    <ion-item-group>
+      <ion-item><ion-toggle (ionChange)="changeColorMode($event)">Dark Mode</ion-toggle></ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <ion-list [inset]="true">
     <ion-list-header><ion-label>Enable Demo</ion-label></ion-list-header>
     <ion-item-group>
       @for (item of enableComponents(); track item.name) {
