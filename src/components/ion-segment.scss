@@ -28,6 +28,7 @@ ion-toolbar.ios:not(.ios26-disabled) {
       overflow: visible;
 
       ion-segment-button {
+        transition: transform 100ms ease-out;
         &.segment-button-checked {
           transform: scale(1.1);
         }
