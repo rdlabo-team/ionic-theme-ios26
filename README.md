@@ -94,7 +94,9 @@ ion-textarea label.textarea-wrapper {
 
 You may want to apply the iOS26 theme to your Ionic project but find it difficult to apply it to all components. We provide two approaches to selectively control theme application.
 
-### Method 1: Import Components Individually
+You can use `1. Import Components Individually` or `2. Using the .ios26-disabled Class`
+
+### 1. Import Components Individually
 
 **Recommended for**: When you want to apply the iOS26 theme only to specific components, or when you want to minimize bundle size.
 
@@ -151,7 +153,7 @@ Class (Toggle with CSS Class):
 ```
 
 
-### Method 2: Using the `.ios26-disabled` Class
+### 2. Using the `.ios26-disabled` Class
 
 **Recommended for**: When you want to apply the iOS26 theme to all components in general, but use standard Ionic styling in specific places.
 
