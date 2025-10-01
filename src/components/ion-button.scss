@@ -61,25 +61,11 @@
   }
 
   // button size default
-  font-size: 1.05rem;
-  &:not(.button-has-icon-only):not(.back-button-has-icon-only)::part(native) {
-    padding: 0 16px;
-    min-height: 44px;
-  }
-
-  &.button-small {
-    font-size: 1.04rem;
+  &:not(.button-small):not(.button-large) {
+    font-size: 1.05rem;
     &:not(.button-has-icon-only):not(.back-button-has-icon-only)::part(native) {
-      padding: 0 12px;
-      min-height: 36px;
-    }
-  }
-
-  &.button-large {
-    font-size: 1.06rem;
-    &:not(.button-has-icon-only):not(.back-button-has-icon-only)::part(native) {
-      padding: 0 20px;
-      min-height: 52px;
+      padding: 0 16px;
+      min-height: 44px;
     }
   }
 
