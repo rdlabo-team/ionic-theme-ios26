@@ -11,6 +11,10 @@ ion-action-sheet.ios:not(.ios26-disabled) {
     margin: 0 8px 8px;
     border-radius: 32px;
 
+    .action-sheet-title,
+    .action-sheet-has-sub-title {
+      background: none;
+    }
     .action-sheet-title {
       padding-top: 8px;
     }

@@ -18,7 +18,10 @@
   ion-button:not(.ios26-disabled),
   ion-back-button:not(.ios26-disabled) {
     transform: none;
-    opacity: 1;
+
+    &:not(.button-disabled) {
+      opacity: 1;
+    }
 
     &.ion-activated {
       --color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
@@ -99,7 +102,10 @@
     &::part(native) {
       @include api.glass-background;
     }
-    opacity: 1; // for ion-back-button
+
+    &:not(.button-disabled) {
+      opacity: 1; // for ion-back-button
+    }
 
     --color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 1);
     &.ion-color {

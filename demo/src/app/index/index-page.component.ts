@@ -65,7 +65,6 @@ export class IndexPageComponent {
     { name: 'floating-action-button', enable: true },
     { name: 'inputs', enable: true },
     { name: 'item-list', enable: true },
-    { name: 'menu', enable: false },
     { name: 'modal', enable: true },
     { name: 'popover', enable: true },
     { name: 'progress-indicators', enable: true },
@@ -75,10 +74,10 @@ export class IndexPageComponent {
     { name: 'searchbar', enable: true },
     { name: 'segment', enable: true },
     { name: 'select', enable: true },
-    { name: 'tabs', enable: false },
+    { name: 'tabs', enable: true },
     { name: 'toast', enable: true },
     { name: 'toggle', enable: true },
-    { name: 'toolbar', enable: false },
+    { name: 'toolbar', enable: true },
   ]);
   readonly enableComponents = computed(() => this.components().filter((c) => c.enable));
   readonly disableComponents = computed(() => this.components().filter((c) => !c.enable));

@@ -6,13 +6,28 @@ ion-tab-bar.ios:not(.ios26-disabled) {
 
   border-radius: 40px;
 
-  width: calc(100% - 56px - 16px - 16px - 4px - 16px);
-  max-width: 400px;
+  &[slot='top'] {
+    position: absolute;
+    top: var(--ios26-floating-safe-area-top);
+    right: calc(16px + var(--ion-safe-area-right, 0px));
+  }
+
+  &[slot='bottom'] {
+    position: absolute;
+    bottom: var(--ios26-floating-safe-area-bottom);
+    left: calc(16px + var(--ion-safe-area-left, 0px));
+  }
+
+  /**
+   * 100% - margin-left - margin-right - right-fab - margin-right-fab
+   */
+  width: calc(100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)) - 54px - 18px);
+  max-width: 474px;
+  &:has(:nth-child(5)) {
+    width: calc(100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)));
+    max-width: 546px;
+  }
   padding: 2px 2px;
-  bottom: var(--ios26-floating-safe-area-bottom);
-  left: calc(16px + var(--ion-safe-area-left, 0px));
-  position: absolute;
-  margin: auto;
 
   transition: transform 100ms ease-out;
   will-change: transform;

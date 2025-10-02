@@ -3,25 +3,28 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
+  IonButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
-  IonInput,
-  IonInputPasswordToggle,
   IonItem,
   IonItemGroup,
   IonLabel,
   IonList,
+  IonMenuButton,
+  IonSearchbar,
+  IonSegment,
+  IonSegmentButton,
   IonText,
-  IonTextarea,
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-inputs',
-  templateUrl: './inputs.page.html',
-  styleUrls: ['./inputs.page.scss'],
+  selector: 'app-toolbar',
+  templateUrl: './toolbar.page.html',
+  styleUrls: ['./toolbar.page.scss'],
   standalone: true,
   imports: [
     IonContent,
@@ -37,12 +40,15 @@ import {
     IonLabel,
     IonList,
     IonText,
-    IonInput,
-    IonInputPasswordToggle,
-    IonTextarea,
+    IonButtons,
+    IonButton,
+    IonMenuButton,
+    IonSearchbar,
+    IonSegment,
+    IonSegmentButton,
   ],
 })
-export class InputsPage implements OnInit {
+export class ToolbarPage implements OnInit {
   constructor() {}
 
   ngOnInit() {}

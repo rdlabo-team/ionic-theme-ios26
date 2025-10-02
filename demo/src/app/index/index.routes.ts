@@ -59,10 +59,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/searchbar/searchbar.page').then((m) => m.SearchbarPage),
   },
   {
-    path: 'menu',
-    loadComponent: () => import('./pages/menu/menu.page').then((m) => m.MenuPage),
-  },
-  {
     path: 'popover',
     loadComponent: () => import('./pages/popover/popover.page').then((m) => m.PopoverPage),
   },
@@ -101,5 +97,13 @@ export const routes: Routes = [
   {
     path: 'reorder',
     loadComponent: () => import('./pages/reorder/reorder.page').then((m) => m.ReorderPage),
+  },
+  {
+    path: 'tabs',
+    loadComponent: () => import('./pages/tabs/tabs.page').then((m) => m.TabsPage),
+  },
+  {
+    path: 'toolbar',
+    loadComponent: () => import('./pages/toolbar/toolbar.page').then((m) => m.ToolbarPage),
   },
 ];

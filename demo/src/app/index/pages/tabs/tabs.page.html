@@ -1,0 +1,78 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/main/index"></ion-back-button>
+    <ion-title>tabs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+  <ion-list [inset]="true">
+    <ion-item-group class="header-item-group">
+      <ion-item>
+        <ion-label>
+          <ion-icon name="logo-ionic" style="background: linear-gradient(#489bfd, #2b77f4)"></ion-icon>
+          <h2>tabs</h2>
+          <ion-header collapse="condense">
+            <ion-toolbar></ion-toolbar>
+          </ion-header>
+          <ion-text><code>This page is a component demo for &#64;rdlabo/ionic-theme-ios26.</code></ion-text>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <ion-tab-bar class="ion-margin-bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="play-circle"></ion-icon>
+      Listen Now
+    </ion-tab-button>
+    <ion-tab-button tab="radio">
+      <ion-icon name="radio"></ion-icon>
+      Radio
+    </ion-tab-button>
+    <ion-tab-button tab="library">
+      <ion-icon name="library"></ion-icon>
+      Library
+    </ion-tab-button>
+  </ion-tab-bar>
+  <ion-tab-bar class="ion-margin-bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="play-circle"></ion-icon>
+      Listen Now
+    </ion-tab-button>
+    <ion-tab-button tab="radio">
+      <ion-icon name="radio"></ion-icon>
+      Radio
+    </ion-tab-button>
+    <ion-tab-button tab="library">
+      <ion-icon name="library"></ion-icon>
+      Library
+    </ion-tab-button>
+    <ion-tab-button tab="search">
+      <ion-icon name="search"></ion-icon>
+      Search
+    </ion-tab-button>
+  </ion-tab-bar>
+  <ion-tab-bar class="ion-margin-bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="play-circle"></ion-icon>
+      Listen Now
+    </ion-tab-button>
+    <ion-tab-button tab="radio">
+      <ion-icon name="radio"></ion-icon>
+      Radio
+    </ion-tab-button>
+    <ion-tab-button tab="library">
+      <ion-icon name="library"></ion-icon>
+      Library
+    </ion-tab-button>
+    <ion-tab-button tab="search">
+      <ion-icon name="search"></ion-icon>
+      Search
+    </ion-tab-button>
+    <ion-tab-button tab="search">
+      <ion-icon name="search"></ion-icon>
+      Last
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-content>

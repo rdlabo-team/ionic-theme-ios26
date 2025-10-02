@@ -6,22 +6,21 @@ import {
   IonContent,
   IonHeader,
   IonIcon,
-  IonInput,
-  IonInputPasswordToggle,
   IonItem,
   IonItemGroup,
   IonLabel,
   IonList,
+  IonTabBar,
+  IonTabButton,
   IonText,
-  IonTextarea,
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-inputs',
-  templateUrl: './inputs.page.html',
-  styleUrls: ['./inputs.page.scss'],
+  selector: 'app-tabs',
+  templateUrl: './tabs.page.html',
+  styleUrls: ['./tabs.page.scss'],
   standalone: true,
   imports: [
     IonContent,
@@ -37,12 +36,11 @@ import {
     IonLabel,
     IonList,
     IonText,
-    IonInput,
-    IonInputPasswordToggle,
-    IonTextarea,
+    IonTabBar,
+    IonTabButton,
   ],
 })
-export class InputsPage implements OnInit {
+export class TabsPage implements OnInit {
   constructor() {}
 
   ngOnInit() {}

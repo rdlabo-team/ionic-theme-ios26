@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonAccordion,
-  IonAccordionGroup,
   IonBackButton,
   IonContent,
   IonHeader,
@@ -31,8 +29,6 @@ import {
     IonToolbar,
     CommonModule,
     FormsModule,
-    IonAccordion,
-    IonAccordionGroup,
     IonBackButton,
     IonIcon,
     IonItem,
