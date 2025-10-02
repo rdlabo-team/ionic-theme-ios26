@@ -49,7 +49,6 @@ ion-tab-bar.ios:not(.ios26-disabled) {
 
     &.tab-selected {
       &::part(native) {
-        backdrop-filter: blur(7px);
         background: rgba(var(--ios26-color-tab-active-rgb), 0.095);
         transition: background 0.2s ease;
         border-radius: 32px;
