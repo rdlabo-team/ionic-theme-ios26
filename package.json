@@ -6,8 +6,8 @@
     "./src/*": {
       "style": "./src/*"
     },
-    "./css/*": {
-      "style": "./css/*"
+    "./dist/*": {
+      "style": "./dist/*"
     },
     "./package.json": {
       "default": "./package.json"
