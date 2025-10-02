@@ -12,6 +12,8 @@ ion-alert.ios:not(.ios26-disabled) {
     .alert-head,
     .alert-message {
       text-align: left;
+      margin-left: 8px;
+      margin-right: 8px;
     }
 
     .alert-radio-group {
@@ -31,6 +33,11 @@ ion-alert.ios:not(.ios26-disabled) {
         min-width: calc(50% - 8px);
         background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.08);
         color: var(--ion-text-color);
+
+        &.alert-button-role-confirm,
+        &.ion-activatable {
+          font-weight: normal;
+        }
 
         &.ion-activated {
           background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.06);
