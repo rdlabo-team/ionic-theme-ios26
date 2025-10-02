@@ -38,12 +38,13 @@ ion-tab-bar.ios:not(.ios26-disabled) {
 
   ion-tab-button {
     & > ion-icon {
-      font-size: 30px;
+      font-size: 28px;
     }
     background: rgba(var(--ios26-color-light-rgb), 0);
     height: auto;
     &::part(native) {
       overflow: visible;
+      padding: 2px;
     }
 
     &.tab-selected {
