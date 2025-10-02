@@ -1,8 +1,5 @@
 # Feature Requests for Ionic Framework
 
-### Note
-- When scaling `ion-segment-button`, the effect should extend beyond the `ion-segment` boundaries
-
 ## docs(): Naming conventions for Ionic theme classes
 
 After the Ionic Modular release, I expect many themes to be distributed through community activities. Therefore, I would like to establish naming conventions for theme application classes. I would appreciate the Ionic team's opinion on this matter.
