@@ -19,9 +19,9 @@ export class TabsPage implements OnInit {
         return;
       }
       if (['/main/settings'].includes(params.urlAfterRedirects)) {
-        tabBar.classList.add('tab-bar-hide');
+        tabBar.classList.add('tab-bar-hidden');
       } else if (tabBar) {
-        tabBar.classList.remove('tab-bar-hide');
+        tabBar.classList.remove('tab-bar-hidden');
       }
     });
   }
