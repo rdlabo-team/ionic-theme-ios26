@@ -69,7 +69,7 @@ export class IndexPageComponent {
     { name: 'modal', enable: true },
     { name: 'popover', enable: true },
     { name: 'progress-indicators', enable: true },
-    { name: 'radio', enable: false },
+    { name: 'radio', enable: true },
     { name: 'range', enable: true },
     { name: 'reorder', enable: false },
     { name: 'searchbar', enable: true },

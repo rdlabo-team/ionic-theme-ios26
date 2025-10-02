@@ -55,30 +55,34 @@
     }
   }
 
-  ion-item-group ion-item {
-    ion-text[slot='end'] {
-      padding-left: 8px;
-    }
-
-    &.item-disabled {
-      opacity: 1;
-
-      & > * {
-        opacity: 0.4;
+  ion-item-group,
+  ion-reorder-group,
+  ion-radio-group {
+    ion-item {
+      ion-text[slot='end'] {
+        padding-left: 8px;
       }
 
-      &::part(detail-icon) {
-        opacity: 0.1;
-      }
-    }
+      &.item-disabled {
+        opacity: 1;
 
-    ion-button[slot='end'] {
-      &.ion-align-self-end {
-        transform: translateY(-7px);
+        & > * {
+          opacity: 0.4;
+        }
+
+        &::part(detail-icon) {
+          opacity: 0.1;
+        }
       }
-      ion-icon[slot='icon-only'] {
-        font-size: 1.2rem !important;
-        transform: translateY(4px);
+
+      ion-button[slot='end'] {
+        &.ion-align-self-end {
+          transform: translateY(-7px);
+        }
+        ion-icon[slot='icon-only'] {
+          font-size: 1.2rem !important;
+          transform: translateY(4px);
+        }
       }
     }
   }

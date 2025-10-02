@@ -78,4 +78,8 @@ export const routes: Routes = [
     path: 'select',
     loadComponent: () => import('./pages/select/select.page').then((m) => m.SelectPage),
   },
+  {
+    path: 'radio',
+    loadComponent: () => import('./pages/radio/radio.page').then((m) => m.RadioPage),
+  },
 ];
