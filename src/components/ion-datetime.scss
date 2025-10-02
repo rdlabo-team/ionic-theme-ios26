@@ -4,6 +4,6 @@ ion-datetime.ios:not(.ios26-disabled) {
   @include api.glass-background;
   border-radius: 24px;
 
-  --wheel-highlight-background: transparent !important;
-  --wheel-highlight-border-radius: 24px !important;
+  --wheel-highlight-background: transparent;
+  --wheel-highlight-border-radius: 24px;
 }

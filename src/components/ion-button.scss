@@ -9,6 +9,10 @@
   @include api.glass-background;
   border-radius: 25px;
   overflow: hidden;
+
+  /**
+   * compare .header-collapse-main ion-toolbar.in-toolbar ion-title, .header-collapse-main ion-toolbar.in-toolbar ion-buttons
+   */
   transition: transform 100ms ease-out !important;
 
   &:has(.ion-activated) {
@@ -32,7 +36,8 @@
 
     &::part(native) {
       /**
-       * TODO: remove !important.
+       * overwrite theme-button mixin.
+       * ex) ion-button.ios:not(.ios26-disabled):not(.button-solid):not(.ios26-button-solid):not(.button-outline):not(.ios26-button-outline):not(.button-clear):not(.ios26-button-clear)::part(native)
        */
       box-shadow: none !important;
       border: none !important;
@@ -76,9 +81,11 @@
     }
   }
 
-  --border-radius: 24px !important;
-  &.button-large {
-    --border-radius: 30px !important;
+  &:not(.button-round) {
+    --border-radius: 24px;
+    &.button-large {
+      --border-radius: 30px;
+    }
   }
 
   &:not(.button-clear):not(.ios26-button-clear) {

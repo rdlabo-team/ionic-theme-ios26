@@ -3,8 +3,8 @@
 ion-modal.ios:not(.ios26-disabled) {
   --backdrop-opacity: 0.2;
   ion-toolbar {
-    padding-right: calc(var(--ion-safe-area-right) + 4px) !important;
-    padding-left: calc(var(--ion-safe-area-left) + 4px) !important;
+    padding-right: calc(var(--ion-safe-area-right) + 4px);
+    padding-left: calc(var(--ion-safe-area-left) + 4px);
   }
   &::part(handle) {
     width: 80px;

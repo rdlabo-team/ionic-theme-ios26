@@ -3,7 +3,6 @@
 ion-modal.ios {
   ion-searchbar:not(.ios26-disabled) {
     .searchbar-input-container {
-      margin: 0 6px;
       input.searchbar-input {
         // Modal表示でのアイコン非表示の不具合の対応
         backdrop-filter: none;
@@ -28,10 +27,10 @@ ion-searchbar.ios:not(.ios26-disabled) {
       min-height: 44px;
       @include api.glass-background;
       border-radius: 20px;
-      padding-inline-start: 2.4rem !important;
+      padding-inline-start: 2.4rem;
     }
     .searchbar-clear-button {
-      padding-inline-end: 2rem !important;
+      padding-inline-end: 2rem;
     }
   }
 }
