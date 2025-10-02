@@ -74,7 +74,7 @@ export class IndexPageComponent {
     { name: 'reorder', enable: false },
     { name: 'searchbar', enable: true },
     { name: 'segment', enable: true },
-    { name: 'select', enable: false },
+    { name: 'select', enable: true },
     { name: 'tabs', enable: false },
     { name: 'toast', enable: true },
     { name: 'toggle', enable: true },

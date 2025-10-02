@@ -50,7 +50,7 @@ ion-content:not(.ios26-disabled)::part(background)::after {
 /**
  * ここから下は、ion-content::before/afterが content:'' を持たない限り表示されない
  */
-.ion-page:has(ion-header.header-translucent) ion-content::part(background)::before {
+.ion-page:has(ion-header.header-translucent) > ion-content::part(background)::before {
   z-index: 2;
   top: 0;
   height: calc(68px + max(calc(var(--ion-safe-area-top) - 12px), 4px));

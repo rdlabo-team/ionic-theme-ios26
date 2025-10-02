@@ -1,0 +1,74 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/main/index"></ion-back-button>
+    <ion-title>select</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+  <ion-list [inset]="true">
+    <ion-item-group class="header-item-group">
+      <ion-item>
+        <ion-label>
+          <ion-icon name="logo-ionic" style="background: linear-gradient(#489bfd, #2b77f4)"></ion-icon>
+          <h2>select</h2>
+          <ion-header collapse="condense">
+            <ion-toolbar></ion-toolbar>
+          </ion-header>
+          <ion-text><code>This page is a component demo for &#64;rdlabo/ionic-theme-ios26.</code></ion-text>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <ion-list [inset]="true">
+    <ion-item-group>
+      <ion-item>
+        <ion-select label="Default label" placeholder="Favorite Fruit">
+          <ion-select-option value="apple">Apple</ion-select-option>
+          <ion-select-option value="banana">Banana</ion-select-option>
+          <ion-select-option value="orange">Orange</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Fixed label" label-placement="fixed" placeholder="Favorite fruit">
+          <ion-select-option value="apple">Apple</ion-select-option>
+          <ion-select-option value="banana">Banana</ion-select-option>
+          <ion-select-option value="orange">Orange</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Stacked label" label-placement="stacked">
+          <ion-select-option value="apple">Apple</ion-select-option>
+          <ion-select-option value="banana">Banana</ion-select-option>
+          <ion-select-option value="orange">Orange</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Floating label" label-placement="floating">
+          <ion-select-option value="apple">Apple</ion-select-option>
+          <ion-select-option value="banana">Banana</ion-select-option>
+          <ion-select-option value="orange">Orange</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <ion-list [inset]="true">
+    <ion-list-header><ion-label>Interfaces</ion-label></ion-list-header>
+    <ion-item-group>
+      @for (item of interfaces; track item) {
+        <ion-item>
+          <ion-select [label]="item" placeholder="Favorite Fruit" [interface]="item">
+            <ion-select-option value="apple">Apple</ion-select-option>
+            <ion-select-option value="banana">Banana</ion-select-option>
+            <ion-select-option value="orange">Orange</ion-select-option>
+          </ion-select>
+        </ion-item>
+      }
+    </ion-item-group>
+  </ion-list>
+</ion-content>

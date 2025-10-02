@@ -74,4 +74,8 @@ export const routes: Routes = [
     path: 'floating-action-button',
     loadComponent: () => import('./pages/floating-action-button/floating-action-button.page').then((m) => m.FloatingActionButtonPage),
   },
+  {
+    path: 'select',
+    loadComponent: () => import('./pages/select/select.page').then((m) => m.SelectPage),
+  },
 ];
