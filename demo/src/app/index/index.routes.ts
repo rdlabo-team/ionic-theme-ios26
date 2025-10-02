@@ -82,4 +82,8 @@ export const routes: Routes = [
     path: 'radio',
     loadComponent: () => import('./pages/radio/radio.page').then((m) => m.RadioPage),
   },
+  {
+    path: 'date-and-time-pickers',
+    loadComponent: () => import('./pages/date-and-time-pickers/date-and-time-pickers.page').then((m) => m.DateAndTimePickersPage),
+  },
 ];

@@ -61,7 +61,7 @@ export class IndexPageComponent {
     { name: 'card', enable: true },
     { name: 'checkbox', enable: true },
     { name: 'chip', enable: true },
-    { name: 'date-and-time-pickers', enable: false },
+    { name: 'date-and-time-pickers', enable: true },
     { name: 'floating-action-button', enable: true },
     { name: 'inputs', enable: false },
     { name: 'item-list', enable: false },

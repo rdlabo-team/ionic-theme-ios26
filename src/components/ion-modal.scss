@@ -18,6 +18,10 @@ ion-modal.ios:not(.ios26-disabled) {
      */
   }
 
+  &:has(.ion-delegate-host):has(ion-datetime) {
+    --border-radius: 24px;
+  }
+
   &.modal-sheet {
     --border-radius: 30px;
     &::part(content) {

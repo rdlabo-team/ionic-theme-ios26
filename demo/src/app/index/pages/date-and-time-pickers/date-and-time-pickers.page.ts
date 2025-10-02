@@ -4,24 +4,27 @@ import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
   IonContent,
+  IonDatetime,
+  IonDatetimeButton,
   IonHeader,
   IonIcon,
   IonItem,
   IonItemGroup,
   IonLabel,
   IonList,
-  IonListHeader,
-  IonSelect,
-  IonSelectOption,
+  IonModal,
+  IonPicker,
+  IonPickerColumn,
+  IonPickerColumnOption,
   IonText,
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-select',
-  templateUrl: './select.page.html',
-  styleUrls: ['./select.page.scss'],
+  selector: 'app-date-and-time-pickers',
+  templateUrl: './date-and-time-pickers.page.html',
+  styleUrls: ['./date-and-time-pickers.page.scss'],
   standalone: true,
   imports: [
     IonContent,
@@ -37,13 +40,15 @@ import {
     IonLabel,
     IonList,
     IonText,
-    IonSelect,
-    IonSelectOption,
-    IonListHeader,
+    IonDatetime,
+    IonPicker,
+    IonPickerColumn,
+    IonPickerColumnOption,
+    IonModal,
+    IonDatetimeButton,
   ],
 })
-export class SelectPage implements OnInit {
-  readonly interfaces = ['alert', 'action-sheet', 'popover', 'modal'] as ('action-sheet' | 'popover' | 'alert' | 'modal')[];
+export class DateAndTimePickersPage implements OnInit {
   constructor() {}
 
   ngOnInit() {}
