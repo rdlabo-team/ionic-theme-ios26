@@ -86,4 +86,20 @@ export const routes: Routes = [
     path: 'date-and-time-pickers',
     loadComponent: () => import('./pages/date-and-time-pickers/date-and-time-pickers.page').then((m) => m.DateAndTimePickersPage),
   },
+  {
+    path: 'accordion',
+    loadComponent: () => import('./pages/accordion/accordion.page').then((m) => m.AccordionPage),
+  },
+  {
+    path: 'inputs',
+    loadComponent: () => import('./pages/inputs/inputs.page').then((m) => m.InputsPage),
+  },
+  {
+    path: 'item-list',
+    loadComponent: () => import('./pages/item-list/item-list.page').then((m) => m.ItemListPage),
+  },
+  {
+    path: 'reorder',
+    loadComponent: () => import('./pages/reorder/reorder.page').then((m) => m.ReorderPage),
+  },
 ];

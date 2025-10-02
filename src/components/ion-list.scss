@@ -3,12 +3,14 @@
 ion-list.list-inset.ios:not(.ios26-disabled) {
   @include theme-list-inset.ion-list-inset();
 
-  ion-radio-group {
+  ion-radio-group,
+  ion-reorder-group {
     display: block;
   }
 
   ion-item-group,
   ion-reorder-group,
+  ion-accordion-group,
   ion-radio-group {
     border-radius: 24px;
     overflow: hidden;

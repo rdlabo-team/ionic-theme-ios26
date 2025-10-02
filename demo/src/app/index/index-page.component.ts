@@ -53,7 +53,7 @@ interface IComponent {
 })
 export class IndexPageComponent {
   readonly components = signal<IComponent[]>([
-    { name: 'accordion', enable: false },
+    { name: 'accordion', enable: true },
     { name: 'action-sheet', enable: true },
     { name: 'alert', enable: true },
     { name: 'breadcrumbs', enable: true },
@@ -63,15 +63,15 @@ export class IndexPageComponent {
     { name: 'chip', enable: true },
     { name: 'date-and-time-pickers', enable: true },
     { name: 'floating-action-button', enable: true },
-    { name: 'inputs', enable: false },
-    { name: 'item-list', enable: false },
+    { name: 'inputs', enable: true },
+    { name: 'item-list', enable: true },
     { name: 'menu', enable: false },
     { name: 'modal', enable: true },
     { name: 'popover', enable: true },
     { name: 'progress-indicators', enable: true },
     { name: 'radio', enable: true },
     { name: 'range', enable: true },
-    { name: 'reorder', enable: false },
+    { name: 'reorder', enable: true },
     { name: 'searchbar', enable: true },
     { name: 'segment', enable: true },
     { name: 'select', enable: true },

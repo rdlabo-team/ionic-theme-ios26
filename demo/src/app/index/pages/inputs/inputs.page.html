@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/main/index"></ion-back-button>
+    <ion-title>inputs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+  <ion-list [inset]="true">
+    <ion-item-group class="header-item-group">
+      <ion-item>
+        <ion-label>
+          <ion-icon name="logo-ionic" style="background: linear-gradient(#489bfd, #2b77f4)"></ion-icon>
+          <h2>inputs</h2>
+          <ion-header collapse="condense">
+            <ion-toolbar></ion-toolbar>
+          </ion-header>
+          <ion-text><code>This page is a component demo for &#64;rdlabo/ionic-theme-ios26.</code></ion-text>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+  <ion-list [inset]="true">
+    <ion-item-group>
+      <ion-item>
+        <ion-input label="Default label" placeholder="Enter text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Fixed label" labelPlacement="fixed" placeholder="Enter text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Stacked label" labelPlacement="stacked" placeholder="Enter text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Floating label" labelPlacement="floating" placeholder="Enter text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="password" label="Password" value="NeverGonnaGiveYouUp">
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <ion-list [inset]="true">
+    <ion-item-group>
+      <ion-item>
+        <ion-textarea label="Default label" placeholder="Enter textarea"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-textarea label="Fixed label" labelPlacement="fixed" placeholder="Enter textarea"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-textarea label="Stacked label" labelPlacement="stacked" placeholder="Enter textarea"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-textarea label="Floating label" labelPlacement="floating" placeholder="Enter textarea"></ion-textarea>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>
