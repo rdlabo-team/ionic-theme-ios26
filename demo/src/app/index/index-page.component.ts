@@ -72,7 +72,7 @@ export class IndexPageComponent {
     { name: 'range', enable: true },
     { name: 'reorder', enable: true },
     { name: 'searchbar', enable: true },
-    { name: 'segment', enable: true },
+    { name: 'segment', enable: false },
     { name: 'select', enable: true },
     { name: 'tabs', enable: true },
     { name: 'toast', enable: true },
@@ -87,9 +87,6 @@ export class IndexPageComponent {
   readonly #document = inject(DOCUMENT);
 
   async navigateComponent(item: IComponent) {
-    if (!item.enable) {
-      return;
-    }
     await this.#router.navigate([item.name], { relativeTo: this.#route });
   }
 
