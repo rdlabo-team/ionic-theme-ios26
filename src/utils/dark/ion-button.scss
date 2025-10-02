@@ -1,5 +1,11 @@
 @use '../api';
 
+@mixin theme-dark-buttons {
+  &:has(.ion-activated) {
+    @include api.glass-background-dark-active;
+  }
+}
+
 @mixin theme-dark-button {
   &.ion-activated:not(.button-solid):not(.ios26-button-solid):not(.button-outline):not(.ios26-button-outline):not(.button-clear):not(
       .ios26-button-clear
@@ -18,19 +24,11 @@
 }
 
 @mixin ion-button {
-  ion-header.ios:not(.ios26-disabled),
-  ion-footer.ios:not(.ios26-disabled) {
-    ion-buttons:not(.ios26-disabled) ion-button:not(.ios26-disabled),
-    ion-buttons:not(.ios26-disabled) ion-back-button:not(.ios26-disabled),
-    ion-back-button:not(.ios26-disabled) {
-      @include theme-dark-button;
-    }
+  ion-buttons:not(.ios26-disabled) {
+    @include theme-dark-buttons;
   }
-
-  ion-buttons.ios:not(.ios26-disabled) ion-button:not(.ios26-disabled),
-  ion-buttons.ios:not(.ios26-disabled) ion-back-button:not(.ios26-disabled),
-  ion-button.ios:not(.ios26-disabled),
-  ion-back-button.ios:not(.ios26-disabled) {
+  ion-button:not(.ios26-disabled),
+  ion-back-button:not(.ios26-disabled) {
     @include theme-dark-button;
   }
 }

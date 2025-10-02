@@ -18,6 +18,7 @@
   ion-button:not(.ios26-disabled),
   ion-back-button:not(.ios26-disabled) {
     transform: none;
+    opacity: 1;
 
     &::part(native) {
       /**
@@ -115,26 +116,13 @@
     }
   }
 
-  // fill: outline or default
-  &:not(.button-solid):not(.ios26-button-solid):not(.button-clear):not(.ios26-button-clear) {
-  }
-
   &.button-has-icon-only,
   &.back-button-has-icon-only {
     border-radius: 50%;
-    &::part(native) {
+    &:not(.button-small):not(.button-large)::part(native) {
       width: 44px;
       height: 44px;
       padding: 2px;
-    }
-    &.button-small::part(native) {
-      width: 36px;
-      height: 36px;
-    }
-
-    &.button-large::part(native) {
-      width: 52px;
-      height: 52px;
     }
 
     ion-icon {
