@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/main/index"></ion-back-button>
+    <ion-title>popover</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+  <ion-list [inset]="true">
+    <ion-item-group class="header-item-group">
+      <ion-item>
+        <ion-label>
+          <ion-icon name="logo-ionic" style="background: linear-gradient(#489bfd, #2b77f4)"></ion-icon>
+          <h2>popover</h2>
+          <ion-header collapse="condense">
+            <ion-toolbar></ion-toolbar>
+          </ion-header>
+          <ion-text><code>This page is a component demo for &#64;rdlabo/ionic-theme-ios26.</code></ion-text>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <section class="section-example">
+    <ion-button id="click-trigger">Click Me</ion-button>
+    <ion-popover trigger="click-trigger" triggerAction="click">
+      <ng-template>
+        <div class="ion-padding">
+          <ion-text>Hello World!</ion-text>
+        </div>
+      </ng-template>
+    </ion-popover>
+  </section>
+</ion-content>

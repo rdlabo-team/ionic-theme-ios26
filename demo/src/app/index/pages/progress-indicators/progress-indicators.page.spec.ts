@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SearchbarPage } from './searchbar.page';
+import { ProgressIndicatorsPage } from './progress-indicators.page';
 import { testConfig } from '../../../../../util/test.config';
 
-describe('SearchbarPage', () => {
-  let component: SearchbarPage;
-  let fixture: ComponentFixture<SearchbarPage>;
+describe('ProgressIndicatorsPage', () => {
+  let component: ProgressIndicatorsPage;
+  let fixture: ComponentFixture<ProgressIndicatorsPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: testConfig.providers,
     }).compileComponents();
-    fixture = TestBed.createComponent(SearchbarPage);
+    fixture = TestBed.createComponent(ProgressIndicatorsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

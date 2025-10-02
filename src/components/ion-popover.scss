@@ -1,19 +1,12 @@
 @use '../utils/api';
 
 ion-popover.ios:not(.ios26-disabled) {
-  --backdrop-opacity: 0.04;
-  &::part(arrow) {
-    //display: none;
+  &::part(arrow)::after {
+    @include api.glass-background;
   }
   &::part(content) {
-    @include api.glass-background(0.6);
+    @include api.glass-background;
     border-radius: 24px;
     padding: 0;
-  }
-  ion-list {
-    background: transparent;
-    ion-item {
-      --background: transparent;
-    }
   }
 }

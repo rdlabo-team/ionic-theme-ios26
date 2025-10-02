@@ -1,0 +1,8 @@
+@use '../utils/api';
+
+ion-loading.ios:not(.ios26-disabled) {
+  .loading-wrapper {
+    @include api.glass-background;
+    border-radius: 24px;
+  }
+}

@@ -62,4 +62,16 @@ export const routes: Routes = [
     path: 'menu',
     loadComponent: () => import('./pages/menu/menu.page').then((m) => m.MenuPage),
   },
+  {
+    path: 'popover',
+    loadComponent: () => import('./pages/popover/popover.page').then((m) => m.PopoverPage),
+  },
+  {
+    path: 'progress-indicators',
+    loadComponent: () => import('./pages/progress-indicators/progress-indicators.page').then((m) => m.ProgressIndicatorsPage),
+  },
+  {
+    path: 'floating-action-button',
+    loadComponent: () => import('./pages/floating-action-button/floating-action-button.page').then((m) => m.FloatingActionButtonPage),
+  },
 ];

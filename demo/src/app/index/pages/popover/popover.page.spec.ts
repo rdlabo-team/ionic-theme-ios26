@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SearchbarPage } from './searchbar.page';
+import { PopoverPage } from './popover.page';
 import { testConfig } from '../../../../../util/test.config';
 
-describe('SearchbarPage', () => {
-  let component: SearchbarPage;
-  let fixture: ComponentFixture<SearchbarPage>;
+describe('PopoverPage', () => {
+  let component: PopoverPage;
+  let fixture: ComponentFixture<PopoverPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: testConfig.providers,
     }).compileComponents();
-    fixture = TestBed.createComponent(SearchbarPage);
+    fixture = TestBed.createComponent(PopoverPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
