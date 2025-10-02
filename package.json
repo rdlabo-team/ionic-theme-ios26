@@ -19,7 +19,8 @@
     "prepare": "husky install",
     "lint": "prettier --check \"./**/*.{scss,ts}\" &&  prettier --parser angular --check \"./**/*.html\"",
     "fmt": "prettier --write \"./**/*.{scss,ts}\" &&  prettier --parser angular --write \"./**/*.html\"",
-    "release": "np --no-tests"
+    "release": "np --no-tests",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
