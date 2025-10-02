@@ -1,6 +1,7 @@
 @use '../utils/api';
 
 ion-popover.ios:not(.ios26-disabled) {
+  --backdrop-opacity: 0.2;
   &::part(arrow)::after {
     @include api.glass-background;
   }

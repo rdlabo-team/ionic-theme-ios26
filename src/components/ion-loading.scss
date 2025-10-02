@@ -1,6 +1,7 @@
 @use '../utils/api';
 
 ion-loading.ios:not(.ios26-disabled) {
+  --backdrop-opacity: 0.2;
   .loading-wrapper {
     @include api.glass-background;
     border-radius: 24px;

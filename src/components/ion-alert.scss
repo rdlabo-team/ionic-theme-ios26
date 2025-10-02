@@ -2,9 +2,11 @@
 
 ion-alert.ios:not(.ios26-disabled) {
   --backdrop-opacity: 0.2;
-
   .alert-wrapper {
     @include api.glass-background(0.9);
+    &:has(.ion-activated) {
+      @include api.glass-background(0.95);
+    }
     border-radius: 32px;
 
     .alert-head,
@@ -21,6 +23,10 @@ ion-alert.ios:not(.ios26-disabled) {
         min-width: calc(50% - 8px);
         background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.08);
         color: var(--ion-text-color);
+
+        &.ion-activated {
+          background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.06);
+        }
       }
     }
 

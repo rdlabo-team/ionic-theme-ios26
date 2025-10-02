@@ -1,12 +1,16 @@
 @use '../utils/api';
 
 ion-action-sheet.ios:not(.ios26-disabled) {
-  --button-color: var(--ion-text-color);
-  --button-background-selected: transparent;
+  --button-background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.08);
+  --button-background-hover: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.06);
+  --button-background-selected: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.06);
   --backdrop-opacity: 0.2;
 
   .action-sheet-container {
     @include api.glass-background(0.9);
+    &:has(.ion-activated) {
+      @include api.glass-background(0.95);
+    }
     margin: 0 8px 8px;
     border-radius: 32px;
 
@@ -18,8 +22,15 @@ ion-action-sheet.ios:not(.ios26-disabled) {
       background: transparent;
 
       button {
+        &:not(.action-sheet-destructive) {
+          --button-color: var(--ion-text-color);
+          --button-color-hover: var(--ion-text-color);
+        }
+        &.action-sheet-destructive {
+          --button-color: var(--ion-color-danger, #c5000f);
+          --button-color-hover: var(--ion-color-danger, #c5000f);
+        }
         border-radius: 32px;
-        background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.08);
         padding: 0 14px;
         min-height: 52px;
         span.action-sheet-button-inner {
