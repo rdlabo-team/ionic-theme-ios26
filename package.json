@@ -2,17 +2,11 @@
   "name": "@rdlabo/ionic-theme-ios26",
   "version": "0.1.2",
   "description": "iOS26 CSS Theme for Ionic Framework",
-  "exports": {
-    "./src/*": {
-      "style": "./src/*"
-    },
-    "./dist/*": {
-      "style": "./dist/*"
-    },
-    "./package.json": {
-      "default": "./package.json"
-    }
-  },
+  "files": [
+    "dist",
+    "src",
+    "package.json"
+  ],
   "scripts": {
     "build": "rm -rf dist/css && sass src:dist/css --style=compressed --no-source-map",
     "build:demo": "cd demo && npm install && npm run build -- --configuration=production",
