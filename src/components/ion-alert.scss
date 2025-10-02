@@ -12,10 +12,15 @@ ion-alert.ios:not(.ios26-disabled) {
     .alert-head,
     .alert-message {
       text-align: left;
+      padding: 12px 20px;
     }
 
     .alert-radio-group {
-      padding: 0 0 6px;
+      padding: 0;
+      margin-bottom: 12px;
+      button {
+        padding: 0 8px;
+      }
     }
 
     .alert-button-group {
