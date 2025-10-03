@@ -14,6 +14,15 @@ ion-toolbar.ios:not(.toolbar-title-large):not(.ios26-disabled) {
   --min-height: 68px;
 }
 
+ion-toolbar.ios:not(.ios26-disabled):has(ion-searchbar.ios:not(.ios26-disabled)) {
+  ion-buttons {
+    margin-top: 11px;
+  }
+  & > ion-button {
+    margin-top: 11px;
+  }
+}
+
 ion-header.ios:not(.ios26-disabled),
 ion-footer.ios:not(.ios26-disabled) {
   ion-buttons {

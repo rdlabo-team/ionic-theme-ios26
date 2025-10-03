@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
+  IonButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -36,6 +38,8 @@ import {
     IonList,
     IonText,
     IonSearchbar,
+    IonButtons,
+    IonButton,
   ],
 })
 export class SearchbarPage implements OnInit {
