@@ -5,7 +5,7 @@ ion-tab-bar.ios:not(.ios26-disabled) {
   z-index: 2;
 
   border-radius: 40px;
-  --color: var(--ion-text-color, #000);
+  --color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.9);
 
   &[slot='top'] {
     position: absolute;
