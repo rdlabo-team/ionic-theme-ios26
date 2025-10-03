@@ -27,7 +27,7 @@ ion-searchbar.ios:not(.ios26-disabled) {
       min-height: 44px;
       @include api.glass-background;
       border-radius: 20px;
-      padding-inline-start: 2.4rem;
+      padding-inline-start: 2.4rem !important;
     }
     .searchbar-clear-button {
       padding-inline-end: 2rem;
