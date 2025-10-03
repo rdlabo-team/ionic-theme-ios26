@@ -22,7 +22,7 @@ ion-tab-bar.ios:not(.ios26-disabled) {
   /**
    * 100% - margin-left - margin-right - right-fab - margin-right-fab
    */
-  width: calc(100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)) - 54px - 18px);
+  width: calc(100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)) - 60px - 18px);
   max-width: 474px;
   min-height: 56px;
   &:has(:nth-child(5)) {

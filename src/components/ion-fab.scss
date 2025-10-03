@@ -9,8 +9,11 @@ ion-fab.ios:not(.ios26-disabled) {
 
     --color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.9);
 
-    width: 60px;
-    height: 60px;
+    /**
+     * 60px + border0.5px + 0.5px
+     */
+    width: 61px;
+    height: 61px;
 
     &.fab-button-in-list,
     &.fab-button-small {
