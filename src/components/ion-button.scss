@@ -58,6 +58,11 @@
       margin: 0;
     }
   }
+  ion-menu-button:not(.ios26-disabled) {
+    width: 44px;
+    height: 44px;
+    padding: 2px;
+  }
 }
 
 @mixin theme-button() {
