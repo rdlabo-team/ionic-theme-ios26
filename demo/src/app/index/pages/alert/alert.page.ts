@@ -45,7 +45,7 @@ export class AlertPage implements OnInit {
 
   ngOnInit() {}
 
-  async present(type: 'all' | 'button-only' | 'no-cancel' | 'force-dark-mode') {
+  async present(type: 'all' | 'button-only' | 'no-cancel' | 'force-dark-mode' | 'remove-app') {
     const applyConfig = ((type) => {
       if (type === 'button-only') {
         return {
@@ -62,6 +62,23 @@ export class AlertPage implements OnInit {
         return {
           ...alertUtil(),
           cssClass: 'ion-palette-dark',
+        };
+      } else if (type === 'remove-app') {
+        return {
+          ...alertUtil(),
+          header: 'Remove "odss"?',
+          subHeader: undefined,
+          message: 'Removing from Home Screen will keep the app in your App Library',
+          buttons: [
+            ...alertUtil().buttons,
+            {
+              text: 'Remove from Home Screen',
+              role: 'confirm',
+              handler: () => {
+                console.log('Alert confirmed');
+              },
+            },
+          ],
         };
       }
       return alertUtil();

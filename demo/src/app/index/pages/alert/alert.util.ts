@@ -12,7 +12,7 @@ export const alertUtil = () => ({
     },
     {
       text: 'OK',
-      role: 'confirm',
+      role: 'destructive',
       handler: () => {
         console.log('Alert confirmed');
       },
