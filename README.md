@@ -31,7 +31,7 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
 
 ```css
 @import '@rdlabo/ionic-theme-ios26/dist/css/default-variables.css';
-@import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.min.css';
+@import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.css';
 
 
 /**
@@ -47,14 +47,14 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
  * For example, `ion-buttons ion-button[fill=default]` is not normally implemented, but may be required for iOS26.
  * This file is to eliminate such effects.
  */
-@import '@rdlabo/ionic-theme-ios26/dist/css/md-remove-ios-class-effect.min.css';
+@import '@rdlabo/ionic-theme-ios26/dist/css/md-remove-ios-class-effect.css';
 
 /*
  * Support Dark Mode
  * We support Ionic Dark Mode. More information is here: https://ionicframework.com/docs/theming/dark-mode
- * use Always:    @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-always.min.css'
- * use System:    @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-system.min.css'
- * use CSS Class: @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-class.min.css'
+ * use Always:    @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-always.css'
+ * use System:    @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-system.css'
+ * use CSS Class: @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-class.css'
  */
 ```
 
@@ -116,7 +116,7 @@ You can use `1. Import Components Individually` or `2. Using the .ios26-disabled
 
 **Recommended for**: When you want to apply the iOS26 theme only to specific components, or when you want to minimize bundle size.
 
-While `@import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.min.css'` applies styling to all components at once, you can also import them individually.
+While `@import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.css'` applies styling to all components at once, you can also import them individually.
 
 ```css
 @import '@rdlabo/ionic-theme-ios26/dist/css/utils/translucent';
