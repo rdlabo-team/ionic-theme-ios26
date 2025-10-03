@@ -1,7 +1,7 @@
 @use '../utils/api';
 
 ion-datetime.ios:not(.ios26-disabled) {
-  @include api.glass-background;
+  @include api.glass-background-overlay;
   border-radius: 24px;
 
   --wheel-highlight-background: transparent;

@@ -19,3 +19,26 @@
   border-bottom: 0.5px solid rgba(var(--ios26-color-tab-active-rgb), 0.4);
   border-left: 0.5px solid rgba(var(--ios26-color-tab-active-rgb), 0.3);
 }
+
+@mixin glass-background-overlay {
+  @include glass-background(0.6667, 8px);
+}
+
+@mixin glass-background-overlay-activated {
+  @include glass-background(0.6667, 8px);
+}
+
+@mixin glass-background-overlay-button {
+  transition: background 0.2s ease;
+  background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.065);
+  &.ion-activated {
+    background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.022);
+  }
+}
+
+@mixin glass-background-overlay-button-variable {
+  --button-background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.065);
+  &.ion-activated {
+    --button-background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.022);
+  }
+}

@@ -4,11 +4,13 @@ ion-action-sheet.ios:not(.ios26-disabled) {
   --backdrop-opacity: 0.2;
 
   .action-sheet-container {
-    @include api.glass-background(0.9);
+    @include api.glass-background-overlay;
+    transition: transform 0.2s ease;
     &:has(.ion-activated) {
-      @include api.glass-background(0.95);
+      transform: scale(1.016);
+      @include api.glass-background-overlay-activated;
     }
-    margin: 0 8px 8px;
+    margin: 0 12px 12px;
     border-radius: 32px;
 
     .action-sheet-title,
@@ -23,16 +25,14 @@ ion-action-sheet.ios:not(.ios26-disabled) {
       background: transparent;
 
       button {
-        --button-background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.08);
-        &.ion-activated {
-          --button-background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.06);
-        }
+        @include api.glass-background-overlay-button-variable;
         &::after {
           content: none;
         }
-        &:not(.action-sheet-destructive) {
+        &:not(.action-sheet-destructive):not(.action-sheet-selected) {
           --button-color: var(--ion-text-color);
           --button-color-hover: var(--ion-text-color);
+          --button-color-activated: var(--ion-text-color);
         }
         &.action-sheet-destructive {
           --button-color: var(--ion-color-danger, #c5000f);

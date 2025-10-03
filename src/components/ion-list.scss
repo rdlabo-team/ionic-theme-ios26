@@ -1,5 +1,13 @@
 @use '../utils/theme-list-inset';
 
+ion-list.ios:not(.ios26-disabled) {
+  ion-item {
+    --background-hover-opacity: 0;
+    --background-focused-opacity: 0;
+    --background-activated: 0;
+  }
+}
+
 ion-list.list-inset.ios:not(.ios26-disabled) {
   @include theme-list-inset.ion-list-inset();
 

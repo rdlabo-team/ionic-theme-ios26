@@ -6,10 +6,15 @@ ion-alert.ios:not(.ios26-disabled) {
   // --max-width: clamp(270px, 16.875rem, 324px);
   --max-width: 324px;
 
+  transition: transform 0.2s ease;
+  &:has(.ion-activated) {
+    transform: scale(1.016);
+  }
+
   .alert-wrapper {
-    @include api.glass-background(0.9);
+    @include api.glass-background-overlay;
     &:has(.ion-activated) {
-      @include api.glass-background(0.95);
+      @include api.glass-background-overlay-activated;
     }
     border-radius: 32px;
 
@@ -37,22 +42,18 @@ ion-alert.ios:not(.ios26-disabled) {
       padding: 0 8px 12px;
       gap: 8px 0;
       .alert-button {
+        @include api.glass-background-overlay-button;
         border: none;
         border-radius: 32px;
         margin: 0 6px;
         min-width: calc(50% - 12px);
         // height: max(44px, 2.75rem);
         height: 48px;
-        background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.08);
 
         &:not(.alert-button-role-destructive) {
           color: var(--ion-text-color);
         }
-        font-weight: normal;
-
-        &.ion-activated {
-          background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.06);
-        }
+        font-weight: bold;
       }
     }
 

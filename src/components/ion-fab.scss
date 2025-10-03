@@ -6,7 +6,9 @@ ion-fab.ios:not(.ios26-disabled) {
       @include api.glass-background;
       color: rgb(var(--ios26-color-dark-rgb));
     }
-    --background-activated: rgba(var(--ios26-color-light-rgb), 0.3);
+    --background-activated-opacity: 0;
+    --background-focused-opacity: 0;
+    --background-hover-opacity: 0;
   }
   &.fab-vertical-bottom {
     bottom: var(--ios26-floating-safe-area-bottom);
