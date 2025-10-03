@@ -1,4 +1,8 @@
-.md ion-toolbar {
+ion-toolbar.md:not(.ios26-disabled) {
+  /**
+   * This will add margin-inline to the ion-button
+   * for ion-buttons are removed due to collapse.
+   */
   & > ion-back-button {
     &[slot='start'] {
       margin-inline-start: 4px;
@@ -9,12 +13,12 @@
   }
 }
 
-.md ion-buttons {
+ion-buttons.md.ios26-disabled {
   /**
-   * ion-buttons > ion-button.button-default is for ios26 structure.
+   * ion-buttons.ios26-disabled > ion-button.button-default is for ios26 structure.
    * for .md, remove button-default styles. Will be button-clear.
    */
-  ion-button.button-default {
+  ion-button:not(.ios26-disabled).button-default {
     // copy .button-clear
     --color: initial;
     --background: transparent;
