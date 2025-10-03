@@ -10,13 +10,8 @@ ion-footer.ios:not(.ios26-disabled).footer-translucent {
   ion-toolbar {
     --border-width: 0;
     --background: transparent;
-    /**
-     * TODO: Not expect work.
-     * https://github.com/ionic-team/ionic-framework/blob/3b80473f2fd5ad4da5a9f5d66f783a69909c8965/core/src/utils/transition/ios.transition.ts#L829C51-L829C60
-     * --opacity: 0;
-     */
-    .toolbar-background {
-      background: transparent !important;
+    &::part(background) {
+      --opacity: 0;
     }
     ion-title {
       filter: blur(0);
