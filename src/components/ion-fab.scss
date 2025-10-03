@@ -6,8 +6,17 @@ ion-fab.ios:not(.ios26-disabled) {
     --background-activated-opacity: 0;
     --background-focused-opacity: 0;
     --background-hover-opacity: 0;
-
     --color: rgb(var(--ios26-color-dark-rgb));
+
+    width: 60px;
+    height: 60px;
+
+    &.fab-button-in-list,
+    &.fab-button-small {
+      width: 48px;
+      height: 48px;
+    }
+
     &.ion-activated {
       --color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
       &.ion-color {

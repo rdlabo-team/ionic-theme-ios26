@@ -24,6 +24,7 @@ ion-tab-bar.ios:not(.ios26-disabled) {
    */
   width: calc(100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)) - 54px - 18px);
   max-width: 474px;
+  min-height: 56px;
   &:has(:nth-child(5)) {
     width: calc(100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)));
     max-width: 546px;
@@ -32,20 +33,25 @@ ion-tab-bar.ios:not(.ios26-disabled) {
 
   transition: transform 100ms ease-out;
   will-change: transform;
-  &:active {
+  &:has(ion-tab-button.ion-activated) {
     transform: scale(1.02);
     backdrop-filter: saturate(360%);
   }
 
   ion-tab-button {
     & > ion-icon {
-      font-size: 28px;
+      font-size: 26px;
     }
     background: rgba(var(--ios26-color-light-rgb), 0);
     height: auto;
+    transition: transform 0.2s ease;
     &::part(native) {
       overflow: visible;
-      padding: 2px;
+      min-height: 56px;
+    }
+
+    &.ion-activated {
+      transform: scale(1.26);
     }
 
     &.tab-selected {
