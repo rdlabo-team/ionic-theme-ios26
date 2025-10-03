@@ -1,0 +1,37 @@
+.md ion-toolbar {
+  & > ion-back-button {
+    &[slot='start'] {
+      margin-inline-start: 4px;
+    }
+    &[slot='end'] {
+      margin-inline-end: 4px;
+    }
+  }
+}
+
+.md ion-buttons {
+  /**
+   * ion-buttons > ion-button.button-default is for ios26 structure.
+   * for .md, remove button-default styles. Will be button-clear.
+   */
+  ion-button.button-default {
+    // copy .button-clear
+    --color: initial;
+    --background: transparent;
+    --background-activated: transparent;
+    --background-focused: transparent;
+    --background-hover: transparent;
+
+    // copy .button-has-icon-only.button-clear
+    &.button-has-icon-only {
+      --padding-top: 12px;
+      --padding-end: 12px;
+      --padding-bottom: 12px;
+      --padding-start: 12px;
+      --border-radius: 50%;
+      margin: 0;
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+}

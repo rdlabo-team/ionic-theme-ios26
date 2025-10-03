@@ -58,10 +58,6 @@
       margin: 0;
     }
   }
-
-  :has(ion-back-button) {
-    margin: 0;
-  }
 }
 
 @mixin theme-button() {
@@ -101,9 +97,7 @@
   }
 
   // fill:default only
-  &:not(.button-solid):not(.ios26-button-solid):not(.button-outline):not(.ios26-button-outline):not(.button-clear):not(
-      .ios26-button-clear
-    ) {
+  &:not(.button-solid):not(.button-outline):not(.button-clear) {
     --background-hover: transparent;
     --background-activated: transparent;
     &::part(native) {
@@ -135,7 +129,6 @@
 
   &.button-has-icon-only,
   &.back-button-has-icon-only {
-    border-radius: 50%;
     &:not(.button-small):not(.button-large)::part(native) {
       width: 44px;
       height: 44px;
@@ -153,12 +146,7 @@
 
 ion-buttons.ios:not(.ios26-disabled) {
   @include theme-buttons;
-  ion-button:not(.ios26-disabled),
-  ion-back-button:not(.ios26-disabled) {
-    @include theme-button;
-  }
 }
-
 ion-button.ios:not(.ios26-disabled) {
   @include theme-button;
 }

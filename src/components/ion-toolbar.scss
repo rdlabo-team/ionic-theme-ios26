@@ -24,4 +24,8 @@ ion-footer.ios:not(.ios26-disabled) {
     margin-left: calc(12px + var(--ion-safe-area-left));
     margin-right: calc(12px + var(--ion-safe-area-right));
   }
+  ion-toolbar ion-buttons ion-back-button {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }

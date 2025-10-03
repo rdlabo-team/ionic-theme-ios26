@@ -5,6 +5,7 @@ import {
   IonAccordion,
   IonAccordionGroup,
   IonBackButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -38,6 +39,7 @@ import {
     IonText,
     IonAccordion,
     IonAccordionGroup,
+    IonButtons,
   ],
 })
 export class AccordionPage implements OnInit {
