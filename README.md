@@ -33,6 +33,15 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
 @import '@rdlabo/ionic-theme-ios26/dist/css/default-variables.css';
 @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.min.css';
 
+
+/**
+ * If you need to include an ion-segment style with an incomplete design, please import it.
+ * demo url: https://ionic-theme-ios26.netlify.app/main/index/segment
+ *
+ * @import '@rdlabo/ionic-theme-ios26/dist/css/components/ion-segment.css';
+ */
+
+
 /**
  * This file is to eliminate the impact of class name changes for iOS26.
  * For example, `ion-buttons ion-button[fill=default]` is not normally implemented, but may be required for iOS26.
