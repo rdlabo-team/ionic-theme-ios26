@@ -2,14 +2,28 @@
 
 ion-fab.ios:not(.ios26-disabled) {
   ion-fab-button {
-    &::part(native) {
-      @include api.glass-background;
-      color: rgb(var(--ios26-color-dark-rgb));
-    }
+    --transition: 0.1s transform cubic-bezier(0.25, 1.11, 0.78, 1.59);
     --background-activated-opacity: 0;
     --background-focused-opacity: 0;
     --background-hover-opacity: 0;
+
+    --color: rgb(var(--ios26-color-dark-rgb));
+    &.ion-activated {
+      --color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
+      &.ion-color {
+        --color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 0.1);
+      }
+    }
+
+    &::part(native) {
+      @include api.glass-background;
+    }
   }
+
+  &.fab-vertical-top {
+    top: var(--ios26-floating-safe-area-top);
+  }
+
   &.fab-vertical-bottom {
     bottom: var(--ios26-floating-safe-area-bottom);
   }

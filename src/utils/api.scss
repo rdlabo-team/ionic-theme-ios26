@@ -1,4 +1,4 @@
-@mixin glass-background($opacity: 0.7, $blur: 2px, $saturate: 360%) {
+@mixin glass-background($opacity: 0.72, $blur: 2px, $saturate: 360%) {
   background: rgba(var(--ios26-color-light-rgb), $opacity);
   backdrop-filter: blur($blur) saturate($saturate);
   box-shadow:
