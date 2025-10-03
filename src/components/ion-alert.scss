@@ -6,7 +6,7 @@ ion-alert.ios:not(.ios26-disabled) {
   // --max-width: clamp(270px, 16.875rem, 324px);
   --max-width: 324px;
 
-  transition: transform 0.2s ease;
+  transition: transform 200ms ease;
   &:has(.ion-activated) {
     transform: scale(1.016);
   }

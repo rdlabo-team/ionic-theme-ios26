@@ -5,7 +5,7 @@ ion-action-sheet.ios:not(.ios26-disabled) {
 
   .action-sheet-container {
     @include api.glass-background-overlay;
-    transition: transform 0.2s ease;
+    transition: transform 200ms ease;
     &:has(.ion-activated) {
       transform: scale(1.016);
       @include api.glass-background-overlay-activated;

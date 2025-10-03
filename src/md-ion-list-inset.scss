@@ -5,7 +5,7 @@ ion-list.list-inset.md {
 
   ion-item-group > ion-item {
     & > ion-input[labelplacement='floating'] {
-      transition: transform 0.2s ease;
+      transition: transform 200ms ease;
 
       &:not(.label-floating) {
         transform: translateY(-7px);

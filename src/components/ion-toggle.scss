@@ -24,7 +24,7 @@ ion-toggle.ios:not(.ios26-disabled) {
     overflow: visible;
     width: 64px;
     height: 28px;
-    transition: transform 0.3s ease;
+    transition: transform 300ms ease;
   }
   &.toggle-activated:not(.toggle-checked)::part(handle) {
     transform: translateX(-4px) scale(1.4, 1.6);

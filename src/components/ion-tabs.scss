@@ -31,7 +31,7 @@ ion-tab-bar.ios:not(.ios26-disabled) {
   }
   padding: 2px 2px;
 
-  transition: transform 100ms ease-out;
+  transition: transform 200ms ease-out;
   will-change: transform;
   &:has(ion-tab-button.ion-activated) {
     transform: scale(1.02);
@@ -44,7 +44,7 @@ ion-tab-bar.ios:not(.ios26-disabled) {
     }
     background: rgba(var(--ios26-color-light-rgb), 0);
     height: auto;
-    transition: transform 0.2s ease;
+    transition: transform 200ms ease;
     &::part(native) {
       overflow: visible;
       min-height: 56px;

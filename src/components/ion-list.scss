@@ -37,7 +37,7 @@ ion-list.list-inset.ios:not(.ios26-disabled) {
       --min-height: 52px;
 
       & > ion-input[labelplacement='floating'] {
-        transition: transform 0.2s ease;
+        transition: transform 200ms ease;
 
         &:not(.label-floating) {
           transform: translateY(-2px);

@@ -7,7 +7,7 @@ ion-range.ios:not(.ios26-disabled) {
 
   &::part(knob) {
     width: 38px;
-    transition: transform 0.3s ease;
+    transition: transform 300ms ease;
   }
   &.range-pressed::part(knob) {
     transform: scale(1.4, 1.6) translateX(calc(38px * -0.1));
