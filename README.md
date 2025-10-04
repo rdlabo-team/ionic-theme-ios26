@@ -10,7 +10,7 @@ DEMO is here: https://ionic-theme-ios26.netlify.app/
 
 This library provides CSS files to apply the iOS26 design system used in real projects to Ionic applications. It customizes the appearance and behavior of Ionic components based on the latest iOS26 design guidelines.
 
-> **⚠️ Under Development**: This library is currently in the development and consideration phase as an OSS project, based on files copied from real projects. We are working on API stability and documentation improvement before full-scale use.
+> **🧪Pre-release**: This library is currently in a pre-release state. While it is ready for use, it is being tested in a few projects, and we are continuing to improve API stability and documentation before full-scale adoption.
 
 ## 💖 Support This Project
 
@@ -20,8 +20,6 @@ Sponsoring means you directly contribute to new features, improvements, and main
 [Become a Sponsor →](https://github.com/sponsors/rdlabo)
 
 ## Setup
-
-> **⚠️ Warning**: This library is under development. API changes and breaking changes may occur before full-scale use.
 
 ```bash
 npm install @rdlabo/ionic-theme-ios26
@@ -141,6 +139,7 @@ Always (Always Dark Mode):
     @include theme-dark.default-variables;
 }
 @include theme-dark.ion-button;
+@include theme-dark.ion-fab;
 ```
 
 System (Follow System Settings):
@@ -152,6 +151,7 @@ System (Follow System Settings):
         @include theme-dark.default-variables;
     }
     @include theme-dark.ion-button;
+    @include theme-dark.ion-fab;
 }
 ```
 
@@ -162,6 +162,7 @@ Class (Toggle with CSS Class):
 .ion-palette-dark {
     @include theme-dark.default-variables;
     @include theme-dark.ion-button;
+    @include theme-dark.ion-fab;
 }
 ```
 
@@ -176,12 +177,6 @@ After importing all components, you can disable the iOS26 theme for specific com
 <!-- iOS26 theme applied -->
 <ion-button>iOS26 Design</ion-button>
 
-<!-- Standard Ionic styling -->
+<!-- Standard Ionic iOS styling -->
 <ion-button class="ios26-disabled">Standard Ionic Design</ion-button>
 ```
-
-This method is useful in the following scenarios:
-
-- When you want to use standard styling only within specific modals or popovers
-- When you want to perform a gradual migration (add `.ios26-disabled` to some screens and remove it later)
-- When you want to conduct A/B testing for designs
