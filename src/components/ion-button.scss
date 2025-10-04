@@ -19,8 +19,7 @@
     transform: scale(1.28);
   }
 
-  ion-button:not(.ios26-disabled),
-  ion-back-button:not(.ios26-disabled) {
+  ion-button:not(.ios26-disabled) {
     transform: none;
 
     &.button-clear {
@@ -162,7 +161,7 @@
   }
 }
 
-ion-buttons.ios:not(.ios26-disabled) {
+ion-buttons.ios:not(.ios26-disabled):not(:has(ion-button.button-default, ion-button.button-solid, ion-button.button-outline)) {
   @include theme-buttons;
 }
 ion-button.ios:not(.ios26-disabled) {
