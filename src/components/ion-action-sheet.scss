@@ -3,6 +3,11 @@
 ion-action-sheet.ios:not(.ios26-disabled) {
   --backdrop-opacity: 0.2;
 
+  .action-sheet-wrapper {
+    padding-bottom: 0;
+    bottom: var(--ios26-floating-safe-area-bottom);
+  }
+
   .action-sheet-container {
     @include api.glass-background-overlay;
     transition: transform 200ms ease;
@@ -10,7 +15,7 @@ ion-action-sheet.ios:not(.ios26-disabled) {
       transform: scale(1.016);
       @include api.glass-background-overlay-activated;
     }
-    margin: 0 12px 12px;
+    margin: 0 12px;
     border-radius: 32px;
 
     .action-sheet-title,
