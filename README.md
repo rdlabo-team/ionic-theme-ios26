@@ -21,6 +21,8 @@ Sponsoring means you directly contribute to new features, improvements, and main
 
 ## Setup
 
+This is a CSS theme for extending your Ionic project. It does not work on its own, so please use it together with the Ionic Framework.
+
 ```bash
 npm install @rdlabo/ionic-theme-ios26
 ```
