@@ -38,9 +38,10 @@ ion-action-sheet.ios:not(.ios26-disabled) {
           --button-color: var(--ion-color-danger, #c5000f);
           --button-color-hover: var(--ion-color-danger, #c5000f);
         }
+        font-weight: 550;
         &.action-sheet-cancel {
           margin-top: auto;
-          font-weight: normal;
+          font-weight: 550;
         }
         border-radius: 32px;
         padding: 0 14px;
