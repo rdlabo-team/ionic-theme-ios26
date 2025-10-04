@@ -20,9 +20,9 @@ ion-tab-bar.ios:not(.ios26-disabled) {
   }
 
   /**
-   * 100% - margin-left - margin-right - right-fab - margin-right-fab
+   * 100% - margin-left - margin-right - right-fab - margin-left-fab
    */
-  width: calc(100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)) - 60px - 18px);
+  width: calc(100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)) - 60px - 12px);
   max-width: 474px;
   min-height: 56px;
   &:has(:nth-child(5)) {
@@ -31,7 +31,7 @@ ion-tab-bar.ios:not(.ios26-disabled) {
   }
   padding: 2px 2px;
 
-  transition: transform 200ms ease-out;
+  transition: transform 280ms ease-out;
   will-change: transform;
   &:has(ion-tab-button.ion-activated) {
     transform: scale(1.02);
@@ -43,7 +43,7 @@ ion-tab-bar.ios:not(.ios26-disabled) {
     }
     background: rgba(var(--ios26-color-light-rgb), 0);
     height: auto;
-    transition: transform 200ms ease;
+    transition: transform 280ms ease;
     &::part(native) {
       overflow: visible;
       min-height: 56px;

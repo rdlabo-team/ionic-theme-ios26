@@ -4,7 +4,7 @@ ion-alert.ios:not(.ios26-disabled) {
   --backdrop-opacity: 0.2;
 
   // --max-width: clamp(270px, 16.875rem, 324px);
-  --max-width: 324px;
+  --max-width: 322px;
 
   transition: transform 200ms ease;
   &:has(.ion-activated) {
@@ -21,8 +21,8 @@ ion-alert.ios:not(.ios26-disabled) {
     .alert-head,
     .alert-message {
       text-align: left;
-      margin-left: 8px;
-      margin-right: 8px;
+      margin-left: 14px;
+      margin-right: 14px;
     }
 
     .alert-message {

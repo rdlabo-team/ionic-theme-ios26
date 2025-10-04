@@ -1,6 +1,6 @@
 :root {
   --ios26-floating-safe-area-top: max(10px, var(--ion-safe-area-top, 0px));
-  --ios26-floating-safe-area-bottom: max(10px, var(--ion-safe-area-bottom, 0px));
+  --ios26-floating-safe-area-bottom: max(10px, calc(var(--ion-safe-area-bottom, 0px) - 12px));
 
   --ios26-content-box-shadow-opacity: 0.8;
 
