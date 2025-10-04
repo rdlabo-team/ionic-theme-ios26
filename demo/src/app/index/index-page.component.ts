@@ -70,7 +70,7 @@ export class IndexPageComponent {
     { name: 'range', enable: true },
     { name: 'reorder', enable: true },
     { name: 'searchbar', enable: true },
-    { name: 'segment', enable: false },
+    { name: 'segment', enable: true },
     { name: 'select', enable: true },
     { name: 'tabs', enable: true },
     { name: 'toast', enable: true },

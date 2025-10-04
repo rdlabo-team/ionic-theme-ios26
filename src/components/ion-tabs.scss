@@ -35,7 +35,6 @@ ion-tab-bar.ios:not(.ios26-disabled) {
   will-change: transform;
   &:has(ion-tab-button.ion-activated) {
     transform: scale(1.02);
-    backdrop-filter: saturate(360%);
   }
 
   ion-tab-button {

@@ -33,19 +33,4 @@
     </ion-item-group>
     <ion-note>These components have largely finalized their APIs. However, please note that they are not yet stable.</ion-note>
   </ion-list>
-
-  <ion-list [inset]="true">
-    <ion-list-header><ion-label>Spec Limitation</ion-label></ion-list-header>
-    <ion-item-group>
-      @for (item of disableComponents(); track item.name) {
-        <ion-item [button]="true" (click)="navigateComponent(item)">
-          <ion-label>{{ item.name }}</ion-label>
-        </ion-item>
-      }
-    </ion-item-group>
-    <ion-note
-      >Some HTML elements or APIs are missing, which limits what can be implemented. This is currently being discussed with the Ionic
-      team.</ion-note
-    >
-  </ion-list>
 </ion-content>

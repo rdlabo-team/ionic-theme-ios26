@@ -13,12 +13,19 @@ ion-toolbar.ios:not(.ios26-disabled) {
     will-change: transform;
     overflow: visible;
 
+    &.in-toolbar-color:not(.in-segment-color) {
+      ion-segment-button:not(.segment-button-checked)::part(native) {
+        color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 1) !important;
+      }
+    }
+
     ion-segment-button {
       --border-width: 0;
 
       &::part(indicator-background) {
         border-radius: 25px;
         box-shadow: none;
+        transition: background 0.2s ease;
         background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.06);
       }
     }
@@ -29,13 +36,13 @@ ion-toolbar.ios:not(.ios26-disabled) {
 
       ion-segment-button {
         transition: transform 100ms ease-out;
-        &.segment-button-checked {
-          transform: scale(1.1);
+        &.segment-button-checked::part(native) {
+          transform: scale(1.26);
         }
         &::part(indicator-background) {
           position: relative;
           z-index: 1;
-          @include api.glass-background;
+          background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0);
           transform: scale(1.1);
           transform-origin: center center;
         }
