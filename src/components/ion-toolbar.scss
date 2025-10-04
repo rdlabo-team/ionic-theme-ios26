@@ -10,6 +10,10 @@ ion-header.ios:not(.ios26-disabled) ion-toolbar:not(.ios26-disabled):first-of-ty
   padding-top: max(calc(var(--ion-safe-area-top) - 12px), 4px);
 }
 
+ion-header.ios.header-collapse-condense:not(.ios26-disabled) ion-toolbar:not(.ios26-disabled):first-of-type {
+  padding-top: 0;
+}
+
 ion-toolbar.ios:not(.toolbar-title-large):not(.ios26-disabled) {
   --min-height: 68px;
 }
