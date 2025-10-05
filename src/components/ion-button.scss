@@ -161,7 +161,9 @@
   }
 }
 
-ion-buttons.ios:not(.ios26-disabled):not(:has(ion-button.button-default, ion-button.button-solid, ion-button.button-outline)) {
+ion-buttons.ios:not(.ios26-disabled):not(
+    :has(ion-back-button, ion-button.button-default, ion-button.button-solid, ion-button.button-outline)
+  ) {
   @include theme-buttons;
 }
 ion-button.ios:not(.ios26-disabled) {
