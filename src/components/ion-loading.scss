@@ -5,5 +5,7 @@ ion-loading.ios:not(.ios26-disabled) {
   .loading-wrapper {
     @include api.glass-background;
     border-radius: 24px;
+    padding-inline-start: 24px;
+    padding-inline-end: 24px;
   }
 }
