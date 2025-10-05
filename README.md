@@ -69,9 +69,11 @@ When the following conditions are met, the Ionic Framework programmatically gene
 
 This is not the iOS26 UI behavior. To avoid this programmatic behavior, you have two options:
 
+[![Image from Gyazo](https://i.gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73.gif)](https://gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73)
+
 > Note: This issue has been reported to the Ionic team and is expected to be improved in future releases.
 
-#### Option 1: Change HTML structure (Recommended)
+#### 1: Remove the parent ion-buttons of ion-back-button (Recommended)
 
 When `ion-back-button` is not a child of `ion-buttons`, it is not subject to the default animation. You can modify the structure as follows:
 
@@ -84,7 +86,7 @@ When `ion-back-button` is not a child of `ion-buttons`, it is not subject to the
   </ion-header>
 ```
 
-#### Option 2: Global CSS approach (Alternative)
+#### 2: Add visibility: hidden to cloned element to Prevent Animation
 
 Alternatively, if you can tolerate some visual inconsistencies, you can add the following CSS globally. This approach also prevents unwanted animations even with `ion-buttons > ion-back-button`.
 
