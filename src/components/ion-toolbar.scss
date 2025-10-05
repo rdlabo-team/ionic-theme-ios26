@@ -30,12 +30,12 @@ ion-toolbar.ios:not(.ios26-disabled):has(ion-searchbar.ios:not(.ios26-disabled))
 ion-header.ios:not(.ios26-disabled),
 ion-footer.ios:not(.ios26-disabled) {
   ion-buttons {
-    margin-left: calc(12px + var(--ion-safe-area-left));
-    margin-right: calc(12px + var(--ion-safe-area-right));
+    margin-left: 12px;
+    margin-right: 12px;
   }
   ion-back-button {
-    margin-left: calc(12px + var(--ion-safe-area-left));
-    margin-right: calc(12px + var(--ion-safe-area-right));
+    margin-left: 12px;
+    margin-right: 12px;
   }
   ion-toolbar ion-buttons ion-back-button {
     margin-left: 0;

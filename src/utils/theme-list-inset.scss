@@ -93,6 +93,6 @@
     color: var(--ion-color-medium-tint);
     font-size: 0.9rem;
     display: block;
-    margin: 8px 16px 8px 20px;
+    margin: 8px calc(20px + var(--ion-safe-area-right)) 8px calc(20px + var(--ion-safe-area-left));
   }
 }

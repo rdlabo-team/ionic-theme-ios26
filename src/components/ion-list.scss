@@ -26,11 +26,7 @@ ion-list.list-inset.ios:not(.ios26-disabled) {
       // To draw lines inside
       --inner-padding-end: 0;
       &::part(native) {
-        padding-right: 18px;
-      }
-      &::part(detail-icon) {
-        //padding-right: 18px;
-        margin-inline-end: 0;
+        padding-right: calc(var(--ion-safe-area-right, 0px) + 18px);
       }
 
       --min-height: 52px;
