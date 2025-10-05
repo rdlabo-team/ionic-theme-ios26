@@ -113,6 +113,47 @@
     }
   }
 
+  /*
+   * fill=solid && type=submit button has edge brightness.
+   */
+  &.button-solid[type='submit'] {
+    &::part(native) {
+      position: relative;
+    }
+    &::part(native):before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      mask:
+        linear-gradient(#000, #000) content-box,
+        linear-gradient(#000, #000);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      padding: 1px;
+      backdrop-filter: brightness(200%);
+    }
+    &.ion-activated {
+      &::part(native):before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        mask: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+        pointer-events: none;
+        backdrop-filter: brightness(200%);
+      }
+      transform: scale(1.28);
+      &.button-large {
+        transform: scale(1.18);
+      }
+      &::part(native) {
+        opacity: 1; // for ion-back-button
+      }
+    }
+  }
+
   // fill:default only
   &:not(.button-solid):not(.button-outline):not(.button-clear) {
     --background-hover: transparent;
