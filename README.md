@@ -60,23 +60,41 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
 
 ## Important Notes
 
-### `ion-back-button` must be used without `ion-buttons`
+### `ion-back-button` must not be animated
 
 When the following conditions are met, the Ionic Framework programmatically generates and animates the `ion-back-button`:
 
 - The previous page uses `ion-header[collapse='condense']`
 - The navigated page has `ion-buttons ion-back-button`
 
-This is not the iOS26 UI behavior. To avoid this programmatic behavior, you need to implement it as follows:
+This is not the iOS26 UI behavior. To avoid this programmatic behavior, you have two options:
+
+> Note: This issue has been reported to the Ionic team and is expected to be improved in future releases.
+
+#### Option 1: Change HTML structure (Recommended)
+
+When `ion-back-button` is not a child of `ion-buttons`, it is not subject to the default animation. You can modify the structure as follows:
 
 ```diff
   <ion-header>
 -   <ion-buttons slot="start">
 -   <ion-back-button></ion-back-button>
 -   </ion-buttons>
-+   <ion-back-button slot=start></ion-back-button>
++   <ion-back-button slot="start"></ion-back-button>
   </ion-header>
 ```
+
+#### Option 2: Global CSS approach (Alternative)
+
+Alternatively, if you can tolerate some visual inconsistencies, you can add the following CSS globally. This approach also prevents unwanted animations even with `ion-buttons > ion-back-button`.
+
+```css
+ion-back-button.ion-cloned-element {
+  visibility: hidden;
+}
+```
+
+This CSS rule hides the duplicated `ion-back-button` element that Ionic automatically generates. Ionic duplicates and animates the original button under specific conditions, but hiding this duplicated element prevents unwanted visual effects.
 
 ### Using `ion-item-group`
 
