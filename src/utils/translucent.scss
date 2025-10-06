@@ -10,6 +10,7 @@ ion-footer.ios:not(.ios26-disabled).footer-translucent {
   ion-toolbar {
     --border-width: 0;
     --background: transparent;
+    --opacity: 1;
     &::part(background) {
       --opacity: 0;
     }
