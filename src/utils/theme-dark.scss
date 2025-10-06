@@ -5,13 +5,12 @@
 @use 'dark/ion-fab' as *;
 
 @mixin default-variables {
-  --ios26-color-dark-rgb: 255, 255, 255;
-  --ios26-color-light-rgb: 58, 58, 58;
-  --ios26-color-tab-active-rgb: 255, 255, 255;
-  --ios26-color-inner-shadow-rgb: translarent;
-  --ios26-color-outer-shadow-rgb: translarent;
-  --ios26-color-background-rgb: 0, 0, 0;
-  --ios26-color-edge-rgb: 64, 64, 64;
+  --ios26-glass-background-rgb: 58, 58, 58;
+  --ios26-glass-box-shadow-color-rgb: translarent;
+  --ios26-glass-color-edge-rgb: 64, 64, 64;
+  --ios26-tab-button-color-selected-rgb: 255, 255, 255;
+
+  --ios26-content-box-shadow-rgb: 0, 0, 0;
 }
 
 @mixin theme-dark {

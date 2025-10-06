@@ -1,14 +1,24 @@
+/**
+ * @naming
+ * prefix:                 ios26
+ * target-element:         tab-button
+ * target css property:    color
+ * status:                 selected
+ * additional information: rgb
+ */
+
 :root {
   --ios26-floating-safe-area-top: max(10px, var(--ion-safe-area-top, 0px));
   --ios26-floating-safe-area-bottom: max(10px, calc(var(--ion-safe-area-bottom, 0px) - 12px));
 
-  --ios26-content-box-shadow-opacity: 0.8;
+  --ios26-glass-background-rgb: 255, 255, 255;
+  --ios26-glass-box-shadow-color-rgb: 224, 224, 224;
+  --ios26-glass-color-edge-rgb: 255, 255, 255;
+  --ios26-tab-button-color-selected-rgb: 16, 16, 16;
 
-  --ios26-color-dark-rgb: 0, 0, 0;
-  --ios26-color-light-rgb: 255, 255, 255;
-  --ios26-color-tab-active-rgb: 16, 16, 16;
-  --ios26-color-inner-shadow-rgb: 224, 224, 224;
-  --ios26-color-outer-shadow-rgb: 224, 224, 224;
-  --ios26-color-background-rgb: 255, 255, 255;
-  --ios26-color-edge-rgb: 255, 255, 255;
+  /**
+   * `--ios26-color-background-rgb` is deprecated.
+   * You should replace to '--ios26-content-box-shadow-rgb'.
+   */
+  --ios26-content-box-shadow-rgb: var(--ios26-color-background-rgb, 255, 255, 255);
 }

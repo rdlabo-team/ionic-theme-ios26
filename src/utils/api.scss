@@ -1,23 +1,23 @@
 @mixin glass-background($opacity: 0.72, $blur: 2px, $saturate: 360%) {
-  background: rgba(var(--ios26-color-light-rgb), $opacity);
+  background: rgba(var(--ios26-glass-background-rgb), $opacity);
   backdrop-filter: blur($blur) saturate($saturate);
   box-shadow:
-    inset 0 0 8px 0 rgba(var(--ios26-color-inner-shadow-rgb), 0.2),
-    0 0 10px 0 rgba(var(--ios26-color-outer-shadow-rgb), 0.82);
-  border-top: 0.5px solid rgba(var(--ios26-color-edge-rgb), 1);
-  border-right: 0.5px solid rgba(var(--ios26-color-edge-rgb), 0.8);
-  border-bottom: 0.5px solid rgba(var(--ios26-color-edge-rgb), 1);
-  border-left: 0.5px solid rgba(var(--ios26-color-edge-rgb), 0.6);
+    inset 0 0 8px 0 rgba(var(--ios26-glass-box-shadow-color-rgb), 0.2),
+    0 0 10px 0 rgba(var(--ios26-glass-box-shadow-color-rgb), 0.82);
+  border-top: 0.5px solid rgba(var(--ios26-glass-color-edge-rgb), 1);
+  border-right: 0.5px solid rgba(var(--ios26-glass-color-edge-rgb), 0.8);
+  border-bottom: 0.5px solid rgba(var(--ios26-glass-color-edge-rgb), 1);
+  border-left: 0.5px solid rgba(var(--ios26-glass-color-edge-rgb), 0.6);
 }
 
 @mixin glass-background-dark-active($opacity: 0.4, $blur: 7px, $saturate: 180%) {
-  background: rgba(var(--ios26-color-tab-active-rgb), $opacity);
+  background: rgba(var(--ios26-tab-button-color-selected-rgb), $opacity);
   backdrop-filter: blur($blur) saturate($saturate);
   box-shadow: none;
-  border-top: 0.5px solid rgba(var(--ios26-color-tab-active-rgb), 0.4);
-  border-right: 0.5px solid rgba(var(--ios26-color-tab-active-rgb), 0.2);
-  border-bottom: 0.5px solid rgba(var(--ios26-color-tab-active-rgb), 0.4);
-  border-left: 0.5px solid rgba(var(--ios26-color-tab-active-rgb), 0.3);
+  border-top: 0.5px solid rgba(var(--ios26-tab-button-color-selected-rgb), 0.4);
+  border-right: 0.5px solid rgba(var(--ios26-tab-button-color-selected-rgb), 0.2);
+  border-bottom: 0.5px solid rgba(var(--ios26-tab-button-color-selected-rgb), 0.4);
+  border-left: 0.5px solid rgba(var(--ios26-tab-button-color-selected-rgb), 0.3);
 }
 
 @mixin glass-background-overlay {
