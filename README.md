@@ -114,6 +114,24 @@ Under specific conditions, you need to use `ion-item-group`.
 
 For details, please refer to [USING_ION_ITEM_GROUP.md](./USING_ION_ITEM_GROUP.md).
 
+### Even Better With Brightness Colors
+
+In iOS26, the Submit button uses text and border colors that are slightly brighter than the base color. Because this effect cannot be created by simply transforming existing palette colors, you need to provide separate colors. You don’t have to define them—the design will still work—but consider adding them if you want more refined color results.
+
+```diff
+  :root {
++   --ion-color-primary-brightness-rgb: 130, 255, 255;
++   --ion-color-secondary-brightness-rgb: [your brightness color];
++   --ion-color-tertiary-brightness-rgb: [your brightness color];
++   --ion-color-success-brightness-rgb: [your brightness color];
++   --ion-color-warning-brightness-rgb: [your brightness color];
++   --ion-color-danger-brightness-rgb: [your brightness color];
++   --ion-color-light-brightness-rgb: [your brightness color];
++   --ion-color-medium-brightness-rgb: [your brightness color];
++   --ion-color-dark-brightness-rgb: [your brightness color];
+  }
+```
+
 ### You can also use the liquid glass mixin
 
 You can use the liquid glass mixin by importing SCSS files from the main package.

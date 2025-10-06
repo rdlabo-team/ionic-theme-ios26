@@ -117,39 +117,40 @@
    * fill=solid && type=submit button has edge brightness.
    */
   &.button-solid[type='submit'] {
+    @each $item in primary, secondary, tertiary, success, warning, danger, light, medium, dark {
+      &.ion-color-#{$item} {
+        --color: rgb(var(--ion-color-#{$item}-brightness-rgb, var(--ion-color-contrast-rgb)));
+        --color-activated: rgba(var(--ion-color-#{$item}-brightness-rgb), 0.28);
+        --border-color: rgb(var(--ion-color-#{$item}-brightness-rgb, 0 0 0 / 0));
+        --border-width: 0.5px;
+        --border-style: solid;
+      }
+    }
     &::part(native) {
       position: relative;
-    }
-    &::part(native):before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      pointer-events: none;
-      mask:
-        linear-gradient(#000, #000) content-box,
-        linear-gradient(#000, #000);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      padding: 1px;
-      backdrop-filter: brightness(200%);
+      color: var(--color);
+      z-index: 0;
     }
     &.ion-activated {
-      &::part(native):before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        mask: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-        pointer-events: none;
-        backdrop-filter: brightness(200%);
+      --border-width: 0.78px;
+      &::part(native) {
+        color: var(--color-activated);
+        &::before {
+          content: '';
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          border-radius: inherit;
+          pointer-events: none;
+          background: rgba(255, 255, 255, 0.3);
+          backdrop-filter: brightness(120%);
+        }
       }
       transform: scale(1.28);
       &.button-large {
         transform: scale(1.18);
-      }
-      &::part(native) {
-        opacity: 1; // for ion-back-button
       }
     }
   }
