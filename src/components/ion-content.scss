@@ -1,13 +1,14 @@
 .ios:not(.ios26-disabled) {
   /**
-   * iOS26から上下のセーフエリアいっぱいまでコンテンツを表示するようになったため、
-   * コンテンツのmarginとpaddingを調整します。なお、Angular CDK Scrollingにも対応しています。
+   * Since iOS26, content is now displayed to the full extent of the top and bottom safe areas,
+   * so we adjust the margin and padding of the content.
+   * Also supports virtual scrolling using .ion-content-scroll-host.
    */
-  .ion-page:not(:has(ion-footer)) ion-content cdk-virtual-scroll-viewport {
+  .ion-page:not(:has(ion-footer)) ion-content .ion-content-scroll-host {
     margin-bottom: calc(calc(60px + var(--ios26-floating-safe-area-bottom)) * -1);
     padding-bottom: calc(60px + var(--ios26-floating-safe-area-bottom));
   }
-  ion-content:not(:has(cdk-virtual-scroll-viewport)) {
+  ion-content:not(:has(.ion-content-scroll-host)) {
     --padding-bottom: calc(60px + var(--ios26-floating-safe-area-bottom));
   }
 }
