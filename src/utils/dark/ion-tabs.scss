@@ -1,0 +1,15 @@
+@use '../api';
+
+@mixin ion-tabs {
+  ion-tab-bar.ios:not(.ios26-disabled) {
+    ion-tab-button {
+      &.ion-activated {
+        ion-label,
+        ion-icon {
+          filter: brightness(118%);
+          opacity: 0.95;
+        }
+      }
+    }
+  }
+}

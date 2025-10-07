@@ -1,8 +1,9 @@
 @forward 'dark/ion-button';
 @use 'dark/ion-button' as *;
-
 @forward 'dark/ion-fab';
 @use 'dark/ion-fab' as *;
+@forward 'dark/ion-tabs';
+@use 'dark/ion-tabs' as *;
 
 @mixin default-variables {
   //--ios26-glass-background-rgb: 35, 35, 35;
@@ -17,4 +18,5 @@
 @mixin theme-dark {
   @include ion-button;
   @include ion-fab;
+  @include ion-tabs;
 }

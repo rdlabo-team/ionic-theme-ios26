@@ -5,7 +5,7 @@ ion-tab-bar.ios:not(.ios26-disabled) {
   z-index: 2;
 
   border-radius: 40px;
-  --color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.9);
+  --color: rgb(var(--ion-text-color-rgb, 0, 0, 0));
 
   &[slot='top'] {
     position: absolute;
@@ -31,33 +31,51 @@ ion-tab-bar.ios:not(.ios26-disabled) {
   }
   padding: 2px 2px;
 
-  transition: transform 280ms ease-out;
+  transition: transform 140ms ease-out;
   will-change: transform;
   &:has(ion-tab-button.ion-activated) {
-    transform: scale(1.02);
+    transform: scale(1.038);
+  }
+
+  &:has(ion-tab-button.ion-activated) {
+    ion-tab-button.tab-selected:not(.ion-activated) {
+      --color-selected: rgb(var(--ion-text-color-rgb, 0, 0, 0));
+    }
   }
 
   ion-tab-button {
-    & > ion-icon {
+    ion-icon {
       font-size: 26px;
+    }
+    ion-label,
+    ion-icon {
+      transition:
+        filter 140ms ease,
+        color 140ms ease;
     }
     background: rgba(var(--ios26-glass-background-rgb), 0);
     height: auto;
-    transition: transform 280ms ease;
+    transition: transform 140ms ease;
     &::part(native) {
       overflow: visible;
       min-height: 56px;
+      border-radius: 32px;
     }
 
     &.ion-activated {
-      transform: scale(1.26);
+      transform: scale(1.1);
+      position: relative;
+      color: var(--color-selected);
+      ion-label,
+      ion-icon {
+        filter: brightness(104%);
+      }
     }
 
     &.tab-selected {
       &::part(native) {
         background: rgba(var(--ios26-tab-button-color-selected-rgb), 0.095);
         transition: background 0.2s ease;
-        border-radius: 32px;
       }
 
       &.ion-activated::part(native) {
