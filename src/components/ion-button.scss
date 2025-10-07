@@ -16,14 +16,14 @@
   transition: transform 140ms ease-out !important;
 
   &:has(.ion-activated) {
-    transform: scale(1.28);
+    transform: scale(1.32);
   }
 
   ion-button:not(.ios26-disabled) {
     transform: none;
 
     &.button-clear {
-      color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.9);
+      color: rgb(var(--ion-text-color-rgb, 0, 0, 0));
       &.ion-color {
         color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 1);
       }
@@ -148,7 +148,7 @@
           backdrop-filter: brightness(120%);
         }
       }
-      transform: scale(1.28);
+      transform: scale(1.32);
       &.button-large {
         transform: scale(1.18);
       }
@@ -167,7 +167,7 @@
       opacity: 1; // for ion-back-button
     }
 
-    --color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.9);
+    --color: var(--ion-text-color-rgb, 0, 0, 0);
     &.ion-color {
       --color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 1);
     }
@@ -176,7 +176,7 @@
       &.ion-color {
         --color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 0.1);
       }
-      transform: scale(1.28);
+      transform: scale(1.32);
       &.button-large {
         transform: scale(1.18);
       }
