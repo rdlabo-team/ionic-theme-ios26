@@ -25,12 +25,12 @@
     &.button-clear {
       color: rgb(var(--ion-text-color-rgb, 0, 0, 0));
       &.ion-color {
-        color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 1);
+        color: rgb(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)));
       }
       &.ion-activated {
-        color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1) !important;
+        color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
         &.ion-color {
-          color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 0.1) !important;
+          color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 0.1);
         }
       }
     }

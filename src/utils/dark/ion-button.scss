@@ -5,6 +5,15 @@
     @include api.glass-background-dark-active;
   }
 
+  ion-button:not(.ios26-disabled).button-clear {
+    &.ion-activated {
+      color: rgb(var(--ion-text-color-rgb, 0, 0, 0));
+      &.ion-color {
+        color: rgb(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)));
+      }
+    }
+  }
+
   ion-button:not(.ios26-disabled),
   ion-back-button:not(.ios26-disabled) {
     &.ion-activated {
