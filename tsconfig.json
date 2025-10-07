@@ -1,5 +1,0 @@
-{
-  "compilerOptions": {
-    "types": ["@ionic/core/dist/types/components"]
-  }
-}
