@@ -1,6 +1,6 @@
 {
   "name": "@rdlabo/ionic-theme-ios26",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "iOS26 CSS Theme for Ionic Framework",
   "files": [
     "dist",
