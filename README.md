@@ -180,6 +180,7 @@ Always (Always Dark Mode):
 }
 @include theme-dark.ion-button;
 @include theme-dark.ion-fab;
+@include theme-dark.ion-tabs;
 ```
 
 System (Follow System Settings):
@@ -192,6 +193,7 @@ System (Follow System Settings):
     }
     @include theme-dark.ion-button;
     @include theme-dark.ion-fab;
+    @include theme-dark.ion-tabs;
 }
 ```
 
@@ -203,6 +205,7 @@ Class (Toggle with CSS Class):
     @include theme-dark.default-variables;
     @include theme-dark.ion-button;
     @include theme-dark.ion-fab;
+    @include theme-dark.ion-tabs;
 }
 ```
 
