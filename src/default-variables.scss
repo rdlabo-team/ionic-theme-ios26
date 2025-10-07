@@ -11,6 +11,8 @@
   --ios26-floating-safe-area-top: max(10px, var(--ion-safe-area-top, 0px));
   --ios26-floating-safe-area-bottom: max(10px, calc(var(--ion-safe-area-bottom, 0px) - 12px));
 
+  --ios26-activated-transition-duration: 140ms;
+
   --ios26-glass-background-rgb: 255, 255, 255;
   --ios26-glass-box-shadow-color-rgb: 224, 224, 224;
   --ios26-glass-border-color-rgb: 255, 255, 255;

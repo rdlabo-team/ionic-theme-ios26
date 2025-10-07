@@ -13,7 +13,7 @@
   /**
    * compare .header-collapse-main ion-toolbar.in-toolbar ion-title, .header-collapse-main ion-toolbar.in-toolbar ion-buttons
    */
-  transition: transform 140ms ease-out !important;
+  transition: transform var(--ios26-activated-transition-duration) ease-out !important;
 
   &:has(.ion-activated) {
     transform: scale(1.32);
@@ -81,7 +81,7 @@
   max-height: inherit;
 
   transition:
-    transform 140ms ease-out,
+    transform var(--ios26-activated-transition-duration) ease-out,
     color 50ms ease;
   will-change: transform;
 

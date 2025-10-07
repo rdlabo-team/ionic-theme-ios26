@@ -9,7 +9,7 @@ ion-toolbar.ios:not(.ios26-disabled) {
     min-height: 44px;
     border-radius: 25px;
 
-    transition: transform 140ms ease-out;
+    transition: transform var(--ios26-activated-transition-duration) ease-out;
     will-change: transform;
     overflow: visible;
 

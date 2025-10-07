@@ -2,7 +2,9 @@
 
 ion-fab.ios:not(.ios26-disabled) {
   ion-fab-button {
-    --transition: 140ms transform cubic-bezier(0.25, 1.11, 0.78, 1.59), 140ms color ease;
+    --transition:
+      var(--ios26-activated-transition-duration) transform cubic-bezier(0.25, 1.11, 0.78, 1.59),
+      var(--ios26-activated-transition-duration) color ease;
     --background-activated-opacity: 0;
     --background-focused-opacity: 0;
     --background-hover-opacity: 0;
