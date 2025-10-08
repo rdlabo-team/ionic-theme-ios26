@@ -58,15 +58,7 @@ When the following conditions are met, the Ionic Framework programmatically gene
 - The previous page uses `ion-header[collapse='condense']`
 - The navigated page has `ion-buttons ion-back-button`
 
-This is not the iOS26 UI behavior. To avoid this programmatic behavior, you have two options:
-
-[![Image from Gyazo](https://i.gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73.gif)](https://gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73)
-
-> Note: This issue has been reported to the Ionic team and is expected to be improved in future releases.
-
-#### 1: Remove the parent ion-buttons of ion-back-button (Recommended)
-
-When `ion-back-button` is not a child of `ion-buttons`, it is not subject to the default animation. You can modify the structure as follows:
+This is not the iOS26 UI behavior. Therefore, we hide the animation by default using `visibility: hidden;`. However, there is still a problem where the original `ion-back-button` disappears at the start and end of the animation. For a smoother experience, you can avoid placing `ion-back-button` inside `ion-buttons`:
 
 ```diff
   <ion-header>
@@ -77,17 +69,11 @@ When `ion-back-button` is not a child of `ion-buttons`, it is not subject to the
   </ion-header>
 ```
 
-#### 2: Add visibility: hidden to cloned element to Prevent Animation
+You can see the difference in the following video. The first example shows `ion-back-button` placed outside of `ion-buttons`, and the second shows the default behavior:
 
-Alternatively, if you can tolerate some visual inconsistencies, you can add the following CSS globally. This approach also prevents unwanted animations even with `ion-buttons > ion-back-button`.
+[![Image from Gyazo](https://i.gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73.gif)](https://gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73)
 
-```css
-ion-back-button.ion-cloned-element {
-  visibility: hidden;
-}
-```
-
-This CSS rule hides the duplicated `ion-back-button` element that Ionic automatically generates. Ionic duplicates and animates the original button under specific conditions, but hiding this duplicated element prevents unwanted visual effects.
+This is a known issue that has been shared with the Ionic team. We will update this library accordingly once Ionic Core addresses it.
 
 ### Using `ion-item-group`
 
