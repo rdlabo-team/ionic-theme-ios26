@@ -189,13 +189,13 @@
     --background-activated: transparent;
     &::part(native) {
       @include api.glass-background;
+      color: var(--color);
     }
 
     &:not(.button-disabled) {
       opacity: 1; // for ion-back-button
     }
-
-    --color: var(--ion-text-color-rgb, 0, 0, 0);
+    --color: rgb(var(--ion-text-color-rgb, 0, 0, 0));
     &.ion-color {
       --color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 1);
     }
