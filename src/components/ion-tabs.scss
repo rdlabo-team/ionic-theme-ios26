@@ -74,7 +74,7 @@ ion-tab-bar.ios:not(.ios26-disabled) {
 
     &.tab-selected {
       &::part(native) {
-        background: rgba(var(--ios26-tab-button-color-selected-rgb), 0.095);
+        background: rgba(var(--ios26-button-color-selected-rgb), 0.095);
         transition: background var(--ios26-activated-transition-duration) ease;
       }
 
