@@ -26,6 +26,9 @@ export default defineConfig({
     screenshot: 'only-on-failure',
   },
 
+  /* Configure snapshot path template to exclude platform name */
+  snapshotPathTemplate: '{testDir}/{testFileDir}/{testFileName}-snapshots/{arg}{ext}',
+
   /* Configure projects for major browsers */
   projects: [
     {
