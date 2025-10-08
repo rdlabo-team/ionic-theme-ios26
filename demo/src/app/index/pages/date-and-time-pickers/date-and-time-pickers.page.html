@@ -22,7 +22,7 @@
   </ion-list>
 
   <section class="section-example">
-    <ion-datetime></ion-datetime>
+    <ion-datetime [value]="fixedDateTime"></ion-datetime>
   </section>
 
   <section class="section-example">
@@ -41,7 +41,7 @@
     <ion-datetime-button [datetime]="'datetime'"></ion-datetime-button>
     <ion-modal [keepContentsMounted]="true">
       <ng-template>
-        <ion-datetime id="datetime"></ion-datetime>
+        <ion-datetime id="datetime" [value]="fixedDateTime"></ion-datetime>
       </ng-template>
     </ion-modal>
   </section>

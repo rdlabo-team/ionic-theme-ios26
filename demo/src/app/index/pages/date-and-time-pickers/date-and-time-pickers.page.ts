@@ -49,6 +49,7 @@ import {
   ],
 })
 export class DateAndTimePickersPage implements OnInit {
+  fixedDateTime = '1986-04-20T12:00:00';
   constructor() {}
 
   ngOnInit() {}

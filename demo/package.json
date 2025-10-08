@@ -9,6 +9,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:update": "playwright test --update-snapshots",
     "lint": "ng lint",
     "cap": "npm run build -- --configuration=production && cap copy"
   },
@@ -41,6 +45,7 @@
     "@angular/language-service": "^20.0.0",
     "@capacitor/cli": "7.4.3",
     "@ionic/angular-toolkit": "^12.0.0",
+    "@playwright/test": "^1.56.0",
     "@rdlabo/eslint-plugin-rules": "^20.3.1",
     "@types/jasmine": "~5.1.0",
     "angular-eslint": "20.3.0",
