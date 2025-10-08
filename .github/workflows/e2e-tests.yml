@@ -11,7 +11,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.50.0-noble
+      image: mcr.microsoft.com/playwright:v1.56.0-noble
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,6 +25,9 @@ jobs:
             ${{ runner.os }}-node-
       - run: npm install
         working-directory: './demo'
+
+      - name: install playwright
+        run: npx playwright install --with-deps
 
       - name: Run Playwright tests
         run: npm run test:e2e
