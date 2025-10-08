@@ -19,19 +19,45 @@
     transform: scale(1.32);
   }
 
-  ion-button:not(.ios26-disabled) {
+  &:has(ion-button:not(.ios26-disabled).button-clear.button-large) {
+    border-radius: 30px;
+  }
+
+  ion-button:not(.ios26-disabled).button-clear {
     transform: none;
 
-    &.button-clear {
-      color: rgb(var(--ion-text-color-rgb, 0, 0, 0));
-      &.ion-color {
-        color: rgb(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)));
+    font-weight: 500;
+    &.button-small {
+      min-height: calc(24px - 2px);
+      --padding-top: 1px;
+      --padding-bottom: 1px;
+      --padding-start: 0.5em;
+      --padding-end: 0.5em;
+    }
+    &.button-default {
+      &::part(native) {
+        min-height: calc(44px - 2px); // reduce for border 2px;
       }
-      &.ion-activated {
-        color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
-        &.ion-color {
-          color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 0.1);
-        }
+      --padding-top: 16px;
+      --padding-bottom: 16px;
+      --padding-start: 1em;
+      --padding-end: 1em;
+    }
+    &.button-large {
+      min-height: calc(62px - 2px);
+      --padding-top: 17px;
+      --padding-start: 1em;
+      --padding-end: 1em;
+      --padding-bottom: 17px;
+    }
+    color: rgb(var(--ion-text-color-rgb, 0, 0, 0));
+    &.ion-color {
+      color: rgb(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)));
+    }
+    &.ion-activated {
+      color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
+      &.ion-color {
+        color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 0.1);
       }
     }
 
@@ -203,9 +229,7 @@
   }
 }
 
-ion-buttons.ios:not(.ios26-disabled):not(
-    :has(ion-back-button, ion-button.button-default, ion-button.button-solid, ion-button.button-outline)
-  ) {
+ion-buttons.ios:not(.ios26-disabled):not(:has(ion-button:not(.button-clear))) {
   @include theme-buttons;
 }
 ion-button.ios:not(.ios26-disabled) {

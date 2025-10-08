@@ -44,9 +44,7 @@
 }
 
 @mixin ion-button {
-  ion-buttons.ios:not(.ios26-disabled):not(
-      :has(ion-back-button, ion-button.button-default, ion-button.button-solid, ion-button.button-outline)
-    ) {
+  ion-buttons.ios:not(.ios26-disabled):not(:has(ion-button:not(.button-clear))) {
     @include theme-dark-buttons;
   }
   ion-button:not(.ios26-disabled),
