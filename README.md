@@ -49,6 +49,27 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
  */
 ```
 
+## API
+### CSS Variables
+To customize the library's default styles to match your design, we provide several CSS variables. For details, please refer to this file:
+
+https://github.com/rdlabo-team/ionic-theme-ios26/blob/main/src/default-variables.scss
+
+### `.ios26-disabled` Class
+
+**Recommended for**: When you want to apply the iOS26 theme to all components in general, but use standard Ionic styling in specific places.
+
+After importing all components, you can disable the iOS26 theme for specific component instances by adding the `.ios26-disabled` class.
+
+```html
+<!-- iOS26 theme applied -->
+<ion-button>iOS26 Design</ion-button>
+
+<!-- Standard Ionic iOS styling -->
+<ion-button class="ios26-disabled">Standard Ionic Design</ion-button>
+```
+
+
 ## Important Notes
 
 ### `ion-back-button` must not be animated
@@ -121,15 +142,9 @@ ion-textarea label.textarea-wrapper {
 }
 ```
 
-## Selective Theme Application
+## Migration Support: Selective Theme Application
 
 You may want to apply the iOS26 theme to your Ionic project but find it difficult to apply it to all components. We provide two approaches to selectively control theme application.
-
-You can use `1. Import Components Individually` or `2. Using the .ios26-disabled Class`
-
-### 1. Import Components Individually
-
-**Recommended for**: When you want to apply the iOS26 theme only to specific components, or when you want to minimize bundle size.
 
 While `@import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.css'` applies styling to all components at once, you can also import them individually.
 
@@ -142,7 +157,7 @@ While `@import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.css'` appli
 ...
 ```
 
-#### Individual Import for Dark Mode Components
+### Individual Import for Dark Mode Components
 
 If you're using dark mode, you need to use SCSS because the selectors differ between `Always`, `System`, and `Class` modes, which cannot be handled with CSS files alone.
 
@@ -186,17 +201,3 @@ Class (Toggle with CSS Class):
 }
 ```
 
-
-### 2. Using the `.ios26-disabled` Class
-
-**Recommended for**: When you want to apply the iOS26 theme to all components in general, but use standard Ionic styling in specific places.
-
-After importing all components, you can disable the iOS26 theme for specific component instances by adding the `.ios26-disabled` class.
-
-```html
-<!-- iOS26 theme applied -->
-<ion-button>iOS26 Design</ion-button>
-
-<!-- Standard Ionic iOS styling -->
-<ion-button class="ios26-disabled">Standard Ionic Design</ion-button>
-```
