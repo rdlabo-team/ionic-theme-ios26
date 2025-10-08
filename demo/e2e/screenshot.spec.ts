@@ -50,7 +50,7 @@ test.describe('Screenshot Tests - All Routes', () => {
         fullPage: true,
         animations: 'disabled',
         // Allow for OS-specific rendering differences (fonts, spacing, etc.)
-        maxDiffPixelRatio: 0.05,
+        maxDiffPixelRatio: 0.02,
       });
     });
   }
@@ -73,7 +73,7 @@ test.describe('Screenshot Tests - Dark Mode', () => {
         fullPage: true,
         animations: 'disabled',
         // Allow for OS-specific rendering differences (fonts, spacing, etc.)
-        maxDiffPixelRatio: 0.05,
+        maxDiffPixelRatio: 0.02,
       });
     });
   }

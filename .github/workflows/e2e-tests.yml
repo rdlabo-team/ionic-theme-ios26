@@ -26,9 +26,6 @@ jobs:
       - run: npm install
         working-directory: './demo'
 
-      - name: install playwright
-        run: npx playwright install --with-deps
-
       - name: Run Playwright tests
         run: npm run test:e2e
         working-directory: ./demo
