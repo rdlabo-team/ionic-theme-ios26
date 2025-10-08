@@ -13,6 +13,8 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:update": "playwright test --update-snapshots",
+    "test:e2e:docker": "docker run --rm -v $(pwd)/..:/work -w /work/demo mcr.microsoft.com/playwright:v1.56.0-noble /bin/bash -c 'npm install && npm run start & sleep 40 && npx playwright test ; kill %1 || true'",
+    "test:e2e:docker:update": "docker run --rm -v $(pwd)/..:/work -w /work/demo mcr.microsoft.com/playwright:v1.56.0-noble /bin/bash -c 'npm install && npm run start & sleep 40 && npx playwright test --update-snapshots ; kill %1 || true'",
     "lint": "ng lint",
     "cap": "npm run build -- --configuration=production && cap copy"
   },

@@ -86,6 +86,28 @@ When you intentionally change the UI and need to update baseline screenshots:
 npm run test:e2e:update
 ```
 
+#### Run in Docker (same as CI)
+To run tests in the same Linux environment as GitHub Actions (using the same Docker image):
+
+**Run tests in Docker**:
+```bash
+npm run test:e2e:docker
+```
+
+**Update screenshots in Docker**:
+```bash
+npm run test:e2e:docker:update
+```
+
+These commands will:
+1. Mount the project root into the Docker container
+2. Install dependencies
+3. Start the development server inside Docker
+4. Run Playwright tests
+5. Clean up automatically
+
+This ensures your local test results match the CI environment exactly, including font rendering and browser behavior differences between macOS and Linux.
+
 ## Understanding Test Results
 
 ### Passing Tests
@@ -141,9 +163,14 @@ demo/
 ### Tests failing on CI but passing locally
 This can happen due to:
 - Font rendering differences between macOS and Linux
-- Screen resolution differences
+- Browser behavior differences between operating systems
 
-Consider using Docker to run tests in a Linux environment locally.
+**Solution**: Update screenshots using Docker to match the CI environment:
+```bash
+npm run test:e2e:docker:update
+```
+
+This uses the same `mcr.microsoft.com/playwright:v1.56.0-noble` Docker image as GitHub Actions and regenerates screenshots in the Linux environment.
 
 ### Slow test execution
 - The development server takes time to start (configured timeout: 120s)
