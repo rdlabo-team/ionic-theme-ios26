@@ -52,7 +52,7 @@ ion-alert.ios:not(.ios26-disabled) {
         height: 48px;
 
         &:not(.alert-button-role-destructive) {
-          color: var(--ion-text-color);
+          color: var(--ion-text-color, #000);
         }
         font-weight: 550;
       }

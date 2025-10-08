@@ -38,9 +38,9 @@ ion-action-sheet.ios:not(.ios26-disabled) {
           content: none;
         }
         &:not(.action-sheet-destructive):not(.action-sheet-selected) {
-          --button-color: var(--ion-text-color);
-          --button-color-hover: var(--ion-text-color);
-          --button-color-activated: var(--ion-text-color);
+          --button-color: var(--ion-text-color, #000);
+          --button-color-hover: var(--ion-text-color, #000);
+          --button-color-activated: var(--ion-text-color, #000);
         }
         &.action-sheet-destructive {
           --button-color: var(--ion-color-danger, #c5000f);
