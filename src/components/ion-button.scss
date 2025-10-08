@@ -239,7 +239,7 @@
   }
 }
 
-ion-buttons.ios:not(.ios26-disabled):not(:has(ion-button:not(.button-clear))) {
+ion-buttons.ios:not(.ios26-disabled):not(:has(ion-back-button, ion-button:not(.button-clear))) {
   @include theme-buttons;
 }
 ion-button.ios:not(.ios26-disabled) {
