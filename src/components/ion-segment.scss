@@ -1,12 +1,9 @@
 @use '../utils/api';
 
 ion-toolbar.ios:not(.ios26-disabled) {
-  &:has(ion-segment) {
-    overflow: visible;
-  }
   ion-segment {
     @include api.glass-background;
-    min-height: 44px;
+    min-height: 48px;
     border-radius: 25px;
 
     transition: transform var(--ios26-activated-transition-duration) ease-out;
@@ -21,6 +18,12 @@ ion-toolbar.ios:not(.ios26-disabled) {
 
     ion-segment-button {
       --border-width: 0;
+      --ion-color-base: var(--ion-text-color, #000);
+      --padding-start: 8px;
+      --padding-end: 8px;
+      min-width: 60px;
+      margin: 3px 2px;
+      font-size: 14.5px;
 
       &::part(indicator-background) {
         border-radius: 25px;
@@ -37,7 +40,7 @@ ion-toolbar.ios:not(.ios26-disabled) {
       ion-segment-button {
         transition: transform 100ms ease-out;
         &.segment-button-checked::part(native) {
-          transform: scale(1.26);
+          transform: scale(1.08);
         }
         &::part(indicator-background) {
           position: relative;

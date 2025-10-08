@@ -1,7 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="light">
     <ion-back-button slot="start" defaultHref="/main/index"></ion-back-button>
-    <ion-title>segment</ion-title>
+    <!--    <ion-title>segment</ion-title>-->
+    <ion-segment value="default">
+      <ion-segment-button value="default">
+        <ion-label>New</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="segment">
+        <ion-label>Replied</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <ion-back-button slot="end" defaultHref="/main/index" style="visibility: hidden"></ion-back-button>
   </ion-toolbar>
 </ion-header>
 
