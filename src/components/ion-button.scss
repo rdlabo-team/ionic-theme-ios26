@@ -17,6 +17,7 @@
 
   &:has(.ion-activated) {
     transform: scale(1.32);
+    @include api.glass-background-button-activated;
   }
 
   &:has(ion-button:not(.ios26-disabled).button-clear.button-large) {
@@ -160,6 +161,7 @@
     &.ion-activated {
       --border-width: 0.78px;
       &::part(native) {
+        @include api.glass-background-button-activated;
         color: var(--color-activated);
         &::before {
           content: '';
