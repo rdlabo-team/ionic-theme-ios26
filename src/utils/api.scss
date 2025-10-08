@@ -10,7 +10,7 @@
   border-left: 0.5px solid rgba(var(--ios26-glass-border-color-rgb), 0.6);
 }
 
-@mixin glass-background-dark-active($opacity: 0.56, $blur: 7px, $saturate: 180%) {
+@mixin glass-background-button-activated-dark($opacity: 0.56, $blur: 7px, $saturate: 180%) {
   background: rgba(var(--ios26-button-color-selected-rgb), $opacity);
   backdrop-filter: blur($blur) saturate($saturate);
   box-shadow: inset 0 0 16px 0 rgba(var(--ios26-glass-box-shadow-color-rgb), 0.55);

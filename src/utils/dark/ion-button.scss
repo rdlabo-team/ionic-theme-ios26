@@ -2,7 +2,7 @@
 
 @mixin theme-dark-buttons {
   &:has(.ion-activated) {
-    @include api.glass-background-dark-active;
+    @include api.glass-background-button-activated-dark;
   }
 
   ion-button:not(.ios26-disabled).button-clear {
@@ -33,7 +33,7 @@
       --color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 1);
     }
     &::part(native) {
-      @include api.glass-background-dark-active;
+      @include api.glass-background-button-activated-dark;
     }
     ion-icon {
       color: rgb(255, 255, 255) !important;
