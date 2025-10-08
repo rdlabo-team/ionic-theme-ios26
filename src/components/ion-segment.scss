@@ -8,7 +8,6 @@ ion-toolbar.ios:not(.ios26-disabled) {
 
     transition: transform var(--ios26-activated-transition-duration) ease-out;
     will-change: transform;
-    overflow: visible;
 
     &.in-toolbar-color:not(.in-segment-color) {
       ion-segment-button:not(.segment-button-checked)::part(native) {
@@ -35,7 +34,6 @@ ion-toolbar.ios:not(.ios26-disabled) {
 
     &.segment-activated {
       transform: scale(1.1);
-      overflow: visible;
 
       ion-segment-button {
         transition: transform 100ms ease-out;
