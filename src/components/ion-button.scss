@@ -127,7 +127,7 @@
     }
   }
 
-  &:not(.button-clear):not(.ios26-button-clear) {
+  &:not(.button-clear) {
     &.ion-activated {
       transform: scale(0.95);
       &.button-small {
