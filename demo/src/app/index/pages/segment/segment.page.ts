@@ -15,7 +15,6 @@ import {
   IonSegment,
   IonSegmentButton,
   IonText,
-  IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
 
@@ -27,7 +26,6 @@ import {
   imports: [
     IonContent,
     IonHeader,
-    IonTitle,
     IonToolbar,
     CommonModule,
     FormsModule,
