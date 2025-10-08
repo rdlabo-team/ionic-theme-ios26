@@ -45,7 +45,7 @@ export class AlertPage implements OnInit {
 
   ngOnInit() {}
 
-  async present(type: 'all' | 'button-only' | 'no-cancel' | 'force-dark-mode' | 'remove-app') {
+  async present(type: 'all' | 'button-only' | 'no-cancel' | 'remove-app') {
     const applyConfig = ((type) => {
       if (type === 'button-only') {
         return {
@@ -57,11 +57,6 @@ export class AlertPage implements OnInit {
         return {
           ...alertUtil(),
           buttons: alertUtil().buttons.filter((button) => button.role !== 'cancel'),
-        };
-      } else if (type === 'force-dark-mode') {
-        return {
-          ...alertUtil(),
-          cssClass: 'ion-palette-dark',
         };
       } else if (type === 'remove-app') {
         return {

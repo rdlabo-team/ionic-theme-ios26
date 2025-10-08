@@ -45,7 +45,7 @@ export class ActionSheetPage implements OnInit {
 
   ngOnInit() {}
 
-  async present(type: 'all' | 'button-only' | 'no-cancel' | 'force-dark-mode') {
+  async present(type: 'all' | 'button-only' | 'no-cancel') {
     const applyConfig = ((type) => {
       if (type === 'button-only') {
         return {
@@ -57,11 +57,6 @@ export class ActionSheetPage implements OnInit {
         return {
           ...actionSheetUtil(),
           buttons: actionSheetUtil().buttons.filter((button) => button.role !== 'cancel'),
-        };
-      } else if (type === 'force-dark-mode') {
-        return {
-          ...actionSheetUtil(),
-          cssClass: 'ion-palette-dark',
         };
       }
       return actionSheetUtil();
