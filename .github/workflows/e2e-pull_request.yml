@@ -29,7 +29,7 @@ jobs:
         working-directory: './demo'
 
       - name: Run Playwright tests
-        run: npm run test:e2e
+        run: PLAYWRIGHT_JSON_OUTPUT_NAME=e2e/screenshot.spec.ts.json npm run test:e2e -- --reporter=json
         working-directory: ./demo
 
       - name: Upload test results
@@ -52,4 +52,6 @@ jobs:
         uses: daun/playwright-report-comment@v3
         if: always()
         with:
-          report-path: demo/playwright-report/
+          report-file: demo/e2e/screenshot.spec.ts.json
+          job-summary: true
+          custom-info: 'Please check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details. And if you want to update the screenshots, please comment with `/update-screenshots`.'
