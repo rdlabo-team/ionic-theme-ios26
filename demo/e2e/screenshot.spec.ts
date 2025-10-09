@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { actionSheetTypes, alertTypes, modalTypes, selectTypes, toastTypes } from '../src/app/overlay-types';
+import { actionSheetTypes, alertTypes, loadingTypes, modalTypes, selectTypes, toastTypes } from '../src/app/overlay-types';
 import type { Page } from 'playwright-core';
 
 /**
@@ -34,7 +34,7 @@ const routes = [
   { path: '/main/index/breadcrumbs', name: 'breadcrumbs' },
   { path: '/main/index/searchbar', name: 'searchbar' },
   { path: '/main/index/popover', name: 'popover' },
-  { path: '/main/index/progress-indicators', name: 'progress-indicators' },
+  ...typesPath({ path: '/main/index/progress-indicators', name: 'progress-indicators' }, loadingTypes),
   { path: '/main/index/floating-action-button', name: 'floating-action-button' },
   ...typesPath({ path: '/main/index/select', name: 'select' }, selectTypes),
   { path: '/main/index/radio', name: 'radio' },
@@ -69,6 +69,7 @@ test.describe('Screenshot Tests - All Routes', () => {
       await expect(page).toHaveScreenshot(`${route.name}.png`, {
         fullPage: true,
         animations: 'disabled',
+        mask: [page.locator('ion-spinner')],
       });
     });
   }
@@ -87,6 +88,7 @@ test.describe('Screenshot Tests - Dark Mode', () => {
       await expect(page).toHaveScreenshot(`${route.name}-dark.png`, {
         fullPage: true,
         animations: 'disabled',
+        mask: [page.locator('ion-spinner')],
       });
     });
   }
