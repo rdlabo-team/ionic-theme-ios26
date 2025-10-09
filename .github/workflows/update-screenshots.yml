@@ -65,6 +65,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
+          git config --global --add safe.directory /__w/${{ github.repository }}/${{ github.repository }}
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add demo/e2e/screenshot.spec.ts-snapshots/
