@@ -15,7 +15,9 @@
    */
   transition: transform var(--ios26-activated-transition-duration) ease-out !important;
 
+  z-index: 0;
   &:has(.ion-activated) {
+    z-index: 5;
     transform: scale(1.32);
     @include api.glass-background-button-activated;
   }
@@ -106,6 +108,10 @@
 
 @mixin theme-button() {
   max-height: inherit;
+  z-index: 0;
+  &.ion-activated {
+    z-index: 10;
+  }
 
   transition:
     transform var(--ios26-activated-transition-duration) ease-out,
