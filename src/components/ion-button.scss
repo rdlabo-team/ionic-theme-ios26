@@ -12,9 +12,9 @@ $scaleup-default-icon-only: 1.32;
 $scaleup-large: 1.11;
 $scaleup-large-icon-only: 1.18;
 
-$scaledown-small: 0.94;
-$scaledown-default: 0.95;
-$scaledown-large: 0.96;
+$scaledown-small: 0.98;
+$scaledown-default: 0.99;
+$scaledown-large: 0.99;
 
 @mixin theme-buttons {
   @include api.glass-background;
@@ -165,7 +165,7 @@ $scaledown-large: 0.96;
     }
   }
 
-  &:not(.button-clear) {
+  &:not(.button-clear):not(.button-solid) {
     &.ion-activated {
       transform: scale($scaledown-default);
       &.button-small {
