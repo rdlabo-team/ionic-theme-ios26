@@ -234,12 +234,3 @@ npm run test:e2e:debug
 # Update baseline screenshots (when intentionally changing UI)
 npm run test:e2e:update
 ```
-
-#### Test Coverage
-
-- 26 routes × 2 modes (light/dark) = 52 screenshot tests
-- Chromium browser (iOS display optimized)
-- Full-page screenshots for comprehensive visual testing
-
-Test results and reports are available in the `playwright-report/` directory.
-

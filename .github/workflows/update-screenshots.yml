@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.56.0-noble
+      options: --user 1001
     steps:
       - name: Add reaction to comment
         uses: peter-evans/create-or-update-comment@v4
