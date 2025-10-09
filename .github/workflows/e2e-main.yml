@@ -3,7 +3,7 @@ name: E2E Screenshot Tests
 on:
   push:
     branches:
-      - '**'
+      - main
   pull_request:
     types: [opened]
 jobs:
