@@ -1,10 +1,11 @@
 @use '../utils/api';
+@use 'ion-button';
 
 ion-chip.ios:not(.ios26-disabled) {
   @include api.glass-background;
 
   transition: transform 100ms ease-out;
   &.ion-activated {
-    transform: scale(1.18);
+    transform: scale(ion-button.$scaleup-small);
   }
 }

@@ -5,6 +5,17 @@
  * feat(): ion-config new property for disable ion-back-button Animation
  */
 
+$scaleup-small: 1.11;
+$scaleup-small-icon-only: 1.18;
+$scaleup-default: 1.25;
+$scaleup-default-icon-only: 1.32;
+$scaleup-large: 1.11;
+$scaleup-large-icon-only: 1.18;
+
+$scaledown-small: 0.94;
+$scaledown-default: 0.95;
+$scaledown-large: 0.96;
+
 @mixin theme-buttons {
   @include api.glass-background;
   border-radius: 25px;
@@ -16,10 +27,30 @@
   transition: transform var(--ios26-activated-transition-duration) ease-out !important;
 
   z-index: 0;
+
   &:has(.ion-activated) {
     z-index: 5;
-    transform: scale(1.32);
     @include api.glass-background-button-activated;
+
+    transform: scale($scaleup-default-icon-only);
+    &:has(:not(.button-has-icon-only):not(.back-button-has-icon-only)),
+    &:has(ion-button:nth-child(n + 2)) {
+      transform: scale($scaleup-default);
+    }
+    &:has(.button-small) {
+      transform: scale($scaleup-small-icon-only);
+      &:has(:not(.button-has-icon-only):not(.back-button-has-icon-only)),
+      &:has(ion-button:nth-child(n + 2)) {
+        transform: scale($scaleup-small);
+      }
+    }
+    &:has(.button-large) {
+      transform: scale($scaleup-large-icon-only);
+      &:has(:not(.button-has-icon-only):not(.back-button-has-icon-only)),
+      &:has(ion-button:nth-child(n + 2)) {
+        transform: scale($scaleup-large);
+      }
+    }
   }
 
   &:has(ion-button:not(.ios26-disabled).button-clear.button-large) {
@@ -122,7 +153,7 @@
   &:not(.button-small):not(.button-large) {
     font-size: 1.05rem;
     &:not(.button-has-icon-only):not(.back-button-has-icon-only)::part(native) {
-      padding: 0 16px;
+      padding: 0 12px;
       min-height: 44px;
     }
   }
@@ -136,12 +167,12 @@
 
   &:not(.button-clear) {
     &.ion-activated {
-      transform: scale(0.95);
+      transform: scale($scaledown-default);
       &.button-small {
-        transform: scale(0.94);
+        transform: scale($scaledown-small);
       }
       &.button-large {
-        transform: scale(0.96);
+        transform: scale($scaledown-large);
       }
     }
   }
@@ -182,9 +213,25 @@
           backdrop-filter: brightness(120%);
         }
       }
-      transform: scale(1.32);
-      &.button-large {
-        transform: scale(1.18);
+      &.ion-activated.button-has-icon-only,
+      &.ion-activated.back-button-has-icon-only {
+        transform: scale($scaleup-default-icon-only);
+        &.button-small {
+          transform: scale($scaleup-small-icon-only);
+        }
+        &.button-large {
+          transform: scale($scaleup-large-icon-only);
+        }
+      }
+
+      &:not(.button-has-icon-only):not(.back-button-has-icon-only) {
+        transform: scale($scaleup-default);
+        &.button-small {
+          transform: scale($scaleup-small);
+        }
+        &.button-large {
+          transform: scale($scaleup-large);
+        }
       }
     }
   }
@@ -210,9 +257,25 @@
       &.ion-color {
         --color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 0.1);
       }
-      transform: scale(1.32);
-      &.button-large {
-        transform: scale(1.18);
+      &.ion-activated.button-has-icon-only,
+      &.ion-activated.back-button-has-icon-only {
+        transform: scale($scaleup-default-icon-only);
+        &.button-small {
+          transform: scale($scaleup-small-icon-only);
+        }
+        &.button-large {
+          transform: scale($scaleup-large-icon-only);
+        }
+      }
+
+      &:not(.button-has-icon-only):not(.back-button-has-icon-only) {
+        transform: scale($scaleup-default);
+        &.button-small {
+          transform: scale($scaleup-small);
+        }
+        &.button-large {
+          transform: scale($scaleup-large);
+        }
       }
       &::part(native) {
         opacity: 1; // for ion-back-button
@@ -220,7 +283,6 @@
     }
     &.button-disabled {
       opacity: 1;
-
       --color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.5);
       &.ion-color {
         --color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 0.5);
