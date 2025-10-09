@@ -11,7 +11,6 @@ import {
   IonItemGroup,
   IonLabel,
   IonList,
-  IonNote,
   IonText,
   IonTitle,
   IonToolbar,
@@ -39,7 +38,6 @@ import { alertTypes } from '../../../overlay-types';
     IonItemGroup,
     IonLabel,
     IonList,
-    IonNote,
     IonText,
   ],
 })

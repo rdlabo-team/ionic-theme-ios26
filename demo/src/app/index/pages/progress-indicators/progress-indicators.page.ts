@@ -11,7 +11,6 @@ import {
   IonItemGroup,
   IonLabel,
   IonList,
-  IonLoading,
   IonText,
   IonTitle,
   IonToolbar,
@@ -42,7 +41,6 @@ import { alertUtil } from '../alert/alert.util';
     IonList,
     IonText,
     IonButton,
-    IonLoading,
   ],
 })
 export class ProgressIndicatorsPage implements OnInit {
