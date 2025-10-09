@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.56.0-noble
+      options: --user 1001
     steps:
       - name: Add reaction to comment
         uses: peter-evans/create-or-update-comment@v4
@@ -44,6 +45,9 @@ jobs:
           ref: ${{ fromJson(steps.get-pr.outputs.result).ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: git fix
+        run: git config --system --add safe.directory $GITHUB_WORKSPACE
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -65,7 +69,6 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global --add safe.directory /__w/${{ github.repository }}/${{ github.repository }}
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add demo/e2e/screenshot.spec.ts-snapshots/
