@@ -40,6 +40,7 @@ test.describe('Screenshot Tests - All Routes', () => {
   for (const route of routes) {
     test(`should match screenshot for ${route.name}`, async ({ page }) => {
       await page.goto(route.path, { waitUntil: 'networkidle' });
+      await page.waitForTimeout(100);
       await page.waitForSelector('ion-content', { timeout: 10000 });
       const scrollHeight = await page.locator('ion-content').evaluate(async (el: any) => {
         const scrollEl = await el.getScrollElement();
@@ -49,8 +50,6 @@ test.describe('Screenshot Tests - All Routes', () => {
       await expect(page).toHaveScreenshot(`${route.name}.png`, {
         fullPage: true,
         animations: 'disabled',
-        // Allow for OS-specific rendering differences (fonts, spacing, etc.)
-        maxDiffPixelRatio: 0.02,
       });
     });
   }
@@ -63,6 +62,7 @@ test.describe('Screenshot Tests - Dark Mode', () => {
       await page.evaluate(async () => {
         document.documentElement.classList.add('ion-palette-dark');
       });
+      await page.waitForTimeout(100);
       await page.waitForSelector('ion-content', { timeout: 10000 });
       const scrollHeight = await page.locator('ion-content').evaluate(async (el: any) => {
         const scrollEl = await el.getScrollElement();
@@ -72,8 +72,6 @@ test.describe('Screenshot Tests - Dark Mode', () => {
       await expect(page).toHaveScreenshot(`${route.name}-dark.png`, {
         fullPage: true,
         animations: 'disabled',
-        // Allow for OS-specific rendering differences (fonts, spacing, etc.)
-        maxDiffPixelRatio: 0.02,
       });
     });
   }
