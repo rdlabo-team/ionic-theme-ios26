@@ -234,6 +234,14 @@ $scaledown-large: 0.99;
         }
       }
     }
+    &.button-disabled {
+      opacity: 1;
+      &::part(native) {
+        background: var(--ion-background-color-step-200, #cccccc);
+        color: #fff;
+        border: none;
+      }
+    }
   }
 
   // fill:default only
