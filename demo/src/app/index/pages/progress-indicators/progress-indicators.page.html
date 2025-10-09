@@ -22,12 +22,10 @@
   </ion-list>
 
   <section class="section-example">
-    <ion-button id="open-loading">Show Loading</ion-button>
-    <ion-loading trigger="open-loading" [message]="'Dismissing after 3 seconds...'" [duration]="3000"></ion-loading>
+    <ion-button (click)="present('message')">Show Message</ion-button>
   </section>
 
   <section class="section-example">
-    <ion-button id="open-loading2">Show Loading Icon Only</ion-button>
-    <ion-loading trigger="open-loading2" [duration]="3000"></ion-loading>
+    <ion-button (click)="present('icon-only')">Show IconOnly</ion-button>
   </section>
 </ion-content>

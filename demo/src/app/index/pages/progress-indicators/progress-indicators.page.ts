@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -15,7 +15,12 @@ import {
   IonText,
   IonTitle,
   IonToolbar,
+  LoadingController,
 } from '@ionic/angular/standalone';
+import { ActivatedRoute } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { alertTypes, loadingTypes } from '../../../overlay-types';
+import { alertUtil } from '../alert/alert.util';
 
 @Component({
   selector: 'app-progress-indicators',
@@ -41,7 +46,25 @@ import {
   ],
 })
 export class ProgressIndicatorsPage implements OnInit {
-  constructor() {}
+  readonly #route = inject(ActivatedRoute);
+  readonly #params = toSignal(this.#route.queryParams);
+  readonly overlayCtrl = inject(LoadingController);
+
+  constructor() {
+    effect(async () => {
+      if (this.#params()?.['type']) {
+        await this.present(this.#params()?.['type']);
+      }
+    });
+  }
 
   ngOnInit() {}
+
+  async present(type: (typeof loadingTypes)[number]) {
+    const actionSheet = await this.overlayCtrl.create({
+      message: type === 'message' ? 'Dismissing after 10 seconds...' : undefined,
+      duration: 10000,
+    });
+    await actionSheet.present();
+  }
 }

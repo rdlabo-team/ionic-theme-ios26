@@ -62,7 +62,7 @@
     <ion-item-group>
       @for (item of interfaces; track item) {
         <ion-item>
-          <ion-select [label]="item" placeholder="Favorite Fruit" [interface]="item">
+          <ion-select [label]="item" placeholder="Favorite Fruit" [interface]="item" [class]="'select-' + item">
             <ion-select-option value="'apple'">Apple</ion-select-option>
             <ion-select-option value="'banana'">Banana</ion-select-option>
             <ion-select-option value="'orange'">Orange</ion-select-option>
