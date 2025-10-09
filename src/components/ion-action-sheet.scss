@@ -72,3 +72,18 @@ ion-action-sheet.ios:not(.ios26-disabled) {
     }
   }
 }
+
+/**
+ * For ion-select[interface=action-sheet].
+ * ios26, action-sheet should not has 'cancel'.
+ * It is recommend to use Popover.
+ */
+ion-action-sheet.ios.select-action-sheet:not(.ios26-disabled) {
+  .action-sheet-container {
+    .action-sheet-group {
+      button.action-sheet-cancel {
+        display: none;
+      }
+    }
+  }
+}
