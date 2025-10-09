@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { actionSheetTypes, alertTypes, modalTypes, toastTypes } from '../src/app/overlay-types';
+import { actionSheetTypes, alertTypes, modalTypes, selectTypes, toastTypes } from '../src/app/overlay-types';
 import type { Page } from 'playwright-core';
 
 /**
@@ -36,7 +36,7 @@ const routes = [
   { path: '/main/index/popover', name: 'popover' },
   { path: '/main/index/progress-indicators', name: 'progress-indicators' },
   { path: '/main/index/floating-action-button', name: 'floating-action-button' },
-  { path: '/main/index/select', name: 'select' },
+  ...typesPath({ path: '/main/index/select', name: 'select' }, selectTypes),
   { path: '/main/index/radio', name: 'radio' },
   { path: '/main/index/date-and-time-pickers', name: 'date-and-time-pickers' },
   { path: '/main/index/accordion', name: 'accordion' },
