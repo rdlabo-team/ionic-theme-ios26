@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { actionSheetTypes, alertTypes, modalTypes, toastTypes } from '../src/app/overlay-types';
+import type { Page } from 'playwright-core';
 
 /**
  * Screenshot tests for all routes defined in index.routes.ts
@@ -7,17 +9,26 @@ import { test, expect } from '@playwright/test';
  * to ensure visual consistency across the application.
  */
 
+interface IPath {
+  path: string;
+  name: string;
+}
+
+const typesPath = (path: IPath, types: string[]): IPath[] => {
+  return types.map((type) => ({ path: `${path.path}?type=${type}`, name: `${path.name}:${type}` }));
+};
+
 const routes = [
   { path: '/main/index', name: 'index' },
-  { path: '/main/index/action-sheet', name: 'action-sheet' },
-  { path: '/main/index/alert', name: 'alert' },
+  ...typesPath({ path: '/main/index/action-sheet', name: 'action-sheet' }, actionSheetTypes),
+  ...typesPath({ path: '/main/index/alert', name: 'alert' }, alertTypes),
   { path: '/main/index/button', name: 'button' },
   { path: '/main/index/checkbox', name: 'checkbox' },
   { path: '/main/index/range', name: 'range' },
-  { path: '/main/index/toast', name: 'toast' },
+  ...typesPath({ path: '/main/index/toast', name: 'toast' }, toastTypes),
   { path: '/main/index/toggle', name: 'toggle' },
   { path: '/main/index/segment', name: 'segment' },
-  { path: '/main/index/modal', name: 'modal' },
+  ...typesPath({ path: '/main/index/modal', name: 'modal' }, modalTypes),
   { path: '/main/index/card', name: 'card' },
   { path: '/main/index/chip', name: 'chip' },
   { path: '/main/index/breadcrumbs', name: 'breadcrumbs' },
@@ -34,19 +45,27 @@ const routes = [
   { path: '/main/index/reorder', name: 'reorder' },
   { path: '/main/index/tabs', name: 'tabs' },
   { path: '/main/index/toolbar', name: 'toolbar' },
-];
+].sort(() => Math.random() - 0.5);
+
+const prepareScreenShot = async (page: Page, routeName: string) => {
+  await page.waitForTimeout(1000);
+  await page.waitForSelector('ion-content', { timeout: 10000 });
+  if (!routeName.includes(':')) {
+    const scrollHeight = await page.locator('ion-content').evaluate(async (el: any) => {
+      const scrollEl = await el.getScrollElement();
+      return scrollEl.scrollHeight;
+    });
+    await page.setViewportSize({ width: 1200, height: scrollHeight });
+  }
+};
 
 test.describe('Screenshot Tests - All Routes', () => {
   for (const route of routes) {
     test(`should match screenshot for ${route.name}`, async ({ page }) => {
+      // Set E2E testing flag to disable animations
+      await page.addInitScript(() => ((window as any).IONIC_E2E_TESTING = true));
       await page.goto(route.path, { waitUntil: 'networkidle' });
-      await page.waitForTimeout(100);
-      await page.waitForSelector('ion-content', { timeout: 10000 });
-      const scrollHeight = await page.locator('ion-content').evaluate(async (el: any) => {
-        const scrollEl = await el.getScrollElement();
-        return scrollEl.scrollHeight;
-      });
-      await page.setViewportSize({ width: 1200, height: scrollHeight });
+      await prepareScreenShot(page, route.name);
       await expect(page).toHaveScreenshot(`${route.name}.png`, {
         fullPage: true,
         animations: 'disabled',
@@ -58,17 +77,13 @@ test.describe('Screenshot Tests - All Routes', () => {
 test.describe('Screenshot Tests - Dark Mode', () => {
   for (const route of routes) {
     test(`should match dark mode screenshot for ${route.name}`, async ({ page }) => {
+      // Set E2E testing flag to disable animations
+      await page.addInitScript(() => ((window as any).IONIC_E2E_TESTING = true));
       await page.goto(route.path, { waitUntil: 'networkidle' });
       await page.evaluate(async () => {
         document.documentElement.classList.add('ion-palette-dark');
       });
-      await page.waitForTimeout(100);
-      await page.waitForSelector('ion-content', { timeout: 10000 });
-      const scrollHeight = await page.locator('ion-content').evaluate(async (el: any) => {
-        const scrollEl = await el.getScrollElement();
-        return scrollEl.scrollHeight;
-      });
-      await page.setViewportSize({ width: 1200, height: scrollHeight });
+      await prepareScreenShot(page, route.name);
       await expect(page).toHaveScreenshot(`${route.name}-dark.png`, {
         fullPage: true,
         animations: 'disabled',

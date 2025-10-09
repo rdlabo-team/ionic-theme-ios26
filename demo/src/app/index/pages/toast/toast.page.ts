@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -15,6 +15,9 @@ import {
   IonToolbar,
   ToastController,
 } from '@ionic/angular/standalone';
+import { ActivatedRoute } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { toastTypes } from '../../../overlay-types';
 
 @Component({
   selector: 'app-toast',
@@ -38,11 +41,21 @@ import {
   ],
 })
 export class ToastPage implements OnInit {
+  readonly #route = inject(ActivatedRoute);
+  readonly #params = toSignal(this.#route.queryParams);
   readonly overlayCtrl = inject(ToastController);
+
+  constructor() {
+    effect(async () => {
+      if (this.#params()?.['type']) {
+        await this.present(this.#params()?.['type']);
+      }
+    });
+  }
 
   ngOnInit() {}
 
-  async present(type: 'top' | 'middle' | 'bottom' | 'anchor') {
+  async present(type: (typeof toastTypes)[number]) {
     const toastDefault = {
       message: 'Hello World!',
       buttons: ['Close'],

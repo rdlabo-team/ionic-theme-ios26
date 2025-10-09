@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, input, OnInit } from '@angular/core';
+import { Component, effect, ElementRef, inject, input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -17,6 +17,9 @@ import {
   IonToolbar,
   ModalController,
 } from '@ionic/angular/standalone';
+import { modalTypes } from '../../../overlay-types';
+import { ActivatedRoute } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-modal',
@@ -42,14 +45,24 @@ import {
   ],
 })
 export class ModalPage implements OnInit {
+  readonly #route = inject(ActivatedRoute);
+  readonly #params = toSignal(this.#route.queryParams);
   readonly overlayCtrl = inject(ModalController);
   readonly #el = inject(ElementRef);
 
   readonly isModal = input<boolean>();
 
+  constructor() {
+    effect(async () => {
+      if (this.#params()?.['type']) {
+        await this.present(this.#params()?.['type']);
+      }
+    });
+  }
+
   ngOnInit() {}
 
-  async present(type: 'normal' | 'card' | 'sheet') {
+  async present(type: (typeof modalTypes)[number]) {
     const modalDefault = {
       component: ModalPage,
       componentProps: {

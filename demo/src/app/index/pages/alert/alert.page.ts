@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -17,6 +17,9 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 import { alertUtil } from './alert.util';
+import { ActivatedRoute } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { alertTypes } from '../../../overlay-types';
 
 @Component({
   selector: 'app-alert',
@@ -41,11 +44,21 @@ import { alertUtil } from './alert.util';
   ],
 })
 export class AlertPage implements OnInit {
+  readonly #route = inject(ActivatedRoute);
+  readonly #params = toSignal(this.#route.queryParams);
   readonly overlayCtrl = inject(AlertController);
+
+  constructor() {
+    effect(async () => {
+      if (this.#params()?.['type']) {
+        await this.present(this.#params()?.['type']);
+      }
+    });
+  }
 
   ngOnInit() {}
 
-  async present(type: 'all' | 'button-only' | 'no-cancel' | 'remove-app') {
+  async present(type: (typeof alertTypes)[number]) {
     const applyConfig = ((type) => {
       if (type === 'button-only') {
         return {
