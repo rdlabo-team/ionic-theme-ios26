@@ -1,11 +1,13 @@
 name: E2E Screenshot Tests Pull Request
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   test:
     timeout-minutes: 10
@@ -45,3 +47,9 @@ jobs:
           name: test-results
           path: demo/test-results/
           retention-days: 3
+
+      - name: Comment PR with test results
+        uses: daun/playwright-report-comment@v3
+        if: always()
+        with:
+          report-path: demo/playwright-report/

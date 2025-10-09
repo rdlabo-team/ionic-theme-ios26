@@ -1,0 +1,109 @@
+name: Update E2E Screenshots
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-screenshots:
+    # Only run if comment is on a PR and contains the trigger phrase
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/update-screenshots')
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.0-noble
+    steps:
+      - name: Add reaction to comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          reactions: eyes
+
+      - name: Get PR branch
+        uses: actions/github-script@v7
+        id: get-pr
+        with:
+          script: |
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+            return {
+              ref: pr.data.head.ref,
+              sha: pr.data.head.sha,
+              repo: pr.data.head.repo.full_name
+            };
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ fromJson(steps.get-pr.outputs.result).ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: './demo'
+
+      - name: Update screenshots
+        run: npm run test:e2e:update
+        working-directory: ./demo
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add demo/e2e/screenshot.spec.ts-snapshots/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            echo "HAS_CHANGES=false" >> $GITHUB_ENV
+          else
+            git commit -m "chore: update E2E screenshots"
+            git push
+            echo "HAS_CHANGES=true" >> $GITHUB_ENV
+          fi
+
+      - name: Comment success
+        if: env.HAS_CHANGES == 'true'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            ✅ Screenshots have been updated successfully!
+            
+            The new screenshots have been committed to this PR.
+
+      - name: Comment no changes
+        if: env.HAS_CHANGES == 'false'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            ℹ️ No screenshot changes detected.
+            
+            The current screenshots are already up to date.
+
+      - name: Comment failure
+        if: failure()
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            ❌ Failed to update screenshots.
+            
+            Please check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.
+
