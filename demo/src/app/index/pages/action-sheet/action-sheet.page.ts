@@ -11,7 +11,6 @@ import {
   IonItemGroup,
   IonLabel,
   IonList,
-  IonNote,
   IonText,
   IonTitle,
   IonToolbar,
@@ -40,7 +39,6 @@ import { actionSheetTypes } from '../../../overlay-types';
     IonLabel,
     IonIcon,
     IonText,
-    IonNote,
   ],
 })
 export class ActionSheetPage implements OnInit {
