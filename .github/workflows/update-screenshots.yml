@@ -44,6 +44,9 @@ jobs:
           ref: ${{ fromJson(steps.get-pr.outputs.result).ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: git fix
+        run: git config --system --add safe.directory $GITHUB_WORKSPACE
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
