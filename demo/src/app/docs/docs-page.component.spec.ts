@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HealthPage } from './health-page.component';
+import { HealthPage } from './docs-page.component';
 import { testConfig } from '../../../util/test.config';
 
 describe('HealthPage', () => {
