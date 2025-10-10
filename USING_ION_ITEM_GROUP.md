@@ -44,7 +44,7 @@ This change allows `ion-list-header` to be treated as an independent element, ac
 If you want to use the same design pattern with Material Design theme, import the following CSS:
 
 ```css
-@import '@rdlabo/ionic-theme-ios26/css/md-ion-list-inset.css';
+@import '@rdlabo/ionic-theme-ios26/dist/css/md-ion-list-inset.css';
 ```
 
 This will apply the same `ion-item-group` pattern to the Material Design theme as well.
