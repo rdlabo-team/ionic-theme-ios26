@@ -5,16 +5,16 @@
  * feat(): ion-config new property for disable ion-back-button Animation
  */
 
-$scaleup-small: 1.11;
+$scaleup-small: 1.12;
 $scaleup-small-icon-only: 1.18;
 $scaleup-default: 1.25;
 $scaleup-default-icon-only: 1.32;
-$scaleup-large: 1.11;
-$scaleup-large-icon-only: 1.18;
+$scaleup-large: 1.12;
+$scaleup-large-icon-only: 1.22;
 
 $scaledown-small: 0.98;
-$scaledown-default: 0.99;
-$scaledown-large: 0.99;
+$scaledown-default: 0.98;
+$scaledown-large: 0.98;
 
 @mixin theme-buttons {
   @include api.glass-background;
@@ -190,6 +190,11 @@ $scaledown-large: 0.99;
         --border-style: solid;
       }
     }
+    &:not(.button-has-icon-only):not(.back-button-has-icon-only) {
+      &:not(.button-small):not(.button-large) {
+        min-height: 44px;
+      }
+    }
     &::part(native) {
       position: relative;
       color: var(--color);
@@ -248,6 +253,13 @@ $scaledown-large: 0.99;
   &:not(.button-solid):not(.button-outline):not(.button-clear) {
     --background-hover: transparent;
     --background-activated: transparent;
+
+    &:not(.button-has-icon-only):not(.back-button-has-icon-only) {
+      &:not(.button-small):not(.button-large) {
+        min-height: 44px;
+      }
+    }
+
     &::part(native) {
       @include api.glass-background;
       color: var(--color);
