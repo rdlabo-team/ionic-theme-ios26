@@ -12,6 +12,9 @@ import {
   IonList,
   IonSegment,
   IonSegmentButton,
+  IonItemGroup,
+  IonListHeader,
+  IonNote,
   IonTitle,
   IonToolbar,
   Platform,
@@ -36,6 +39,10 @@ import {
     IonSegment,
     IonLabel,
     IonSegmentButton,
+    IonListHeader,
+    IonLabel,
+    IonNote,
+    IonItemGroup,
   ],
 })
 export class DocsPage {
