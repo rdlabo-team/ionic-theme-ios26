@@ -1,52 +1,63 @@
 @use '../utils/api';
 
-ion-toolbar.ios:not(.ios26-disabled) {
-  ion-segment {
-    @include api.glass-background;
-    min-height: 48px;
-    border-radius: 25px;
+ion-segment.ios:not(.ios26-disabled) {
+  @include api.glass-background;
+  min-height: 48px;
+  border-radius: 25px;
 
-    transition: transform var(--ios26-activated-transition-duration) ease-out;
-    will-change: transform;
+  &.segment-expand {
+    min-height: 24px;
+    width: calc(100% - var(--ion-safe-area-left, 0) - var(--ion-safe-area-left, 0) - 24px);
 
-    &.in-toolbar-color:not(.in-segment-color) {
-      ion-segment-button:not(.segment-button-checked)::part(native) {
-        color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 1) !important;
-      }
+    &.segment-activated {
+      transform: scale(1);
     }
 
     ion-segment-button {
-      --border-width: 0;
-      --ion-color-base: var(--ion-text-color, #000);
-      --padding-start: 8px;
-      --padding-end: 8px;
-      min-width: 60px;
-      margin: 3px 2px;
-      font-size: 14.5px;
-
-      &::part(indicator-background) {
-        border-radius: 25px;
-        box-shadow: none;
-        transition: background 0.2s ease;
-        background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.06);
-      }
+      min-height: 24px;
     }
+  }
 
-    &.segment-activated {
-      transform: scale(1.1);
+  transition: transform var(--ios26-activated-transition-duration) ease-out;
+  will-change: transform;
 
-      ion-segment-button {
-        transition: transform 100ms ease-out;
-        &.segment-button-checked::part(native) {
-          transform: scale(1.08);
-        }
-        &::part(indicator-background) {
-          position: relative;
-          z-index: 1;
-          background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0);
-          transform: scale(1.1);
-          transform-origin: center center;
-        }
+  &.in-toolbar-color:not(.in-segment-color) {
+    ion-segment-button:not(.segment-button-checked)::part(native) {
+      color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 1) !important;
+    }
+  }
+
+  ion-segment-button {
+    --border-width: 0;
+    --ion-color-base: var(--ion-text-color, #000);
+    --padding-start: 8px;
+    --padding-end: 8px;
+    min-width: 60px;
+    margin: 3px 2px;
+    font-size: 14.5px;
+
+    &::part(indicator-background) {
+      border-radius: 25px;
+      box-shadow: none;
+      transition: background 0.2s ease;
+      background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.06);
+    }
+  }
+
+  &.segment-activated {
+    transform: scale(1.1);
+
+    ion-segment-button {
+      transition: transform 100ms ease-out;
+      &.segment-button-checked::part(native) {
+        transform: scale(1.08);
+      }
+      &::part(indicator-background) {
+        position: relative;
+        z-index: 1;
+        background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0);
+        transform: scale(1.1);
+        transform-origin: center center;
       }
     }
   }

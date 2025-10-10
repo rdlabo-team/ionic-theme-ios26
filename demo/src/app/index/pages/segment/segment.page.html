@@ -12,6 +12,16 @@
     </ion-segment>
     <ion-back-button slot="end" defaultHref="/main/index" style="visibility: hidden"></ion-back-button>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment value="default" class="segment-expand">
+      <ion-segment-button value="default">
+        <ion-label>New</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="segment">
+        <ion-label>Replied</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" color="light">

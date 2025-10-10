@@ -55,6 +55,14 @@ To customize the library's default styles to match your design, several CSS vari
 
 https://github.com/rdlabo-team/ionic-theme-ios26/blob/main/src/default-variables.scss
 
+
+### Additional Customization
+
+To achieve higher fidelity to iOS26 design, you can implement additional customizations provided by this library. For more details, please visit:
+
+https://ionic-theme-ios26.netlify.app/main/docs
+
+
 ### Liquid Glass Mixin
 
 Import the SCSS files from the main package to use the liquid glass mixin.
@@ -66,6 +74,7 @@ ion-textarea label.textarea-wrapper {
   @include api.glass-background;
 }
 ```
+
 
 ## Features
 
@@ -124,21 +133,6 @@ You can see the difference in the following video. The first example shows `ion-
 
 This is a known issue that has been shared with the Ionic team. We will update this library accordingly once Ionic Core addresses it.
 
-### Brightness Colors for Better Visual Quality
-
-In iOS26, the Submit button uses text and border colors slightly brighter than the base color.
-This effect can't be achieved by simply transforming existing palette colors, so separate colors are needed. You don't have to define them—the design will still work—but adding them can give more refined color results.
-
-```diff
-  :root {
-+   --ion-color-primary-brightness: #96FEFF; /* example color */
-+   --ion-color-secondary-brightness: [your brightness color];
-+   --ion-color-tertiary-brightness: [your brightness color];
-+   --ion-color-success-brightness: [your brightness color];
-+   --ion-color-warning-brightness: [your brightness color];
-+   --ion-color-danger-brightness: [your brightness color];
-  }
-```
 
 ## Migration Support
 

@@ -14,19 +14,15 @@
       <ion-title size="large">Docs</ion-title>
     </ion-toolbar>
   </ion-header>
-  <section class="ion-padding-start ion-padding-end">
+  <section class="ion-padding-start ion-padding-end ion-padding-bottom">
     <p>This is a demo of the iOS26 theme for Ionic Framework. Just import the CSS and start using it immediately.</p>
     <code class="code-block">% npm install &#64;rdlabo/ionic-theme-ios26 --save</code>
     <p>For detailed usage instructions, please refer to the README in the GitHub repository.</p>
-    <ion-button color="dark" href="https://github.com/rdlabo-team/ionic-theme-ios26">
-      <ion-icon name="logo-github" slot="start"></ion-icon>
-      GitHub
-    </ion-button>
   </section>
 
   <ion-list [inset]="true">
     <ion-list-header><ion-label>Special Coding</ion-label><ion-note>Mode more iOS26</ion-note></ion-list-header>
-    <ion-item-group>
+    <ion-item-group class="ion-margin-bottom">
       <ion-item>
         <div>
           <h3><code>ion-button[fill=solid][type=submit]</code></h3>
@@ -40,6 +36,24 @@
               ><ion-icon name="checkmark-outline" slot="icon-only"></ion-icon
             ></ion-button>
           </p>
+        </div>
+      </ion-item>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item>
+        <div class="ion-padding-bottom">
+          <h3><code>ion-segment.segment-expand</code></h3>
+          <p>To make segments span the full width, you need to apply a special class.</p>
+          <code class="code-block ion-margin-bottom">&lt;ion-segment class="segment-expand"&gt;&lt;/ion-segment&gt;</code>
+          <ion-segment value="default" class="segment-expand">
+            <ion-segment-button value="default">
+              <ion-label>New</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="segment">
+              <ion-label>Replied</ion-label>
+            </ion-segment-button>
+          </ion-segment>
         </div>
       </ion-item>
     </ion-item-group>
