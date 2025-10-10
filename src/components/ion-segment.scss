@@ -7,7 +7,7 @@ ion-segment.ios:not(.ios26-disabled) {
 
   &.segment-expand {
     min-height: 24px;
-    width: calc(100% - var(--ion-safe-area-left, 0) - var(--ion-safe-area-left, 0) - 32px);
+    width: calc(100% - var(--ion-safe-area-left, 0) - var(--ion-safe-area-left, 0) - 24px);
 
     &.segment-activated {
       transform: scale(1);
