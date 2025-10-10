@@ -16,34 +16,32 @@
   </ion-header>
   <section class="ion-padding-start ion-padding-end">
     <p>This is a demo of the iOS26 theme for Ionic Framework. Just import the CSS and start using it immediately.</p>
-    <code>% npm install &#64;rdlabo/ionic-theme-ios26 --save</code>
+    <code class="code-block">% npm install &#64;rdlabo/ionic-theme-ios26 --save</code>
     <p>For detailed usage instructions, please refer to the README in the GitHub repository.</p>
-    <ion-button color="dark" href="https://github.com/rdlabo-team/ionic-theme-ios26" size="small">
+    <ion-button color="dark" href="https://github.com/rdlabo-team/ionic-theme-ios26">
       <ion-icon name="logo-github" slot="start"></ion-icon>
       GitHub
     </ion-button>
   </section>
 
-  <section class="ion-padding-top ion-padding-start ion-padding-end">
-    <h2>Special Coding</h2>
-    <p>Additional work is required when using these iOS26 designs.</p>
-  </section>
-
-  <ion-list>
-    <ion-item lines="full">
-      <div>
-        <h3><code>ion-button[fill=solid][type=submit]</code></h3>
-        <p>
-          Set color-brightness as a CSS variable. If using a `primary` button, the following is required. Please set your own color code.
-        </p>
-        <p><code>--ion-color-primary-brightness: #96FEFF;</code></p>
-        <p style="display: flex; align-items: center">
-          <ion-button type="submit" color="primary" size="default">Submit</ion-button>
-          <ion-button type="submit" color="primary" size="default"
-            ><ion-icon name="checkmark-outline" slot="icon-only"></ion-icon
-          ></ion-button>
-        </p>
-      </div>
-    </ion-item>
+  <ion-list [inset]="true">
+    <ion-list-header><ion-label>Special Coding</ion-label><ion-note>Mode more iOS26</ion-note></ion-list-header>
+    <ion-item-group>
+      <ion-item>
+        <div>
+          <h3><code>ion-button[fill=solid][type=submit]</code></h3>
+          <p>
+            Set color-brightness as a CSS variable. If using a `primary` button, the following is required. Please set your own color code.
+          </p>
+          <code class="code-block">--ion-color-primary-brightness: #96FEFF;</code>
+          <p style="display: flex; align-items: center">
+            <ion-button type="submit" color="primary" size="default">Submit</ion-button>
+            <ion-button type="submit" color="primary" size="default"
+              ><ion-icon name="checkmark-outline" slot="icon-only"></ion-icon
+            ></ion-button>
+          </p>
+        </div>
+      </ion-item>
+    </ion-item-group>
   </ion-list>
 </ion-content>

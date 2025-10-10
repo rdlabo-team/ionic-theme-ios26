@@ -1,3 +1,12 @@
-ion-item {
-  --border-width: 0.55px 0px;
+h3 {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+code.code-block {
+  background: var(--ion-color-dark);
+  color: var(--ion-color-dark-contrast);
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 8px;
 }
