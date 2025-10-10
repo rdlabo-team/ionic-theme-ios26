@@ -21,7 +21,7 @@ ion-header.ios.header-collapse-condense:not(.ios26-disabled) ion-toolbar:not(.io
   padding-top: 0;
 }
 
-ion-toolbar.ios:not(.toolbar-title-large):not(.ios26-disabled) {
+ion-toolbar.ios:not(.toolbar-title-large):not(.ios26-disabled):not(:has(ion-segment.segment-expand)) {
   --min-height: 68px;
 }
 
