@@ -36,13 +36,28 @@
         <p>
           Set color-brightness as a CSS variable. If using a `primary` button, the following is required. Please set your own color code.
         </p>
-        <p><code>--ion-color-primary-brightness: #96FEFF;</code></p>
+        <p><code>:root &#123; --ion-color-primary-brightness: #96FEFF; &#125;</code></p>
         <p style="display: flex; align-items: center">
           <ion-button type="submit" color="primary" size="default">Submit</ion-button>
           <ion-button type="submit" color="primary" size="default"
             ><ion-icon name="checkmark-outline" slot="icon-only"></ion-icon
           ></ion-button>
         </p>
+      </div>
+    </ion-item>
+    <ion-item lines="full">
+      <div class="ion-padding-bottom">
+        <h3><code>ion-segment.segment-expand</code></h3>
+        <p>To make segments span the full width, you need to apply a special class.</p>
+        <p><code>&lt;ion-segment class="segment-expand"&gt;&lt;/ion-segment&gt;</code></p>
+        <ion-segment value="default" class="segment-expand">
+          <ion-segment-button value="default">
+            <ion-label>New</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="segment">
+            <ion-label>Replied</ion-label>
+          </ion-segment-button>
+        </ion-segment>
       </div>
     </ion-item>
   </ion-list>
