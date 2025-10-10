@@ -49,6 +49,22 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
  */
 ```
 
+### Using `ion-item-group`
+
+Under specific conditions, you need to use `ion-item-group`.
+
+```diff
+  <ion-list inset=true>
+    <ion-list-header><ion-label>Label</ion-label></ion-list-header>
++   <ion-item-group>
+      <ion-item>...</ion-item>
+      <ion-item>...</ion-item>
++   </ion-item-group>
+  </ion-list>
+```
+
+For details, please refer to [USING_ION_ITEM_GROUP.md](./USING_ION_ITEM_GROUP.md).
+
 ## API
 ### CSS Variables
 To customize the library's default styles to match your design, we provide several CSS variables. For details, please refer to this file:
@@ -72,7 +88,7 @@ After importing all components, you can disable the iOS26 theme for specific com
 
 ## Important Notes
 
-### `ion-back-button` must not be animated
+### make `ion-back-button` smoother
 
 When the following conditions are met, the Ionic Framework programmatically generates and animates the `ion-back-button`:
 
@@ -95,22 +111,6 @@ You can see the difference in the following video. The first example shows `ion-
 [![Image from Gyazo](https://i.gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73.gif)](https://gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73)
 
 This is a known issue that has been shared with the Ionic team. We will update this library accordingly once Ionic Core addresses it.
-
-### Using `ion-item-group`
-
-Under specific conditions, you need to use `ion-item-group`.
-
-```diff
-  <ion-list inset=true>
-    <ion-list-header><ion-label>Label</ion-label></ion-list-header>
-+   <ion-item-group>
-      <ion-item>...</ion-item>
-      <ion-item>...</ion-item>
-+   </ion-item-group>
-  </ion-list>
-```
-
-For details, please refer to [USING_ION_ITEM_GROUP.md](./USING_ION_ITEM_GROUP.md).
 
 ### Even Better With Brightness Colors
 

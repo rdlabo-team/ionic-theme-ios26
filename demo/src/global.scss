@@ -46,13 +46,8 @@
   --ios26-content-box-shadow-rgb: var(--ion-color-light-rgb);
 }
 
-ion-header.ios,
-ion-footer.ios {
-  ion-buttons:not(.ios26-disabled),
-  ion-button:not(.ios26-disabled),
-  ion-back-button:not(.ios26-disabled) {
-    --color: var(--ion-text-color, #000);
-  }
+code {
+  font-family: Menlo, Consolas, monospace;
 }
 
 section.section-example {

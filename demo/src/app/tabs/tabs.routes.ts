@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 import { AlbumPage } from '../album/album-page.component';
 import { SettingsPage } from '../settings/settings-page.component';
-import { HealthPage } from '../health/health-page.component';
+import { DocsPage } from '../docs/docs-page.component';
 
 export const routes: Routes = [
   {
@@ -14,16 +14,16 @@ export const routes: Routes = [
         loadChildren: () => import('../index/index.routes').then((m) => m.routes),
       },
       {
+        path: 'docs',
+        component: DocsPage,
+      },
+      {
         path: 'album',
         component: AlbumPage,
       },
       {
         path: 'settings',
         component: SettingsPage,
-      },
-      {
-        path: 'health',
-        component: HealthPage,
       },
       {
         path: '',
