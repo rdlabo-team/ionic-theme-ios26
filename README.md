@@ -118,15 +118,15 @@ In iOS26, the Submit button uses text and border colors that are slightly bright
 
 ```diff
   :root {
-+   --ion-color-primary-brightness-rgb: 130, 255, 255;
-+   --ion-color-secondary-brightness-rgb: [your brightness color];
-+   --ion-color-tertiary-brightness-rgb: [your brightness color];
-+   --ion-color-success-brightness-rgb: [your brightness color];
-+   --ion-color-warning-brightness-rgb: [your brightness color];
-+   --ion-color-danger-brightness-rgb: [your brightness color];
-+   --ion-color-light-brightness-rgb: [your brightness color];
-+   --ion-color-medium-brightness-rgb: [your brightness color];
-+   --ion-color-dark-brightness-rgb: [your brightness color];
++   --ion-color-primary-brightness: #96FEFF;
++   --ion-color-secondary-brightness: [your brightness color];
++   --ion-color-tertiary-brightness: [your brightness color];
++   --ion-color-success-brightness: [your brightness color];
++   --ion-color-warning-brightness: [your brightness color];
++   --ion-color-danger-brightness: [your brightness color];
++   --ion-color-light-brightness: [your brightness color];
++   --ion-color-medium-brightness: [your brightness color];
++   --ion-color-dark-brightness: [your brightness color];
   }
 ```
 

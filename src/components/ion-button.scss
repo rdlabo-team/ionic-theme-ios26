@@ -183,13 +183,15 @@ $scaledown-large: 0.98;
   &.button-solid[type='submit'] {
     @each $item in primary, secondary, tertiary, success, warning, danger, light, medium, dark {
       &.ion-color-#{$item} {
-        --color: rgb(var(--ion-color-#{$item}-brightness-rgb, var(--ion-color-contrast-rgb)));
-        --color-activated: rgba(var(--ion-color-#{$item}-brightness-rgb), 0.28);
-        --border-color: rgb(var(--ion-color-#{$item}-brightness-rgb, 0 0 0 / 0));
+        --color: var(--ion-color-#{$item}-brightness, var(--ion-color-contrast));
+        --color-activated: var(--ion-color-#{$item}-brightness);
+        --border-color: var(--ion-color-#{$item}-brightness, transparent);
         --border-width: 0.5px;
         --border-style: solid;
       }
     }
+    --background-color: #fff;
+    --background-activated-opacity: 1;
     &:not(.button-has-icon-only):not(.back-button-has-icon-only) {
       &:not(.button-small):not(.button-large) {
         min-height: 44px;
@@ -207,6 +209,7 @@ $scaledown-large: 0.98;
         color: var(--color-activated);
         &::before {
           content: '';
+          z-index: 1;
           width: 100%;
           height: 100%;
           position: absolute;
@@ -214,8 +217,7 @@ $scaledown-large: 0.98;
           left: 0;
           border-radius: inherit;
           pointer-events: none;
-          background: rgba(255, 255, 255, 0.3);
-          backdrop-filter: brightness(120%);
+          backdrop-filter: brightness(144%);
         }
       }
       &.ion-activated.button-has-icon-only,

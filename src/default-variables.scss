@@ -23,4 +23,12 @@
    * You should replace to '--ios26-content-box-shadow-rgb'.
    */
   --ios26-content-box-shadow-rgb: var(--ios26-color-background-rgb, 255, 255, 255);
+
+  /**
+   * `--ion-color-**-brightness-rgb` is deprecated.
+   * You should replace to '--ion-color-**-brightness'
+   */
+  @each $item in primary, secondary, tertiary, success, warning, danger, light, medium, dark {
+    --ion-color-#{$item}-brightness: rgb(var(--ion-color-#{$item}-brightness-rgb));
+  }
 }
