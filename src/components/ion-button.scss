@@ -152,9 +152,19 @@ $scaledown-large: 0.98;
   // button size default
   &:not(.button-small):not(.button-large) {
     font-size: 1.05rem;
-    &:not(.button-has-icon-only):not(.back-button-has-icon-only)::part(native) {
-      padding: 0 12px;
-      min-height: 44px;
+    &:not(.button-has-icon-only):not(.back-button-has-icon-only) {
+      &::part(native) {
+        padding: 0 12px;
+        min-height: 44px;
+      }
+      ion-icon[slot='start'] {
+        margin-inline-start: -0.15em;
+        margin-inline-end: 0.15em;
+      }
+      ion-icon[slot='end'] {
+        margin-inline-start: 0.15em;
+        margin-inline-end: -0.15em;
+      }
     }
   }
 
