@@ -8,20 +8,18 @@ DEMO is here: https://ionic-theme-ios26.netlify.app/
 
 ## Overview
 
-This library provides CSS files to apply the iOS26 design system used in real projects to Ionic applications. It customizes the appearance and behavior of Ionic components based on the latest iOS26 design guidelines.
-
-> **🧪Pre-release**: This library is currently in a pre-release state. While it is ready for use, it is being tested in a few projects, and we are continuing to improve API stability and documentation before full-scale adoption.
+This library provides CSS files that bring the iOS26 design system to Ionic applications. It updates the look and feel of Ionic components to match the latest iOS26 design guidelines.
 
 ## 💖 Support This Project
 
-Enjoying this project? Your support helps keep it alive and growing!  
+Enjoying this library? Your support helps keep it alive and growing!  
 Sponsoring means you directly contribute to new features, improvements, and maintenance.
 
 [Become a Sponsor →](https://github.com/sponsors/rdlabo)
 
 ## Setup
 
-This is a CSS theme for extending your Ionic project. It does not work on its own, so please use it together with the Ionic Framework.
+This is a CSS theme for extending your Ionic project. It does not work on its own, so use it together with the Ionic Framework.
 
 ```bash
 npm install @rdlabo/ionic-theme-ios26
@@ -49,6 +47,43 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
  */
 ```
 
+## Customization
+
+### CSS Variables
+
+To customize the library's default styles to match your design, several CSS variables are provided. See this file for details:
+
+https://github.com/rdlabo-team/ionic-theme-ios26/blob/main/src/default-variables.scss
+
+### Liquid Glass Mixin
+
+Import the SCSS files from the main package to use the liquid glass mixin.
+
+```scss
+@use '@rdlabo/ionic-theme-ios26/src/utils/api';
+
+ion-textarea label.textarea-wrapper {
+  @include api.glass-background;
+}
+```
+
+## Features
+
+### `.ios26-disabled` Class
+
+Add the `.ios26-disabled` class to disable the iOS26 theme on specific components.
+
+```html
+<!-- iOS26 theme applied -->
+<ion-button>iOS26 Design</ion-button>
+
+<!-- Standard Ionic iOS styling -->
+<ion-button class="ios26-disabled">Standard Ionic Design</ion-button>
+```
+
+
+## Important Notes
+
 ### Using `ion-item-group`
 
 Under specific conditions, you need to use `ion-item-group`.
@@ -65,30 +100,7 @@ Under specific conditions, you need to use `ion-item-group`.
 
 For details, please refer to [USING_ION_ITEM_GROUP.md](./USING_ION_ITEM_GROUP.md).
 
-## API
-### CSS Variables
-To customize the library's default styles to match your design, we provide several CSS variables. For details, please refer to this file:
-
-https://github.com/rdlabo-team/ionic-theme-ios26/blob/main/src/default-variables.scss
-
-### `.ios26-disabled` Class
-
-**Recommended for**: When you want to apply the iOS26 theme to all components in general, but use standard Ionic styling in specific places.
-
-After importing all components, you can disable the iOS26 theme for specific component instances by adding the `.ios26-disabled` class.
-
-```html
-<!-- iOS26 theme applied -->
-<ion-button>iOS26 Design</ion-button>
-
-<!-- Standard Ionic iOS styling -->
-<ion-button class="ios26-disabled">Standard Ionic Design</ion-button>
-```
-
-
-## Important Notes
-
-### make `ion-back-button` smoother
+### Make `ion-back-button` Smoother
 
 When the following conditions are met, the Ionic Framework programmatically generates and animates the `ion-back-button`:
 
@@ -112,41 +124,25 @@ You can see the difference in the following video. The first example shows `ion-
 
 This is a known issue that has been shared with the Ionic team. We will update this library accordingly once Ionic Core addresses it.
 
-### Even Better With Brightness Colors
+### Brightness Colors for Better Visual Quality
 
-In iOS26, the Submit button uses text and border colors that are slightly brighter than the base color. Because this effect cannot be created by simply transforming existing palette colors, you need to provide separate colors. You don’t have to define them—the design will still work—but consider adding them if you want more refined color results.
+In iOS26, the Submit button uses text and border colors slightly brighter than the base color.
+This effect can't be achieved by simply transforming existing palette colors, so separate colors are needed. You don't have to define them—the design will still work—but adding them can give more refined color results.
 
 ```diff
   :root {
-+   --ion-color-primary-brightness: #96FEFF;
++   --ion-color-primary-brightness: #96FEFF; /* example color */
 +   --ion-color-secondary-brightness: [your brightness color];
 +   --ion-color-tertiary-brightness: [your brightness color];
 +   --ion-color-success-brightness: [your brightness color];
 +   --ion-color-warning-brightness: [your brightness color];
 +   --ion-color-danger-brightness: [your brightness color];
-+   --ion-color-light-brightness: [your brightness color];
-+   --ion-color-medium-brightness: [your brightness color];
-+   --ion-color-dark-brightness: [your brightness color];
   }
 ```
 
-### You can also use the liquid glass mixin
+## Migration Support
 
-You can use the liquid glass mixin by importing SCSS files from the main package.
-
-```scss
-@use '@rdlabo/ionic-theme-ios26/src/utils/api';
-
-ion-textarea label.textarea-wrapper {
-  @include api.glass-background;
-}
-```
-
-## Migration Support: Selective Theme Application
-
-You may want to apply the iOS26 theme to your Ionic project but find it difficult to apply it to all components. We provide two approaches to selectively control theme application.
-
-While `@import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.css'` applies styling to all components at once, you can also import them individually.
+For gradual migration, you can selectively apply the iOS26 theme by importing individual components instead of the full theme file.
 
 ```css
 @import '@rdlabo/ionic-theme-ios26/dist/css/utils/translucent';
@@ -157,9 +153,9 @@ While `@import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.css'` appli
 ...
 ```
 
-### Individual Import for Dark Mode Components
+### Dark Mode with Individual Components
 
-If you're using dark mode, you need to use SCSS because the selectors differ between `Always`, `System`, and `Class` modes, which cannot be handled with CSS files alone.
+When importing individual components with dark mode support, use SCSS instead of CSS. This is because the selectors differ between `Always`, `System`, and `Class` modes.
 
 > **Note**: Currently, only `ion-button` has separate dark mode styling applied.
 
