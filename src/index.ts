@@ -1,6 +1,13 @@
 import { createGesture, GestureDetail, createAnimation } from '@ionic/core';
 import type { Animation } from '@ionic/core/dist/types/utils/animation/animation-interface';
 import { Gesture } from '@ionic/core/dist/types/utils/gesture';
+import { cloneElement, getTransform } from './utils';
+
+const GestureName = 'tab-bar-gesture';
+const MinScale = 'scale(1.1)';
+const MiddleScale = 'scale(1.2)';
+const MaxScale = 'scale(1.3)';
+const OverScale = 'scale(1.4)';
 
 export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture => {
   let gesture!: Gesture;
@@ -9,12 +16,6 @@ export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture => {
   let tabEffectElY: number | null;
 
   const tabEffectEl = cloneElement('ion-tab-button');
-  const GestureName = 'tab-bar-gesture';
-  const MinScale = 'scale(1.1)';
-  const MiddleScale = 'scale(1.2)';
-  const MaxScale = 'scale(1.3)';
-  const OverScale = 'scale(1.4)';
-
   ionTabBar.addEventListener('pointerdown', () => clearActivated());
 
   const createTabButtonGesture = () => {
@@ -61,21 +62,6 @@ export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture => {
     }
   };
 
-  const getTransform = (detailCurrentX: number, tabSelectedActual: Element): string => {
-    const diff = -2;
-    const currentX = detailCurrentX - tabSelectedActual.clientWidth / 2;
-    const maxLeft = tabSelectedActual.getBoundingClientRect().left + diff;
-    const maxRight = tabSelectedActual.getBoundingClientRect().right - diff - tabSelectedActual.clientWidth;
-
-    if (maxLeft < currentX && currentX < maxRight) {
-      return `translate3d(${currentX}px, ${tabEffectElY}px, 0)`;
-    }
-    if (maxLeft > currentX) {
-      return `translate3d(${maxLeft}px, ${tabEffectElY}px, 0)`;
-    }
-    return `translate3d(${maxRight}px, ${tabEffectElY}px, 0)`;
-  };
-
   const enterTabButtonAnimation = (detail: GestureDetail): Animation | undefined => {
     currentTouchedButton = (detail.event.target as HTMLElement).closest('ion-tab-button');
     const tabSelectedActual = ionTabBar.querySelector('ion-tab-button.tab-selected');
@@ -86,13 +72,15 @@ export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture => {
     tabEffectElY = tabSelectedActual.getBoundingClientRect().top;
     const startTransform = getTransform(
       tabSelectedActual.getBoundingClientRect().left + tabSelectedActual.clientWidth / 2,
+      tabEffectElY,
       tabSelectedActual,
     );
     const middleTransform = getTransform(
       (tabSelectedActual.getBoundingClientRect().left + tabSelectedActual.clientWidth / 2 + detail.currentX) / 2,
+      tabEffectElY,
       currentTouchedButton,
     );
-    const endTransform = getTransform(detail.currentX, currentTouchedButton);
+    const endTransform = getTransform(detail.currentX, tabEffectElY, currentTouchedButton);
     const tabButtonAnimation = createAnimation();
     tabButtonAnimation
       .addElement(tabEffectEl)
@@ -177,7 +165,7 @@ export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture => {
       return undefined;
     }
 
-    const transform = getTransform(detail.currentX, currentTouchedButton);
+    const transform = getTransform(detail.currentX, tabEffectElY!, currentTouchedButton);
 
     const tabButtonAnimation = createAnimation();
     tabButtonAnimation.addElement(tabEffectEl);
@@ -205,6 +193,7 @@ export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture => {
 
     const endTransform = getTransform(
       currentTouchedButton.getBoundingClientRect().left + currentTouchedButton.clientWidth / 2,
+      tabEffectElY!,
       currentTouchedButton,
     );
 
@@ -227,18 +216,4 @@ export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture => {
   };
 
   return gesture;
-};
-
-const cloneElement = (tagName: string): HTMLElement => {
-  const getCachedEl = document.querySelector(`${tagName}.ion-cloned-element`);
-  if (getCachedEl !== null) {
-    return getCachedEl as HTMLElement;
-  }
-
-  const clonedEl = document.createElement(tagName) as HTMLElement;
-  clonedEl.classList.add('ion-cloned-element');
-  clonedEl.style.setProperty('display', 'none');
-  document.body.appendChild(clonedEl);
-
-  return clonedEl;
 };
