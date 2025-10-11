@@ -30,7 +30,7 @@ export const registerTabBarEffect = (ionTabBar: HTMLElement) => {
         moveTabButtonAnimation(event)?.play();
       },
       onEnd: (event) => {
-        leaveTabButtonAnimation(event)?.play();
+        leaveTabButtonAnimation(event).then((animation) => animation?.play());
       },
     });
     gesture.enable(true);
@@ -192,7 +192,12 @@ export const registerTabBarEffect = (ionTabBar: HTMLElement) => {
     return tabButtonAnimation;
   };
 
-  const leaveTabButtonAnimation = (detail: GestureDetail): Animation | undefined => {
+  const leaveTabButtonAnimation = async (detail: GestureDetail): Promise<Animation | undefined> => {
+    if (gestureMoveStartTime) {
+      if (detail.currentTime < gestureMoveStartTime) {
+        await new Promise((resolve) => setTimeout(resolve, gestureMoveStartTime! - detail.currentTime));
+      }
+    }
     const tabSelectedActual = ionTabBar.querySelector('ion-tab-button.tab-selected');
     if (tabSelectedActual === null || currentTouchedButton === null) {
       return undefined;
