@@ -1,7 +1,7 @@
 @use '../utils/api';
 @use 'ion-button';
 
-ion-chip.ios:not(.ios26-disabled) {
+ion-chip.ios:not(.ios26-disabled):not(.chip-outline) {
   @include api.glass-background;
 
   transition: transform 100ms ease-out;
