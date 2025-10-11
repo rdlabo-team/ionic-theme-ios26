@@ -45,19 +45,21 @@ export class TabsPage implements OnInit, ViewDidEnter {
   }
 
   ionViewDidEnter() {
-    createTabBarGesture();
+    registerTabBarEffect();
   }
 }
 
 /**
  * Experimental
  */
-const createTabBarGesture = () => {
+const registerTabBarEffect = () => {
   let gesture: Gesture;
   let currentTouchedButton: HTMLIonTabButtonElement | null;
   const tabEffectEl = cloneElement('ion-tab-button');
   const ionTabBar = document.querySelector('ion-tab-bar') as HTMLElement;
-  const gestureName = 'tab-bar-gesture';
+  const GestureName = 'tab-bar-gesture';
+  const MinScale = 'scale(1.1)';
+  const MaxScale = 'scale(1.42)';
 
   ionTabBar.addEventListener('pointerdown', () => {
     clearActivated();
@@ -67,9 +69,16 @@ const createTabBarGesture = () => {
     gesture = createGesture({
       el: ionTabBar,
       threshold: 0,
-      gestureName,
-      onStart: (event) => enterTabButtonAnimation(event),
-      onEnd: (event) => leaveTabButtonAnimation(event),
+      gestureName: GestureName,
+      onStart: (event) => {
+        enterTabButtonAnimation(event)?.play();
+      },
+      onMove: (event) => {
+        moveTabButtonAnimation(event)?.play();
+      },
+      onEnd: (event) => {
+        leaveTabButtonAnimation(event)?.play();
+      },
     });
     gesture.enable(true);
   };
@@ -99,13 +108,34 @@ const createTabBarGesture = () => {
     }
   };
 
-  const enterTabButtonAnimation = (detail: GestureDetail) => {
+  const getTransform = (detailCurrentX: number, tabSelectedActual: Element): string => {
+    const diff = -2;
+    const currentX = detailCurrentX - tabSelectedActual.clientWidth / 2;
+    const maxLeft = tabSelectedActual.getBoundingClientRect().left + diff;
+    const maxRight = tabSelectedActual.getBoundingClientRect().right - diff - tabSelectedActual.clientWidth;
+    const transformY = tabSelectedActual.getBoundingClientRect().top;
+
+    if (maxLeft < currentX && currentX < maxRight) {
+      return `translate3d(${currentX}px, ${transformY}px, 0)`;
+    }
+    if (maxLeft > currentX) {
+      return `translate3d(${maxLeft}px, ${transformY}px, 0)`;
+    }
+    return `translate3d(${maxRight}px, ${transformY}px, 0)`;
+  };
+
+  const enterTabButtonAnimation = (detail: GestureDetail): Animation | undefined => {
     currentTouchedButton = (detail.event.target as HTMLElement).closest('ion-tab-button');
     const tabSelectedActual = document.querySelector('ion-tab-button.tab-selected');
     if (tabSelectedActual === null || currentTouchedButton === null) {
-      return;
+      return undefined;
     }
 
+    const startTransform = getTransform(
+      tabSelectedActual.getBoundingClientRect().left + tabSelectedActual.clientWidth / 2,
+      tabSelectedActual,
+    );
+    const endTransform = getTransform(detail.currentX, tabSelectedActual);
     const tabButtonAnimation = createAnimation();
     tabButtonAnimation.addElement(tabEffectEl);
     tabButtonAnimation
@@ -124,48 +154,65 @@ const createTabBarGesture = () => {
       .duration(70)
       .keyframes([
         {
-          transform: 'scale(1.1)',
-          left: `${tabSelectedActual.getBoundingClientRect().left}px`,
-          top: `${tabSelectedActual.getBoundingClientRect().top}px`,
+          transform: `${startTransform} ${MinScale}`,
           opacity: 1,
         },
         {
-          transform: 'scale(1.42)',
-          left: `${currentTouchedButton!.getBoundingClientRect().left}px`,
-          top: `${currentTouchedButton!.getBoundingClientRect().top}px`,
+          transform: `${endTransform} ${MaxScale}`,
           opacity: 1,
         },
       ]);
-
-    tabButtonAnimation.play();
+    return tabButtonAnimation;
   };
 
-  const leaveTabButtonAnimation = (detail: GestureDetail) => {
+  const moveTabButtonAnimation = (detail: GestureDetail): Animation | undefined => {
     const tabSelectedActual = document.querySelector('ion-tab-button.tab-selected');
     if (tabSelectedActual === null || currentTouchedButton === null) {
-      return;
+      return undefined;
     }
+
+    const transform = getTransform(detail.currentX, tabSelectedActual);
+
+    const tabButtonAnimation = createAnimation();
+    tabButtonAnimation.addElement(tabEffectEl);
+    tabButtonAnimation.duration(50).keyframes([
+      {
+        transform: `${transform} ${MaxScale}`,
+      },
+      {
+        transform: `${transform} ${MaxScale}`,
+      },
+    ]);
+    return tabButtonAnimation;
+  };
+
+  const leaveTabButtonAnimation = (detail: GestureDetail): Animation | undefined => {
+    const tabSelectedActual = document.querySelector('ion-tab-button.tab-selected');
+    if (tabSelectedActual === null || currentTouchedButton === null) {
+      return undefined;
+    }
+
+    const startTransform = getTransform(detail.currentX, tabSelectedActual);
+    const endTransform = getTransform(
+      tabSelectedActual.getBoundingClientRect().left + tabSelectedActual.clientWidth / 2,
+      tabSelectedActual,
+    );
 
     const tabButtonAnimation = createAnimation();
     tabButtonAnimation.addElement(tabEffectEl);
     tabButtonAnimation
-      .afterAddWrite(() => clearActivated(true))
+      .onFinish(() => clearActivated(true))
       .duration(50)
       .keyframes([
         {
-          transform: 'scale(1.42)',
-          left: `${currentTouchedButton!.getBoundingClientRect().left}px`,
-          top: `${currentTouchedButton!.getBoundingClientRect().top}px`,
+          transform: `${endTransform} ${MaxScale}`,
           opacity: 1,
         },
         {
-          transform: 'scale(1.1)',
-          left: `${currentTouchedButton!.getBoundingClientRect().left}px`,
-          top: `${currentTouchedButton!.getBoundingClientRect().top}px`,
+          transform: `${endTransform} ${MinScale}`,
           opacity: 0,
         },
       ]);
-
-    tabButtonAnimation.play();
+    return tabButtonAnimation;
   };
 };
