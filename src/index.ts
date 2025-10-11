@@ -2,8 +2,8 @@ import { createGesture, GestureDetail, createAnimation } from '@ionic/core';
 import type { Animation } from '@ionic/core/dist/types/utils/animation/animation-interface';
 import { Gesture } from '@ionic/core/dist/types/utils/gesture';
 
-export const registerTabBarEffect = (ionTabBar: HTMLElement) => {
-  let gesture: Gesture;
+export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture => {
+  let gesture!: Gesture;
   let currentTouchedButton: HTMLIonTabButtonElement | null;
   let gestureMoveStartTime: number | null;
   let tabEffectElY: number | null;
@@ -225,6 +225,8 @@ export const registerTabBarEffect = (ionTabBar: HTMLElement) => {
       ]);
     return tabButtonAnimation;
   };
+
+  return gesture;
 };
 
 const cloneElement = (tagName: string): HTMLElement => {
