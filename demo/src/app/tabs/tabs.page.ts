@@ -1,7 +1,8 @@
 import { Component, ElementRef, inject, OnInit } from '@angular/core';
-import { IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs } from '@ionic/angular/standalone';
+import { IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs, ViewDidEnter } from '@ionic/angular/standalone';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { registerTabBarEffect } from '@rdlabo/ionic-theme-ios26';
 
 @Component({
   selector: 'app-tabs',
@@ -9,7 +10,7 @@ import { filter } from 'rxjs';
   styleUrls: ['tabs.page.scss'],
   imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
 })
-export class TabsPage implements OnInit {
+export class TabsPage implements OnInit, ViewDidEnter {
   readonly #router = inject(Router);
   readonly #el = inject(ElementRef);
   ngOnInit() {
@@ -24,5 +25,9 @@ export class TabsPage implements OnInit {
         tabBar.classList.remove('tab-bar-hidden');
       }
     });
+  }
+
+  ionViewDidEnter() {
+    registerTabBarEffect(document.querySelector<HTMLElement>('ion-tab-bar')!);
   }
 }

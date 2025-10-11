@@ -43,44 +43,75 @@ ion-tab-bar.ios:not(.ios26-disabled) {
     }
   }
 
-  ion-tab-button {
-    ion-icon {
-      font-size: 26px;
+  /**
+   * effectが有効な場合、effectでスタイリングするため不要
+   */
+  &.tab-bar-ios26-effect:has(ion-tab-button.ion-activated) {
+    ion-tab-button.tab-selected::part(native) {
+      background: rgba(var(--ios26-button-color-selected-rgb), 0);
     }
-    ion-label,
-    ion-icon {
-      transition:
-        filter var(--ios26-activated-transition-duration) ease,
-        color var(--ios26-activated-transition-duration) ease;
-    }
-    background: rgba(var(--ios26-glass-background-rgb), 0);
-    height: auto;
-    transition: transform var(--ios26-activated-transition-duration) ease;
-    &::part(native) {
-      overflow: visible;
-      min-height: 56px;
-      border-radius: 32px;
-    }
-
-    &.ion-activated {
-      transform: scale(1.1);
-      position: relative;
-      color: var(--color-selected);
+    ion-tab-button.ion-activated {
       ion-label,
       ion-icon {
-        filter: brightness(104%);
+        filter: brightness(100%);
       }
     }
+  }
+}
 
-    &.tab-selected {
-      &::part(native) {
-        background: rgba(var(--ios26-button-color-selected-rgb), 0.095);
-        transition: background var(--ios26-activated-transition-duration) ease;
-      }
+ion-tab-button.ios:not(.ios26-disabled) {
+  ion-icon {
+    font-size: 26px;
+  }
+  ion-label,
+  ion-icon {
+    transition:
+      filter var(--ios26-activated-transition-duration) ease,
+      color var(--ios26-activated-transition-duration) ease;
+  }
+  background: rgba(var(--ios26-glass-background-rgb), 0);
+  height: auto;
+  transition: transform var(--ios26-activated-transition-duration) ease;
+  &::part(native) {
+    overflow: visible;
+    min-height: 56px;
+    border-radius: 32px;
+  }
 
-      &.ion-activated::part(native) {
-        background: rgba(var(--ios26-glass-box-shadow-color-rgb), 0.02);
-      }
+  &.ion-activated {
+    transform: scale(1.1);
+    position: relative;
+    color: var(--color-selected);
+    ion-label,
+    ion-icon {
+      filter: brightness(104%);
+    }
+  }
+
+  &.tab-selected {
+    &::part(native) {
+      background: rgba(var(--ios26-button-color-selected-rgb), 0.095);
+      transition: background var(--ios26-activated-transition-duration) ease;
+    }
+
+    &.ion-activated::part(native) {
+      background: rgba(var(--ios26-glass-box-shadow-color-rgb), 0.02);
+    }
+  }
+
+  &.ion-cloned-element {
+    &::part(native) {
+      @include api.glass-background(1, 2px, 104%);
+      background: transparent;
+    }
+    color: var(--color-selected, var(--ion-color-primary, #0054e9));
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform-origin: center;
+    & > * {
+      visibility: hidden;
     }
   }
 }

@@ -2,14 +2,26 @@
   "name": "@rdlabo/ionic-theme-ios26",
   "version": "0.3.3",
   "description": "iOS26 CSS Theme for Ionic Framework",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./css/*": "./dist/css/*"
+  },
   "files": [
     "dist",
     "src",
     "package.json"
   ],
   "scripts": {
-    "build": "rm -rf dist/css && sass src:dist/css --style=compressed --no-source-map",
-    "build:demo": "cd demo && npm install && npm run build -- --configuration=production",
+    "build": "npm run build:css && npm run build:ts",
+    "build:css": "rm -rf dist/css && sass src:dist/css --style=compressed --no-source-map",
+    "build:ts": "tsc",
+    "build:demo": "npm run build && cd demo && npm install && npm run build -- --configuration=production",
     "prepare": "husky install",
     "lint": "prettier --check \"./**/*.{scss,ts}\" &&  prettier --parser angular --check \"./**/*.html\"",
     "fmt": "prettier --write \"./**/*.{scss,ts}\" &&  prettier --parser angular --write \"./**/*.html\"",
@@ -39,6 +51,7 @@
     "lint-staged": "^16.2.1",
     "np": "^10.2.0",
     "prettier": "^3.6.2",
-    "sass": "^1.93.2"
+    "sass": "^1.93.2",
+    "typescript": "^5.9.3"
   }
 }

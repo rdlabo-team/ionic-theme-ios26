@@ -28,6 +28,10 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
+      - run: npm install
+      - run: npm run build
+
       - run: npm install
         working-directory: './demo'
 
@@ -58,7 +62,7 @@ jobs:
           report-file: demo/e2e/screenshot.spec.ts.json
           job-summary: true
           custom-info: 'Please check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details. And if you want to update the screenshots, please comment with `/update-screenshots`.'
-      
+
       - name: Upload HTML report artifact
         uses: actions/upload-artifact@v4
         if: always()
@@ -66,7 +70,7 @@ jobs:
           name: html-report-${{ github.event.pull_request.number }}
           path: demo/playwright-report/
           retention-days: 30
-  
+
   deploy-report:
     needs: test
     if: always() && github.event.action != 'closed'
@@ -77,14 +81,14 @@ jobs:
         with:
           name: html-report-${{ github.event.pull_request.number }}
           path: playwright-report
-      
+
       - name: Checkout gh-pages
         uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: gh-pages
         continue-on-error: true
-      
+
       - name: Prepare GitHub Pages directory
         run: |
           # gh-pagesディレクトリが存在しない場合は作成
@@ -96,7 +100,7 @@ jobs:
           rm -rf gh-pages/pr-${{ github.event.pull_request.number }}
           mkdir -p gh-pages/pr-${{ github.event.pull_request.number }}
           cp -r playwright-report/* gh-pages/pr-${{ github.event.pull_request.number }}/
-      
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -106,7 +110,7 @@ jobs:
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           commit_message: 'Update test report for PR #${{ github.event.pull_request.number }}'
-      
+
       - name: Comment PR with report link
         uses: actions/github-script@v7
         if: always()
@@ -121,7 +125,7 @@ jobs:
               issue_number: prNumber,
               body: `📊 **Playwright Test Report**\n\nView the detailed test report: ${reportUrl}`
             });
-  
+
   cleanup-report:
     if: github.event.action == 'closed'
     runs-on: ubuntu-latest
@@ -132,7 +136,7 @@ jobs:
           ref: gh-pages
           path: gh-pages
         continue-on-error: true
-      
+
       - name: Remove PR report directory
         run: |
           if [ -d "gh-pages/pr-${{ github.event.pull_request.number }}" ]; then
@@ -141,7 +145,7 @@ jobs:
           else
             echo "No report directory found for PR #${{ github.event.pull_request.number }}"
           fi
-      
+
       - name: Deploy to GitHub Pages
         if: hashFiles('gh-pages/**') != ''
         uses: peaceiris/actions-gh-pages@v4

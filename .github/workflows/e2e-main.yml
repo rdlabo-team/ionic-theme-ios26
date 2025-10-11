@@ -21,6 +21,10 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
+      - run: npm install
+      - run: npm run build
+
       - run: npm install
         working-directory: './demo'
 
