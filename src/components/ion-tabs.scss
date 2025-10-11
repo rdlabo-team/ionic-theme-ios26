@@ -42,45 +42,57 @@ ion-tab-bar.ios:not(.ios26-disabled) {
       --color-selected: rgb(var(--ion-text-color-rgb, 0, 0, 0));
     }
   }
+}
 
-  ion-tab-button {
-    ion-icon {
-      font-size: 26px;
-    }
+ion-tab-button.ios:not(.ios26-disabled) {
+  ion-icon {
+    font-size: 26px;
+  }
+  ion-label,
+  ion-icon {
+    transition:
+      filter var(--ios26-activated-transition-duration) ease,
+      color var(--ios26-activated-transition-duration) ease;
+  }
+  background: rgba(var(--ios26-glass-background-rgb), 0);
+  height: auto;
+  transition: transform var(--ios26-activated-transition-duration) ease;
+  &::part(native) {
+    overflow: visible;
+    min-height: 56px;
+    border-radius: 32px;
+  }
+
+  &.ion-activated {
+    transform: scale(1.1);
+    position: relative;
+    color: var(--color-selected);
     ion-label,
     ion-icon {
-      transition:
-        filter var(--ios26-activated-transition-duration) ease,
-        color var(--ios26-activated-transition-duration) ease;
+      filter: brightness(104%);
     }
-    background: rgba(var(--ios26-glass-background-rgb), 0);
-    height: auto;
-    transition: transform var(--ios26-activated-transition-duration) ease;
+  }
+
+  &.tab-selected {
     &::part(native) {
-      overflow: visible;
-      min-height: 56px;
-      border-radius: 32px;
+      background: rgba(var(--ios26-button-color-selected-rgb), 0.095);
+      transition: background var(--ios26-activated-transition-duration) ease;
     }
 
-    &.ion-activated {
-      transform: scale(1.1);
-      position: relative;
-      color: var(--color-selected);
-      ion-label,
-      ion-icon {
-        filter: brightness(104%);
-      }
+    &.ion-activated::part(native) {
+      background: rgba(var(--ios26-glass-box-shadow-color-rgb), 0.02);
     }
+  }
 
-    &.tab-selected {
-      &::part(native) {
-        background: rgba(var(--ios26-button-color-selected-rgb), 0.095);
-        transition: background var(--ios26-activated-transition-duration) ease;
-      }
-
-      &.ion-activated::part(native) {
-        background: rgba(var(--ios26-glass-box-shadow-color-rgb), 0.02);
-      }
+  &.ion-cloned-element {
+    &::part(native) {
+      @include api.glass-background(0.05, 0, 100%);
+    }
+    color: var(--color-selected, var(--ion-color-primary, #0054e9));
+    pointer-events: none;
+    position: absolute;
+    & > * {
+      visibility: hidden;
     }
   }
 }
