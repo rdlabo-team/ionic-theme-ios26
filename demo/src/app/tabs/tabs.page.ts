@@ -28,6 +28,6 @@ export class TabsPage implements OnInit, ViewDidEnter {
   }
 
   ionViewDidEnter() {
-    registerTabBarEffect();
+    registerTabBarEffect(document.querySelector<HTMLElement>('ion-tab-bar')!);
   }
 }

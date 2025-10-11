@@ -1,6 +1,6 @@
 # Ionic Theme iOS26
 
-A CSS theme library that applies iOS26 design system to Ionic applications.
+A CSS/JS theme library that applies iOS26 design system to Ionic applications.
 
 ![](screenshots/ios26.png)
 
@@ -8,7 +8,7 @@ DEMO is here: https://ionic-theme-ios26.netlify.app/
 
 ## Overview
 
-This library provides CSS files that bring the iOS26 design system to Ionic applications. It updates the look and feel of Ionic components to match the latest iOS26 design guidelines.
+This library provides CSS/JS files that bring the iOS26 design system to Ionic applications. It updates the look and feel of Ionic components to match the latest iOS26 design guidelines.
 
 ## 💖 Support This Project
 
@@ -52,28 +52,7 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
 ### CSS Variables
 
 To customize the library's default styles to match your design, several CSS variables are provided. See this file for details:
-
 https://github.com/rdlabo-team/ionic-theme-ios26/blob/main/src/default-variables.scss
-
-
-### Additional Customization
-
-To achieve higher fidelity to iOS26 design, you can implement additional customizations provided by this library. For more details, please visit:
-
-https://ionic-theme-ios26.netlify.app/main/docs
-
-
-### Liquid Glass Mixin
-
-Import the SCSS files from the main package to use the liquid glass mixin.
-
-```scss
-@use '@rdlabo/ionic-theme-ios26/src/utils/api';
-
-ion-textarea label.textarea-wrapper {
-  @include api.glass-background;
-}
-```
 
 
 ## Features
@@ -89,6 +68,24 @@ Add the `.ios26-disabled` class to disable the iOS26 theme on specific component
 <!-- Standard Ionic iOS styling -->
 <ion-button class="ios26-disabled">Standard Ionic Design</ion-button>
 ```
+
+### Liquid Glass Mixin
+
+Import the SCSS files from the main package to use the liquid glass mixin.
+
+```scss
+@use '@rdlabo/ionic-theme-ios26/src/utils/api';
+
+ion-textarea label.textarea-wrapper {
+  @include api.glass-background;
+}
+```
+
+### Additional Customization
+
+To achieve higher fidelity to iOS26 design, you can implement additional customizations provided by this library. For more details, please visit:
+
+https://ionic-theme-ios26.netlify.app/main/docs
 
 
 ## Important Notes
@@ -132,6 +129,19 @@ You can see the difference in the following video. The first example shows `ion-
 [![Image from Gyazo](https://i.gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73.gif)](https://gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73)
 
 This is a known issue that has been shared with the Ionic team. We will update this library accordingly once Ionic Core addresses it.
+
+
+### Experimental: Using Tap Animation with IonTabButton
+
+__This feature is experimental. The library can be used without this feature.__
+
+By registering IonTabBar, you can display animation effects on IonTabButton.
+
+```js
+import { registerTabBarEffect } from '@rdlabo/ionic-theme-ios26';
+
+registerTabBarEffect(document.querySelector<HTMLElement>('ion-tab-bar'));
+```
 
 
 ## Migration Support

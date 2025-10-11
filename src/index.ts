@@ -2,14 +2,13 @@ import { createGesture, GestureDetail, createAnimation } from '@ionic/core';
 import type { Animation } from '@ionic/core/dist/types/utils/animation/animation-interface';
 import { Gesture } from '@ionic/core/dist/types/utils/gesture';
 
-export const registerTabBarEffect = () => {
+export const registerTabBarEffect = (ionTabBar: HTMLElement) => {
   let gesture: Gesture;
   let currentTouchedButton: HTMLIonTabButtonElement | null;
   let gestureMoveStartTime: number | null;
   let tabEffectElY: number | null;
 
   const tabEffectEl = cloneElement('ion-tab-button');
-  const ionTabBar = document.querySelector('ion-tab-bar') as HTMLElement;
   const GestureName = 'tab-bar-gesture';
   const MinScale = 'scale(1.1)';
   const MiddleScale = 'scale(1.2)';
@@ -79,7 +78,7 @@ export const registerTabBarEffect = () => {
 
   const enterTabButtonAnimation = (detail: GestureDetail): Animation | undefined => {
     currentTouchedButton = (detail.event.target as HTMLElement).closest('ion-tab-button');
-    const tabSelectedActual = document.querySelector('ion-tab-button.tab-selected');
+    const tabSelectedActual = ionTabBar.querySelector('ion-tab-button.tab-selected');
     if (tabSelectedActual === null || currentTouchedButton === null) {
       return undefined;
     }
@@ -108,40 +107,59 @@ export const registerTabBarEffect = () => {
           tabEffectEl.appendChild(node.cloneNode(true));
         });
         currentTouchedButton!.classList.add('ion-activated');
-      })
-      .keyframes([
-        {
-          transform: `${startTransform} ${MinScale}`,
-          opacity: 1,
-          offset: 0,
-        },
-        {
-          transform: `${middleTransform} ${MiddleScale}`,
-          opacity: 1,
-          offset: 0.4,
-        },
-        {
-          transform: `${endTransform} ${MaxScale}`,
-          opacity: 1,
-          offset: 0.55,
-        },
-        {
-          transform: `${endTransform} ${OverScale}`,
-          opacity: 1,
-          offset: 0.65,
-        },
-        {
-          transform: `${endTransform} ${MaxScale}`,
-          opacity: 1,
-          offset: 1,
-        },
-      ]);
+      });
 
     if (currentTouchedButton === tabSelectedActual) {
-      tabButtonAnimation.duration(480);
-      gestureMoveStartTime = detail.currentTime + 480;
+      tabButtonAnimation
+        .keyframes([
+          {
+            transform: `${startTransform} ${MinScale}`,
+            opacity: 1,
+            offset: 0,
+          },
+          {
+            transform: `${middleTransform} ${MiddleScale}`,
+            opacity: 1,
+            offset: 0.6,
+          },
+          {
+            transform: `${endTransform} ${MaxScale}`,
+            opacity: 1,
+            offset: 1,
+          },
+        ])
+        .duration(120);
+      gestureMoveStartTime = detail.currentTime + 120;
     } else {
-      tabButtonAnimation.duration(480);
+      tabButtonAnimation
+        .keyframes([
+          {
+            transform: `${startTransform} ${MinScale}`,
+            opacity: 1,
+            offset: 0,
+          },
+          {
+            transform: `${middleTransform} ${MiddleScale}`,
+            opacity: 1,
+            offset: 0.4,
+          },
+          {
+            transform: `${endTransform} ${MaxScale}`,
+            opacity: 1,
+            offset: 0.55,
+          },
+          {
+            transform: `${endTransform} ${OverScale}`,
+            opacity: 1,
+            offset: 0.75,
+          },
+          {
+            transform: `${endTransform} ${MaxScale}`,
+            opacity: 1,
+            offset: 1,
+          },
+        ])
+        .duration(480);
       gestureMoveStartTime = detail.currentTime + 480;
     }
 
@@ -154,7 +172,7 @@ export const registerTabBarEffect = () => {
         return undefined;
       }
     }
-    const tabSelectedActual = document.querySelector('ion-tab-button.tab-selected');
+    const tabSelectedActual = ionTabBar.querySelector('ion-tab-button.tab-selected');
     if (tabSelectedActual === null || currentTouchedButton === null) {
       return undefined;
     }
@@ -175,7 +193,7 @@ export const registerTabBarEffect = () => {
   };
 
   const leaveTabButtonAnimation = (detail: GestureDetail): Animation | undefined => {
-    const tabSelectedActual = document.querySelector('ion-tab-button.tab-selected');
+    const tabSelectedActual = ionTabBar.querySelector('ion-tab-button.tab-selected');
     if (tabSelectedActual === null || currentTouchedButton === null) {
       return undefined;
     }
