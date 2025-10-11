@@ -9,7 +9,11 @@ const MiddleScale = 'scale(1.2)';
 const MaxScale = 'scale(1.3)';
 const OverScale = 'scale(1.4)';
 
-export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture => {
+export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture | undefined => {
+  if (!ionTabBar.classList.contains('ios')) {
+    return undefined;
+  }
+
   let gesture!: Gesture;
   let currentTouchedButton: HTMLIonTabButtonElement | null;
   let gestureMoveStartTime: number | null;
