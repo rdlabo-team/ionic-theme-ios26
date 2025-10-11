@@ -42,6 +42,21 @@ ion-tab-bar.ios:not(.ios26-disabled) {
       --color-selected: rgb(var(--ion-text-color-rgb, 0, 0, 0));
     }
   }
+
+  /**
+   * effectが有効な場合、effectでスタイリングするため不要
+   */
+  &.tab-bar-ios26-effect:has(ion-tab-button.ion-activated) {
+    ion-tab-button.tab-selected::part(native) {
+      background: rgba(var(--ios26-button-color-selected-rgb), 0);
+    }
+    ion-tab-button.ion-activated {
+      ion-label,
+      ion-icon {
+        filter: brightness(100%);
+      }
+    }
+  }
 }
 
 ion-tab-button.ios:not(.ios26-disabled) {
@@ -86,7 +101,8 @@ ion-tab-button.ios:not(.ios26-disabled) {
 
   &.ion-cloned-element {
     &::part(native) {
-      @include api.glass-background(0.1, 2px, 240%);
+      @include api.glass-background(1, 2px, 104%);
+      background: transparent;
     }
     color: var(--color-selected, var(--ion-color-primary, #0054e9));
     pointer-events: none;
