@@ -2,7 +2,7 @@ import { Component, ElementRef, inject, OnInit } from '@angular/core';
 import { IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs, ViewDidEnter } from '@ionic/angular/standalone';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { registerTabBarEffect } from '../../../../src';
+import { registerTabBarEffect } from '@rdlabo/ionic-theme-ios26';
 
 @Component({
   selector: 'app-tabs',
