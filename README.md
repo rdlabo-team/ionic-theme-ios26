@@ -131,16 +131,17 @@ You can see the difference in the following video. The first example shows `ion-
 This is a known issue that has been shared with the Ionic team. We will update this library accordingly once Ionic Core addresses it.
 
 
-### Experimental: Using Tap Animation with IonTabButton
+### Experimental: Using Tap Animation with IonTabButton / IonSegmentButton
 
 __This feature is experimental. The library can be used without this feature.__
 
-By registering IonTabBar, you can display animation effects on IonTabButton.
+By registering IonTabBar / IonSegment, you can display animation effects on IonTabButton / IonSegmentButton.
 
 ```js
-import { registerTabBarEffect } from '@rdlabo/ionic-theme-ios26';
+import { registerTabBarEffect, registerSegmentEffect } from '@rdlabo/ionic-theme-ios26';
 
 registerTabBarEffect(document.querySelector<HTMLElement>('ion-tab-bar'));
+registerSegmentEffect(document.querySelector<HTMLElement>('ion-segment'));
 ```
 
 
