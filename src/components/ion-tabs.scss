@@ -46,7 +46,7 @@ ion-tab-bar.ios:not(.ios26-disabled) {
   /**
    * effectが有効な場合、effectでスタイリングするため不要
    */
-  &.tab-bar-ios26-effect:has(ion-tab-button.ion-activated) {
+  &.enable-ios26-gesture:has(ion-tab-button.ion-activated) {
     ion-tab-button.tab-selected::part(native) {
       background: rgba(var(--ios26-button-color-selected-rgb), 0);
     }
@@ -101,7 +101,7 @@ ion-tab-button.ios:not(.ios26-disabled) {
 
   &.ion-cloned-element {
     &::part(native) {
-      @include api.glass-background(1, 2px, 104%);
+      @include api.glass-background(1, 0, 104%);
       background: transparent;
     }
     color: var(--color-selected, var(--ion-color-primary, #0054e9));
