@@ -164,7 +164,7 @@ const registerEffect = (
             offset: 1,
           },
         ])
-        .duration(480);
+        .duration(160);
     } else {
       enterAnimation
         .keyframes([
