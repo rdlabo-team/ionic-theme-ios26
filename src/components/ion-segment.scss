@@ -65,7 +65,7 @@ ion-segment-button.ios:not(.ios26-disabled) {
   &.ion-cloned-element {
     &::part(native) {
       border-radius: 25px;
-      @include api.glass-background(1, 2px, 104%);
+      @include api.glass-background(1, 0, 104%);
       background: transparent;
       height: 100%;
     }
@@ -73,7 +73,7 @@ ion-segment-button.ios:not(.ios26-disabled) {
     pointer-events: none;
     position: absolute;
     left: 0;
-    top: 0;
+    top: -2.5px;
     transform-origin: center;
     & > * {
       visibility: hidden;

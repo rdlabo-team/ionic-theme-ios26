@@ -101,7 +101,7 @@ ion-tab-button.ios:not(.ios26-disabled) {
 
   &.ion-cloned-element {
     &::part(native) {
-      @include api.glass-background(1, 2px, 104%);
+      @include api.glass-background(1, 0, 104%);
       background: transparent;
     }
     color: var(--color-selected, var(--ion-color-primary, #0054e9));
