@@ -1,6 +1,6 @@
 import { createGesture, GestureDetail, createAnimation } from '@ionic/core';
 import type { Animation } from '@ionic/core/dist/types/utils/animation/animation-interface';
-import { Gesture, GestureCallback } from '@ionic/core/dist/types/utils/gesture';
+import { Gesture } from '@ionic/core/dist/types/utils/gesture';
 import { cloneElement, getTransform } from './utils';
 
 const GestureName = 'enable-ios26-gesture';
@@ -9,15 +9,19 @@ const MiddleScale = 'scale(1.2)';
 const MaxScale = 'scale(1.3)';
 const OverScale = 'scale(1.4)';
 
-export const registerSegmentEffect = (targetElement: HTMLElement) => {
+export interface registeredEffect {
+  destroy: () => void;
+}
+
+export const registerSegmentEffect = (targetElement: HTMLElement): registeredEffect | undefined => {
   return registerEffect(targetElement, 'ion-segment-button', 'segment-button-checked');
 };
 
-export const registerTabBarEffect = (targetElement: HTMLElement) => {
+export const registerTabBarEffect = (targetElement: HTMLElement): registeredEffect | undefined => {
   return registerEffect(targetElement, 'ion-tab-button', 'tab-selected');
 };
 
-const registerEffect = (targetElement: HTMLElement, effectTagName: string, selectedClassName: string): Gesture | undefined => {
+const registerEffect = (targetElement: HTMLElement, effectTagName: string, selectedClassName: string): registeredEffect | undefined => {
   if (!targetElement.classList.contains('ios')) {
     return undefined;
   }
@@ -35,18 +39,22 @@ const registerEffect = (targetElement: HTMLElement, effectTagName: string, selec
    * These event listeners fix a bug where gestures don't complete properly.
    * They terminate the gesture using native events as a fallback.
    */
-  targetElement.addEventListener('pointerdown', () => {
+  const onPointerDown = () => {
     clearActivated();
     gesture.destroy();
     createAnimationGesture();
-  });
-  targetElement.addEventListener('pointerup', (event) => {
+  };
+
+  const onPointerUp = (event: PointerEvent) => {
     clearActivatedTimer = setTimeout(() => {
       onEndGesture(event.timeStamp || Date.now());
       gesture.destroy();
       createAnimationGesture();
     });
-  });
+  };
+
+  targetElement.addEventListener('pointerdown', onPointerDown);
+  targetElement.addEventListener('pointerup', onPointerUp);
 
   const createAnimationGesture = () => {
     targetElement.classList.add(GestureName);
@@ -241,5 +249,28 @@ const registerEffect = (targetElement: HTMLElement, effectTagName: string, selec
     return true;
   };
 
-  return gesture;
+  return {
+    destroy: () => {
+      // Remove event listeners
+      targetElement.removeEventListener('pointerdown', onPointerDown);
+      targetElement.removeEventListener('pointerup', onPointerUp);
+
+      // Clear any pending timer
+      if (clearActivatedTimer !== undefined) {
+        clearTimeout(clearActivatedTimer);
+        clearActivatedTimer = undefined;
+      }
+
+      // Clear activated state
+      clearActivated();
+
+      // Destroy gesture
+      if (gesture) {
+        gesture.destroy();
+      }
+
+      // Remove gesture class
+      targetElement.classList.remove(GestureName);
+    },
+  };
 };

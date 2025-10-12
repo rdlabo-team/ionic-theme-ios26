@@ -20,7 +20,7 @@ import {
   ViewDidEnter,
   ViewDidLeave,
 } from '@ionic/angular/standalone';
-import { registerSegmentEffect, registerTabBarEffect } from '../../../../../../src';
+import { registeredEffect, registerSegmentEffect, registerTabBarEffect } from '../../../../../../src';
 
 @Component({
   selector: 'app-segment',
@@ -48,7 +48,7 @@ import { registerSegmentEffect, registerTabBarEffect } from '../../../../../../s
 })
 export class SegmentPage implements OnInit, ViewDidEnter, ViewDidLeave {
   readonly #el = inject(ElementRef);
-  readonly registeredGestures: Gesture[] = [];
+  readonly registeredGestures: registeredEffect[] = [];
   constructor() {}
 
   ngOnInit() {}

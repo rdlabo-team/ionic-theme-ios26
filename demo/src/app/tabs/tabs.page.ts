@@ -4,7 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
 // import { registerTabBarEffect } from '@rdlabo/ionic-theme-ios26';
-import { registerTabBarEffect } from '../../../../src';
+import { registeredEffect, registerTabBarEffect } from '../../../../src';
 
 @Component({
   selector: 'app-tabs',
@@ -15,7 +15,7 @@ import { registerTabBarEffect } from '../../../../src';
 export class TabsPage implements OnInit, ViewDidEnter, ViewDidLeave {
   readonly #router = inject(Router);
   readonly #el = inject(ElementRef);
-  readonly registeredGestures: Gesture[] = [];
+  readonly registeredGestures: registeredEffect[] = [];
   ngOnInit() {
     this.#router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((params) => {
       const tabBar = this.#el.nativeElement.querySelector('ion-tab-bar');
