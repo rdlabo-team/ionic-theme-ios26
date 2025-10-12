@@ -52,7 +52,7 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
 ### CSS Variables
 
 To customize the library's default styles to match your design, several CSS variables are provided. See this file for details:
-https://github.com/rdlabo-team/ionic-theme-ios26/blob/main/src/default-variables.scss
+https://github.com/rdlabo-team/ionic-theme-ios26/blob/main/src/styles/default-variables.scss
 
 
 ## Features
@@ -74,7 +74,7 @@ Add the `.ios26-disabled` class to disable the iOS26 theme on specific component
 Import the SCSS files from the main package to use the liquid glass mixin.
 
 ```scss
-@use '@rdlabo/ionic-theme-ios26/src/utils/api';
+@use '@rdlabo/ionic-theme-ios26/src/styles/utils/api';
 
 ion-textarea label.textarea-wrapper {
   @include api.glass-background;
@@ -176,7 +176,7 @@ When importing individual components with dark mode support, use SCSS instead of
 
 Always (Always Dark Mode):
 ```scss
-@use '@rdlabo/ionic-theme-ios26/src/utils/theme-dark';
+@use '@rdlabo/ionic-theme-ios26/src/styles/utils/theme-dark';
 
 :root {
     @include theme-dark.default-variables;
@@ -188,7 +188,7 @@ Always (Always Dark Mode):
 
 System (Follow System Settings):
 ```scss
-@use '@rdlabo/ionic-theme-ios26/src/utils/theme-dark';
+@use '@rdlabo/ionic-theme-ios26/src/styles/utils/theme-dark';
 
 @media (prefers-color-scheme: dark) {
     :root {
@@ -202,7 +202,7 @@ System (Follow System Settings):
 
 Class (Toggle with CSS Class):
 ```scss
-@use '@rdlabo/ionic-theme-ios26/src/utils/theme-dark';
+@use '@rdlabo/ionic-theme-ios26/src/styles/utils/theme-dark';
 
 .ion-palette-dark {
     @include theme-dark.default-variables;
