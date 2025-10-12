@@ -131,7 +131,7 @@ You can see the difference in the following video. The first example shows `ion-
 This is a known issue that has been shared with the Ionic team. We will update this library accordingly once Ionic Core addresses it.
 
 
-### Experimental: Using Tap Animation with IonTabButton / IonSegmentButton
+### Experimental: Using Gesture Animation with IonTabButton / IonSegmentButton
 
 __This feature is experimental. The library can be used without this feature.__
 
@@ -140,8 +140,18 @@ By registering IonTabBar / IonSegment, you can display animation effects on IonT
 ```js
 import { registerTabBarEffect, registerSegmentEffect } from '@rdlabo/ionic-theme-ios26';
 
-registerTabBarEffect(document.querySelector<HTMLElement>('ion-tab-bar'));
-registerSegmentEffect(document.querySelector<HTMLElement>('ion-segment'));
+const registeredTabBarEffect = registerTabBarEffect(document.querySelector<HTMLElement>('ion-tab-bar'));
+const registeredSegmentEffect = registerSegmentEffect(document.querySelector<HTMLElement>('ion-segment'));
+
+const destroy = () => {
+  /**
+   * If the registered DOM element is removed (e.g., due to page navigation),
+   * make sure to destroy the gesture and animation. This will also remove the event listeners.
+   * You can re-register them if needed.
+   */
+  registeredTabBarEffect?.destroy();
+  registeredSegmentEffect?.destroy();
+}
 ```
 
 
