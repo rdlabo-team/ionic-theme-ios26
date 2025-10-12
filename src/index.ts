@@ -27,9 +27,26 @@ const registerEffect = (targetElement: HTMLElement, effectTagName: string, selec
   let gestureMoveStartTime: number | undefined;
   let effectElementPositionY: number | undefined;
   let moveAnimation: Animation | undefined;
+  let clearActivatedTimer: ReturnType<typeof setTimeout> | undefined;
 
   const effectElement = cloneElement(effectTagName);
-  targetElement.addEventListener('pointerdown', () => clearActivated());
+
+  /**
+   * These event listeners fix a bug where gestures don't complete properly.
+   * They terminate the gesture using native events as a fallback.
+   */
+  targetElement.addEventListener('pointerdown', () => {
+    clearActivated();
+    gesture.destroy();
+    createAnimationGesture();
+  });
+  targetElement.addEventListener('pointerup', (event) => {
+    clearActivatedTimer = setTimeout(() => {
+      onEndGesture(event.timeStamp || Date.now());
+      gesture.destroy();
+      createAnimationGesture();
+    });
+  });
 
   const createAnimationGesture = () => {
     targetElement.classList.add(GestureName);
@@ -39,7 +56,7 @@ const registerEffect = (targetElement: HTMLElement, effectTagName: string, selec
       gestureName: `${GestureName}_${effectTagName}_${crypto.randomUUID()}`,
       onStart: (event) => onStartGesture(event),
       onMove: (event) => onMoveGesture(event),
-      onEnd: (event) => onEndGesture(event),
+      onEnd: (event) => onEndGesture(event.currentTime),
     });
     gesture.enable(true);
   };
@@ -62,13 +79,6 @@ const registerEffect = (targetElement: HTMLElement, effectTagName: string, selec
       currentTouchedElement.click();
     }
 
-    /**
-     * もしこの処理がafterAddWrite以外で走る場合、正常に終了していない
-     */
-    if (!isAfterAddWrite) {
-      gesture.destroy();
-      createAnimationGesture();
-    }
     currentTouchedElement = undefined;
     moveAnimation = undefined; // 次回のために破棄
   };
@@ -190,7 +200,13 @@ const registerEffect = (targetElement: HTMLElement, effectTagName: string, selec
     return true;
   };
 
-  const onEndGesture = (detail: GestureDetail): boolean | undefined => {
+  const onEndGesture = (currentTime: number): boolean | undefined => {
+    // タイマーをクリア（正常にonEndGestureが実行された場合）
+    if (clearActivatedTimer !== undefined) {
+      clearTimeout(clearActivatedTimer);
+      clearActivatedTimer = undefined;
+    }
+
     if (currentTouchedElement === undefined) {
       return false;
     }
@@ -217,8 +233,8 @@ const registerEffect = (targetElement: HTMLElement, effectTagName: string, selec
         },
       ]);
     (async () => {
-      if (gestureMoveStartTime && detail.currentTime < gestureMoveStartTime) {
-        await new Promise((resolve) => setTimeout(resolve, gestureMoveStartTime! - detail.currentTime));
+      if (gestureMoveStartTime && currentTime < gestureMoveStartTime) {
+        await new Promise((resolve) => setTimeout(resolve, gestureMoveStartTime! - currentTime));
       }
       leaveAnimation.play();
     })();
