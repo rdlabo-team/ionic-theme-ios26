@@ -46,7 +46,7 @@ ion-tab-bar.ios:not(.ios26-disabled) {
   /**
    * effectが有効な場合、effectでスタイリングするため不要
    */
-  &.enable-ios26-gesture:has(ion-tab-button.ion-activated) {
+  &.ios26-enable-gesture.ios26-animated {
     ion-tab-button.tab-selected::part(native) {
       background: rgba(var(--ios26-button-color-selected-rgb), 0);
     }

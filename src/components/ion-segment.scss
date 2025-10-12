@@ -27,9 +27,8 @@ ion-segment.ios:not(.ios26-disabled) {
     }
   }
 
-  &:has(ion-segment-button.ion-activated) {
+  &:not(.ios26-enable-gesture).segment-activated {
     transform: scale(1.1);
-
     ion-segment-button {
       transition: transform 100ms ease-out;
       &.segment-button-checked::part(native) {
@@ -41,6 +40,31 @@ ion-segment.ios:not(.ios26-disabled) {
         background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0);
         transform: scale(1.1);
         transform-origin: center center;
+      }
+    }
+  }
+
+  &.ios26-enable-gesture {
+    &:has(ion-segment-button.ion-activated) {
+      transform: scale(1.1);
+      ion-segment-button {
+        transition: transform 100ms ease-out;
+        &.segment-button-checked::part(native) {
+          transform: scale(1.08);
+        }
+        &::part(indicator-background) {
+          position: relative;
+          z-index: 1;
+          transform: scale(1.1);
+          transform-origin: center center;
+        }
+      }
+    }
+    &.ios26-animated {
+      ion-segment-button {
+        &::part(indicator-background) {
+          background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0);
+        }
       }
     }
   }

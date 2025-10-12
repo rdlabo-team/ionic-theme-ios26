@@ -3,7 +3,8 @@ import type { Animation } from '@ionic/core/dist/types/utils/animation/animation
 import { Gesture } from '@ionic/core/dist/types/utils/gesture';
 import { cloneElement, getTransform } from './utils';
 
-const GestureName = 'enable-ios26-gesture';
+const GestureName = 'ios26-enable-gesture';
+const AnimatedName = 'ios26-animated';
 
 interface EffectScales {
   small: string;
@@ -62,12 +63,14 @@ const registerEffect = (
    */
   const onPointerDown = () => {
     clearActivated();
+    currentTouchedElement?.classList.remove('ion-activated');
     gesture.destroy();
     createAnimationGesture();
   };
   const onPointerUp = (event: PointerEvent) => {
     clearActivatedTimer = setTimeout(() => {
-      onEndGesture(event.timeStamp || Date.now());
+      onEndGesture();
+      currentTouchedElement?.classList.remove('ion-activated');
       gesture.destroy();
       createAnimationGesture();
     });
@@ -84,7 +87,7 @@ const registerEffect = (
       gestureName: `${GestureName}_${effectTagName}_${crypto.randomUUID()}`,
       onStart: (event) => onStartGesture(event),
       onMove: (event) => onMoveGesture(event),
-      onEnd: (event) => onEndGesture(event.currentTime),
+      onEnd: (event) => onEndGesture(),
     });
     gesture.enable(true);
   };
@@ -100,8 +103,7 @@ const registerEffect = (
       effectElement.style.transform = 'none';
     });
 
-    currentTouchedElement!.classList.remove('ion-activated');
-
+    targetElement.classList.remove(AnimatedName);
     currentTouchedElement = undefined;
     moveAnimation = undefined; // 次回のために破棄
     moveAnimationPromise = undefined;
@@ -141,6 +143,7 @@ const registerEffect = (
         tabSelectedElement.childNodes.forEach((node) => {
           effectElement.appendChild(node.cloneNode(true));
         });
+        targetElement.classList.add(AnimatedName);
         currentTouchedElement!.classList.add('ion-activated');
         currentTouchedElement!.click();
       });
@@ -176,7 +179,7 @@ const registerEffect = (
           {
             transform: `${middleTransform} ${scales.large}`,
             opacity: 1,
-            offset: 0.5,
+            offset: 0.65,
           },
           {
             transform: `${endTransform} ${scales.medium}`,
@@ -184,7 +187,7 @@ const registerEffect = (
             offset: 1,
           },
         ])
-        .duration(320);
+        .duration(280);
     }
     animationLatestX = detail.currentX;
     enterAnimationPromise = enterAnimation.play().then(() => {
@@ -246,7 +249,7 @@ const registerEffect = (
     return true;
   };
 
-  const onEndGesture = (currentTime: number): boolean | undefined => {
+  const onEndGesture = (): boolean | undefined => {
     // タイマーをクリア（正常にonEndGestureが実行された場合）
     if (clearActivatedTimer !== undefined) {
       clearTimeout(clearActivatedTimer);
@@ -278,7 +281,10 @@ const registerEffect = (
     (async () => {
       // Wait for enter animation to complete before playing leave animation
       if (enterAnimationPromise) {
+        setTimeout(() => currentTouchedElement!.classList.remove('ion-activated'), 50);
         await enterAnimationPromise;
+      } else {
+        currentTouchedElement!.classList.remove('ion-activated');
       }
       leaveAnimation.play();
     })();
