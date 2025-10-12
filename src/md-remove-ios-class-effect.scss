@@ -13,12 +13,12 @@ ion-toolbar.md:not(.ios26-disabled) {
   }
 }
 
-ion-buttons.md.ios26-disabled {
+ion-buttons.md {
   /**
    * ion-buttons.ios26-disabled > ion-button.button-default is for ios26 structure.
    * for .md, remove button-default styles. Will be button-clear.
    */
-  ion-button:not(.ios26-disabled).button-default {
+  ion-button.md:not(.ios26-disabled).button-default {
     // copy .button-clear
     --color: initial;
     --background: transparent;
