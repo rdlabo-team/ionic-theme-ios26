@@ -27,24 +27,7 @@ ion-segment.ios:not(.ios26-disabled) {
     }
   }
 
-  ion-segment-button {
-    --border-width: 0;
-    --ion-color-base: var(--ion-text-color, #000);
-    --padding-start: 8px;
-    --padding-end: 8px;
-    min-width: 60px;
-    margin: 3px 2px;
-    font-size: 14.5px;
-
-    &::part(indicator-background) {
-      border-radius: 25px;
-      box-shadow: none;
-      transition: background 0.2s ease;
-      background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.06);
-    }
-  }
-
-  &.segment-activated {
+  &:has(ion-segment-button.ion-activated) {
     transform: scale(1.1);
 
     ion-segment-button {
@@ -59,6 +42,41 @@ ion-segment.ios:not(.ios26-disabled) {
         transform: scale(1.1);
         transform-origin: center center;
       }
+    }
+  }
+}
+
+ion-segment-button.ios:not(.ios26-disabled) {
+  --border-width: 0;
+  --ion-color-base: var(--ion-text-color, #000);
+  --padding-start: 8px;
+  --padding-end: 8px;
+  min-width: 60px;
+  margin: 3px 2px;
+  font-size: 14.5px;
+
+  &::part(indicator-background) {
+    border-radius: 25px;
+    box-shadow: none;
+    transition: background 0.2s ease;
+    background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.06);
+  }
+
+  &.ion-cloned-element {
+    &::part(native) {
+      border-radius: 25px;
+      @include api.glass-background(1, 2px, 104%);
+      background: transparent;
+      height: 100%;
+    }
+    color: var(--color-selected, var(--ion-color-primary, #0054e9));
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform-origin: center;
+    & > * {
+      visibility: hidden;
     }
   }
 }

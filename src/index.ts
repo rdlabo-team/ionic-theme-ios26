@@ -3,85 +3,98 @@ import type { Animation } from '@ionic/core/dist/types/utils/animation/animation
 import { Gesture, GestureCallback } from '@ionic/core/dist/types/utils/gesture';
 import { cloneElement, getTransform } from './utils';
 
-const GestureName = 'tab-bar-gesture';
+const GestureName = 'enable-ios26-gesture';
 const MinScale = 'scale(1.1)';
 const MiddleScale = 'scale(1.2)';
 const MaxScale = 'scale(1.3)';
 const OverScale = 'scale(1.4)';
 
-export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture | undefined => {
-  if (!ionTabBar.classList.contains('ios')) {
+export const registerSegmentEffect = (targetElement: HTMLElement) => {
+  return registerEffect(targetElement, 'ion-segment-button', 'segment-button-checked');
+};
+
+export const registerTabBarEffect = (targetElement: HTMLElement) => {
+  return registerEffect(targetElement, 'ion-tab-button', 'tab-selected');
+};
+
+const registerEffect = (targetElement: HTMLElement, effectTagName: string, selectedClassName: string): Gesture | undefined => {
+  if (!targetElement.classList.contains('ios')) {
     return undefined;
   }
 
   let gesture!: Gesture;
-  let currentTouchedElement: HTMLIonTabButtonElement | undefined;
+  let currentTouchedElement: HTMLElement | undefined;
   let gestureMoveStartTime: number | undefined;
-  let tabEffectPositionY: number | undefined;
+  let effectElementPositionY: number | undefined;
+  let moveAnimation: Animation | undefined;
 
-  const tabEffectElement = cloneElement('ion-tab-button');
-  ionTabBar.addEventListener('pointerdown', () => clearActivated());
+  const effectElement = cloneElement(effectTagName);
+  targetElement.addEventListener('pointerdown', () => clearActivated());
 
-  const createTabButtonGesture = () => {
-    ionTabBar.classList.add('tab-bar-ios26-effect');
+  const createAnimationGesture = () => {
+    targetElement.classList.add(GestureName);
     gesture = createGesture({
-      el: ionTabBar,
+      el: targetElement,
       threshold: 0,
-      gestureName: GestureName,
-      onStart: (event) => enterTabButtonAnimation(event),
-      onMove: (event) => moveTabButtonAnimation(event),
-      onEnd: (event) => leaveTabButtonAnimation(event),
+      gestureName: `${GestureName}_${effectTagName}_${crypto.randomUUID()}`,
+      onStart: (event) => onStartGesture(event),
+      onMove: (event) => onMoveGesture(event),
+      onEnd: (event) => onEndGesture(event),
     });
     gesture.enable(true);
   };
-  createTabButtonGesture();
+  createAnimationGesture();
 
   const clearActivated = (isAfterAddWrite = false) => {
-    if (currentTouchedElement) {
-      tabEffectElement.style.display = 'none';
-      tabEffectElement.innerHTML = '';
-      tabEffectElement.style.top = 'auto';
-      tabEffectElement.style.top = 'left';
-      tabEffectElement.style.transform = 'none';
-
-      currentTouchedElement!.classList.remove('ion-activated');
-      if (isAfterAddWrite) {
-        currentTouchedElement.click();
-      }
-
-      /**
-       * もしこの処理がafterAddWrite以外で走る場合、正常に終了していない
-       */
-      if (!isAfterAddWrite) {
-        gesture.destroy();
-        createTabButtonGesture();
-      }
-      currentTouchedElement = undefined;
+    if (!currentTouchedElement) {
+      return;
     }
+    requestAnimationFrame(() => {
+      effectElement.style.display = 'none';
+      effectElement.innerHTML = '';
+      effectElement.style.top = 'auto';
+      effectElement.style.top = 'left';
+      effectElement.style.transform = 'none';
+    });
+
+    currentTouchedElement!.classList.remove('ion-activated');
+    if (isAfterAddWrite) {
+      currentTouchedElement.click();
+    }
+
+    /**
+     * もしこの処理がafterAddWrite以外で走る場合、正常に終了していない
+     */
+    if (!isAfterAddWrite) {
+      gesture.destroy();
+      createAnimationGesture();
+    }
+    currentTouchedElement = undefined;
+    moveAnimation = undefined; // 次回のために破棄
   };
 
-  const enterTabButtonAnimation = (detail: GestureDetail): boolean | undefined => {
-    currentTouchedElement = (detail.event.target as HTMLElement).closest('ion-tab-button') || undefined;
-    const tabSelectedElement = ionTabBar.querySelector('ion-tab-button.tab-selected');
+  const onStartGesture = (detail: GestureDetail): boolean | undefined => {
+    currentTouchedElement = ((detail.event.target as HTMLElement).closest(effectTagName) as HTMLElement) || undefined;
+    const tabSelectedElement = targetElement.querySelector(`${effectTagName}.${selectedClassName}`);
     if (currentTouchedElement === undefined || tabSelectedElement === null) {
       return false;
     }
-    tabEffectPositionY = tabSelectedElement.getBoundingClientRect().top;
+    effectElementPositionY = tabSelectedElement.getBoundingClientRect().top;
 
     const startTransform = getTransform(
       tabSelectedElement.getBoundingClientRect().left + tabSelectedElement.clientWidth / 2,
-      tabEffectPositionY,
+      effectElementPositionY,
       tabSelectedElement,
     );
     const middleTransform = getTransform(
       (tabSelectedElement.getBoundingClientRect().left + tabSelectedElement.clientWidth / 2 + detail.currentX) / 2,
-      tabEffectPositionY,
+      effectElementPositionY,
       currentTouchedElement,
     );
-    const endTransform = getTransform(detail.currentX, tabEffectPositionY, currentTouchedElement);
-    const tabButtonAnimation = createAnimation();
-    tabButtonAnimation
-      .addElement(tabEffectElement)
+    const endTransform = getTransform(detail.currentX, effectElementPositionY, currentTouchedElement);
+    const enterAnimation = createAnimation();
+    enterAnimation
+      .addElement(effectElement)
       .delay(70)
       .beforeStyles({
         width: `${tabSelectedElement.clientWidth}px`,
@@ -90,13 +103,13 @@ export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture | undefine
       })
       .beforeAddWrite(() => {
         tabSelectedElement.childNodes.forEach((node) => {
-          tabEffectElement.appendChild(node.cloneNode(true));
+          effectElement.appendChild(node.cloneNode(true));
         });
         currentTouchedElement!.classList.add('ion-activated');
       });
 
     if (currentTouchedElement === tabSelectedElement) {
-      tabButtonAnimation
+      enterAnimation
         .keyframes([
           {
             transform: `${startTransform} ${MinScale}`,
@@ -117,7 +130,7 @@ export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture | undefine
         .duration(120);
       gestureMoveStartTime = detail.currentTime + 120;
     } else {
-      tabButtonAnimation
+      enterAnimation
         .keyframes([
           {
             transform: `${startTransform} ${MinScale}`,
@@ -148,20 +161,24 @@ export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture | undefine
         .duration(480);
       gestureMoveStartTime = detail.currentTime + 480;
     }
-    tabButtonAnimation.play();
+    enterAnimation.play();
     return true;
   };
 
-  const moveTabButtonAnimation = (detail: GestureDetail): boolean | undefined => {
+  const onMoveGesture = (detail: GestureDetail): boolean | undefined => {
     if (currentTouchedElement === undefined || (gestureMoveStartTime && detail.currentTime < gestureMoveStartTime)) {
       return true; // Skip Animation
     }
 
-    const transform = getTransform(detail.currentX, tabEffectPositionY!, currentTouchedElement);
+    const transform = getTransform(detail.currentX, effectElementPositionY!, currentTouchedElement);
 
-    const tabButtonAnimation = createAnimation();
-    tabButtonAnimation.addElement(tabEffectElement);
-    tabButtonAnimation.duration(50).keyframes([
+    // Move用のアニメーションオブジェクトを初回のみ作成し、再利用する
+    if (!moveAnimation) {
+      moveAnimation = createAnimation();
+      moveAnimation.addElement(effectElement).duration(50);
+    }
+
+    moveAnimation.keyframes([
       {
         transform: `${transform} ${MaxScale}`,
       },
@@ -169,27 +186,26 @@ export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture | undefine
         transform: `${transform} ${MaxScale}`,
       },
     ]);
-    tabButtonAnimation.play();
+    moveAnimation.play();
     return true;
   };
 
-  const leaveTabButtonAnimation = (detail: GestureDetail): boolean | undefined => {
+  const onEndGesture = (detail: GestureDetail): boolean | undefined => {
     if (currentTouchedElement === undefined) {
       return false;
     }
 
     const endTransform = getTransform(
       currentTouchedElement.getBoundingClientRect().left + currentTouchedElement.clientWidth / 2,
-      tabEffectPositionY!,
+      effectElementPositionY!,
       currentTouchedElement,
     );
 
-    const tabButtonAnimation = createAnimation();
-    tabButtonAnimation.addElement(tabEffectElement);
-    tabButtonAnimation
-      .delay(gestureMoveStartTime! - detail.currentTime)
+    const leaveAnimation = createAnimation();
+    leaveAnimation.addElement(effectElement);
+    leaveAnimation
       .onFinish(() => clearActivated(true))
-      .duration(50)
+      .duration(140)
       .keyframes([
         {
           transform: `${endTransform} ${MaxScale}`,
@@ -200,7 +216,12 @@ export const registerTabBarEffect = (ionTabBar: HTMLElement): Gesture | undefine
           opacity: 0,
         },
       ]);
-    tabButtonAnimation.play();
+    (async () => {
+      if (gestureMoveStartTime && detail.currentTime < gestureMoveStartTime) {
+        await new Promise((resolve) => setTimeout(resolve, gestureMoveStartTime! - detail.currentTime));
+      }
+      leaveAnimation.play();
+    })();
     return true;
   };
 
