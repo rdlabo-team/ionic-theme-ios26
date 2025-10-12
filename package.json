@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "build": "npm run build:css && npm run build:ts",
-    "build:css": "rm -rf dist/css && sass src:dist/css --style=compressed --no-source-map",
+    "build:css": "rm -rf dist/css && sass src/styles:dist/css --style=compressed --no-source-map",
     "build:ts": "tsc",
     "build:demo": "npm run build && cd demo && npm install && npm run build -- --configuration=production",
     "prepare": "husky install",

@@ -36,11 +36,11 @@
 //@use '@ionic/angular/css/palettes/dark.system.css';
 @use '@ionic/angular/css/palettes/dark.class.css';
 
-@use '../../src/default-variables';
-@use '../../src/ionic-theme-ios26';
-@use '../../src/ionic-theme-ios26-dark-class';
-@use '../../src/md-ion-list-inset';
-@use '../../src/md-remove-ios-class-effect';
+@use '../../src/styles/default-variables';
+@use '../../src/styles/ionic-theme-ios26';
+@use '../../src/styles/ionic-theme-ios26-dark-class';
+@use '../../src/styles/md-ion-list-inset';
+@use '../../src/styles/md-remove-ios-class-effect';
 
 :root {
   --ios26-content-box-shadow-rgb: var(--ion-color-light-rgb);
