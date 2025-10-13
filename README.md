@@ -184,6 +184,7 @@ Always (Always Dark Mode):
 @include theme-dark.ion-button;
 @include theme-dark.ion-fab;
 @include theme-dark.ion-tabs;
+@include theme-dark.ion-segment;
 ```
 
 System (Follow System Settings):
@@ -197,6 +198,7 @@ System (Follow System Settings):
     @include theme-dark.ion-button;
     @include theme-dark.ion-fab;
     @include theme-dark.ion-tabs;
+    @include theme-dark.ion-segment;
 }
 ```
 
