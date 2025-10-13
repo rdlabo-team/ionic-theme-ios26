@@ -23,7 +23,7 @@
   </ion-list>
 
   <ion-list [inset]="true">
-    <ion-list-header><ion-label>Ready</ion-label></ion-list-header>
+    <ion-list-header><ion-label>Components</ion-label></ion-list-header>
     <ion-item-group>
       @for (item of enableComponents(); track item.name) {
         <ion-item [button]="true" (click)="navigateComponent(item)">
@@ -31,6 +31,5 @@
         </ion-item>
       }
     </ion-item-group>
-    <ion-note>These components have largely finalized their APIs. However, please note that they are not yet stable.</ion-note>
   </ion-list>
 </ion-content>
