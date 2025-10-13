@@ -2,13 +2,19 @@
 
 @mixin ion-tabs {
   ion-tab-bar.ios:not(.ios26-disabled) {
-    ion-tab-button {
-      &.ion-activated {
-        ion-label,
-        ion-icon {
-          filter: brightness(118%);
-          opacity: 0.95;
-        }
+  }
+  ion-tab-button.ios:not(.ios26-disabled) {
+    &.ion-activated {
+      ion-label,
+      ion-icon {
+        filter: brightness(118%);
+        opacity: 0.95;
+      }
+    }
+    &.ion-cloned-element {
+      &::part(native) {
+        --ios26-glass-border-color-rgb: 120, 120, 120;
+        box-shadow: inset 0 0 8px 0 rgba(255, 255, 255, 0.2);
       }
     }
   }

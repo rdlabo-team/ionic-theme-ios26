@@ -209,6 +209,7 @@ Class (Toggle with CSS Class):
     @include theme-dark.ion-button;
     @include theme-dark.ion-fab;
     @include theme-dark.ion-tabs;
+    @include theme-dark.ion-segment;
 }
 ```
 

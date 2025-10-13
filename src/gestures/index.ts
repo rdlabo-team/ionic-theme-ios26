@@ -59,7 +59,7 @@ export const registerEffect = (
       gestureName: `${GESTURE_NAME}_${effectTagName}_${crypto.randomUUID()}`,
       onStart: (event) => onStartGesture(event),
       onMove: (event) => onMoveGesture(event),
-      onEnd: (event) => onEndGesture(),
+      onEnd: () => onEndGesture(),
     });
     gesture.enable(true);
   };
