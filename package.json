@@ -10,7 +10,7 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./css/*": "./dist/css/*"
+    "./dist/css/*": "./dist/css/*"
   },
   "files": [
     "dist",
