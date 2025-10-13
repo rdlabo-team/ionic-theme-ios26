@@ -81,11 +81,35 @@ ion-textarea label.textarea-wrapper {
 }
 ```
 
-### Additional Customization
+### Additional Design
 
-To achieve higher fidelity to iOS26 design, you can implement additional customizations provided by this library. For more details, please visit:
+To achieve higher fidelity to iOS26 design, you can implement additional design provided by this library. For more details, please visit:
 
 https://ionic-theme-ios26.netlify.app/main/docs
+
+
+### Experimental: Using Gesture Animation with `ion-tab-button` / `ion-segment-button`
+
+__This feature is experimental. The library can be used without this feature.__
+
+By registering `ion-tab-bar` / `ion-segment`, you can display animation effects on `ion-tab-button` / `ion-segment-button`
+
+```js
+import { registerTabBarEffect, registerSegmentEffect } from '@rdlabo/ionic-theme-ios26';
+
+const registeredTabBarEffect = registerTabBarEffect(document.querySelector<HTMLElement>('ion-tab-bar'));
+const registeredSegmentEffect = registerSegmentEffect(document.querySelector<HTMLElement>('ion-segment'));
+
+const destroy = () => {
+  /**
+   * If the registered DOM element is removed (e.g., due to page navigation),
+   * make sure to destroy the gesture and animation. This will also remove the event listeners.
+   * You can re-register them if needed.
+   */
+  registeredTabBarEffect?.destroy();
+  registeredSegmentEffect?.destroy();
+}
+```
 
 
 ## Important Notes
@@ -129,30 +153,6 @@ You can see the difference in the following video. The first example shows `ion-
 [![Image from Gyazo](https://i.gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73.gif)](https://gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73)
 
 This is a known issue that has been shared with the Ionic team. We will update this library accordingly once Ionic Core addresses it.
-
-
-### Experimental: Using Gesture Animation with IonTabButton / IonSegmentButton
-
-__This feature is experimental. The library can be used without this feature.__
-
-By registering IonTabBar / IonSegment, you can display animation effects on IonTabButton / IonSegmentButton.
-
-```js
-import { registerTabBarEffect, registerSegmentEffect } from '@rdlabo/ionic-theme-ios26';
-
-const registeredTabBarEffect = registerTabBarEffect(document.querySelector<HTMLElement>('ion-tab-bar'));
-const registeredSegmentEffect = registerSegmentEffect(document.querySelector<HTMLElement>('ion-segment'));
-
-const destroy = () => {
-  /**
-   * If the registered DOM element is removed (e.g., due to page navigation),
-   * make sure to destroy the gesture and animation. This will also remove the event listeners.
-   * You can re-register them if needed.
-   */
-  registeredTabBarEffect?.destroy();
-  registeredSegmentEffect?.destroy();
-}
-```
 
 
 ## Migration Support
