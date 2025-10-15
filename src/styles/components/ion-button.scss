@@ -175,6 +175,16 @@ $scaleup-large-icon-only: 1.22;
    * fill=solid && type=submit button has edge brightness.
    */
   &.button-solid[type='submit'] {
+    /*
+     * If not set ion-color-**, button color set primary.
+     * https://github.com/ionic-team/ionic-framework/blob/main/core/src/components/button/button.scss#L78-L81
+     */
+    --color: var(--ion-color-primary-brightness, var(--ion-color-contrast));
+    --color-activated: var(--ion-color-primary-brightness);
+    --border-color: var(--ion-color-primary-brightness, transparent);
+    --border-width: 0.5px;
+    --border-style: solid;
+
     @each $item in primary, secondary, tertiary, success, warning, danger, light, medium, dark {
       &.ion-color-#{$item} {
         --color: var(--ion-color-#{$item}-brightness, var(--ion-color-contrast));
