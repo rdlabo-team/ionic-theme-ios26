@@ -38,6 +38,12 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
  */
 @import '@rdlabo/ionic-theme-ios26/dist/css/md-remove-ios-class-effect.css';
 
+/**
+ * If you will use the design of ion-item-group with ion-list on Android as well, import it.
+ * More info: https://github.com/rdlabo-team/ionic-theme-ios26/blob/main/USING_ION_ITEM_GROUP.md
+ * @import '@rdlabo/ionic-theme-ios26/dist/css/md-ion-list-inset.css';
+ */
+
 /*
  * Support Dark Mode
  * We support Ionic Dark Mode. More information is here: https://ionicframework.com/docs/theming/dark-mode
@@ -97,6 +103,9 @@ By registering `ion-tab-bar` / `ion-segment`, you can display animation effects 
 ```js
 import { registerTabBarEffect, registerSegmentEffect } from '@rdlabo/ionic-theme-ios26';
 
+/**
+ * Register DOM elements. Effects are applied using Ionic Gesture and Ionic Animation.
+ */
 const registeredTabBarEffect = registerTabBarEffect(document.querySelector<HTMLElement>('ion-tab-bar'));
 const registeredSegmentEffect = registerSegmentEffect(document.querySelector<HTMLElement>('ion-segment'));
 
