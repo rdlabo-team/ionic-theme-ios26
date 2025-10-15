@@ -47,9 +47,9 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
 /*
  * Support Dark Mode
  * We support Ionic Dark Mode. More information is here: https://ionicframework.com/docs/theming/dark-mode
- * use Always:    @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-always.css'
- * use System:    @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-system.css'
- * use CSS Class: @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-dark-class.css'
+ * use Always:    @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26-dark-always.css'
+ * use System:    @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26-dark-system.css'
+ * use CSS Class: @import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26-dark-class.css'
  */
 ```
 
