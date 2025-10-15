@@ -80,7 +80,7 @@ Add the `.ios26-disabled` class to disable the iOS26 theme on specific component
 Import the SCSS files from the main package to use the liquid glass mixin.
 
 ```scss
-@use '@rdlabo/ionic-theme-ios26/src/styles/utils/api';
+@use '@rdlabo/ionic-theme-ios26/src/styles/utils/api.scss';
 
 ion-textarea label.textarea-wrapper {
   @include api.glass-background;
