@@ -25,12 +25,10 @@ ion-toolbar.ios:not(.toolbar-title-large):not(.ios26-disabled):not(:has(ion-segm
   --min-height: 68px;
 }
 
-ion-toolbar.ios:not(.ios26-disabled):has(ion-searchbar.ios:not(.ios26-disabled)) {
-  ion-buttons {
-    margin-top: 11px;
-  }
-  & > ion-button {
-    margin-top: 11px;
+ion-toolbar.ios:not(.ios26-disabled).toolbar-searchbar {
+  *[slot='start'],
+  *[slot='end'] {
+    align-self: center;
   }
 }
 
