@@ -187,7 +187,7 @@ $scaleup-large-icon-only: 1.22;
 
     @each $item in primary, secondary, tertiary, success, warning, danger, light, medium, dark {
       &.ion-color-#{$item} {
-        --color: var(--ion-color-#{$item}-brightness, var(--ion-color-contrast));
+        --color: var(--ion-color-#{$item}-brightness, var(--ion-color-#{$item}-contrast, var(--ion-color-contrast)));
         --color-activated: var(--ion-color-#{$item}-brightness);
         --border-color: var(--ion-color-#{$item}-brightness, transparent);
         --border-width: 0.5px;
