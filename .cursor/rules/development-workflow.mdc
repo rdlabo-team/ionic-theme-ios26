@@ -8,25 +8,36 @@ alwaysApply: true
 ## ディレクトリ構造の詳細
 
 ### src/ ディレクトリ
-- **src/components/**: 個別のIonicコンポーネント用のSCSSファイル
-  - [ion-button.scss](mdc:src/components/ion-button.scss): ボタンスタイル
-  - [ion-list.scss](mdc:src/components/ion-list.scss): リストスタイル
-  - [ion-popover.scss](mdc:src/components/ion-popover.scss): ポップオーバースタイル
-  - [ion-searchbar.scss](mdc:src/components/ion-searchbar.scss): 検索バースタイル
-  - [ion-tabs.scss](mdc:src/components/ion-tabs.scss): タブスタイル
-  - [ion-toggle.scss](mdc:src/components/ion-toggle.scss): トグルスタイル
+- **src/styles/**: スタイル関連ファイル
+  - **src/styles/components/**: 個別のIonicコンポーネント用のSCSSファイル
+    - [ion-button.scss](mdc:src/styles/components/ion-button.scss): ボタンスタイル
+    - [ion-list.scss](mdc:src/styles/components/ion-list.scss): リストスタイル
+    - [ion-popover.scss](mdc:src/styles/components/ion-popover.scss): ポップオーバースタイル
+    - [ion-searchbar.scss](mdc:src/styles/components/ion-searchbar.scss): 検索バースタイル
+    - [ion-tabs.scss](mdc:src/styles/components/ion-tabs.scss): タブスタイル
+    - [ion-toggle.scss](mdc:src/styles/components/ion-toggle.scss): トグルスタイル
+    - その他多数のコンポーネントスタイル
 
-- **src/utils/**: ユーティリティファイル
-  - [api.scss](mdc:src/utils/api.scss): API関連ユーティリティ
-  - [theme-dark.scss](mdc:src/utils/theme-dark.scss): ダークテーマ用ユーティリティ
-  - [theme-list-inset.scss](mdc:src/utils/theme-list-inset.scss): インセットリスト用ユーティリティ
-  - [translucent.scss](mdc:src/utils/translucent.scss): 半透明効果用ユーティリティ
+  - **src/styles/utils/**: ユーティリティファイル
+    - [api.scss](mdc:src/styles/utils/api.scss): API関連ユーティリティ
+    - [theme-dark.scss](mdc:src/styles/utils/theme-dark.scss): ダークテーマ用ユーティリティ
+    - [theme-list-inset.scss](mdc:src/styles/utils/theme-list-inset.scss): インセットリスト用ユーティリティ
+    - [translucent.scss](mdc:src/styles/utils/translucent.scss): 半透明効果用ユーティリティ
+    - **src/styles/utils/dark/**: ダークテーマ専用コンポーネントスタイル
 
-- **src/**: ルートレベルのファイル
-  - [default-variables.scss](mdc:src/default-variables.scss): デフォルト変数定義
-  - [md-ion-list-inset.scss](mdc:src/md-ion-list-inset.scss): Material Design用インセットリスト
+  - **src/styles/**: ルートレベルのファイル
+    - [default-variables.scss](mdc:src/styles/default-variables.scss): デフォルト変数定義
+    - [ionic-theme-ios26.scss](mdc:src/styles/ionic-theme-ios26.scss): メインのSCSSファイル（全てのコンポーネントを統合）
+    - [ionic-theme-ios26-dark-*.scss](mdc:src/styles/): ダークテーマ用SCSSファイル
+    - [md-ion-list-inset.scss](mdc:src/styles/md-ion-list-inset.scss): Material Design用インセットリスト
+    - [md-remove-ios-class-effect.scss](mdc:src/styles/md-remove-ios-class-effect.scss): iOSクラス効果削除用
 
-- **src/ionic-theme-ios26.scss**: メインのSCSSファイル（全てのコンポーネントを統合）
+- **src/gestures/**: ジェスチャー関連のTypeScriptファイル
+  - [index.ts](mdc:src/gestures/index.ts): ジェスチャー機能のエントリーポイント
+  - [interfaces.ts](mdc:src/gestures/interfaces.ts): ジェスチャー関連の型定義
+  - [utils.ts](mdc:src/gestures/utils.ts): ジェスチャー関連のユーティリティ関数
+
+- **src/index.ts**: メインのエクスポートファイル
 
 ### demo/ ディレクトリ
 - Angular 20ベースのデモアプリケーション
@@ -35,7 +46,14 @@ alwaysApply: true
 
 ## 開発時の注意事項
 
-1. **SCSSファイルの編集**: `src/` ディレクトリ内のSCSSファイルを編集
-2. **コンパイル**: 変更後は適切なビルドコマンドでCSSファイルを生成
-3. **確認**: `demo/` アプリケーションでスタイルの動作確認
-4. **ドキュメント**: READMEは英語で記述（OSS配布のため）
+1. **SCSSファイルの編集**: `src/styles/` ディレクトリ内のSCSSファイルを編集
+2. **ジェスチャー機能の編集**: `src/gestures/` ディレクトリ内のTypeScriptファイルを編集
+3. **コンパイル**: 変更後は適切なビルドコマンドでCSSファイルとJSファイルを生成
+4. **確認**: `demo/` アプリケーションでスタイルとジェスチャーの動作確認
+5. **ドキュメント**: READMEは英語で記述（OSS配布のため）
+
+## ビルド出力
+
+- **CSS出力**: `dist/css/` ディレクトリにコンパイル済みCSSファイル
+- **JS出力**: `dist/` ディレクトリにコンパイル済みTypeScriptファイル
+- **型定義**: `dist/` ディレクトリにTypeScript型定義ファイル（.d.ts）

@@ -8,16 +8,21 @@ globs: *.scss,*.css,package.json
 ## ビルドプロセス
 
 ### ソースファイル
-- **入力**: `src/` ディレクトリ内のSCSSファイル
-- **メインファイル**: [src/ionic-theme-ios26.scss](mdc:src/ionic-theme-ios26.scss)
+- **入力**: `src/styles/` ディレクトリ内のSCSSファイル
+- **メインファイル**: [src/styles/ionic-theme-ios26.scss](mdc:src/styles/ionic-theme-ios26.scss)
 
 ### 出力ファイル
-- **出力**: `dist/css/` ディレクトリ内のCSSファイル
-- **生成ファイル**: 
-  - [dist/css/ionic-theme-ios26.min.css](mdc:dist/css/ionic-theme-ios26.min.css): メインCSSファイル（圧縮版）
-  - [dist/css/ionic-theme-ios26.min.css.map](mdc:dist/css/ionic-theme-ios26.min.css.map): ソースマップ
-  - [dist/css/md-ion-list-inset.min.css](mdc:dist/css/md-ion-list-inset.min.css): インセットリスト専用CSS（圧縮版）
-  - [dist/css/md-ion-list-inset.min.css.map](mdc:dist/css/md-ion-list-inset.min.css.map): ソースマップ
+- **CSS出力**: `dist/css/` ディレクトリ内のCSSファイル
+  - [dist/css/ionic-theme-ios26.css](mdc:dist/css/ionic-theme-ios26.css): メインCSSファイル
+  - [dist/css/ionic-theme-ios26-dark-*.css](mdc:dist/css/): ダークテーマ用CSSファイル
+  - [dist/css/md-ion-list-inset.css](mdc:dist/css/md-ion-list-inset.css): インセットリスト専用CSS
+  - [dist/css/components/](mdc:dist/css/components/): 個別コンポーネントCSSファイル
+  - [dist/css/utils/](mdc:dist/css/utils/): ユーティリティCSSファイル
+
+- **TypeScript出力**: `dist/` ディレクトリ内のJSファイル
+  - [dist/index.js](mdc:dist/index.js): メインJSファイル
+  - [dist/gestures/](mdc:dist/gestures/): ジェスチャー関連JSファイル
+  - [dist/*.d.ts](mdc:dist/): TypeScript型定義ファイル
 
 ## コンパイル時の注意事項
 
@@ -28,7 +33,9 @@ globs: *.scss,*.css,package.json
 
 ## ファイル構造の一貫性
 
-- SCSSファイルは`src/`に配置
+- SCSSファイルは`src/styles/`に配置
+- TypeScriptファイルは`src/gestures/`に配置
 - コンパイル後のCSSファイルは`dist/css/`に配置
+- コンパイル後のJSファイルは`dist/`に配置
 - デモアプリケーションは`demo/`に配置
 - スクリーンショットなどのリソースは`screenshots/`に配置

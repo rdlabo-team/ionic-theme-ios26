@@ -9,13 +9,17 @@ alwaysApply: true
 
 ## プロジェクト構造
 
-- **src/**: コンパイル前のSCSSファイルが配置されます
-- **css/**: コンパイル後のCSSファイルが配置されます
+- **src/styles/**: コンパイル前のSCSSファイルが配置されます
+- **src/gestures/**: ジェスチャー機能のTypeScriptファイルが配置されます
+- **dist/css/**: コンパイル後のCSSファイルが配置されます
+- **dist/**: コンパイル後のJavaScriptファイルと型定義ファイルが配置されます
 - **demo/**: 開発と確認に用いるAngularプロジェクトです
 
 ## 主要なファイル
 
 - [package.json](mdc:package.json): プロジェクトの依存関係とビルドスクリプト
-- [src/ionic-theme-ios26.scss](mdc:src/ionic-theme-ios26.scss): メインのSCSSファイル
+- [src/styles/ionic-theme-ios26.scss](mdc:src/styles/ionic-theme-ios26.scss): メインのSCSSファイル
+- [src/gestures/index.ts](mdc:src/gestures/index.ts): ジェスチャー機能のエントリーポイント
+- [src/index.ts](mdc:src/index.ts): ライブラリのメインエクスポートファイル
 - [demo/](mdc:demo/): Angularデモアプリケーション
 - [README.md](mdc:README.md): プロジェクトの説明（英語）

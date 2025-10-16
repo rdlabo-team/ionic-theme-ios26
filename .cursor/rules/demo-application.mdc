@@ -11,14 +11,24 @@ globs: demo/**/*
 
 ## 主要なコンポーネント
 
-### ページコンポーネント
+### メインページコンポーネント
 - [album-page.component](mdc:demo/src/app/album/): アルバムページ（リスト表示の確認）
-- [health-page.component](mdc:demo/src/app/health/): ヘルスページ（ヘルス関連UIの確認）
+- [index-page.component](mdc:demo/src/app/index/): メインインデックスページ
+- [docs-page.component](mdc:demo/src/app/docs/): ドキュメントページ
 - [settings-page.component](mdc:demo/src/app/settings/): 設定ページ（設定UIの確認）
-- [simple-page.component](mdc:demo/src/app/simple/): シンプルページ（基本的なコンポーネントの確認）
 
 ### ナビゲーション
 - [tabs.page](mdc:demo/src/app/tabs/): タブベースのナビゲーション
+
+### 個別コンポーネントデモページ
+- [demo/src/app/index/pages/](mdc:demo/src/app/index/pages/): 各Ionicコンポーネントのデモページ
+  - [button.page](mdc:demo/src/app/index/pages/button/): ボタンコンポーネントのデモ
+  - [card.page](mdc:demo/src/app/index/pages/card/): カードコンポーネントのデモ
+  - [item-list.page](mdc:demo/src/app/index/pages/item-list/): アイテムリストのデモ
+  - [tabs.page](mdc:demo/src/app/index/pages/tabs/): タブコンポーネントのデモ
+  - [searchbar.page](mdc:demo/src/app/index/pages/searchbar/): 検索バーのデモ
+  - [popover.page](mdc:demo/src/app/index/pages/popover/): ポップオーバーのデモ
+  - その他多数のコンポーネントデモページ
 
 ## テーマファイル
 
@@ -29,7 +39,8 @@ globs: demo/**/*
 
 1. **開発サーバー起動**: `cd demo && npm start` または `ionic serve`
 2. **テーマ確認**: 各ページでiOS26テーマの適用状況を確認
-3. **スタイル調整**: `src/` のSCSSファイルを編集後、デモアプリで確認
+3. **スタイル調整**: `src/styles/` のSCSSファイルを編集後、デモアプリで確認
+4. **ジェスチャー機能確認**: `src/gestures/` のTypeScriptファイルを編集後、デモアプリで確認
 
 ## 設定ファイル
 
