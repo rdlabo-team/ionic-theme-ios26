@@ -12,17 +12,24 @@ export const cloneElement = (tagName: string): HTMLElement => {
   return clonedEl;
 };
 
-export const getTransform = (detailCurrentX: number, tabEffectElY: number, tabSelectedActual: Element): string => {
+export const getTransform = (
+  detailCurrentX: number,
+  effectPositionY: number,
+  selectedElement: Element,
+  targetElement: Element | undefined = undefined,
+): string => {
   const diff = -2;
-  const currentX = detailCurrentX - tabSelectedActual.clientWidth / 2;
-  const maxLeft = tabSelectedActual.getBoundingClientRect().left + diff;
-  const maxRight = tabSelectedActual.getBoundingClientRect().right - diff - tabSelectedActual.clientWidth;
+  const currentX = detailCurrentX - selectedElement.clientWidth / 2;
+  const maxLeft = targetElement ? targetElement.getBoundingClientRect().left : selectedElement.getBoundingClientRect().left + diff;
+  const maxRight = targetElement
+    ? targetElement.getBoundingClientRect().right - selectedElement.clientWidth
+    : selectedElement.getBoundingClientRect().right - diff - selectedElement.clientWidth;
 
   if (maxLeft < currentX && currentX < maxRight) {
-    return `translate3d(${currentX}px, ${tabEffectElY}px, 0)`;
+    return `translate3d(${currentX}px, ${effectPositionY}px, 0)`;
   }
   if (maxLeft > currentX) {
-    return `translate3d(${maxLeft}px, ${tabEffectElY}px, 0)`;
+    return `translate3d(${maxLeft}px, ${effectPositionY}px, 0)`;
   }
-  return `translate3d(${maxRight}px, ${tabEffectElY}px, 0)`;
+  return `translate3d(${maxRight}px, ${effectPositionY}px, 0)`;
 };

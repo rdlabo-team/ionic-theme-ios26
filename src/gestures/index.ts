@@ -21,13 +21,18 @@ export const registerEffect = (
   let moveAnimation: Animation | undefined;
   let currentTouchedElement: HTMLElement | undefined;
   let animationLatestX: number | undefined;
-  let effectElementPositionY: number | undefined;
+  let scaleElement: HTMLElement | undefined;
+  let effectPositionY: number | undefined;
 
   let enterAnimationPromise: Promise<void> | undefined;
   let moveAnimationPromise: Promise<void> | undefined;
   let clearActivatedTimer: ReturnType<typeof setTimeout> | undefined;
-
   const effectElement = cloneElement(effectTagName);
+
+  /**
+   * Wait to render.
+   */
+  requestAnimationFrame(() => (scaleElement = effectElement.shadowRoot!.querySelector<HTMLElement>('[part="native"]') || undefined));
 
   /**
    * These event listeners fix a bug where gestures don't complete properly.
@@ -65,159 +70,86 @@ export const registerEffect = (
   };
   createAnimationGesture();
 
+  const animation = createAnimation()
+    .onFinish(() => {
+      currentTouchedElement!.classList.remove('ion-activated');
+      clearActivated();
+    })
+    .duration(500);
+
   const clearActivated = () => {
     if (!currentTouchedElement) {
       return;
     }
-    requestAnimationFrame(() => {
-      effectElement.style.display = 'none';
-      effectElement.innerHTML = '';
-      effectElement.style.transform = 'none';
-    });
-
-    targetElement.classList.remove(ANIMATED_NAME);
+    currentTouchedElement!.click();
     currentTouchedElement = undefined;
+    effectElement.style.display = 'none';
+    effectElement.innerHTML = '';
+    effectElement.style.transform = 'none';
+    effectElement.style.opacity = '0';
+    effectElement.style.background = 'red';
+    targetElement.classList.remove(ANIMATED_NAME);
     moveAnimation = undefined; // 次回のために破棄
     moveAnimationPromise = undefined;
     enterAnimationPromise = undefined; // 次回のためにリセット
   };
 
+  let animationRange: [number, number, number] | undefined = undefined;
+
   const onStartGesture = (detail: GestureDetail): boolean | undefined => {
-    enterAnimationPromise = undefined;
     currentTouchedElement = ((detail.event.target as HTMLElement).closest(effectTagName) as HTMLElement) || undefined;
     const tabSelectedElement = targetElement.querySelector(`${effectTagName}.${selectedClassName}`);
     if (currentTouchedElement === undefined || tabSelectedElement === null) {
       return false;
     }
-    effectElementPositionY = tabSelectedElement.getBoundingClientRect().top;
-
-    const startTransform = getTransform(
-      tabSelectedElement.getBoundingClientRect().left + tabSelectedElement.clientWidth / 2,
-      effectElementPositionY,
-      tabSelectedElement,
-    );
-    const middleTransform = getTransform(
-      (tabSelectedElement.getBoundingClientRect().left + tabSelectedElement.clientWidth / 2 + detail.currentX) / 2,
-      effectElementPositionY,
-      currentTouchedElement,
-    );
-    const endTransform = getTransform(detail.currentX, effectElementPositionY, currentTouchedElement);
-    const enterAnimation = createAnimation();
-    enterAnimation
+    effectPositionY = tabSelectedElement.getBoundingClientRect().top;
+    animationRange = [
+      targetElement.getBoundingClientRect().left,
+      targetElement.getBoundingClientRect().right - tabSelectedElement.clientWidth,
+      tabSelectedElement.clientWidth,
+    ];
+    animation
       .addElement(effectElement)
-      .delay(70)
       .beforeStyles({
         width: `${tabSelectedElement.clientWidth}px`,
         height: `${tabSelectedElement.clientHeight}px`,
         display: 'block',
+        opacity: '1',
       })
-      .beforeAddWrite(() => {
-        tabSelectedElement.childNodes.forEach((node) => {
-          effectElement.appendChild(node.cloneNode(true));
-        });
-        targetElement.classList.add(ANIMATED_NAME);
-        currentTouchedElement!.classList.add('ion-activated');
-        currentTouchedElement!.click();
-      });
-
-    if (currentTouchedElement === tabSelectedElement) {
-      enterAnimation
-        .keyframes([
-          {
-            transform: `${startTransform} ${scales.small}`,
-            opacity: 1,
-            offset: 0,
-          },
-          {
-            transform: `${middleTransform} ${scales.large}`,
-            opacity: 1,
-            offset: 0.6,
-          },
-          {
-            transform: `${endTransform} ${scales.medium}`,
-            opacity: 1,
-            offset: 1,
-          },
-        ])
-        .duration(160);
-    } else {
-      enterAnimation
-        .keyframes([
-          {
-            transform: `${startTransform} ${scales.small}`,
-            opacity: 1,
-            offset: 0,
-          },
-          {
-            transform: `${middleTransform} ${scales.large}`,
-            opacity: 1,
-            offset: 0.65,
-          },
-          {
-            transform: `${endTransform} ${scales.medium}`,
-            opacity: 1,
-            offset: 1,
-          },
-        ])
-        .duration(280);
-    }
-    animationLatestX = detail.currentX;
-    enterAnimationPromise = enterAnimation.play().then(() => {
-      enterAnimationPromise = undefined;
-    });
+      .fromTo(
+        'transform',
+        `translate3d(${animationRange[0]}px, ${effectPositionY}px, 0)`,
+        `translate3d(${animationRange[1]}px, ${effectPositionY}px, 0)`,
+      )
+      .progressStep(getStep(detail.currentX));
+    animation.progressStart();
     return true;
+  };
+
+  const getStep = (targetX: number) => {
+    if (animationRange === undefined) {
+      return 0;
+    }
+    const currentX = targetX - animationRange[2] / 2;
+    let progress = (currentX - animationRange[0]) / (animationRange[1] - animationRange[0]);
+    progress = Math.max(0, Math.min(1, progress)); // clamp 0〜1
+    return progress;
   };
 
   const onMoveGesture = (detail: GestureDetail): boolean | undefined => {
     if (currentTouchedElement === undefined || enterAnimationPromise || moveAnimationPromise) {
       return true; // Skip Animation
     }
-
-    const startTransform = getTransform(animationLatestX!, effectElementPositionY!, currentTouchedElement);
-    const endTransform = getTransform(detail.currentX, effectElementPositionY!, currentTouchedElement);
-
-    // Move用のアニメーションオブジェクトを初回のみ作成し、再利用する
-    if (!moveAnimation) {
-      moveAnimation = createAnimation();
-      moveAnimation
-        .addElement(effectElement)
-        .duration(800)
-        .easing('ease-in-out')
-        .keyframes([
-          {
-            transform: `${startTransform} ${scales.medium}`,
-            opacity: 1,
-            offset: 0,
-          },
-          {
-            transform: `${startTransform} ${scales.xlarge}`,
-            opacity: 1,
-            offset: 0.2,
-          },
-          {
-            transform: `${endTransform} ${scales.medium}`,
-            opacity: 1,
-            offset: 1,
-          },
-        ]);
-    } else {
-      moveAnimation.duration(0).keyframes([
-        {
-          transform: `${endTransform} ${scales.medium}`,
-          opacity: 1,
-          offset: 1,
-        },
-        {
-          transform: `${endTransform} ${scales.medium}`,
-          opacity: 1,
-          offset: 1,
-        },
-      ]);
+    const latestTouchedElement = ((detail.event.target as HTMLElement).closest(effectTagName) as HTMLElement) || undefined;
+    if (latestTouchedElement && currentTouchedElement !== latestTouchedElement) {
+      currentTouchedElement.classList.remove('ion-activated');
+      currentTouchedElement.classList.remove(selectedClassName);
+      currentTouchedElement = latestTouchedElement;
+      currentTouchedElement.classList.add('ion-activated');
+      currentTouchedElement.classList.add(selectedClassName);
     }
-    animationLatestX = detail.currentX;
-    moveAnimationPromise = moveAnimation.play().then(() => {
-      moveAnimationPromise = undefined;
-    });
+    const step = getStep(detail.currentX);
+    animation.progressStep(step);
     return true;
   };
 
@@ -232,34 +164,10 @@ export const registerEffect = (
       return false;
     }
 
-    const transform = getTransform(animationLatestX!, effectElementPositionY!, currentTouchedElement);
-
-    const leaveAnimation = createAnimation();
-    leaveAnimation.addElement(effectElement);
-    leaveAnimation
-      .onFinish(() => clearActivated())
-      .easing('ease-in')
-      .duration(80)
-      .keyframes([
-        {
-          transform: `${transform} ${scales.medium}`,
-          opacity: 1,
-        },
-        {
-          transform: `${transform} ${scales.small}`,
-          opacity: 0,
-        },
-      ]);
-    (async () => {
-      // Wait for enter animation to complete before playing leave animation
-      if (enterAnimationPromise) {
-        setTimeout(() => currentTouchedElement!.classList.remove('ion-activated'), 50);
-        await enterAnimationPromise;
-      } else {
-        currentTouchedElement!.classList.remove('ion-activated');
-      }
-      leaveAnimation.play();
-    })();
+    const targetX = currentTouchedElement.getBoundingClientRect().left - currentTouchedElement.clientWidth / 2;
+    const step = getStep(targetX);
+    animation.progressStep(step);
+    animation.progressEnd(1, 0);
     return true;
   };
 
