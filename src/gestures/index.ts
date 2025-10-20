@@ -20,12 +20,8 @@ export const registerEffect = (
   let gesture!: Gesture;
   let moveAnimation: Animation | undefined;
   let currentTouchedElement: HTMLElement | undefined;
-  let animationLatestX: number | undefined;
   let scaleElement: HTMLElement | undefined;
   let effectPositionY: number | undefined;
-
-  let enterAnimationPromise: Promise<void> | undefined;
-  let moveAnimationPromise: Promise<void> | undefined;
   let clearActivatedTimer: ReturnType<typeof setTimeout> | undefined;
   const effectElement = cloneElement(effectTagName);
 
@@ -40,14 +36,12 @@ export const registerEffect = (
    */
   const onPointerDown = () => {
     clearActivated();
-    currentTouchedElement?.classList.remove('ion-activated');
     gesture.destroy();
     createAnimationGesture();
   };
   const onPointerUp = (event: PointerEvent) => {
     clearActivatedTimer = setTimeout(() => {
       onEndGesture();
-      currentTouchedElement?.classList.remove('ion-activated');
       gesture.destroy();
       createAnimationGesture();
     });
@@ -70,28 +64,17 @@ export const registerEffect = (
   };
   createAnimationGesture();
 
-  const animation = createAnimation()
-    .onFinish(() => {
-      currentTouchedElement!.classList.remove('ion-activated');
-      clearActivated();
-    })
-    .duration(500);
-
   const clearActivated = () => {
     if (!currentTouchedElement) {
       return;
     }
     currentTouchedElement!.click();
+    currentTouchedElement?.classList.remove('ion-activated');
     currentTouchedElement = undefined;
     effectElement.style.display = 'none';
     effectElement.innerHTML = '';
     effectElement.style.transform = 'none';
-    effectElement.style.opacity = '0';
-    effectElement.style.background = 'red';
     targetElement.classList.remove(ANIMATED_NAME);
-    moveAnimation = undefined; // 次回のために破棄
-    moveAnimationPromise = undefined;
-    enterAnimationPromise = undefined; // 次回のためにリセット
   };
 
   let animationRange: [number, number, number] | undefined = undefined;
@@ -108,7 +91,13 @@ export const registerEffect = (
       targetElement.getBoundingClientRect().right - tabSelectedElement.clientWidth,
       tabSelectedElement.clientWidth,
     ];
-    animation
+
+    moveAnimation = createAnimation()
+      .onFinish(() => {
+        currentTouchedElement!.classList.remove('ion-activated');
+        clearActivated();
+      })
+      .duration(500)
       .addElement(effectElement)
       .beforeStyles({
         width: `${tabSelectedElement.clientWidth}px`,
@@ -122,7 +111,7 @@ export const registerEffect = (
         `translate3d(${animationRange[1]}px, ${effectPositionY}px, 0)`,
       )
       .progressStep(getStep(detail.currentX));
-    animation.progressStart();
+    moveAnimation.progressStart();
     return true;
   };
 
@@ -137,7 +126,7 @@ export const registerEffect = (
   };
 
   const onMoveGesture = (detail: GestureDetail): boolean | undefined => {
-    if (currentTouchedElement === undefined || enterAnimationPromise || moveAnimationPromise) {
+    if (currentTouchedElement === undefined || !moveAnimation) {
       return true; // Skip Animation
     }
     const latestTouchedElement = ((detail.event.target as HTMLElement).closest(effectTagName) as HTMLElement) || undefined;
@@ -149,7 +138,7 @@ export const registerEffect = (
       currentTouchedElement.classList.add(selectedClassName);
     }
     const step = getStep(detail.currentX);
-    animation.progressStep(step);
+    moveAnimation.progressStep(step);
     return true;
   };
 
@@ -160,14 +149,15 @@ export const registerEffect = (
       clearActivatedTimer = undefined;
     }
 
-    if (currentTouchedElement === undefined) {
+    if (currentTouchedElement === undefined || !moveAnimation) {
       return false;
     }
 
     const targetX = currentTouchedElement.getBoundingClientRect().left - currentTouchedElement.clientWidth / 2;
     const step = getStep(targetX);
-    animation.progressStep(step);
-    animation.progressEnd(1, 0);
+    moveAnimation.progressStep(step);
+    clearActivated();
+    moveAnimation.destroy();
     return true;
   };
 
