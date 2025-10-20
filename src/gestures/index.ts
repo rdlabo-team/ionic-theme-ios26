@@ -3,7 +3,7 @@ import { createGesture, GestureDetail } from '@ionic/core';
 import type { Animation } from '@ionic/core/dist/types/utils/animation/animation-interface';
 import { Gesture } from '@ionic/core/dist/types/utils/gesture';
 import { cloneElement, getStep } from './utils';
-import { createMoveAnimation, getScaleAnimation } from './animations';
+import { createMoveAnimation, getMoveAnimationKeyframe, getScaleAnimation } from './animations';
 
 const GESTURE_NAME = 'ios26-enable-gesture';
 const ANIMATED_NAME = 'ios26-animated';
@@ -20,10 +20,10 @@ export const registerEffect = (
 
   let gesture!: Gesture;
   let moveAnimation: Animation | undefined;
-  let scaleAnimation: Animation | undefined;
   let currentTouchedElement: HTMLElement | undefined;
   let clearActivatedTimer: ReturnType<typeof setTimeout> | undefined;
   let animationPosition: AnimationPosition | undefined = undefined;
+  let scaleAnimationPromise: Promise<void> | undefined;
   const effectElement = cloneElement(effectTagName);
 
   /**
@@ -90,18 +90,41 @@ export const registerEffect = (
     targetElement.classList.add(ANIMATED_NAME);
     currentTouchedElement!.classList.add('ion-activated');
     moveAnimation = createMoveAnimation(effectElement, detail, tabSelectedElement, animationPosition);
+    maxVelocity = 0;
     moveAnimation.progressStart();
     moveAnimation.progressStep(getStep(detail.currentX, animationPosition!));
-    getScaleAnimation(effectElement, scales, scaleAnimation).play();
+    getScaleAnimation(effectElement).duration(200).to('opacity', 1).to('transform', scales.large).play();
     return true;
   };
+
+  let maxVelocity = 0;
 
   const onMoveGesture = (detail: GestureDetail): boolean | undefined => {
     if (currentTouchedElement === undefined || !moveAnimation) {
       return false; // Skip Animation
     }
-    // console.log(detail.velocityX);
+    if (scaleAnimationPromise === undefined) {
+      if (Math.abs(detail.velocityX) > maxVelocity) {
+        maxVelocity = Math.abs(detail.velocityX);
+      }
+      if (Math.abs(detail.velocityX) > 0.2) {
+        scaleAnimationPromise = getScaleAnimation(effectElement)
+          .duration(720)
+          .keyframes(getMoveAnimationKeyframe('slowly', scales))
+          .play()
+          .finally(() => (scaleAnimationPromise = undefined));
+      }
+      if (maxVelocity > 0.2 && Math.abs(detail.velocityX) < 0.15 && Math.abs(detail.startX - detail.currentX) > 100) {
+        scaleAnimationPromise = getScaleAnimation(effectElement)
+          .duration(720)
+          .keyframes(getMoveAnimationKeyframe(detail.velocityX > 0 ? 'moveRight' : 'moveLeft', scales))
+          .play()
+          .finally(() => (scaleAnimationPromise = undefined));
+        maxVelocity = 0;
+      }
+    }
     const latestTouchedElement = ((detail.event.target as HTMLElement).closest(effectTagName) as HTMLElement) || undefined;
+
     if (latestTouchedElement && currentTouchedElement !== latestTouchedElement) {
       currentTouchedElement.classList.remove('ion-activated');
       currentTouchedElement.classList.remove(selectedClassName);
@@ -114,8 +137,6 @@ export const registerEffect = (
   };
 
   const onEndGesture = async (): Promise<boolean | undefined> => {
-    await getScaleAnimation(effectElement, scales, scaleAnimation).duration(100).to('transform', `scale(1)`).play();
-
     // タイマーをクリア（正常にonEndGestureが実行された場合）
     if (clearActivatedTimer !== undefined) {
       clearTimeout(clearActivatedTimer);
@@ -126,12 +147,14 @@ export const registerEffect = (
       return false;
     }
 
-    const targetX = currentTouchedElement.getBoundingClientRect().left - currentTouchedElement.clientWidth / 2;
+    const targetX = currentTouchedElement.getBoundingClientRect().left + currentTouchedElement.clientWidth / 2;
     const step = getStep(targetX, animationPosition!);
     moveAnimation.progressStep(step);
+
+    await getScaleAnimation(effectElement).delay(100).duration(100).to('opacity', `0`).to('transform', `scale(1)`).play();
+
     moveAnimation.destroy();
     clearActivated();
-    getScaleAnimation(effectElement, scales, scaleAnimation).pause();
     return true;
   };
 

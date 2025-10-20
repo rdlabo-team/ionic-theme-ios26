@@ -4,10 +4,10 @@ export * from './gestures/interfaces';
 
 export const registerTabBarEffect = (targetElement: HTMLElement): registeredEffect | undefined => {
   return registerEffect(targetElement, 'ion-tab-button', 'tab-selected', {
-    small: 'scale(1.1)',
+    small: 'scale(1.1, 1)',
     medium: 'scale(1.2)',
     large: 'scale(1.3)',
-    xlarge: 'scale(1.3, 1.5)',
+    xlarge: 'scale(1.15, 1.4)',
   });
 };
 

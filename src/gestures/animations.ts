@@ -1,17 +1,10 @@
-import { Animation } from '@ionic/core/dist/types/utils/animation/animation-interface';
+import { Animation, AnimationKeyFrames } from '@ionic/core/dist/types/utils/animation/animation-interface';
 import { AnimationPosition, EffectScales } from './interfaces';
 import { createAnimation, GestureDetail } from '@ionic/core';
 import { getStep } from './utils';
 
-export const getScaleAnimation = (effectElement: Element, scales: EffectScales, scaleAnimation: Animation | undefined): Animation => {
-  if (scaleAnimation === undefined) {
-    scaleAnimation = createAnimation()
-      .addElement(effectElement.shadowRoot!.querySelector<HTMLElement>('[part="native"]')!)
-      .duration(200)
-      .easing('ease-out')
-      .to('transform', `${scales.medium}`);
-  }
-  return scaleAnimation;
+export const getScaleAnimation = (effectElement: Element): Animation => {
+  return createAnimation().addElement(effectElement.shadowRoot!.querySelector<HTMLElement>('[part="native"]')!).easing('ease-out');
 };
 
 export const createMoveAnimation = (
@@ -35,4 +28,59 @@ export const createMoveAnimation = (
       `translate3d(${animationPosition.maxPositionX}px, ${animationPosition.positionY}px, 0)`,
     )
     .progressStep(getStep(detail.currentX, animationPosition));
+};
+
+export const getMoveAnimationKeyframe = (type: 'moveRight' | 'moveLeft' | 'slowly', scales: EffectScales): AnimationKeyFrames => {
+  return {
+    moveRight: [
+      {
+        offset: 0,
+        transform: scales.large,
+      },
+      {
+        offset: 0.4,
+        transform: scales.small,
+      },
+      {
+        offset: 0.75,
+        transform: scales.xlarge,
+      },
+      {
+        offset: 1,
+        transform: scales.large,
+      },
+    ],
+    moveLeft: [
+      {
+        offset: 0,
+        transform: scales.large,
+      },
+      {
+        offset: 0.1,
+        transform: scales.xlarge,
+      },
+      {
+        offset: 0.6,
+        transform: scales.small,
+      },
+      {
+        offset: 1,
+        transform: scales.large,
+      },
+    ],
+    slowly: [
+      {
+        offset: 0,
+        transform: scales.large,
+      },
+      {
+        offset: 0.4,
+        transform: scales.medium,
+      },
+      {
+        offset: 1,
+        transform: scales.large,
+      },
+    ],
+  }[type];
 };
