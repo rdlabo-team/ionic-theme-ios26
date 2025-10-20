@@ -23,3 +23,16 @@ export const getStep = (targetX: number, animationPosition: AnimationPosition) =
   progress = Math.max(0, Math.min(1, progress)); // clamp 0〜1
   return progress;
 };
+
+export const changeSelectedElement = (
+  targetElement: HTMLElement,
+  selectedElement: HTMLElement,
+  effectTagName: string,
+  selectedClassName: string,
+): void => {
+  targetElement.querySelectorAll(effectTagName).forEach((element) => {
+    element.classList.remove(selectedClassName);
+    element.classList.remove('ion-activated');
+  });
+  selectedElement.classList.add(selectedClassName, 'ion-activated');
+};

@@ -2,7 +2,7 @@ import { AnimationPosition, EffectScales, registeredEffect } from './interfaces'
 import { createGesture, GestureDetail } from '@ionic/core';
 import type { Animation } from '@ionic/core/dist/types/utils/animation/animation-interface';
 import { Gesture } from '@ionic/core/dist/types/utils/gesture';
-import { cloneElement, getStep } from './utils';
+import { changeSelectedElement, cloneElement, getStep } from './utils';
 import { createMoveAnimation, getMoveAnimationKeyframe, getScaleAnimation } from './animations';
 
 const GESTURE_NAME = 'ios26-enable-gesture';
@@ -24,6 +24,7 @@ export const registerEffect = (
   let clearActivatedTimer: ReturnType<typeof setTimeout> | undefined;
   let animationPosition: AnimationPosition | undefined = undefined;
   let scaleAnimationPromise: Promise<void> | undefined;
+  let maxVelocity = 0;
   const effectElement = cloneElement(effectTagName);
 
   /**
@@ -36,8 +37,8 @@ export const registerEffect = (
     createAnimationGesture();
   };
   const onPointerUp = (event: PointerEvent) => {
-    clearActivatedTimer = setTimeout(() => {
-      onEndGesture();
+    clearActivatedTimer = setTimeout(async () => {
+      await onEndGesture();
       gesture.destroy();
       createAnimationGesture();
     });
@@ -70,8 +71,7 @@ export const registerEffect = (
     currentTouchedElement?.classList.remove('ion-activated');
     currentTouchedElement = undefined;
     effectElement.style.display = 'none';
-    effectElement.innerHTML = '';
-    effectElement.style.transform = 'none';
+    maxVelocity = 0;
     targetElement.classList.remove(ANIMATED_NAME);
   };
 
@@ -88,16 +88,13 @@ export const registerEffect = (
       positionY: tabSelectedElement.getBoundingClientRect().top,
     };
     targetElement.classList.add(ANIMATED_NAME);
-    currentTouchedElement!.classList.add('ion-activated');
+    changeSelectedElement(targetElement, currentTouchedElement, effectTagName, selectedClassName);
     moveAnimation = createMoveAnimation(effectElement, detail, tabSelectedElement, animationPosition);
-    maxVelocity = 0;
     moveAnimation.progressStart();
     moveAnimation.progressStep(getStep(detail.currentX, animationPosition!));
     getScaleAnimation(effectElement).duration(200).to('opacity', 1).to('transform', scales.large).play();
     return true;
   };
-
-  let maxVelocity = 0;
 
   const onMoveGesture = (detail: GestureDetail): boolean | undefined => {
     if (currentTouchedElement === undefined || !moveAnimation) {
@@ -126,11 +123,8 @@ export const registerEffect = (
     const latestTouchedElement = ((detail.event.target as HTMLElement).closest(effectTagName) as HTMLElement) || undefined;
 
     if (latestTouchedElement && currentTouchedElement !== latestTouchedElement) {
-      currentTouchedElement.classList.remove('ion-activated');
-      currentTouchedElement.classList.remove(selectedClassName);
       currentTouchedElement = latestTouchedElement;
-      currentTouchedElement.classList.add('ion-activated');
-      currentTouchedElement.classList.add(selectedClassName);
+      changeSelectedElement(targetElement, currentTouchedElement, effectTagName, selectedClassName);
     }
     moveAnimation.progressStep(getStep(detail.currentX, animationPosition!));
     return true;

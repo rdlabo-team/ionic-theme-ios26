@@ -21,6 +21,7 @@ export const createMoveAnimation = (
       height: `${tabSelectedElement.clientHeight}px`,
       display: 'block',
       opacity: '1',
+      transform: 'none',
     })
     .fromTo(
       'transform',
