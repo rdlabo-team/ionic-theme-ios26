@@ -1,8 +1,9 @@
-import { EffectScales, registeredEffect } from './interfaces';
-import { createGesture, GestureDetail, createAnimation } from '@ionic/core';
+import { AnimationPosition, EffectScales, registeredEffect } from './interfaces';
+import { createGesture, GestureDetail } from '@ionic/core';
 import type { Animation } from '@ionic/core/dist/types/utils/animation/animation-interface';
 import { Gesture } from '@ionic/core/dist/types/utils/gesture';
-import { cloneElement, getTransform } from './utils';
+import { cloneElement, getStep } from './utils';
+import { createMoveAnimation, getScaleAnimation } from './animations';
 
 const GESTURE_NAME = 'ios26-enable-gesture';
 const ANIMATED_NAME = 'ios26-animated';
@@ -19,16 +20,11 @@ export const registerEffect = (
 
   let gesture!: Gesture;
   let moveAnimation: Animation | undefined;
+  let scaleAnimation: Animation | undefined;
   let currentTouchedElement: HTMLElement | undefined;
-  let scaleElement: HTMLElement | undefined;
-  let effectPositionY: number | undefined;
   let clearActivatedTimer: ReturnType<typeof setTimeout> | undefined;
+  let animationPosition: AnimationPosition | undefined = undefined;
   const effectElement = cloneElement(effectTagName);
-
-  /**
-   * Wait to render.
-   */
-  requestAnimationFrame(() => (scaleElement = effectElement.shadowRoot!.querySelector<HTMLElement>('[part="native"]') || undefined));
 
   /**
    * These event listeners fix a bug where gestures don't complete properly.
@@ -58,7 +54,9 @@ export const registerEffect = (
       gestureName: `${GESTURE_NAME}_${effectTagName}_${crypto.randomUUID()}`,
       onStart: (event) => onStartGesture(event),
       onMove: (event) => onMoveGesture(event),
-      onEnd: () => onEndGesture(),
+      onEnd: () => {
+        onEndGesture().then();
+      },
     });
     gesture.enable(true);
   };
@@ -77,58 +75,32 @@ export const registerEffect = (
     targetElement.classList.remove(ANIMATED_NAME);
   };
 
-  let animationRange: [number, number, number] | undefined = undefined;
-
   const onStartGesture = (detail: GestureDetail): boolean | undefined => {
     currentTouchedElement = ((detail.event.target as HTMLElement).closest(effectTagName) as HTMLElement) || undefined;
     const tabSelectedElement = targetElement.querySelector(`${effectTagName}.${selectedClassName}`);
     if (currentTouchedElement === undefined || tabSelectedElement === null) {
       return false;
     }
-    effectPositionY = tabSelectedElement.getBoundingClientRect().top;
-    animationRange = [
-      targetElement.getBoundingClientRect().left,
-      targetElement.getBoundingClientRect().right - tabSelectedElement.clientWidth,
-      tabSelectedElement.clientWidth,
-    ];
-
-    moveAnimation = createAnimation()
-      .onFinish(() => {
-        currentTouchedElement!.classList.remove('ion-activated');
-        clearActivated();
-      })
-      .duration(500)
-      .addElement(effectElement)
-      .beforeStyles({
-        width: `${tabSelectedElement.clientWidth}px`,
-        height: `${tabSelectedElement.clientHeight}px`,
-        display: 'block',
-        opacity: '1',
-      })
-      .fromTo(
-        'transform',
-        `translate3d(${animationRange[0]}px, ${effectPositionY}px, 0)`,
-        `translate3d(${animationRange[1]}px, ${effectPositionY}px, 0)`,
-      )
-      .progressStep(getStep(detail.currentX));
+    animationPosition = {
+      minPositionX: targetElement.getBoundingClientRect().left,
+      maxPositionX: targetElement.getBoundingClientRect().right - tabSelectedElement.clientWidth,
+      width: tabSelectedElement.clientWidth,
+      positionY: tabSelectedElement.getBoundingClientRect().top,
+    };
+    targetElement.classList.add(ANIMATED_NAME);
+    currentTouchedElement!.classList.add('ion-activated');
+    moveAnimation = createMoveAnimation(effectElement, detail, tabSelectedElement, animationPosition);
     moveAnimation.progressStart();
+    moveAnimation.progressStep(getStep(detail.currentX, animationPosition!));
+    getScaleAnimation(effectElement, scales, scaleAnimation).play();
     return true;
-  };
-
-  const getStep = (targetX: number) => {
-    if (animationRange === undefined) {
-      return 0;
-    }
-    const currentX = targetX - animationRange[2] / 2;
-    let progress = (currentX - animationRange[0]) / (animationRange[1] - animationRange[0]);
-    progress = Math.max(0, Math.min(1, progress)); // clamp 0〜1
-    return progress;
   };
 
   const onMoveGesture = (detail: GestureDetail): boolean | undefined => {
     if (currentTouchedElement === undefined || !moveAnimation) {
-      return true; // Skip Animation
+      return false; // Skip Animation
     }
+    // console.log(detail.velocityX);
     const latestTouchedElement = ((detail.event.target as HTMLElement).closest(effectTagName) as HTMLElement) || undefined;
     if (latestTouchedElement && currentTouchedElement !== latestTouchedElement) {
       currentTouchedElement.classList.remove('ion-activated');
@@ -137,12 +109,13 @@ export const registerEffect = (
       currentTouchedElement.classList.add('ion-activated');
       currentTouchedElement.classList.add(selectedClassName);
     }
-    const step = getStep(detail.currentX);
-    moveAnimation.progressStep(step);
+    moveAnimation.progressStep(getStep(detail.currentX, animationPosition!));
     return true;
   };
 
-  const onEndGesture = (): boolean | undefined => {
+  const onEndGesture = async (): Promise<boolean | undefined> => {
+    await getScaleAnimation(effectElement, scales, scaleAnimation).duration(100).to('transform', `scale(1)`).play();
+
     // タイマーをクリア（正常にonEndGestureが実行された場合）
     if (clearActivatedTimer !== undefined) {
       clearTimeout(clearActivatedTimer);
@@ -154,10 +127,11 @@ export const registerEffect = (
     }
 
     const targetX = currentTouchedElement.getBoundingClientRect().left - currentTouchedElement.clientWidth / 2;
-    const step = getStep(targetX);
+    const step = getStep(targetX, animationPosition!);
     moveAnimation.progressStep(step);
-    clearActivated();
     moveAnimation.destroy();
+    clearActivated();
+    getScaleAnimation(effectElement, scales, scaleAnimation).pause();
     return true;
   };
 
@@ -180,7 +154,6 @@ export const registerEffect = (
       if (gesture) {
         gesture.destroy();
       }
-
       // Remove gesture class
       targetElement.classList.remove(GESTURE_NAME);
     },

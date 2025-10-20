@@ -1,3 +1,5 @@
+import { AnimationPosition } from './interfaces';
+
 export const cloneElement = (tagName: string): HTMLElement => {
   const getCachedEl = document.querySelector(`${tagName}.ion-cloned-element`);
   if (getCachedEl !== null) {
@@ -32,4 +34,14 @@ export const getTransform = (
     return `translate3d(${maxLeft}px, ${effectPositionY}px, 0)`;
   }
   return `translate3d(${maxRight}px, ${effectPositionY}px, 0)`;
+};
+
+export const getStep = (targetX: number, animationPosition: AnimationPosition) => {
+  if (animationPosition === undefined) {
+    return 0;
+  }
+  const currentX = targetX - animationPosition.width / 2;
+  let progress = (currentX - animationPosition.minPositionX) / (animationPosition.maxPositionX - animationPosition.minPositionX);
+  progress = Math.max(0, Math.min(1, progress)); // clamp 0〜1
+  return progress;
 };
