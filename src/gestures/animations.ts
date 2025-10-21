@@ -7,6 +7,35 @@ export const getScaleAnimation = (effectElement: Element): Animation => {
   return createAnimation().addElement(effectElement.shadowRoot!.querySelector<HTMLElement>('[part="native"]')!).easing('ease-out');
 };
 
+export const createPreMoveAnimation = (
+  effectElement: Element,
+  tabSelectedElement: Element,
+  currentTouchedElement: Element,
+  animationPosition: AnimationPosition,
+): Animation => {
+  return createAnimation()
+    .duration(320)
+    .easing('ease-out')
+    .addElement(effectElement)
+    .beforeStyles({
+      width: `${tabSelectedElement.clientWidth}px`,
+      height: `${tabSelectedElement.clientHeight}px`,
+      display: 'block',
+      opacity: '1',
+      transform: 'none',
+    })
+    .keyframes([
+      {
+        offset: 0,
+        transform: `translate3d(${tabSelectedElement.getBoundingClientRect().left}px,  ${animationPosition.positionY}px, 0)`,
+      },
+      {
+        offset: 1,
+        transform: `translate3d(${currentTouchedElement.getBoundingClientRect().left}px,  ${animationPosition.positionY}px, 0)`,
+      },
+    ]);
+};
+
 export const createMoveAnimation = (
   effectElement: Element,
   detail: GestureDetail,

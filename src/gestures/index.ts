@@ -1,9 +1,9 @@
 import { AnimationPosition, EffectScales, registeredEffect } from './interfaces';
-import { createGesture, GestureDetail } from '@ionic/core';
+import { createAnimation, createGesture, GestureDetail } from '@ionic/core';
 import type { Animation } from '@ionic/core/dist/types/utils/animation/animation-interface';
 import { Gesture } from '@ionic/core/dist/types/utils/gesture';
 import { changeSelectedElement, cloneElement, getStep } from './utils';
-import { createMoveAnimation, getMoveAnimationKeyframe, getScaleAnimation } from './animations';
+import { createMoveAnimation, createPreMoveAnimation, getMoveAnimationKeyframe, getScaleAnimation } from './animations';
 
 const GESTURE_NAME = 'ios26-enable-gesture';
 const ANIMATED_NAME = 'ios26-animated';
@@ -24,6 +24,7 @@ export const registerEffect = (
   let clearActivatedTimer: ReturnType<typeof setTimeout> | undefined;
   let animationPosition: AnimationPosition | undefined = undefined;
   let scaleAnimationPromise: Promise<void> | undefined;
+  let startAnimationPromise: Promise<void> | undefined;
   let maxVelocity = 0;
   const effectElement = cloneElement(effectTagName);
 
@@ -89,9 +90,22 @@ export const registerEffect = (
     };
     targetElement.classList.add(ANIMATED_NAME);
     changeSelectedElement(targetElement, currentTouchedElement, effectTagName, selectedClassName);
-    moveAnimation = createMoveAnimation(effectElement, detail, tabSelectedElement, animationPosition);
-    moveAnimation.progressStart();
-    moveAnimation.progressStep(getStep(detail.currentX, animationPosition!));
+
+    startAnimationPromise = (() => {
+      if (tabSelectedElement === currentTouchedElement) {
+        return new Promise<void>((resolve) => resolve());
+      } else {
+        const preMoveAnimation = createPreMoveAnimation(effectElement, tabSelectedElement, currentTouchedElement, animationPosition!);
+        return preMoveAnimation.play().finally(() => preMoveAnimation.destroy());
+      }
+    })();
+    startAnimationPromise.then(() => {
+      moveAnimation = createMoveAnimation(effectElement, detail, tabSelectedElement, animationPosition!);
+      moveAnimation.progressStart(
+        true,
+        getStep(currentTouchedElement!.getBoundingClientRect().left + currentTouchedElement!.clientWidth / 2, animationPosition!),
+      );
+    });
     getScaleAnimation(effectElement).duration(200).to('opacity', 1).to('transform', scales.large).play();
     return true;
   };
@@ -135,6 +149,10 @@ export const registerEffect = (
     if (clearActivatedTimer !== undefined) {
       clearTimeout(clearActivatedTimer);
       clearActivatedTimer = undefined;
+    }
+
+    if (startAnimationPromise) {
+      await startAnimationPromise;
     }
 
     if (currentTouchedElement === undefined || !moveAnimation) {
