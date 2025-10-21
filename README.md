@@ -100,6 +100,8 @@ __This feature is experimental. The library can be used without this feature.__
 
 By registering `ion-tab-bar` / `ion-segment`, you can display animation effects on `ion-tab-button` / `ion-segment-button`
 
+[![Image from Gyazo](https://i.gyazo.com/a57e8808156e5ce74463e6fa8c05ed61.gif)](https://gyazo.com/a57e8808156e5ce74463e6fa8c05ed61)
+
 ```js
 import { registerTabBarEffect, registerSegmentEffect } from '@rdlabo/ionic-theme-ios26';
 
