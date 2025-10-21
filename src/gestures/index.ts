@@ -1,8 +1,9 @@
-import { EffectScales, registeredEffect } from './interfaces';
-import { createGesture, GestureDetail, createAnimation } from '@ionic/core';
+import { AnimationPosition, EffectScales, registeredEffect } from './interfaces';
+import { createAnimation, createGesture, GestureDetail } from '@ionic/core';
 import type { Animation } from '@ionic/core/dist/types/utils/animation/animation-interface';
 import { Gesture } from '@ionic/core/dist/types/utils/gesture';
-import { cloneElement, getTransform } from './utils';
+import { changeSelectedElement, cloneElement, getStep } from './utils';
+import { createMoveAnimation, createPreMoveAnimation, getMoveAnimationKeyframe, getScaleAnimation } from './animations';
 
 const GESTURE_NAME = 'ios26-enable-gesture';
 const ANIMATED_NAME = 'ios26-animated';
@@ -20,13 +21,11 @@ export const registerEffect = (
   let gesture!: Gesture;
   let moveAnimation: Animation | undefined;
   let currentTouchedElement: HTMLElement | undefined;
-  let animationLatestX: number | undefined;
-  let effectElementPositionY: number | undefined;
-
-  let enterAnimationPromise: Promise<void> | undefined;
-  let moveAnimationPromise: Promise<void> | undefined;
   let clearActivatedTimer: ReturnType<typeof setTimeout> | undefined;
-
+  let animationPosition: AnimationPosition | undefined = undefined;
+  let scaleAnimationPromise: Promise<void> | undefined;
+  let startAnimationPromise: Promise<void> | undefined;
+  let maxVelocity = 0;
   const effectElement = cloneElement(effectTagName);
 
   /**
@@ -35,14 +34,12 @@ export const registerEffect = (
    */
   const onPointerDown = () => {
     clearActivated();
-    currentTouchedElement?.classList.remove('ion-activated');
     gesture.destroy();
     createAnimationGesture();
   };
   const onPointerUp = (event: PointerEvent) => {
-    clearActivatedTimer = setTimeout(() => {
-      onEndGesture();
-      currentTouchedElement?.classList.remove('ion-activated');
+    clearActivatedTimer = setTimeout(async () => {
+      await onEndGesture();
       gesture.destroy();
       createAnimationGesture();
     });
@@ -59,7 +56,9 @@ export const registerEffect = (
       gestureName: `${GESTURE_NAME}_${effectTagName}_${crypto.randomUUID()}`,
       onStart: (event) => onStartGesture(event),
       onMove: (event) => onMoveGesture(event),
-      onEnd: () => onEndGesture(),
+      onEnd: () => {
+        onEndGesture().then();
+      },
     });
     gesture.enable(true);
   };
@@ -69,197 +68,106 @@ export const registerEffect = (
     if (!currentTouchedElement) {
       return;
     }
-    requestAnimationFrame(() => {
-      effectElement.style.display = 'none';
-      effectElement.innerHTML = '';
-      effectElement.style.transform = 'none';
-    });
-
-    targetElement.classList.remove(ANIMATED_NAME);
+    currentTouchedElement!.click();
+    currentTouchedElement?.classList.remove('ion-activated');
     currentTouchedElement = undefined;
-    moveAnimation = undefined; // 次回のために破棄
-    moveAnimationPromise = undefined;
-    enterAnimationPromise = undefined; // 次回のためにリセット
+    effectElement.style.display = 'none';
+    maxVelocity = 0;
+    targetElement.classList.remove(ANIMATED_NAME);
   };
 
   const onStartGesture = (detail: GestureDetail): boolean | undefined => {
-    enterAnimationPromise = undefined;
     currentTouchedElement = ((detail.event.target as HTMLElement).closest(effectTagName) as HTMLElement) || undefined;
     const tabSelectedElement = targetElement.querySelector(`${effectTagName}.${selectedClassName}`);
     if (currentTouchedElement === undefined || tabSelectedElement === null) {
       return false;
     }
-    effectElementPositionY = tabSelectedElement.getBoundingClientRect().top;
+    animationPosition = {
+      minPositionX: targetElement.getBoundingClientRect().left,
+      maxPositionX: targetElement.getBoundingClientRect().right - tabSelectedElement.clientWidth,
+      width: tabSelectedElement.clientWidth,
+      positionY: tabSelectedElement.getBoundingClientRect().top,
+    };
+    targetElement.classList.add(ANIMATED_NAME);
+    changeSelectedElement(targetElement, currentTouchedElement, effectTagName, selectedClassName);
 
-    const startTransform = getTransform(
-      tabSelectedElement.getBoundingClientRect().left + tabSelectedElement.clientWidth / 2,
-      effectElementPositionY,
-      tabSelectedElement,
-    );
-    const middleTransform = getTransform(
-      (tabSelectedElement.getBoundingClientRect().left + tabSelectedElement.clientWidth / 2 + detail.currentX) / 2,
-      effectElementPositionY,
-      currentTouchedElement,
-    );
-    const endTransform = getTransform(detail.currentX, effectElementPositionY, currentTouchedElement);
-    const enterAnimation = createAnimation();
-    enterAnimation
-      .addElement(effectElement)
-      .delay(70)
-      .beforeStyles({
-        width: `${tabSelectedElement.clientWidth}px`,
-        height: `${tabSelectedElement.clientHeight}px`,
-        display: 'block',
-      })
-      .beforeAddWrite(() => {
-        tabSelectedElement.childNodes.forEach((node) => {
-          effectElement.appendChild(node.cloneNode(true));
-        });
-        targetElement.classList.add(ANIMATED_NAME);
-        currentTouchedElement!.classList.add('ion-activated');
-        currentTouchedElement!.click();
-      });
-
-    if (currentTouchedElement === tabSelectedElement) {
-      enterAnimation
-        .keyframes([
-          {
-            transform: `${startTransform} ${scales.small}`,
-            opacity: 1,
-            offset: 0,
-          },
-          {
-            transform: `${middleTransform} ${scales.large}`,
-            opacity: 1,
-            offset: 0.6,
-          },
-          {
-            transform: `${endTransform} ${scales.medium}`,
-            opacity: 1,
-            offset: 1,
-          },
-        ])
-        .duration(160);
-    } else {
-      enterAnimation
-        .keyframes([
-          {
-            transform: `${startTransform} ${scales.small}`,
-            opacity: 1,
-            offset: 0,
-          },
-          {
-            transform: `${middleTransform} ${scales.large}`,
-            opacity: 1,
-            offset: 0.65,
-          },
-          {
-            transform: `${endTransform} ${scales.medium}`,
-            opacity: 1,
-            offset: 1,
-          },
-        ])
-        .duration(280);
-    }
-    animationLatestX = detail.currentX;
-    enterAnimationPromise = enterAnimation.play().then(() => {
-      enterAnimationPromise = undefined;
+    startAnimationPromise = (() => {
+      if (tabSelectedElement === currentTouchedElement) {
+        return new Promise<void>((resolve) => resolve());
+      } else {
+        const preMoveAnimation = createPreMoveAnimation(effectElement, tabSelectedElement, currentTouchedElement, animationPosition!);
+        return preMoveAnimation.play().finally(() => preMoveAnimation.destroy());
+      }
+    })();
+    startAnimationPromise.then(() => {
+      moveAnimation = createMoveAnimation(effectElement, detail, tabSelectedElement, animationPosition!);
+      moveAnimation.progressStart(
+        true,
+        getStep(currentTouchedElement!.getBoundingClientRect().left + currentTouchedElement!.clientWidth / 2, animationPosition!),
+      );
     });
+    getScaleAnimation(effectElement).duration(200).to('opacity', 1).to('transform', scales.large).play();
     return true;
   };
 
   const onMoveGesture = (detail: GestureDetail): boolean | undefined => {
-    if (currentTouchedElement === undefined || enterAnimationPromise || moveAnimationPromise) {
-      return true; // Skip Animation
+    if (currentTouchedElement === undefined || !moveAnimation) {
+      return false; // Skip Animation
     }
-
-    const startTransform = getTransform(animationLatestX!, effectElementPositionY!, currentTouchedElement);
-    const endTransform = getTransform(detail.currentX, effectElementPositionY!, currentTouchedElement);
-
-    // Move用のアニメーションオブジェクトを初回のみ作成し、再利用する
-    if (!moveAnimation) {
-      moveAnimation = createAnimation();
-      moveAnimation
-        .addElement(effectElement)
-        .duration(800)
-        .easing('ease-in-out')
-        .keyframes([
-          {
-            transform: `${startTransform} ${scales.medium}`,
-            opacity: 1,
-            offset: 0,
-          },
-          {
-            transform: `${startTransform} ${scales.xlarge}`,
-            opacity: 1,
-            offset: 0.2,
-          },
-          {
-            transform: `${endTransform} ${scales.medium}`,
-            opacity: 1,
-            offset: 1,
-          },
-        ]);
-    } else {
-      moveAnimation.duration(0).keyframes([
-        {
-          transform: `${endTransform} ${scales.medium}`,
-          opacity: 1,
-          offset: 1,
-        },
-        {
-          transform: `${endTransform} ${scales.medium}`,
-          opacity: 1,
-          offset: 1,
-        },
-      ]);
+    if (scaleAnimationPromise === undefined) {
+      if (Math.abs(detail.velocityX) > maxVelocity) {
+        maxVelocity = Math.abs(detail.velocityX);
+      }
+      if (Math.abs(detail.velocityX) > 0.2) {
+        scaleAnimationPromise = getScaleAnimation(effectElement)
+          .duration(720)
+          .keyframes(getMoveAnimationKeyframe('slowly', scales))
+          .play()
+          .finally(() => (scaleAnimationPromise = undefined));
+      }
+      if (maxVelocity > 0.2 && Math.abs(detail.velocityX) < 0.15 && Math.abs(detail.startX - detail.currentX) > 100) {
+        scaleAnimationPromise = getScaleAnimation(effectElement)
+          .duration(720)
+          .keyframes(getMoveAnimationKeyframe(detail.velocityX > 0 ? 'moveRight' : 'moveLeft', scales))
+          .play()
+          .finally(() => (scaleAnimationPromise = undefined));
+        maxVelocity = 0;
+      }
     }
-    animationLatestX = detail.currentX;
-    moveAnimationPromise = moveAnimation.play().then(() => {
-      moveAnimationPromise = undefined;
-    });
+    const latestTouchedElement = ((detail.event.target as HTMLElement).closest(effectTagName) as HTMLElement) || undefined;
+
+    if (latestTouchedElement && currentTouchedElement !== latestTouchedElement) {
+      currentTouchedElement = latestTouchedElement;
+      changeSelectedElement(targetElement, currentTouchedElement, effectTagName, selectedClassName);
+    }
+    moveAnimation.progressStep(getStep(detail.currentX, animationPosition!));
     return true;
   };
 
-  const onEndGesture = (): boolean | undefined => {
+  const onEndGesture = async (): Promise<boolean | undefined> => {
     // タイマーをクリア（正常にonEndGestureが実行された場合）
     if (clearActivatedTimer !== undefined) {
       clearTimeout(clearActivatedTimer);
       clearActivatedTimer = undefined;
     }
 
-    if (currentTouchedElement === undefined) {
+    if (startAnimationPromise) {
+      await startAnimationPromise;
+    }
+
+    if (currentTouchedElement === undefined || !moveAnimation) {
       return false;
     }
 
-    const transform = getTransform(animationLatestX!, effectElementPositionY!, currentTouchedElement);
+    setTimeout(() => {
+      const targetX = currentTouchedElement!.getBoundingClientRect().left + currentTouchedElement!.clientWidth / 2;
+      const step = getStep(targetX, animationPosition!);
+      moveAnimation!.progressStep(step);
+    });
+    await getScaleAnimation(effectElement).duration(120).to('transform', `scale(1, 0.92)`).play();
+    moveAnimation!.destroy();
 
-    const leaveAnimation = createAnimation();
-    leaveAnimation.addElement(effectElement);
-    leaveAnimation
-      .onFinish(() => clearActivated())
-      .easing('ease-in')
-      .duration(80)
-      .keyframes([
-        {
-          transform: `${transform} ${scales.medium}`,
-          opacity: 1,
-        },
-        {
-          transform: `${transform} ${scales.small}`,
-          opacity: 0,
-        },
-      ]);
-    (async () => {
-      // Wait for enter animation to complete before playing leave animation
-      if (enterAnimationPromise) {
-        setTimeout(() => currentTouchedElement!.classList.remove('ion-activated'), 50);
-        await enterAnimationPromise;
-      } else {
-        currentTouchedElement!.classList.remove('ion-activated');
-      }
-      leaveAnimation.play();
-    })();
+    clearActivated();
     return true;
   };
 
@@ -282,7 +190,6 @@ export const registerEffect = (
       if (gesture) {
         gesture.destroy();
       }
-
       // Remove gesture class
       targetElement.classList.remove(GESTURE_NAME);
     },

@@ -1,3 +1,5 @@
+import { AnimationPosition } from './interfaces';
+
 export const cloneElement = (tagName: string): HTMLElement => {
   const getCachedEl = document.querySelector(`${tagName}.ion-cloned-element`);
   if (getCachedEl !== null) {
@@ -12,17 +14,25 @@ export const cloneElement = (tagName: string): HTMLElement => {
   return clonedEl;
 };
 
-export const getTransform = (detailCurrentX: number, tabEffectElY: number, tabSelectedActual: Element): string => {
-  const diff = -2;
-  const currentX = detailCurrentX - tabSelectedActual.clientWidth / 2;
-  const maxLeft = tabSelectedActual.getBoundingClientRect().left + diff;
-  const maxRight = tabSelectedActual.getBoundingClientRect().right - diff - tabSelectedActual.clientWidth;
+export const getStep = (targetX: number, animationPosition: AnimationPosition) => {
+  if (animationPosition === undefined) {
+    return 0;
+  }
+  const currentX = targetX - animationPosition.width / 2;
+  let progress = (currentX - animationPosition.minPositionX) / (animationPosition.maxPositionX - animationPosition.minPositionX);
+  progress = Math.max(0, Math.min(1, progress)); // clamp 0〜1
+  return progress;
+};
 
-  if (maxLeft < currentX && currentX < maxRight) {
-    return `translate3d(${currentX}px, ${tabEffectElY}px, 0)`;
-  }
-  if (maxLeft > currentX) {
-    return `translate3d(${maxLeft}px, ${tabEffectElY}px, 0)`;
-  }
-  return `translate3d(${maxRight}px, ${tabEffectElY}px, 0)`;
+export const changeSelectedElement = (
+  targetElement: HTMLElement,
+  selectedElement: HTMLElement,
+  effectTagName: string,
+  selectedClassName: string,
+): void => {
+  targetElement.querySelectorAll(effectTagName).forEach((element) => {
+    element.classList.remove(selectedClassName);
+    element.classList.remove('ion-activated');
+  });
+  selectedElement.classList.add(selectedClassName, 'ion-activated');
 };

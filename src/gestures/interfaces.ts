@@ -8,3 +8,10 @@ export interface EffectScales {
 export interface registeredEffect {
   destroy: () => void;
 }
+
+export interface AnimationPosition {
+  minPositionX: number;
+  maxPositionX: number;
+  width: number;
+  positionY: number;
+}
