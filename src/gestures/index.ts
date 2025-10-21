@@ -159,13 +159,14 @@ export const registerEffect = (
       return false;
     }
 
-    const targetX = currentTouchedElement.getBoundingClientRect().left + currentTouchedElement.clientWidth / 2;
-    const step = getStep(targetX, animationPosition!);
-    moveAnimation.progressStep(step);
+    setTimeout(() => {
+      const targetX = currentTouchedElement!.getBoundingClientRect().left + currentTouchedElement!.clientWidth / 2;
+      const step = getStep(targetX, animationPosition!);
+      moveAnimation!.progressStep(step);
+    });
+    await getScaleAnimation(effectElement).duration(120).to('transform', `scale(1, 0.92)`).play();
+    moveAnimation!.destroy();
 
-    await getScaleAnimation(effectElement).delay(100).duration(100).to('opacity', `0`).to('transform', `scale(1)`).play();
-
-    moveAnimation.destroy();
     clearActivated();
     return true;
   };
