@@ -116,16 +116,8 @@ $scaleup-large-icon-only: 1.22;
 
   ion-button:not(.ios26-disabled) {
     margin: 0;
-    :first-child {
-      margin-left: -8px;
-    }
-    :last-child {
-      margin-right: -8px;
-    }
-    :only-child {
-      margin: 0;
-    }
   }
+
   ion-menu-button:not(.ios26-disabled) {
     width: 44px;
     height: 44px;
@@ -336,6 +328,22 @@ $scaleup-large-icon-only: 1.22;
 ion-buttons.ios:not(.ios26-disabled):not(:has(ion-back-button, ion-button:not(.button-clear))) {
   @include theme-buttons;
 }
+
+ion-buttons.ios:not(.ios26-disabled):not(:has(ion-back-button, ion-button.button-clear)) {
+  ion-button {
+    margin: 0 6px;
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+    &:only-child {
+      margin: 0;
+    }
+  }
+}
+
 ion-button.ios:not(.ios26-disabled) {
   @include theme-button;
 }
