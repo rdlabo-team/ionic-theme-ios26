@@ -18,6 +18,12 @@ ion-range.ios:not(.ios26-disabled) {
     transition: transform 300ms ease;
   }
   &.range-pressed::part(knob) {
-    transform: scale(1.4, 1.6) translateX(0) !important;
+    transform: scale(1.4, 1.6) translateX(calc(38px * -0.1));
+    @include api.glass-background(0.1, 0.5px, 120%);
+    box-shadow:
+      inset 0 8px 8px -8px var(--bar-background),
+      inset 0 -8px 8px -8px var(--bar-background),
+      inset 8px 0 8px -8px var(--bar-background),
+      inset -8px 0 8px -8px var(--bar-background);
   }
 }
