@@ -2,12 +2,21 @@
 
 ion-modal.ios:not(.ios26-disabled) {
   --backdrop-opacity: 0.2;
-  ion-toolbar {
-    padding-right: calc(var(--ion-safe-area-right) + 4px);
-    padding-left: calc(var(--ion-safe-area-left) + 4px);
-  }
+
   &::part(handle) {
     width: 80px;
+  }
+
+  ion-toolbar {
+    padding-right: var(--ion-safe-area-right);
+    padding-left: var(--ion-safe-area-left);
+  }
+
+  &.modal-sheet {
+    ion-toolbar {
+      padding-right: calc(var(--ion-safe-area-right) + 4px);
+      padding-left: calc(var(--ion-safe-area-left) + 4px);
+    }
   }
 
   &.modal-card {
