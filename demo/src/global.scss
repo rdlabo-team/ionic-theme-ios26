@@ -42,8 +42,8 @@
 @use '../../src/styles/md-ion-list-inset';
 @use '../../src/styles/md-remove-ios-class-effect';
 
-:root {
-  --ios26-content-box-shadow-rgb: var(--ion-color-light-rgb);
+ion-content {
+  --ios26-content-box-shadow-rgb: var(--ion-color-base-rgb);
 }
 
 code {

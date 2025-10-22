@@ -1,5 +1,9 @@
 # Feature Requests for Ionic Framework
 
+## feat(): change `--knob-handle-size` to `--knob-handle-width` / `--knob-handle-height`
+
+現在、縦横が同じサイズしか配慮されておりません。`knob`自体の上書きは可能ですが、`--knob-handle-size`は `div.range-knob-handle` の `top` や `margin-inline-start` を決める重要な役割を果たしているため無視することはできません。
+
 ## docs(): Naming conventions for Ionic theme classes
 Resolved.
 
