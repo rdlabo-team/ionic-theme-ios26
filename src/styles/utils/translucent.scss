@@ -33,8 +33,8 @@ ion-header.ios:not(.ios26-disabled).header-collapse-condense-inactive:not(.heade
   transform: translateY(8px);
 }
 
-ion-header.header-translucent::before,
-ion-header.header-translucent::after,
+ion-header.ios:not(.ios26-disabled):not(.header-transitioning).header-translucent::before,
+ion-header.ios:not(.ios26-disabled):not(.header-transitioning).header-translucent::after,
 ion-content.ios:not(.ios26-disabled)::part(background)::before,
 ion-content.ios:not(.ios26-disabled)::part(background)::after {
   content: '';
