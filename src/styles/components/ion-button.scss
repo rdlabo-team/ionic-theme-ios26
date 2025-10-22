@@ -28,23 +28,30 @@ $scaleup-large-icon-only: 1.22;
     z-index: 5;
     @include api.glass-background-button-activated;
 
-    transform: scale($scaleup-default-icon-only);
+    // Hardware acceleration optimization for scale transforms
+    transform: scale($scaleup-default-icon-only) translateZ(0);
+    -webkit-transform: scale($scaleup-default-icon-only) translateZ(0);
     &:has(:not(.button-has-icon-only):not(.back-button-has-icon-only)),
     &:has(ion-button:nth-child(n + 2)) {
-      transform: scale($scaleup-default);
+      transform: scale($scaleup-default) translateZ(0);
+      -webkit-transform: scale($scaleup-default) translateZ(0);
     }
     &:has(.button-small) {
-      transform: scale($scaleup-small-icon-only);
+      transform: scale($scaleup-small-icon-only) translateZ(0);
+      -webkit-transform: scale($scaleup-small-icon-only) translateZ(0);
       &:has(:not(.button-has-icon-only):not(.back-button-has-icon-only)),
       &:has(ion-button:nth-child(n + 2)) {
-        transform: scale($scaleup-small);
+        transform: scale($scaleup-small) translateZ(0);
+        -webkit-transform: scale($scaleup-small) translateZ(0);
       }
     }
     &:has(.button-large) {
-      transform: scale($scaleup-large-icon-only);
+      transform: scale($scaleup-large-icon-only) translateZ(0);
+      -webkit-transform: scale($scaleup-large-icon-only) translateZ(0);
       &:has(:not(.button-has-icon-only):not(.back-button-has-icon-only)),
       &:has(ion-button:nth-child(n + 2)) {
-        transform: scale($scaleup-large);
+        transform: scale($scaleup-large) translateZ(0);
+        -webkit-transform: scale($scaleup-large) translateZ(0);
       }
     }
   }
@@ -135,7 +142,17 @@ $scaleup-large-icon-only: 1.22;
   transition:
     transform var(--ios26-activated-transition-duration) ease-out,
     color 50ms ease;
-  will-change: transform;
+
+  // will-change is optimized to only apply when needed for performance
+  &:not(.ios26-disabled):hover,
+  &:not(.ios26-disabled):active,
+  &:not(.ios26-disabled).ion-activated {
+    will-change: transform;
+  }
+
+  &:not(.ios26-disabled):not(:hover):not(:active):not(.ion-activated) {
+    will-change: auto;
+  }
 
   // button size default
   &:not(.button-small):not(.button-large) {
@@ -166,7 +183,8 @@ $scaleup-large-icon-only: 1.22;
   /*
    * fill=solid && type=submit button has edge brightness.
    */
-  &.button-solid[type='submit'] {
+  &.button-solid[type='submit'],
+  &.button-solid.button-submit {
     /*
      * If not set ion-color-**, button color set primary.
      * https://github.com/ionic-team/ionic-framework/blob/main/core/src/components/button/button.scss#L78-L81
@@ -174,6 +192,9 @@ $scaleup-large-icon-only: 1.22;
     --color: var(--ion-color-primary-brightness, var(--ion-color-contrast));
     --color-activated: var(--ion-color-primary-brightness);
     --border-color: var(--ion-color-primary-brightness, transparent);
+    --background-activated: var(--ion-color-primary-shade, #004acd);
+    --background-focused: var(--ion-color-primary-shade, #004acd);
+    --background-hover: var(--ion-color-primary-tint, #1a65eb);
     --border-width: 0.5px;
     --border-style: solid;
 

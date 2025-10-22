@@ -32,9 +32,16 @@ ion-tab-bar.ios:not(.ios26-disabled) {
   padding: 2px 2px;
 
   transition: transform var(--ios26-activated-transition-duration) ease-out;
-  will-change: transform;
+
+  // will-change is optimized to only apply when needed for performance
   &:has(ion-tab-button.ion-activated) {
-    transform: scale(1.038);
+    will-change: transform;
+    transform: scale(1.038) translateZ(0);
+    -webkit-transform: scale(1.038) translateZ(0);
+  }
+
+  &:not(:has(ion-tab-button.ion-activated)) {
+    will-change: auto;
   }
 
   &:has(ion-tab-button.ion-activated) {

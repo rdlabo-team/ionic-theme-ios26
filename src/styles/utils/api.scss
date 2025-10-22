@@ -8,6 +8,12 @@
   border-right: 0.5px solid rgba(var(--ios26-glass-border-color-rgb), 0.8);
   border-bottom: 0.5px solid rgba(var(--ios26-glass-border-color-rgb), 1);
   border-left: 0.5px solid rgba(var(--ios26-glass-border-color-rgb), 0.6);
+
+  // Hardware acceleration optimization for glass effects
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 @mixin glass-background-button-activated {
@@ -24,6 +30,12 @@
   border-right: 0.8px solid rgba(var(--ios26-button-color-selected-rgb), 0.4);
   border-bottom: 0.8px solid rgba(var(--ios26-button-color-selected-rgb), 0.8);
   border-left: 0.8px solid rgba(var(--ios26-button-color-selected-rgb), 0.6);
+
+  // Hardware acceleration optimization for glass effects
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 @mixin glass-background-overlay {

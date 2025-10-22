@@ -19,7 +19,16 @@ ion-segment.ios:not(.ios26-disabled) {
   }
 
   transition: transform var(--ios26-activated-transition-duration) ease-out;
-  will-change: transform;
+
+  // will-change is optimized to only apply when needed for performance
+  &:has(ion-segment-button.ion-activated),
+  &:has(ion-segment-button.segment-activated) {
+    will-change: transform;
+  }
+
+  &:not(:has(ion-segment-button.ion-activated)):not(:has(ion-segment-button.segment-activated)) {
+    will-change: auto;
+  }
 
   &.in-toolbar-color:not(.in-segment-color) {
     ion-segment-button:not(.segment-button-checked)::part(native) {
@@ -28,17 +37,20 @@ ion-segment.ios:not(.ios26-disabled) {
   }
 
   &:not(.ios26-enable-gesture).segment-activated {
-    transform: scale(1.1);
+    transform: scale(1.1) translateZ(0);
+    -webkit-transform: scale(1.1) translateZ(0);
     ion-segment-button {
       transition: transform 100ms ease-out;
       &.segment-button-checked::part(native) {
-        transform: scale(1.08);
+        transform: scale(1.08) translateZ(0);
+        -webkit-transform: scale(1.08) translateZ(0);
       }
       &::part(indicator-background) {
         position: relative;
         z-index: 1;
         background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0);
-        transform: scale(1.1);
+        transform: scale(1.1) translateZ(0);
+        -webkit-transform: scale(1.1) translateZ(0);
         transform-origin: center center;
       }
     }
@@ -46,16 +58,19 @@ ion-segment.ios:not(.ios26-disabled) {
 
   &.ios26-enable-gesture {
     &:has(ion-segment-button.ion-activated) {
-      transform: scale(1.1);
+      transform: scale(1.1) translateZ(0);
+      -webkit-transform: scale(1.1) translateZ(0);
       ion-segment-button {
         transition: transform 100ms ease-out;
         &.segment-button-checked::part(native) {
-          transform: scale(1.08);
+          transform: scale(1.08) translateZ(0);
+          -webkit-transform: scale(1.08) translateZ(0);
         }
         &::part(indicator-background) {
           position: relative;
           z-index: 1;
-          transform: scale(1.1);
+          transform: scale(1.1) translateZ(0);
+          -webkit-transform: scale(1.1) translateZ(0);
           transform-origin: center center;
         }
       }

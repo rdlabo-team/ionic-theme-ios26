@@ -7,10 +7,12 @@
 ion-item.ios:not(.ios26-disabled) ion-toggle.ios:not(.ios26-disabled) {
   &.toggle-checked.toggle-activated::part(track) {
     transform-origin: left;
-    transform: scaleX(0.894);
+    transform: scaleX(0.894) translateZ(0);
+    -webkit-transform: scaleX(0.894) translateZ(0);
   }
   &.toggle-activated::part(handle) {
-    transform: scale(1.4, 1.6) translateX(calc(38px * -0.15));
+    transform: scale(1.4, 1.6) translateX(calc(38px * -0.15)) translateZ(0);
+    -webkit-transform: scale(1.4, 1.6) translateX(calc(38px * -0.15)) translateZ(0);
   }
 }
 
@@ -27,10 +29,12 @@ ion-toggle.ios:not(.ios26-disabled) {
     transition: transform 280ms ease;
   }
   &.toggle-activated:not(.toggle-checked)::part(handle) {
-    transform: translateX(-4px) scale(1.4, 1.6);
+    transform: translateX(-4px) scale(1.4, 1.6) translateZ(0);
+    -webkit-transform: translateX(-4px) scale(1.4, 1.6) translateZ(0);
   }
   &.toggle-activated::part(handle) {
-    transform: scale(1.4, 1.6);
+    transform: scale(1.4, 1.6) translateZ(0);
+    -webkit-transform: scale(1.4, 1.6) translateZ(0);
     @include api.glass-background(0.1, 0.5px, 120%);
     transition:
       transform 280ms,
