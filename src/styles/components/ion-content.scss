@@ -4,6 +4,15 @@
    * so we adjust the margin and padding of the content.
    * Also supports virtual scrolling using .ion-content-scroll-host.
    */
+  .ion-page:has(ion-header.header-translucent) ion-content:has(.ion-content-scroll-host) {
+    --padding-top: calc(var(--offset-top) * -1);
+    > *:not(.ion-content-scroll-host) {
+      transform: translateY(var(--offset-top));
+    }
+    .ion-content-scroll-host {
+      padding-top: var(--offset-top);
+    }
+  }
   .ion-page:not(:has(ion-footer)) ion-content .ion-content-scroll-host {
     margin-bottom: calc(calc(60px + var(--ios26-floating-safe-area-bottom)) * -1);
     padding-bottom: calc(60px + var(--ios26-floating-safe-area-bottom));
