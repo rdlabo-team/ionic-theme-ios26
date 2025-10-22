@@ -3,13 +3,17 @@
 ion-range.ios:not(.ios26-disabled) {
   --knob-size: 20px;
   --knob-border-radius: 24px;
-  padding-right: 36px;
-  &::part(label) {
-    margin-inline: 0 20px;
+  &.range-label-placement-start::part(label) {
+    margin-inline: 0 24px;
   }
-  [slot='start'],
+  &.range-label-placement-end::part(label) {
+    margin-inline: 24px 0;
+  }
+  [slot='start'] {
+    margin-inline: 0 24px;
+  }
   [slot='end'] {
-    margin-inline: 20px 0;
+    margin-inline: 24px 0;
   }
 
   &::part(knob) {
