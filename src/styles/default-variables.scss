@@ -21,6 +21,8 @@
   /**
    * `--ios26-color-background-rgb` is deprecated.
    * You should replace to '--ios26-content-box-shadow-rgb'.
+   * This variable can also be defined in root, but if you want to set multiple background colors individually, it is easier to set them as follows.
+   * ion-content { --ios26-content-box-shadow-rgb: var(--ion-color-base-rgb); }
    */
   --ios26-content-box-shadow-rgb: var(--ios26-color-background-rgb, 255, 255, 255);
 
