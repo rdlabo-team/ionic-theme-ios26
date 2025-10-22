@@ -134,7 +134,11 @@ export const registerEffect = (
         maxVelocity = 0;
       }
     }
-    const latestTouchedElement = ((detail.event.target as HTMLElement).closest(effectTagName) as HTMLElement) || undefined;
+
+    const currentX = detail.currentX;
+    const previousY = targetElement.getBoundingClientRect().top + targetElement.getBoundingClientRect().height / 2;
+    const nextEl = (targetElement.getRootNode() as Document | ShadowRoot).elementFromPoint(currentX, previousY);
+    const latestTouchedElement = (nextEl?.closest(effectTagName) as HTMLElement) || undefined;
 
     if (latestTouchedElement && currentTouchedElement !== latestTouchedElement) {
       currentTouchedElement = latestTouchedElement;
