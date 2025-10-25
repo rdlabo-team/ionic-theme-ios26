@@ -18,6 +18,12 @@ ion-popover.ios:not(.ios26-disabled) {
       background: transparent;
       ion-item {
         --background: transparent;
+        &:last-of-type {
+          --border-width: 0px;
+          --show-full-highlight: 0;
+          --inner-border-width: 0px;
+          --show-inset-highlight: 0;
+        }
       }
     }
   }

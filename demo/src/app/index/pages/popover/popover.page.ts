@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
   IonButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -11,6 +12,8 @@ import {
   IonItemGroup,
   IonLabel,
   IonList,
+  IonListHeader,
+  IonNote,
   IonPopover,
   IonText,
   IonTitle,
@@ -38,6 +41,9 @@ import {
     IonText,
     IonButton,
     IonPopover,
+    IonButtons,
+    IonListHeader,
+    IonNote,
   ],
 })
 export class PopoverPage implements OnInit {
