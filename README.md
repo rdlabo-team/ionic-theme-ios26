@@ -100,7 +100,7 @@ __This feature is experimental. The library can be used without this feature.__
 
 ### Enter and Leave animation with `ion-popover`
 
-iOS26デザインした、IonicConfigで設定できるアニメーションを用意しています。
+Animations designed iOS 26 can be configured via IonicConfig.
 
 [![Image from Gyazo](https://i.gyazo.com/f3609bdc38f936149caa1e8617f54857.gif)](https://gyazo.com/f3609bdc38f936149caa1e8617f54857)
 
