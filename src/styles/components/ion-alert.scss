@@ -1,6 +1,7 @@
 @use '../utils/api';
 
 ion-alert.ios:not(.ios26-disabled) {
+  --min-width: 280px;
   --backdrop-opacity: 0.2;
 
   // --max-width: clamp(270px, 16.875rem, 324px);
