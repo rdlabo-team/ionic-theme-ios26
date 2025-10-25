@@ -2,7 +2,7 @@ import { AnimationPosition, EffectScales, registeredEffect } from './interfaces'
 import { createAnimation, createGesture, GestureDetail } from '@ionic/core';
 import type { Animation } from '@ionic/core/dist/types/utils/animation/animation-interface';
 import { Gesture } from '@ionic/core/dist/types/utils/gesture';
-import { changeSelectedElement, cloneElement, getStep } from './utils';
+import { changeSelectedElement, cloneElement, getStep } from '../utils';
 import { createMoveAnimation, createPreMoveAnimation, getMoveAnimationKeyframe, getScaleAnimation } from './animations';
 
 const GESTURE_NAME = 'ios26-enable-gesture';

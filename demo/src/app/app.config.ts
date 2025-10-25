@@ -5,6 +5,7 @@ import * as allIcons from 'ionicons/icons';
 import { routes } from './app.routes';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
+import { popoverEnterAnimation, popoverLeaveAnimation } from '../../../src';
 
 addIcons(allIcons);
 
@@ -20,6 +21,8 @@ export const appConfig: ApplicationConfig = {
       mode: 'ios',
       backButtonText: '',
       animated: !isE2ETesting,
+      popoverEnter: popoverEnterAnimation,
+      popoverLeave: popoverLeaveAnimation,
     }),
   ],
 };
