@@ -94,9 +94,43 @@ To achieve higher fidelity to iOS26 design, you can implement additional design 
 https://ionic-theme-ios26.netlify.app/main/docs
 
 
-### Experimental: Using Gesture Animation with `ion-tab-button` / `ion-segment-button`
+## Experimental: Animation
 
 __This feature is experimental. The library can be used without this feature.__
+
+### Enter and Leave animation with `ion-popover`
+
+iOS26デザインした、IonicConfigで設定できるアニメーションを用意しています。
+
+[![Image from Gyazo](https://i.gyazo.com/f3609bdc38f936149caa1e8617f54857.gif)](https://gyazo.com/f3609bdc38f936149caa1e8617f54857)
+
+```js
+import { popoverEnterAnimation, popoverLeaveAnimation } from '@rdlabo/ionic-theme-ios26';
+
+// Angular
+provideIonicAngular({
+  ...
+  popoverEnter: popoverEnterAnimation,
+  popoverLeave: popoverLeaveAnimation,
+});
+
+// React
+setupIonicReact({
+  ...
+  popoverEnter: popoverEnterAnimation,
+  popoverLeave: popoverLeaveAnimation,
+});
+
+// Vue
+createApp(App)
+  .use(IonicVue, {
+    ...
+    popoverEnter: popoverEnterAnimation,
+    popoverLeave: popoverLeaveAnimation,
+  })
+```
+
+### Using Sheet of Glass with `ion-tab-button` / `ion-segment-button`
 
 By registering `ion-tab-bar` / `ion-segment`, you can display animation effects on `ion-tab-button` / `ion-segment-button`
 
