@@ -1,6 +1,6 @@
-import { registeredEffect } from './gestures/interfaces';
-import { registerEffect } from './gestures';
-export * from './gestures/interfaces';
+import { registeredEffect } from './sheets-of-glass/interfaces';
+import { registerEffect } from './sheets-of-glass';
+export * from './sheets-of-glass/interfaces';
 
 export const registerTabBarEffect = (targetElement: HTMLElement): registeredEffect | undefined => {
   return registerEffect(targetElement, 'ion-tab-button', 'tab-selected', {
