@@ -1,4 +1,4 @@
-import { createAnimation } from '@ionic/core';
+import { createAnimation, isPlatform } from '@ionic/core';
 import type { Animation } from '@ionic/core/dist/types/utils/animation/animation-interface';
 import { getElementRoot } from '../../utils';
 import { calculateWindowAdjustment, getArrowDimensions, getPopoverDimensions, getPopoverPosition, shouldShowArrow } from '../utils';
@@ -24,6 +24,16 @@ export const iosEnterAnimation = (baseEl: HTMLElement, opts?: any): Animation =>
   const referenceSizeEl = trigger || ev?.detail?.ionShadowTarget || ev?.target;
   const { contentWidth, contentHeight } = getPopoverDimensions(size, contentEl, referenceSizeEl);
   const { arrowWidth, arrowHeight } = getArrowDimensions(arrowEl);
+
+  const isReplace = ((): boolean => {
+    if (!['ion-button', 'ion-buttons'].includes(referenceSizeEl.localName)) {
+      return false;
+    }
+    if (referenceSizeEl.classList.contains('ios26-disabled')) {
+      return false;
+    }
+    return true;
+  })();
 
   const defaultPosition = {
     top: bodyHeight / 2 - contentHeight / 2,
@@ -67,13 +77,17 @@ export const iosEnterAnimation = (baseEl: HTMLElement, opts?: any): Animation =>
       results.arrowLeft,
       arrowHeight,
       referenceSizeEl.getBoundingClientRect(),
+      isReplace,
     );
 
   const baseAnimation = createAnimation();
   const backdropAnimation = createAnimation();
   const contentAnimation = createAnimation();
+  const targetAnimation = createAnimation();
 
   backdropAnimation
+    .delay(100)
+    .duration(300)
     .addElement(root.querySelector('ion-backdrop')!)
     .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
     .beforeStyles({
@@ -87,16 +101,35 @@ export const iosEnterAnimation = (baseEl: HTMLElement, opts?: any): Animation =>
   // https://bugs.chromium.org/p/chromium/issues/detail?id=1148826
   contentAnimation
     .easing('cubic-bezier(0, 1, 0.22, 1)')
+    .delay(100)
     .duration(400)
     .addElement(root.querySelector('.popover-arrow')!)
     .addElement(root.querySelector('.popover-content')!)
     .beforeStyles({ 'transform-origin': `${originY} ${originX}` })
+    .beforeAddWrite(() => {
+      /**
+       * 'transformOrigin' use for leave animation.
+       */
+      root.querySelector<HTMLElement>('.popover-content')!.dataset['transformOrigin'] = `${originY} ${originX}`;
+    })
     .fromTo('transform', 'scale(0)', 'scale(1)')
     .fromTo('opacity', 0.01, 1);
   // TODO(FW-4376) Ensure that arrow also blurs when translucent
 
+  if (isReplace) {
+    targetAnimation
+      .delay(0)
+      .duration(200)
+      .addElement(referenceSizeEl)
+      .beforeStyles({ 'transform-origin': `${originY} ${originX}` })
+      .beforeAddClass('ios26-replace-element')
+      .fromTo('transform', 'scale(1)', 'scale(1.05)')
+      .fromTo('opacity', 1, 0);
+  }
+
   return baseAnimation
     .easing('ease')
+    .delay(100)
     .duration(100)
     .beforeAddWrite(() => {
       if (size === 'cover') {
@@ -139,5 +172,5 @@ export const iosEnterAnimation = (baseEl: HTMLElement, opts?: any): Animation =>
         }
       }
     })
-    .addAnimation([backdropAnimation, contentAnimation]);
+    .addAnimation([backdropAnimation, contentAnimation, targetAnimation]);
 };

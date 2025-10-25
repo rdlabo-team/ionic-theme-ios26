@@ -14,13 +14,39 @@ export const iosLeaveAnimation = (baseEl: HTMLElement): Animation => {
   const baseAnimation = createAnimation();
   const backdropAnimation = createAnimation();
   const contentAnimation = createAnimation();
+  const targetAnimation = createAnimation();
+
+  const doc = baseEl.ownerDocument as any;
+  const replaceElement = doc.querySelector('.ios26-replace-element') as HTMLElement | null;
+
+  if (replaceElement) {
+    targetAnimation
+      .addElement(replaceElement)
+      .delay(100)
+      .duration(200)
+      .afterRemoveClass('ios26-replace-element')
+      .fromTo('transform', 'scale(1.05)', 'scale(1)')
+      .fromTo('opacity', 0.1, 1);
+  }
 
   backdropAnimation.addElement(root.querySelector('ion-backdrop')!).fromTo('opacity', 'var(--backdrop-opacity)', 0);
 
   contentAnimation
+    .duration(400)
+    .easing('ease')
     .addElement(root.querySelector('.popover-arrow')!)
     .addElement(root.querySelector('.popover-content')!)
     .fromTo('opacity', 0.99, 0);
+
+  const popoverContentDataset = root.querySelector<HTMLElement>('.popover-content')!.dataset['transformOrigin'];
+  if (popoverContentDataset) {
+    contentAnimation
+      .beforeStyles({ 'transform-origin': popoverContentDataset })
+      .afterAddRead(() => {
+        root.querySelector<HTMLElement>('.popover-content')!.dataset['transformOrigin'] = '';
+      })
+      .fromTo('transform', 'scale(1)', 'scale(0.1)');
+  }
 
   return baseAnimation
     .easing('ease')
@@ -39,6 +65,6 @@ export const iosLeaveAnimation = (baseEl: HTMLElement): Animation => {
         arrowEl.style.removeProperty('display');
       }
     })
-    .duration(300)
-    .addAnimation([backdropAnimation, contentAnimation]);
+    .duration(400)
+    .addAnimation([backdropAnimation, contentAnimation, targetAnimation]);
 };
