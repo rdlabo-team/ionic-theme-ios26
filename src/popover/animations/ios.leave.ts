@@ -20,13 +20,16 @@ export const iosLeaveAnimation = (baseEl: HTMLElement): Animation => {
   const replaceElement = doc.querySelector('.ios26-replace-element') as HTMLElement | null;
 
   if (replaceElement) {
+    const ratio = contentEl.getBoundingClientRect().width / contentEl.getBoundingClientRect().height;
+    const scale = ratio > 1 ? `${Math.min(1.2, 1.05 * ratio)}, 1.05` : `1.05, ${Math.min(1.2, 1.05 * ratio)}`;
+
     targetAnimation
       .addElement(replaceElement)
       .delay(100)
-      .duration(200)
+      .duration(300)
       .afterRemoveClass('ios26-replace-element')
-      .fromTo('transform', 'scale(1.05)', 'scale(1)')
-      .fromTo('opacity', 0.1, 1);
+      .fromTo('transform', `scale(${scale})`, 'scale(1)')
+      .fromTo('opacity', 0, 0.9);
   }
 
   backdropAnimation.addElement(root.querySelector('ion-backdrop')!).fromTo('opacity', 'var(--backdrop-opacity)', 0);
@@ -40,12 +43,15 @@ export const iosLeaveAnimation = (baseEl: HTMLElement): Animation => {
 
   const popoverContentDataset = root.querySelector<HTMLElement>('.popover-content')!.dataset['transformOrigin'];
   if (popoverContentDataset) {
-    contentAnimation
-      .beforeStyles({ 'transform-origin': popoverContentDataset })
-      .afterAddRead(() => {
-        root.querySelector<HTMLElement>('.popover-content')!.dataset['transformOrigin'] = '';
-      })
-      .fromTo('transform', 'scale(1)', 'scale(0.1)');
+    contentAnimation.beforeStyles({ 'transform-origin': popoverContentDataset }).afterAddRead(() => {
+      root.querySelector<HTMLElement>('.popover-content')!.dataset['transformOrigin'] = '';
+    });
+
+    if (replaceElement) {
+      contentAnimation.fromTo('transform', 'scale(1)', 'scale(0.55)');
+    } else {
+      contentAnimation.fromTo('transform', 'scale(1)', 'scale(0)');
+    }
   }
 
   return baseAnimation
@@ -65,6 +71,6 @@ export const iosLeaveAnimation = (baseEl: HTMLElement): Animation => {
         arrowEl.style.removeProperty('display');
       }
     })
-    .duration(400)
+    .duration(300)
     .addAnimation([backdropAnimation, contentAnimation, targetAnimation]);
 };
