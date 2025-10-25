@@ -1,6 +1,7 @@
 import { getElementRoot, raf } from '../utils';
 
 import type { PopoverSize, PositionAlign, PositionReference, PositionSide, TriggerAction } from './popover-interface';
+import { POPOVER_IOS_BODY_MARGIN } from './animations/ios.enter';
 
 interface InteractionCallback {
   eventName: string;
@@ -796,11 +797,12 @@ export const calculateWindowAdjustment = (
   coordArrowTop = 0,
   coordArrowLeft = 0,
   arrowHeight = 0,
+  eventElementRect?: DOMRect,
 ): PopoverStyles => {
   let arrowTop = coordArrowTop;
   const arrowLeft = coordArrowLeft;
   let left = coordLeft;
-  let top = coordTop;
+  let top = coordTop + POPOVER_IOS_BODY_MARGIN;
   let bottom;
   let originX = contentOriginX;
   let originY = contentOriginY;
@@ -815,7 +817,7 @@ export const calculateWindowAdjustment = (
    * go off the left of the screen.
    */
   if (left < bodyPadding + safeAreaMargin) {
-    left = bodyPadding;
+    left = !eventElementRect ? bodyPadding : eventElementRect.left;
     checkSafeAreaLeft = true;
     originX = 'left';
     /**
@@ -824,7 +826,7 @@ export const calculateWindowAdjustment = (
      */
   } else if (contentWidth + bodyPadding + left + safeAreaMargin > bodyWidth) {
     checkSafeAreaRight = true;
-    left = bodyWidth - contentWidth - bodyPadding;
+    left = !eventElementRect ? bodyWidth - contentWidth - bodyPadding : eventElementRect.right - contentWidth;
     originX = 'right';
   }
 
@@ -835,7 +837,8 @@ export const calculateWindowAdjustment = (
    * the trigger, then we should not adjust top
    * margins.
    */
-  if (triggerTop + triggerHeight + contentHeight > bodyHeight && (side === 'top' || side === 'bottom')) {
+  const compareTop = triggerCoordinates ? triggerCoordinates.top + triggerCoordinates.height / 2 : bodyHeight / 2 - contentHeight / 2;
+  if (compareTop > bodyHeight / 2 && (side === 'top' || side === 'bottom')) {
     if (triggerTop - contentHeight > 0) {
       /**
        * While we strive to align the popover with the trigger
@@ -847,7 +850,7 @@ export const calculateWindowAdjustment = (
        * We chose 12 here so that the popover position looks a bit nicer as
        * it is not right up against the edge of the screen.
        */
-      top = Math.max(12, triggerTop - contentHeight - triggerHeight - (arrowHeight - 1));
+      top = Math.max(12, triggerTop - contentHeight - triggerHeight - (arrowHeight - 1)) - POPOVER_IOS_BODY_MARGIN;
       arrowTop = top + contentHeight;
       originY = 'bottom';
       addPopoverBottomClass = true;

@@ -4,6 +4,7 @@ import { getElementRoot } from '../../utils';
 import { calculateWindowAdjustment, getArrowDimensions, getPopoverDimensions, getPopoverPosition, shouldShowArrow } from '../utils';
 
 const POPOVER_IOS_BODY_PADDING = 5;
+export const POPOVER_IOS_BODY_MARGIN = 8;
 
 /**
  * iOS Popover Enter Animation
@@ -65,6 +66,7 @@ export const iosEnterAnimation = (baseEl: HTMLElement, opts?: any): Animation =>
       results.arrowTop,
       results.arrowLeft,
       arrowHeight,
+      referenceSizeEl.getBoundingClientRect(),
     );
 
   const baseAnimation = createAnimation();
@@ -84,8 +86,12 @@ export const iosEnterAnimation = (baseEl: HTMLElement, opts?: any): Animation =>
   // To get around this, instead of animating the wrapper, animate both the arrow and content.
   // https://bugs.chromium.org/p/chromium/issues/detail?id=1148826
   contentAnimation
+    .easing('cubic-bezier(0, 1, 0.22, 1)')
+    .duration(400)
     .addElement(root.querySelector('.popover-arrow')!)
     .addElement(root.querySelector('.popover-content')!)
+    .beforeStyles({ 'transform-origin': `${originY} ${originX}` })
+    .fromTo('transform', 'scale(0)', 'scale(1)')
     .fromTo('opacity', 0.01, 1);
   // TODO(FW-4376) Ensure that arrow also blurs when translucent
 

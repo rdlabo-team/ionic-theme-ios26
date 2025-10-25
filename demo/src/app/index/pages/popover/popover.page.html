@@ -21,14 +21,25 @@
     </ion-item-group>
   </ion-list>
 
-  <section class="section-example">
-    <ion-button id="click-trigger">Click Me</ion-button>
-    <ion-popover trigger="click-trigger" triggerAction="click">
+  <ion-list [inset]="true">
+    <ion-item-group>
+      <ion-item
+        ><ion-button id="click-trigger-left" slot="start">Click Me</ion-button
+        ><ion-button id="click-trigger-right" slot="end">Click Me</ion-button></ion-item
+      >
+    </ion-item-group>
+    <ion-popover trigger="click-trigger-left" triggerAction="click">
+      <ng-template>
+        <div class="ion-padding">
+          <ion-text>Hello World!</ion-text>
+        </div>
+      </ng-template> </ion-popover
+    ><ion-popover trigger="click-trigger-right" triggerAction="click">
       <ng-template>
         <div class="ion-padding">
           <ion-text>Hello World!</ion-text>
         </div>
       </ng-template>
     </ion-popover>
-  </section>
+  </ion-list>
 </ion-content>
