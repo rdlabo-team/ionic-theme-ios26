@@ -43,7 +43,7 @@
 @use '../../src/styles/md-remove-ios-class-effect';
 
 ion-content {
-  --ios26-content-box-shadow-rgb: var(--ion-color-base-rgb);
+  --ios26-content-box-shadow-rgb: var(--ion-color-base-rgb, var(--ion-background-color-rgb, 255, 255, 255));
 }
 
 code {
