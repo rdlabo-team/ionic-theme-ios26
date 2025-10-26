@@ -19,8 +19,6 @@ interface PopoverPosition {
   top: number;
   left: number;
   referenceCoordinates?: ReferenceCoordinates;
-  arrowTop?: number;
-  arrowLeft?: number;
   originX: string;
   originY: string;
 }
@@ -33,24 +31,8 @@ export interface PopoverStyles {
   originY: string;
   checkSafeAreaLeft: boolean;
   checkSafeAreaRight: boolean;
-  arrowTop: number;
-  arrowLeft: number;
   addPopoverBottomClass: boolean;
 }
-
-/**
- * Returns the dimensions of the popover
- * arrow on `ios` mode. If arrow is disabled
- * returns (0, 0).
- */
-export const getArrowDimensions = (arrowEl: HTMLElement | null) => {
-  if (!arrowEl) {
-    return { arrowWidth: 0, arrowHeight: 0 };
-  }
-  const { width, height } = arrowEl.getBoundingClientRect();
-
-  return { arrowWidth: width, arrowHeight: height };
-};
 
 /**
  * Returns the recommended dimensions of the popover
@@ -325,119 +307,6 @@ const focusItem = (item: HTMLIonItemElement) => {
 };
 
 /**
- * Returns `true` if `el` has been designated
- * as a trigger element for an ion-popover.
- */
-export const isTriggerElement = (el: HTMLElement) => el.hasAttribute('data-ion-popover-trigger');
-
-export const configureKeyboardInteraction = (popoverEl: HTMLIonPopoverElement) => {
-  const callback = async (ev: KeyboardEvent) => {
-    const activeElement = document.activeElement as HTMLElement | null;
-    let items: HTMLIonItemElement[] = [];
-
-    const targetTagName = (ev.target as HTMLElement)?.tagName;
-    /**
-     * Only handle custom keyboard interactions for the host popover element
-     * and children ion-item elements.
-     */
-    if (targetTagName !== 'ION-POPOVER' && targetTagName !== 'ION-ITEM') {
-      return;
-    }
-    /**
-     * Complex selectors with :not() are :not supported
-     * in older versions of Chromium so we need to do a
-     * try/catch here so errors are not thrown.
-     */
-    try {
-      /**
-       * Select all ion-items that are not children of child popovers.
-       * i.e. only select ion-item elements that are part of this popover
-       */
-      items = Array.from(
-        popoverEl.querySelectorAll('ion-item:not(ion-popover ion-popover *):not([disabled])') as NodeListOf<HTMLIonItemElement>,
-      );
-      /* eslint-disable-next-line */
-    } catch {}
-
-    switch (ev.key) {
-      /**
-       * If we are in a child popover
-       * then pressing the left arrow key
-       * should close this popover and move
-       * focus to the popover that presented
-       * this one.
-       */
-      case 'ArrowLeft':
-        const parentPopover = await popoverEl.getParentPopover();
-        if (parentPopover) {
-          popoverEl.dismiss(undefined, undefined, false);
-        }
-        break;
-      /**
-       * ArrowDown should move focus to the next focusable ion-item.
-       */
-      case 'ArrowDown':
-        // Disable movement/scroll with keyboard
-        ev.preventDefault();
-        const nextItem = getNextItem(items, activeElement);
-        if (nextItem !== undefined) {
-          focusItem(nextItem);
-        }
-        break;
-      /**
-       * ArrowUp should move focus to the previous focusable ion-item.
-       */
-      case 'ArrowUp':
-        // Disable movement/scroll with keyboard
-        ev.preventDefault();
-        const prevItem = getPrevItem(items, activeElement);
-        if (prevItem !== undefined) {
-          focusItem(prevItem);
-        }
-        break;
-      /**
-       * Home should move focus to the first focusable ion-item.
-       */
-      case 'Home':
-        ev.preventDefault();
-        const firstItem = items[0];
-        if (firstItem !== undefined) {
-          focusItem(firstItem);
-        }
-        break;
-      /**
-       * End should move focus to the last focusable ion-item.
-       */
-      case 'End':
-        ev.preventDefault();
-        const lastItem = items[items.length - 1];
-        if (lastItem !== undefined) {
-          focusItem(lastItem);
-        }
-        break;
-      /**
-       * ArrowRight, Spacebar, or Enter should activate
-       * the currently focused trigger item to open a
-       * popover if the element is a trigger item.
-       */
-      case 'ArrowRight':
-      case ' ':
-      case 'Enter':
-        if (activeElement && isTriggerElement(activeElement)) {
-          const rightEvent = new CustomEvent('ionPopoverActivateTrigger');
-          activeElement.dispatchEvent(rightEvent);
-        }
-        break;
-      default:
-        break;
-    }
-  };
-
-  popoverEl.addEventListener('keydown', callback);
-  return () => popoverEl.removeEventListener('keydown', callback);
-};
-
-/**
  * Positions a popover by taking into account
  * the reference point, preferred side, alignment
  * and viewport dimensions.
@@ -446,8 +315,6 @@ export const getPopoverPosition = (
   isRTL: boolean,
   contentWidth: number,
   contentHeight: number,
-  arrowWidth: number,
-  arrowHeight: number,
   reference: PositionReference,
   side: PositionSide,
   align: PositionAlign,
@@ -524,7 +391,7 @@ export const getPopoverPosition = (
    * popover to be positioned on the
    * preferred side of the reference.
    */
-  const coordinates = calculatePopoverSide(side, referenceCoordinates, contentWidth, contentHeight, arrowWidth, arrowHeight, isRTL);
+  const coordinates = calculatePopoverSide(side, referenceCoordinates, contentWidth, contentHeight, isRTL);
 
   /**
    * Get the top/left adjustments that
@@ -536,11 +403,9 @@ export const getPopoverPosition = (
   const top = coordinates.top + alignedCoordinates.top;
   const left = coordinates.left + alignedCoordinates.left;
 
-  const { arrowTop, arrowLeft } = calculateArrowPosition(side, arrowWidth, arrowHeight, top, left, contentWidth, contentHeight, isRTL);
-
   const { originX, originY } = calculatePopoverOrigin(side, align, isRTL);
 
-  return { top, left, referenceCoordinates, arrowTop, arrowLeft, originX, originY };
+  return { top, left, referenceCoordinates, originX, originY };
 };
 
 /**
@@ -590,55 +455,6 @@ const getOriginYAlignment = (align: PositionAlign) => {
 };
 
 /**
- * Calculates where the arrow positioning
- * should be relative to the popover content.
- */
-const calculateArrowPosition = (
-  side: PositionSide,
-  arrowWidth: number,
-  arrowHeight: number,
-  top: number,
-  left: number,
-  contentWidth: number,
-  contentHeight: number,
-  isRTL: boolean,
-) => {
-  /**
-   * Note: When side is left, right, start, or end, the arrow is
-   * been rotated using a `transform`, so to move the arrow up or down
-   * by its dimension, you need to use `arrowWidth`.
-   */
-  const leftPosition = {
-    arrowTop: top + contentHeight / 2 - arrowWidth / 2,
-    arrowLeft: left + contentWidth - arrowWidth / 2,
-  };
-
-  /**
-   * Move the arrow to the left by arrowWidth and then
-   * again by half of its width because we have rotated
-   * the arrow using a transform.
-   */
-  const rightPosition = { arrowTop: top + contentHeight / 2 - arrowWidth / 2, arrowLeft: left - arrowWidth * 1.5 };
-
-  switch (side) {
-    case 'top':
-      return { arrowTop: top + contentHeight, arrowLeft: left + contentWidth / 2 - arrowWidth / 2 };
-    case 'bottom':
-      return { arrowTop: top - arrowHeight, arrowLeft: left + contentWidth / 2 - arrowWidth / 2 };
-    case 'left':
-      return leftPosition;
-    case 'right':
-      return rightPosition;
-    case 'start':
-      return isRTL ? rightPosition : leftPosition;
-    case 'end':
-      return isRTL ? leftPosition : rightPosition;
-    default:
-      return { arrowTop: 0, arrowLeft: 0 };
-  }
-};
-
-/**
  * Calculates the required top/left
  * values needed to position the popover
  * content on the side specified in the
@@ -649,30 +465,28 @@ const calculatePopoverSide = (
   triggerBoundingBox: ReferenceCoordinates,
   contentWidth: number,
   contentHeight: number,
-  arrowWidth: number,
-  arrowHeight: number,
   isRTL: boolean,
 ) => {
   const sideLeft = {
     top: triggerBoundingBox.top,
-    left: triggerBoundingBox.left - contentWidth - arrowWidth,
+    left: triggerBoundingBox.left - contentWidth,
   };
   const sideRight = {
     top: triggerBoundingBox.top,
-    left: triggerBoundingBox.left + triggerBoundingBox.width + arrowWidth,
+    left: triggerBoundingBox.left + triggerBoundingBox.width,
   };
 
   switch (side) {
     case 'top':
       return {
-        top: triggerBoundingBox.top - contentHeight - arrowHeight,
+        top: triggerBoundingBox.top - contentHeight,
         left: triggerBoundingBox.left,
       };
     case 'right':
       return sideRight;
     case 'bottom':
       return {
-        top: triggerBoundingBox.top + triggerBoundingBox.height + arrowHeight,
+        top: triggerBoundingBox.top + triggerBoundingBox.height,
         left: triggerBoundingBox.left,
       };
     case 'left':
@@ -794,14 +608,9 @@ export const calculateWindowAdjustment = (
   contentOriginX: string,
   contentOriginY: string,
   triggerCoordinates?: ReferenceCoordinates,
-  coordArrowTop = 0,
-  coordArrowLeft = 0,
-  arrowHeight = 0,
   eventElementRect?: DOMRect,
   isReplace: boolean = false,
 ): PopoverStyles => {
-  let arrowTop = coordArrowTop;
-  const arrowLeft = coordArrowLeft;
   const triggerTop = triggerCoordinates ? triggerCoordinates.top + triggerCoordinates.height : bodyHeight / 2 - contentHeight / 2;
   const triggerHeight = triggerCoordinates ? triggerCoordinates.height : 0;
   let left = coordLeft;
@@ -852,11 +661,10 @@ export const calculateWindowAdjustment = (
        * it is not right up against the edge of the screen.
        */
       if (!isReplace) {
-        top = Math.max(12, triggerTop - contentHeight - triggerHeight - (arrowHeight - 1)) - POPOVER_IOS_BODY_MARGIN;
+        top = Math.max(12, triggerTop - contentHeight - triggerHeight) - POPOVER_IOS_BODY_MARGIN;
       } else {
-        top = Math.max(12, triggerTop - contentHeight - (arrowHeight - 1));
+        top = Math.max(12, triggerTop - contentHeight);
       }
-      arrowTop = top + contentHeight;
       originY = 'bottom';
       addPopoverBottomClass = true;
 
@@ -877,36 +685,6 @@ export const calculateWindowAdjustment = (
     originY,
     checkSafeAreaLeft,
     checkSafeAreaRight,
-    arrowTop,
-    arrowLeft,
     addPopoverBottomClass,
   };
-};
-
-export const shouldShowArrow = (side: PositionSide, didAdjustBounds = false, ev?: Event, trigger?: HTMLElement) => {
-  /**
-   * If no event provided and
-   * we do not have a trigger,
-   * then this popover was likely
-   * presented via the popoverController
-   * or users called `present` manually.
-   * In this case, the arrow should not be
-   * shown as we do not have a reference.
-   */
-  if (!ev && !trigger) {
-    return false;
-  }
-
-  /**
-   * If popover is on the left or the right
-   * of a trigger, but we needed to adjust the
-   * popover due to screen bounds, then we should
-   * hide the arrow as it will never be pointing
-   * at the trigger.
-   */
-  if (side !== 'top' && side !== 'bottom' && didAdjustBounds) {
-    return false;
-  }
-
-  return true;
 };
