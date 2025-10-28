@@ -42,5 +42,5 @@ ion-toolbar.ios:not(.ios26-disabled).ion-color.sc-ion-searchbar-ios-h:not(.ion-c
 ion-toolbar:not(.ios26-disabled).ion-color
   :not(.ios26-disabled).sc-ion-searchbar-ios-h:not(.ion-color)
   .searchbar-input.sc-ion-searchbar-ios {
-  background: rgba(var(--ios26-glass-background-rgb), 0.72) !important;
+  background: rgba(var(--ios26-glass-background-rgb), 0.72);
 }
