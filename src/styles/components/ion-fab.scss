@@ -1,5 +1,9 @@
 @use '../utils/api';
 
+$scaleup-small-icon-only: 1.18;
+$scaleup-default-icon-only: 1.2;
+$scaleup-large-icon-only: 1.12;
+
 ion-fab.ios:not(.ios26-disabled) {
   ion-fab-button {
     --transition:
@@ -25,6 +29,22 @@ ion-fab.ios:not(.ios26-disabled) {
 
     &.ion-activated {
       --color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
+      &::part(native) {
+        transform: scale($scaleup-default-icon-only) translateZ(0);
+        -webkit-transform: scale($scaleup-default-icon-only) translateZ(0);
+      }
+      &.fab-button-large {
+        &::part(native) {
+          transform: scale($scaleup-large-icon-only) translateZ(0);
+          -webkit-transform: scale($scaleup-large-icon-only) translateZ(0);
+        }
+      }
+      &.fab-button-small {
+        &::part(native) {
+          transform: scale($scaleup-small-icon-only) translateZ(0);
+          -webkit-transform: scale($scaleup-small-icon-only) translateZ(0);
+        }
+      }
       &.ion-color {
         --color: rgba(var(--ion-color-base-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 0.1);
       }
