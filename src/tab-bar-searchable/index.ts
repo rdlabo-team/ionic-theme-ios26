@@ -60,7 +60,6 @@ const searchableEvent = (event: MouseEvent, ionTabBar: HTMLElement, ionFabButton
     .addElement(searchContainer)
     .beforeAddWrite(() => {
       searchContainer.style.transformOrigin = 'right center';
-      searchContainer.style.pointerEvents = 'auto';
     })
     .fromTo('opacity', `0`, `1`)
     .fromTo('transform', `scale(${fabButtonWidth / searchbarWidth}, ${fabButtonHeight / searchbarHeight})`, `scale(1)`);
@@ -86,6 +85,7 @@ const searchableEvent = (event: MouseEvent, ionTabBar: HTMLElement, ionFabButton
         selected.classList.add('tab-selected');
         selected.classList.remove('ios26-tab-selected');
       }
+      ionTabBar.style.pointerEvents = 'none';
     })
     .fromTo('transform', `scale(1)`, `scale(${closeButtonWidth / tabBarWidth}, ${closeButtonHeight / tabBarHeight})`)
     .fromTo('opacity', '1', '0');
@@ -100,10 +100,10 @@ const searchableEvent = (event: MouseEvent, ionTabBar: HTMLElement, ionFabButton
     .fromTo('opacity', '1', '0');
 
   baseAnimation
-    .duration(600)
+    .duration(800)
     .easing('cubic-bezier(0, 1, 0.22, 1)')
     .addElement(ionFooter)
-    .beforeAddWrite(() => (searchContainer.style.pointerEvents = 'auto'))
+    .afterAddWrite(() => (ionFooter.style.pointerEvents = 'auto'))
     .fromTo('opacity', `0`, `1`)
     .addAnimation([tabBarAnimation, fabButtonAnimation, searchContainerAnimation])
     .play();

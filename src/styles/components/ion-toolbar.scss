@@ -30,6 +30,26 @@ ion-toolbar.ios:not(.ios26-disabled).toolbar-searchbar {
   *[slot='end'] {
     align-self: center;
   }
+  &:has(ion-buttons[slot='start']) {
+    ion-buttons[slot='start'] {
+      margin-right: 6px;
+    }
+    ion-searchbar.ios:not(.ios26-disabled) {
+      .searchbar-input-container {
+        margin: 0 12px 0 6px;
+      }
+    }
+  }
+  &:has(ion-buttons[slot='end']) {
+    ion-buttons[slot='end'] {
+      margin-left: 6px;
+    }
+    ion-searchbar.ios:not(.ios26-disabled) {
+      .searchbar-input-container {
+        margin: 0 6px 0 12px;
+      }
+    }
+  }
 }
 
 ion-header.ios:not(.ios26-disabled),

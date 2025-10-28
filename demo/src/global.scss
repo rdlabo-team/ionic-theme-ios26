@@ -57,11 +57,13 @@ section.section-example {
   margin: 16px;
 }
 
-ion-footer {
-  ion-toolbar:last-of-type {
-    padding-bottom: calc(var(--ion-safe-area-bottom, 0px) - 12px);
-  }
-  ion-searchbar .searchbar-input-container {
-    margin: 0 20px !important;
+app-settings-page {
+  ion-footer {
+    ion-toolbar:last-of-type {
+      padding-bottom: calc(var(--ion-safe-area-bottom, 0px) - 12px);
+    }
+    ion-searchbar .searchbar-input-container {
+      margin: 0 20px !important;
+    }
   }
 }
