@@ -34,3 +34,13 @@ ion-searchbar.ios:not(.ios26-disabled) {
     }
   }
 }
+
+/**
+ * This is an override for a class where cascading is specified too heavily.
+ */
+ion-toolbar.ios:not(.ios26-disabled).ion-color.sc-ion-searchbar-ios-h:not(.ion-color) .searchbar-input.sc-ion-searchbar-ios,
+ion-toolbar:not(.ios26-disabled).ion-color
+  :not(.ios26-disabled).sc-ion-searchbar-ios-h:not(.ion-color)
+  .searchbar-input.sc-ion-searchbar-ios {
+  background: rgba(var(--ios26-glass-background-rgb), 0.72) !important;
+}
