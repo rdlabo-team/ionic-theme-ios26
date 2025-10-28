@@ -64,10 +64,20 @@ ion-fab.ios:not(.ios26-disabled) {
   }
 
   &.fab-horizontal-start {
-    right: calc(16px + var(--ion-safe-area-left, 0px));
+    left: calc(16px + var(--ion-safe-area-left, 0px));
   }
 
   &.fab-horizontal-end {
     right: calc(16px + var(--ion-safe-area-right, 0px));
+  }
+
+  &:has(.fab-button-small) {
+    &.fab-horizontal-start {
+      left: calc(10px + var(--ion-safe-area-left, 0px));
+    }
+
+    &.fab-horizontal-end {
+      right: calc(10px + var(--ion-safe-area-right, 0px));
+    }
   }
 }
