@@ -1,5 +1,6 @@
 import { createAnimation } from '@ionic/core';
 import { getElement, throwErrorByFailedToGet } from './utils';
+import { cloneElement } from '../utils';
 
 /**
   <ion-footer [translucent]="true">
@@ -33,6 +34,7 @@ export const attachTabBarSearchable = (
   // Initialize
   ionFooter.style.pointerEvents = 'none';
   ionFooter.style.opacity = '0';
+  ionTabBar.style.transformOrigin = 'left center';
 
   return (event: MouseEvent, type: TabBarSearchableType) => {
     return type === TabBarSearchableType.Searchable
@@ -49,33 +51,66 @@ const searchableEvent = (event: MouseEvent, ionTabBar: HTMLElement, ionFabButton
   const baseAnimation = createAnimation().addElement(ionFooter.querySelector('ion-toolbar')!).fromTo('opacity', '0', '1');
 
   const searchContainer = getElement(ionFooter, 'ion-searchbar .searchbar-input-container');
-  const closeButton = getElement(ionFooter, 'ion-buttons[slot=start] ion-button');
+  const closeButtons = getElement(ionFooter, 'ion-buttons[slot=start]');
 
   const { width: tabBarWidth, height: tabBarHeight } = ionTabBar.getBoundingClientRect();
-  const { width: closeButtonWidth, height: closeButtonHeight } = closeButton.getBoundingClientRect();
+  const { width: closeButtonWidth, height: closeButtonHeight } = closeButtons.getBoundingClientRect();
   const { width: fabButtonWidth, height: fabButtonHeight } = ionFabButton.getBoundingClientRect();
-  const { width: searchbarWidth, height: searchbarHeight } = searchContainer.getBoundingClientRect();
+  const { width: searchContainerWidth, height: searchContainerHeight } = searchContainer.getBoundingClientRect();
+  const selectedTabButton = ionTabBar.querySelector<HTMLElement>('ion-tab-button.tab-selected');
+
+  const effectElement = cloneElement('ion-icon');
+  const closeButtonRect = closeButtons.querySelector('ion-icon')?.getBoundingClientRect();
+  const selectedTabButtonIcon = selectedTabButton?.querySelector('ion-icon');
+  const iconName = selectedTabButtonIcon?.getAttribute('name');
+  const selectedTabButtonIconRect = selectedTabButtonIcon?.getBoundingClientRect();
+
+  const effectAnimation = createAnimation()
+    .addElement(effectElement)
+    .beforeAddWrite(() => {
+      effectElement.style.display = 'inline-block';
+      closeButtons.querySelector('ion-icon')!.style.opacity = '0';
+      if (iconName) {
+        effectElement.setAttribute('name', iconName);
+        effectElement.style.width = `${closeButtonRect!.width}px`;
+        effectElement.style.height = `${closeButtonRect!.height}px`;
+      }
+    })
+    .afterAddWrite(() => {
+      effectElement.style.display = 'none';
+      closeButtons.querySelector('ion-icon')!.style.opacity = '1';
+    })
+    .fromTo(
+      'transform',
+      `translate3d(${selectedTabButtonIconRect!.left}px, ${selectedTabButtonIconRect!.top}px, 0)`,
+      `translate3d(${closeButtonRect!.left}px, ${closeButtonRect!.top}px, 0)`,
+    );
 
   const searchContainerAnimation = createAnimation()
     .addElement(searchContainer)
-    .beforeAddWrite(() => {
-      searchContainer.style.transformOrigin = 'right center';
-    })
-    .fromTo('opacity', `0`, `1`)
-    .fromTo('transform', `scale(${fabButtonWidth / searchbarWidth}, ${fabButtonHeight / searchbarHeight})`, `scale(1)`);
+    .beforeAddWrite(() => (searchContainer.style.transformOrigin = 'right center'))
+    .fromTo('transform', `scale(${fabButtonWidth / searchContainerWidth}, ${fabButtonHeight / searchContainerHeight})`, `scale(1)`)
+    .fromTo('opacity', '0.2', '1');
+
+  const closeButtonsAnimation = createAnimation()
+    .delay(240)
+    .addElement(closeButtons)
+    .beforeAddWrite(() => (closeButtons.style.transformOrigin = 'left center'))
+    .afterClearStyles(['transform', 'transform-origin'])
+    .fromTo('transform', `scale(1.5, 1)`, `scale(1)`);
 
   const tabBarAnimation = createAnimation()
     .addElement(ionTabBar)
     .beforeAddWrite(() => {
-      ionTabBar.style.transformOrigin = 'left center';
-      const selected = ionTabBar.querySelector<HTMLElement>('ion-tab-button.tab-selected');
-      ionTabBar.querySelectorAll<HTMLElement>('ion-tab-button').forEach((element: HTMLElement) => (element.style.opacity = '0'));
-      if (selected) {
-        selected.classList.add('ios26-tab-selected');
-        selected.classList.remove('tab-selected');
-        const iconName = selected.querySelector('ion-icon')!.getAttribute('name');
+      ionTabBar.querySelectorAll<HTMLElement>('ion-tab-button').forEach((element: HTMLElement) => {
+        element.style.transition = 'opacity 140ms ease';
+        element.style.opacity = '0';
+      });
+      if (selectedTabButton) {
+        selectedTabButton.classList.add('ios26-tab-selected');
+        selectedTabButton.classList.remove('tab-selected');
         if (iconName) {
-          closeButton.querySelector<HTMLElement>('ion-icon')?.setAttribute('name', iconName);
+          closeButtons.querySelector<HTMLElement>('ion-icon')?.setAttribute('name', iconName);
         }
       }
     })
@@ -93,19 +128,22 @@ const searchableEvent = (event: MouseEvent, ionTabBar: HTMLElement, ionFabButton
   const fabButtonAnimation = createAnimation()
     .addElement(ionFabButton)
     .beforeAddWrite(() => {
-      ionFabButton.style.transformOrigin = 'right center';
+      ionFabButton.style.transformOrigin = 'center right';
       ionFabButton.querySelector<HTMLElement>('ion-icon')?.style.setProperty('opacity', '0');
     })
-    .fromTo('transform', `translateX(0) scale(1)`, `translateX(-16px) scale(1, ${searchbarHeight / fabButtonHeight})`)
+    .afterAddWrite(() => {
+      ionFabButton.style.pointerEvents = 'none';
+    })
     .fromTo('opacity', '1', '0');
 
   baseAnimation
-    .duration(800)
+    .delay(140)
+    .duration(600)
     .easing('cubic-bezier(0, 1, 0.22, 1)')
     .addElement(ionFooter)
     .afterAddWrite(() => (ionFooter.style.pointerEvents = 'auto'))
-    .fromTo('opacity', `0`, `1`)
-    .addAnimation([tabBarAnimation, fabButtonAnimation, searchContainerAnimation])
+    .fromTo('opacity', `0.8`, `1`)
+    .addAnimation([tabBarAnimation, fabButtonAnimation, searchContainerAnimation, effectAnimation, closeButtonsAnimation])
     .play();
 };
 
