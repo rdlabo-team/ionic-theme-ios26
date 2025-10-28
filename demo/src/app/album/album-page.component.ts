@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DOCUMENT, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -13,7 +13,9 @@ import {
   IonSearchbar,
   IonTitle,
   IonToolbar,
+  ViewDidEnter,
 } from '@ionic/angular/standalone';
+import { attachTabBarSearchable, TabBarSearchableFunction, TabBarSearchableType } from '../../../../src';
 
 @Component({
   selector: 'app-album-page',
@@ -35,6 +37,26 @@ import {
     IonSearchbar,
   ],
 })
-export class AlbumPage {
+export class AlbumPage implements ViewDidEnter {
   readonly sourceIonIcons = [...Array(60)].map((_, i) => i);
+
+  readonly document = inject(DOCUMENT);
+  readonly el = inject(ElementRef);
+  fun: TabBarSearchableFunction | undefined;
+
+  ionViewDidEnter() {
+    this.fun = attachTabBarSearchable(
+      this.document.querySelector<HTMLElement>('ion-tab-bar')!,
+      this.el.nativeElement.querySelector('ion-fab-button'),
+      this.el.nativeElement.querySelector('ion-footer'),
+    );
+  }
+
+  present(event: MouseEvent) {
+    this.fun!(event, TabBarSearchableType.Searchable);
+  }
+
+  dismiss(event: MouseEvent) {
+    this.fun!(event, TabBarSearchableType.Default);
+  }
 }

@@ -17,18 +17,15 @@
   </section>
 </ion-content>
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button>
+  <ion-fab-button (click)="present($event)">
     <ion-icon name="search"></ion-icon>
   </ion-fab-button>
 </ion-fab>
 <ion-footer [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button fill="default"><ion-icon name="alumb-outline" slot="icon-only"></ion-icon></ion-button>
+      <ion-button fill="default" (click)="dismiss($event)"><ion-icon slot="icon-only"></ion-icon></ion-button>
     </ion-buttons>
     <ion-searchbar></ion-searchbar>
-    <ion-buttons slot="end">
-      <ion-button fill="default"><ion-icon name="close-outline" slot="icon-only"></ion-icon></ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-footer>
