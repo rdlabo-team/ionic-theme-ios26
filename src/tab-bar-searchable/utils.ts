@@ -6,14 +6,18 @@ export const ANIMATION_DELAY_CLOSE_BUTTONS = 240;
 export const ANIMATION_EASING = 'cubic-bezier(0, 1, 0.22, 1)';
 export const OPACITY_TRANSITION = 'opacity 140ms ease';
 
-export const throwErrorByFailedToGet = (selector: string): Error => {
-  return new Error('Function expect click Element is inner `' + selector + '`');
+export const throwErrorByFailedClickElement = (selector: string): Error => {
+  return new Error('Function expect click element is inner `' + selector + '`');
+};
+
+export const throwErrorByFailedExistElement = (selector: string): Error => {
+  return new Error('Function expect exist element `' + selector + '`');
 };
 
 export const getElement = (docs: HTMLElement, selector: string): HTMLElement => {
   const el = docs.querySelector<HTMLElement>(selector);
   if (!el) {
-    throw throwErrorByFailedToGet(selector);
+    throw throwErrorByFailedClickElement(selector);
   }
   return el;
 };
@@ -22,8 +26,20 @@ export const getElementReferences = (ionTabBar: HTMLElement, ionFooter: HTMLElem
   const searchContainer = getElement(ionFooter, 'ion-searchbar .searchbar-input-container');
   const closeButtons = getElement(ionFooter, 'ion-buttons[slot=start]');
   const selectedTabButton = ionTabBar.querySelector<HTMLElement>('ion-tab-button.tab-selected');
-  const selectedTabButtonIcon = selectedTabButton?.querySelector('ion-icon') || null;
+  const selectedTabButtonIcon = selectedTabButton?.querySelector('ion-icon');
   const closeButtonIcon = closeButtons.querySelector('ion-icon');
+
+  if (!selectedTabButton) {
+    throw throwErrorByFailedExistElement('ion-tab-button.tab-selected');
+  }
+
+  if (!selectedTabButtonIcon) {
+    throw throwErrorByFailedExistElement('ion-tab-button.tab-selected ion-icon');
+  }
+
+  if (!closeButtonIcon) {
+    throw throwErrorByFailedExistElement('ion-buttons[slot=start] ion-button ion-icon');
+  }
 
   return {
     searchContainer,

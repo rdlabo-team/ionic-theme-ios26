@@ -1,9 +1,9 @@
 export enum TabBarSearchableType {
-  Searchable = 'searchable',
-  Default = 'default',
+  Enter = 'enter',
+  Leave = 'leave',
 }
 
-export type TabBarSearchableFunction = (event: MouseEvent, type: TabBarSearchableType) => void;
+export type TabBarSearchableFunction = (event: MouseEvent, type: TabBarSearchableType) => Promise<void>;
 
 export interface SearchableEventCache {
   elementSizes: ElementSizes;
@@ -22,7 +22,7 @@ export interface ElementSizes {
 export interface ElementReferences {
   searchContainer: HTMLElement;
   closeButtons: HTMLElement;
-  selectedTabButton: HTMLElement | null;
-  selectedTabButtonIcon: HTMLElement | null;
-  closeButtonIcon: HTMLElement | null;
+  selectedTabButton: HTMLElement;
+  selectedTabButtonIcon: HTMLElement;
+  closeButtonIcon: HTMLElement;
 }

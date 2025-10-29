@@ -1,14 +1,13 @@
-import { createAnimation, Animation } from '@ionic/core';
+import { createAnimation } from '@ionic/core';
 import {
   ANIMATION_DELAY_BASE,
   ANIMATION_DURATION,
   ANIMATION_EASING,
   getElementReferences,
   getElementSizes,
-  throwErrorByFailedToGet,
+  throwErrorByFailedClickElement,
 } from './utils';
-import { cloneElement } from '../utils';
-import { ElementReferences, ElementSizes, SearchableEventCache, TabBarSearchableFunction, TabBarSearchableType } from './interfaces';
+import { SearchableEventCache, TabBarSearchableFunction, TabBarSearchableType } from './interfaces';
 import {
   createCloseButtonsAnimation,
   createEffectAnimation,
@@ -23,6 +22,7 @@ import {
   createReverseSearchContainerAnimation,
   createReverseTabBarAnimation,
 } from './animations/leave';
+
 export * from './interfaces';
 
 /**
@@ -55,51 +55,41 @@ export const attachTabBarSearchable = (
   // Saved Params
   let searchableEventCache: SearchableEventCache | undefined;
 
-  return (event: MouseEvent, type: TabBarSearchableType) => {
-    if (type === TabBarSearchableType.Searchable) {
-      searchableEventCache = searchableEvent(event, ionTabBar, ionFabButton, ionFooter);
+  return async (event: MouseEvent, type: TabBarSearchableType) => {
+    if (type === TabBarSearchableType.Enter) {
+      searchableEventCache = await enterEvent(event, ionTabBar, ionFabButton, ionFooter);
+    } else if (searchableEventCache !== undefined) {
+      await leaveEvent(event, searchableEventCache!, ionTabBar, ionFabButton, ionFooter);
+      searchableEventCache = undefined;
     } else {
-      defaultEvent(event, searchableEventCache!, ionTabBar, ionFabButton, ionFooter);
+      throw new Error('TabBarSearchableType.Leave should be run after TabBarSearchableType.Enter');
     }
   };
 };
 
-/**
- * 検索可能状態へのアニメーション処理
- */
-const searchableEvent = (
+const enterEvent = async (
   event: MouseEvent,
   ionTabBar: HTMLElement,
   ionFabButton: HTMLElement,
   ionFooter: HTMLElement,
-): SearchableEventCache => {
+): Promise<SearchableEventCache> => {
   if (!(event.target as HTMLElement)?.closest('ion-fab-button')) {
-    throw throwErrorByFailedToGet('ion-fab-button');
+    throw throwErrorByFailedClickElement('ion-fab-button');
   }
 
-  // DOM要素とサイズ情報を取得
   const references = getElementReferences(ionTabBar, ionFooter);
   const sizes = getElementSizes(ionTabBar, ionFabButton, references);
   const colorSelected = references.selectedTabButton
     ? getComputedStyle(references.selectedTabButton).getPropertyValue('--color-selected').trim()
     : '';
 
-  // 各アニメーションを作成
   const effectAnimation = createEffectAnimation(references, sizes);
   const searchContainerAnimation = createSearchContainerAnimation(references, sizes);
   const closeButtonsAnimation = createCloseButtonsAnimation(references);
   const tabBarAnimation = createTabBarAnimation(ionTabBar, references, sizes);
   const fabButtonAnimation = createFabButtonAnimation(ionFabButton);
 
-  // ベースアニメーションを作成して実行
-  const toolbar = ionFooter.querySelector('ion-toolbar');
-  if (!toolbar) {
-    throw throwErrorByFailedToGet('ion-toolbar');
-  }
-
-  createAnimation()
-    .addElement(toolbar)
-    .fromTo('opacity', '0', '1')
+  await createAnimation()
     .delay(ANIMATION_DELAY_BASE)
     .duration(ANIMATION_DURATION)
     .easing(ANIMATION_EASING)
@@ -108,49 +98,38 @@ const searchableEvent = (
     .fromTo('opacity', '0.8', '1')
     .addAnimation([tabBarAnimation, fabButtonAnimation, searchContainerAnimation, effectAnimation, closeButtonsAnimation])
     .play();
+
   return {
     elementSizes: sizes,
     colorSelected,
   };
 };
 
-/**
- * デフォルト状態への戻りアニメーション処理
- */
-const defaultEvent = (
+const leaveEvent = async (
   event: MouseEvent,
   searchableEventCache: SearchableEventCache,
   ionTabBar: HTMLElement,
   ionFabButton: HTMLElement,
   ionFooter: HTMLElement,
-): void => {
-  // DOM要素とサイズ情報を取得
+): Promise<void> => {
+  if (!(event.target as HTMLElement)?.closest('ion-buttons[slot=start] ion-button')) {
+    throw throwErrorByFailedClickElement('ion-buttons[slot=start] ion-button');
+  }
+
   const references = getElementReferences(ionTabBar, ionFooter);
 
-  // 各アニメーションを作成（逆の動作）
   const effectAnimation = createReverseEffectAnimation(references, searchableEventCache.elementSizes, searchableEventCache.colorSelected);
   const searchContainerAnimation = createReverseSearchContainerAnimation(references, searchableEventCache.elementSizes);
   const closeButtonsAnimation = createReverseCloseButtonsAnimation(references);
   const tabBarAnimation = createReverseTabBarAnimation(ionTabBar, references, searchableEventCache.elementSizes);
   const fabButtonAnimation = createReverseFabButtonAnimation(ionFabButton, searchableEventCache.elementSizes);
 
-  // ベースアニメーションを作成して実行
-  const toolbar = ionFooter.querySelector('ion-toolbar');
-  if (!toolbar) {
-    throw throwErrorByFailedToGet('ion-toolbar');
-  }
-
-  createAnimation()
-    .addElement(toolbar)
-    .fromTo('opacity', '1', '0')
+  await createAnimation()
     .delay(ANIMATION_DELAY_BASE)
     .duration(ANIMATION_DURATION)
     .easing(ANIMATION_EASING)
     .addElement(ionFooter)
-    .afterAddWrite(() => {
-      ionFooter.style.pointerEvents = 'none';
-      ionFooter.style.opacity = '0';
-    })
+    .afterAddWrite(() => (ionFooter.style.pointerEvents = 'none'))
     .fromTo('opacity', '1', '0')
     .addAnimation([tabBarAnimation, fabButtonAnimation, searchContainerAnimation, effectAnimation, closeButtonsAnimation])
     .play();

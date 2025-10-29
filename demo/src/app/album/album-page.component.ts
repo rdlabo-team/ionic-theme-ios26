@@ -53,10 +53,10 @@ export class AlbumPage implements ViewDidEnter {
   }
 
   present(event: MouseEvent) {
-    this.searchableFun!(event, TabBarSearchableType.Searchable);
+    this.searchableFun!(event, TabBarSearchableType.Enter);
   }
 
   dismiss(event: MouseEvent) {
-    this.searchableFun!(event, TabBarSearchableType.Default);
+    this.searchableFun!(event, TabBarSearchableType.Leave);
   }
 }

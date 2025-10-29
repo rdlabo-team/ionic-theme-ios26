@@ -15,7 +15,7 @@ export const createReverseEffectAnimation = (
     .addElement(effectElement)
     .beforeAddWrite(() => {
       effectElement.style.display = 'inline-block';
-      references.closeButtonIcon!.style.opacity = '0';
+      references.closeButtonIcon.style.opacity = '0';
       if (searchableElementSizes.selectedTabButtonIcon) {
         effectElement.style.width = `${searchableElementSizes.selectedTabButtonIcon.width}px`;
         effectElement.style.height = `${searchableElementSizes.selectedTabButtonIcon.height}px`;
@@ -24,13 +24,13 @@ export const createReverseEffectAnimation = (
     })
     .afterAddWrite(() => {
       effectElement.style.display = 'none';
-      references.closeButtonIcon!.style.opacity = '1';
+      references.closeButtonIcon.style.opacity = '1';
       effectElement.style.color = '';
     })
     .fromTo(
       'transform',
-      `translate3d(${closeButtonRect!.left}px, ${closeButtonRect!.top}px, 0)`,
-      `translate3d(${searchableElementSizes.selectedTabButtonIcon!.left}px, ${searchableElementSizes.selectedTabButtonIcon!.top}px, 0)`,
+      `translate3d(${closeButtonRect.left}px, ${closeButtonRect.top}px, 0)`,
+      `translate3d(${searchableElementSizes.selectedTabButtonIcon.left}px, ${searchableElementSizes.selectedTabButtonIcon.top}px, 0)`,
     );
 };
 
@@ -64,11 +64,6 @@ export const createReverseTabBarAnimation = (ionTabBar: HTMLElement, references:
         element.style.transition = OPACITY_TRANSITION;
         element.style.opacity = '1';
       });
-      const selected = ionTabBar.querySelector<HTMLElement>('ion-tab-button.ios26-tab-selected');
-      if (selected) {
-        selected.classList.add('tab-selected');
-        selected.classList.remove('ios26-tab-selected');
-      }
     })
     .afterClearStyles(['transform', 'opacity'])
     .fromTo(

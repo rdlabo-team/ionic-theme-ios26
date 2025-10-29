@@ -13,7 +13,7 @@ export const createEffectAnimation = (references: ElementReferences, sizes: Elem
     .addElement(effectElement)
     .beforeAddWrite(() => {
       effectElement.style.display = 'inline-block';
-      references.closeButtonIcon!.style.opacity = '0';
+      references.closeButtonIcon.style.opacity = '0';
       if (iconName && closeButtonRect) {
         effectElement.setAttribute('name', iconName);
         effectElement.style.width = `${closeButtonRect.width}px`;
@@ -22,12 +22,12 @@ export const createEffectAnimation = (references: ElementReferences, sizes: Elem
     })
     .afterAddWrite(() => {
       effectElement.style.display = 'none';
-      references.closeButtonIcon!.style.opacity = '1';
+      references.closeButtonIcon.style.opacity = '1';
     })
     .fromTo(
       'transform',
-      `translate3d(${selectedTabButtonIconRect!.left}px, ${selectedTabButtonIconRect!.top}px, 0)`,
-      `translate3d(${closeButtonRect!.left}px, ${closeButtonRect!.top}px, 0)`,
+      `translate3d(${selectedTabButtonIconRect.left}px, ${selectedTabButtonIconRect.top}px, 0)`,
+      `translate3d(${closeButtonRect.left}px, ${closeButtonRect.top}px, 0)`,
     );
 };
 
@@ -60,11 +60,7 @@ export const createTabBarAnimation = (ionTabBar: HTMLElement, references: Elemen
         element.style.transition = OPACITY_TRANSITION;
         element.style.opacity = '0';
       });
-
       if (references.selectedTabButton) {
-        references.selectedTabButton.classList.add('ios26-tab-selected');
-        references.selectedTabButton.classList.remove('tab-selected');
-
         const iconName = references.selectedTabButtonIcon?.getAttribute('name');
         if (iconName) {
           references.closeButtonIcon?.setAttribute('name', iconName);
