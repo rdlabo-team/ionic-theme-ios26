@@ -15,9 +15,17 @@
       <img [src]="'https://picsum.photos/600/600?id=' + item" alt="" />
     }
   </section>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="search"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="present($event)">
+    <ion-icon name="search"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+<ion-footer [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="default" (click)="dismiss($event)"><ion-icon slot="icon-only"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
+</ion-footer>

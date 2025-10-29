@@ -130,11 +130,11 @@ createApp(App)
   })
 ```
 
-### Using Sheet of Glass with `ion-tab-button` / `ion-segment-button`
+### Sheet of Glass with `ion-tab-button` / `ion-segment-button`
 
 By registering `ion-tab-bar` / `ion-segment`, you can display animation effects on `ion-tab-button` / `ion-segment-button`
 
-[![Image from Gyazo](https://i.gyazo.com/a57e8808156e5ce74463e6fa8c05ed61.gif)](https://gyazo.com/a57e8808156e5ce74463e6fa8c05ed61)
+[![Image from Gyazo](https://i.gyazo.com/fafd726b520827f042c76b6c73abd81c.gif)](https://gyazo.com/fafd726b520827f042c76b6c73abd81c)
 
 ```js
 import { registerTabBarEffect, registerSegmentEffect } from '@rdlabo/ionic-theme-ios26';
@@ -156,6 +156,54 @@ const destroy = () => {
 }
 ```
 
+### TabBarSearchable: Searchable with `ion-tab-bar` and `ion-fab-button`
+
+Enable Searchable for the DOM structure with the specified markup inner `ion-tabs`.
+
+[![Image from Gyazo](https://i.gyazo.com/06bc63f4a474f9f19f5b1d865f5c2a85.gif)](https://gyazo.com/06bc63f4a474f9f19f5b1d865f5c2a85)
+
+
+```html
+<ion-content>...</ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="present($event)">
+    <ion-icon name="search"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+<ion-footer [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- ion-icon name is set dynamically by the animation -->
+      <ion-button fill="default"><ion-icon slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <!-- User set `ionChange` or other events. -->
+    <ion-searchbar (ionChange)="example($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-footer>
+```
+
+```ts
+import { attachTabBarSearchable, TabBarSearchableFunction, TabBarSearchableType } from '@rdlabo/ionic-theme-ios26';
+
+let searchableFun: TabBarSearchableFunction | undefined;
+const initialize = () => {
+  // attachTabBarSearchable has state. You should initialize per page.
+  searchableFun = attachTabBarSearchable(
+    document.querySelector<HTMLElement>('ion-tab-bar'),
+    document.querySelector('ion-fab-button'),
+    document.querySelector('ion-footer'),
+  );
+}
+
+const present = (event: Event) => {
+  searchableFun!(event, TabBarSearchableType.Enter);
+}
+
+const dismiss = (event: Event) => {
+  searchableFun!(event, TabBarSearchableType.Leave);
+}
+```
 
 ## Important Notes
 
