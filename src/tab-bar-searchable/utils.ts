@@ -11,7 +11,7 @@ export const throwErrorByFailedClickElement = (selector: string): Error => {
 };
 
 export const throwErrorByFailedExistElement = (selector: string): Error => {
-  return new Error('Function expect exist element `' + selector + '`');
+  return new Error('Expected element `' + selector + '` to exist');
 };
 
 export const getElement = (docs: HTMLElement, selector: string): HTMLElement => {
