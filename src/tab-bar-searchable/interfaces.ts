@@ -3,7 +3,7 @@ export enum TabBarSearchableType {
   Leave = 'leave',
 }
 
-export type TabBarSearchableFunction = (event: MouseEvent, type: TabBarSearchableType) => Promise<void>;
+export type TabBarSearchableFunction = (event: Event, type: TabBarSearchableType) => Promise<void>;
 
 export interface SearchableEventCache {
   elementSizes: ElementSizes;

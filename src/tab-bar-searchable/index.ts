@@ -26,18 +26,23 @@ import {
 export * from './interfaces';
 
 /**
- <ion-footer [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-    <!-- ion-icon does not need `name` attribute. -->
-      <ion-button fill="default"><ion-icon slot="icon-only"></ion-icon>
-    </ion-button>
-    </ion-buttons>
-    <!-- User set `ionChange` or other events. -->
-    <ion-searchbar (ionChange)="example($event)"></ion-searchbar>
-  </ion-toolbar>
- </ion-footer>
-**/
+ *  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+ *   <ion-fab-button (click)="present($event)">
+ *     <ion-icon name="search"></ion-icon>
+ *   </ion-fab-button>
+ *  </ion-fab>
+ *  <ion-footer [translucent]="true">
+ *   <ion-toolbar>
+ *     <ion-buttons slot="start">
+ *     <!-- ion-icon does not need `name` attribute. -->
+ *       <ion-button fill="default"><ion-icon slot="icon-only"></ion-icon>
+ *     </ion-button>
+ *     </ion-buttons>
+ *     <!-- User set `ionChange` or other events. -->
+ *     <ion-searchbar (ionChange)="example($event)"></ion-searchbar>
+ *   </ion-toolbar>
+ *  </ion-footer>
+ **/
 
 export const attachTabBarSearchable = (
   ionTabBar: HTMLElement,
@@ -55,7 +60,7 @@ export const attachTabBarSearchable = (
   // Saved Params
   let searchableEventCache: SearchableEventCache | undefined;
 
-  return async (event: MouseEvent, type: TabBarSearchableType) => {
+  return async (event: Event, type: TabBarSearchableType) => {
     if (type === TabBarSearchableType.Enter) {
       searchableEventCache = await enterEvent(event, ionTabBar, ionFabButton, ionFooter);
     } else if (searchableEventCache !== undefined) {
@@ -68,7 +73,7 @@ export const attachTabBarSearchable = (
 };
 
 const enterEvent = async (
-  event: MouseEvent,
+  event: Event,
   ionTabBar: HTMLElement,
   ionFabButton: HTMLElement,
   ionFooter: HTMLElement,
@@ -106,7 +111,7 @@ const enterEvent = async (
 };
 
 const leaveEvent = async (
-  event: MouseEvent,
+  event: Event,
   searchableEventCache: SearchableEventCache,
   ionTabBar: HTMLElement,
   ionFabButton: HTMLElement,
