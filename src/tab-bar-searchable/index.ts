@@ -64,7 +64,7 @@ export const attachTabBarSearchable = (
     if (type === TabBarSearchableType.Enter) {
       searchableEventCache = await enterEvent(event, ionTabBar, ionFabButton, ionFooter);
     } else if (searchableEventCache !== undefined) {
-      await leaveEvent(event, searchableEventCache!, ionTabBar, ionFabButton, ionFooter);
+      await leaveEvent(event, searchableEventCache, ionTabBar, ionFabButton, ionFooter);
       searchableEventCache = undefined;
     } else {
       throw new Error('TabBarSearchableType.Leave should be run after TabBarSearchableType.Enter');
