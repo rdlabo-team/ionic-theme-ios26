@@ -42,10 +42,10 @@ export class AlbumPage implements ViewDidEnter {
 
   readonly document = inject(DOCUMENT);
   readonly el = inject(ElementRef);
-  fun: TabBarSearchableFunction | undefined;
+  searchableFun: TabBarSearchableFunction | undefined;
 
   ionViewDidEnter() {
-    this.fun = attachTabBarSearchable(
+    this.searchableFun = attachTabBarSearchable(
       this.document.querySelector<HTMLElement>('ion-tab-bar')!,
       this.el.nativeElement.querySelector('ion-fab-button'),
       this.el.nativeElement.querySelector('ion-footer'),
@@ -53,10 +53,10 @@ export class AlbumPage implements ViewDidEnter {
   }
 
   present(event: MouseEvent) {
-    this.fun!(event, TabBarSearchableType.Searchable);
+    this.searchableFun!(event, TabBarSearchableType.Searchable);
   }
 
   dismiss(event: MouseEvent) {
-    this.fun!(event, TabBarSearchableType.Default);
+    this.searchableFun!(event, TabBarSearchableType.Default);
   }
 }

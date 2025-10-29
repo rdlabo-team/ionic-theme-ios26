@@ -30,7 +30,6 @@ module.exports = tseslint.config(
       '@rdlabo/rules/deny-soft-private-modifier': 'error',
       '@rdlabo/rules/signal-use-as-signal': 'error',
       '@rdlabo/rules/signal-use-as-signal-template': 'error',
-      '@rdlabo/rules/component-property-use-readonly': 'error',
     },
   },
   {
