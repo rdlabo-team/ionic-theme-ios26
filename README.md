@@ -173,7 +173,7 @@ Enable Searchable for the DOM structure with the specified markup inner `ion-tab
 <ion-footer [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <!-- ion-icon does not need `name` attribute. -->
+      <!-- ion-icon name is set dynamically by the animation -->
       <ion-button fill="default"><ion-icon slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
