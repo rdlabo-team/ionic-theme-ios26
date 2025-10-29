@@ -61,20 +61,14 @@ export const createTabBarAnimation = (ionTabBar: HTMLElement, references: Elemen
         element.style.opacity = '0';
       });
       if (references.selectedTabButton) {
+        references.selectedTabButton.classList.remove('tab-selected');
         const iconName = references.selectedTabButtonIcon?.getAttribute('name');
         if (iconName) {
           references.closeButtonIcon?.setAttribute('name', iconName);
         }
       }
     })
-    .afterAddWrite(() => {
-      const selected = ionTabBar.querySelector<HTMLElement>('ion-tab-button.ios26-tab-selected');
-      if (selected) {
-        selected.classList.add('tab-selected');
-        selected.classList.remove('ios26-tab-selected');
-      }
-      ionTabBar.style.pointerEvents = 'none';
-    })
+    .afterAddWrite(() => (ionTabBar.style.pointerEvents = 'none'))
     .fromTo(
       'transform',
       'scale(1)',
