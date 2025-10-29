@@ -11,6 +11,7 @@ export interface ElementSizes {
   closeButton: { width: number; height: number };
   fabButton: { width: number; height: number };
   searchContainer: { width: number; height: number };
+  selectedTabButtonIcon: { width: number; height: number; top: number; left: number };
 }
 
 export interface ElementReferences {

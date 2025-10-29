@@ -36,11 +36,18 @@ export const getElementSizes = (ionTabBar: HTMLElement, ionFabButton: HTMLElemen
   const fabButtonRect = ionFabButton.getBoundingClientRect();
   const closeButtonRect = references.closeButtons.getBoundingClientRect();
   const searchContainerRect = references.searchContainer.getBoundingClientRect();
+  const selectedTabButtonIconRect = references.selectedTabButtonIcon!.getBoundingClientRect();
 
   return {
     tabBar: { width: tabBarRect.width, height: tabBarRect.height },
     closeButton: { width: closeButtonRect.width, height: closeButtonRect.height },
     fabButton: { width: fabButtonRect.width, height: fabButtonRect.height },
     searchContainer: { width: searchContainerRect.width, height: searchContainerRect.height },
+    selectedTabButtonIcon: {
+      width: selectedTabButtonIconRect.width,
+      height: selectedTabButtonIconRect.height,
+      top: selectedTabButtonIconRect.top,
+      left: selectedTabButtonIconRect.left,
+    },
   };
 };
