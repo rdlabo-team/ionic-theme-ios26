@@ -1,7 +1,7 @@
 import { createAnimation, Animation } from '@ionic/core';
 import { getElementReferences, getElementSizes, throwErrorByFailedToGet } from './utils';
 import { cloneElement } from '../utils';
-import { ElementReferences, ElementSizes, TabBarSearchableFunction, TabBarSearchableType } from './interfaces';
+import { ElementReferences, ElementSizes, SearchableEventCache, TabBarSearchableFunction, TabBarSearchableType } from './interfaces';
 export * from './interfaces';
 
 /**
@@ -19,7 +19,7 @@ export * from './interfaces';
 **/
 
 // アニメーション定数
-const ANIMATION_DURATION = 600;
+const ANIMATION_DURATION = 400;
 const ANIMATION_DELAY_BASE = 140;
 const ANIMATION_DELAY_CLOSE_BUTTONS = 240;
 const ANIMATION_EASING = 'cubic-bezier(0, 1, 0.22, 1)';
@@ -59,31 +59,34 @@ const createEffectAnimation = (references: ElementReferences, sizes: ElementSize
 /**
  * 逆エフェクトアニメーションを作成
  */
-const createReverseEffectAnimation = (references: ElementReferences, sizes: ElementSizes): Animation => {
+const createReverseEffectAnimation = (
+  references: ElementReferences,
+  searchableElementSizes: ElementSizes,
+  colorSelected: string,
+): Animation => {
   const effectElement = cloneElement('ion-icon');
   const closeButtonRect = references.closeButtonIcon?.getBoundingClientRect();
-  const iconName = references.selectedTabButtonIcon?.getAttribute('name');
-  const selectedTabButtonIconRect = references.selectedTabButtonIcon?.getBoundingClientRect();
 
   return createAnimation()
     .addElement(effectElement)
     .beforeAddWrite(() => {
       effectElement.style.display = 'inline-block';
       references.closeButtonIcon!.style.opacity = '0';
-      if (iconName && closeButtonRect) {
-        effectElement.setAttribute('name', iconName);
-        effectElement.style.width = `${closeButtonRect.width}px`;
-        effectElement.style.height = `${closeButtonRect.height}px`;
+      if (searchableElementSizes.selectedTabButtonIcon) {
+        effectElement.style.width = `${searchableElementSizes.selectedTabButtonIcon.width}px`;
+        effectElement.style.height = `${searchableElementSizes.selectedTabButtonIcon.height}px`;
+        effectElement.style.color = colorSelected;
       }
     })
     .afterAddWrite(() => {
       effectElement.style.display = 'none';
       references.closeButtonIcon!.style.opacity = '1';
+      effectElement.style.color = '';
     })
     .fromTo(
       'transform',
       `translate3d(${closeButtonRect!.left}px, ${closeButtonRect!.top}px, 0)`,
-      `translate3d(${selectedTabButtonIconRect!.left}px, ${selectedTabButtonIconRect!.top}px, 0)`,
+      `translate3d(${searchableElementSizes.selectedTabButtonIcon!.left}px, ${searchableElementSizes.selectedTabButtonIcon!.top}px, 0)`,
     );
 };
 
@@ -187,19 +190,17 @@ const createReverseTabBarAnimation = (ionTabBar: HTMLElement, references: Elemen
     .addElement(ionTabBar)
     .beforeAddWrite(() => {
       ionTabBar.style.pointerEvents = 'auto';
-    })
-    .afterAddWrite(() => {
       ionTabBar.querySelectorAll<HTMLElement>('ion-tab-button').forEach((element: HTMLElement) => {
         element.style.transition = OPACITY_TRANSITION;
         element.style.opacity = '1';
       });
-
       const selected = ionTabBar.querySelector<HTMLElement>('ion-tab-button.ios26-tab-selected');
       if (selected) {
         selected.classList.add('tab-selected');
         selected.classList.remove('ios26-tab-selected');
       }
     })
+    .afterClearStyles(['transform', 'opacity'])
     .fromTo(
       'transform',
       `scale(${sizes.closeButton.width / sizes.tabBar.width}, ${sizes.closeButton.height / sizes.tabBar.height})`,
@@ -227,17 +228,18 @@ const createFabButtonAnimation = (ionFabButton: HTMLElement): Animation => {
 /**
  * 逆FABボタンアニメーションを作成
  */
-const createReverseFabButtonAnimation = (ionFabButton: HTMLElement): Animation => {
+const createReverseFabButtonAnimation = (ionFabButton: HTMLElement, references: ElementSizes): Animation => {
   return createAnimation()
     .addElement(ionFabButton)
     .beforeAddWrite(() => {
+      ionFabButton.querySelector<HTMLElement>('ion-icon')?.style.setProperty('opacity', '1');
       ionFabButton.style.transformOrigin = 'center right';
     })
     .afterAddWrite(() => {
       ionFabButton.style.pointerEvents = 'auto';
-      ionFabButton.querySelector<HTMLElement>('ion-icon')?.style.setProperty('opacity', '1');
     })
-    .fromTo('opacity', '0', '1');
+    .fromTo('opacity', '0', '1')
+    .fromTo('transform', `scale(${references.searchContainer.height / references.fabButton.height})`, 'scale(1)');
 };
 
 export const attachTabBarSearchable = (
@@ -254,13 +256,13 @@ export const attachTabBarSearchable = (
   ionTabBar.style.transformOrigin = 'left center';
 
   // Saved Params
-  let elementSizes: ElementSizes | undefined;
+  let searchableEventCache: SearchableEventCache | undefined;
 
   return (event: MouseEvent, type: TabBarSearchableType) => {
     if (type === TabBarSearchableType.Searchable) {
-      elementSizes = searchableEvent(event, ionTabBar, ionFabButton, ionFooter);
+      searchableEventCache = searchableEvent(event, ionTabBar, ionFabButton, ionFooter);
     } else {
-      defaultEvent(event, elementSizes!, ionTabBar, ionFabButton, ionFooter);
+      defaultEvent(event, searchableEventCache!, ionTabBar, ionFabButton, ionFooter);
     }
   };
 };
@@ -268,7 +270,12 @@ export const attachTabBarSearchable = (
 /**
  * 検索可能状態へのアニメーション処理
  */
-const searchableEvent = (event: MouseEvent, ionTabBar: HTMLElement, ionFabButton: HTMLElement, ionFooter: HTMLElement): ElementSizes => {
+const searchableEvent = (
+  event: MouseEvent,
+  ionTabBar: HTMLElement,
+  ionFabButton: HTMLElement,
+  ionFooter: HTMLElement,
+): SearchableEventCache => {
   if (!(event.target as HTMLElement)?.closest('ion-fab-button')) {
     throw throwErrorByFailedToGet('ion-fab-button');
   }
@@ -276,6 +283,9 @@ const searchableEvent = (event: MouseEvent, ionTabBar: HTMLElement, ionFabButton
   // DOM要素とサイズ情報を取得
   const references = getElementReferences(ionTabBar, ionFooter);
   const sizes = getElementSizes(ionTabBar, ionFabButton, references);
+  const colorSelected = references.selectedTabButton
+    ? getComputedStyle(references.selectedTabButton).getPropertyValue('--color-selected').trim()
+    : '';
 
   // 各アニメーションを作成
   const effectAnimation = createEffectAnimation(references, sizes);
@@ -301,7 +311,10 @@ const searchableEvent = (event: MouseEvent, ionTabBar: HTMLElement, ionFabButton
     .fromTo('opacity', '0.8', '1')
     .addAnimation([tabBarAnimation, fabButtonAnimation, searchContainerAnimation, effectAnimation, closeButtonsAnimation])
     .play();
-  return sizes;
+  return {
+    elementSizes: sizes,
+    colorSelected,
+  };
 };
 
 /**
@@ -309,21 +322,20 @@ const searchableEvent = (event: MouseEvent, ionTabBar: HTMLElement, ionFabButton
  */
 const defaultEvent = (
   event: MouseEvent,
-  searchableElementSizes: ElementSizes,
+  searchableEventCache: SearchableEventCache,
   ionTabBar: HTMLElement,
   ionFabButton: HTMLElement,
   ionFooter: HTMLElement,
 ): void => {
   // DOM要素とサイズ情報を取得
   const references = getElementReferences(ionTabBar, ionFooter);
-  const sizes = getElementSizes(ionTabBar, ionFabButton, references);
 
   // 各アニメーションを作成（逆の動作）
-  const effectAnimation = createReverseEffectAnimation(references, sizes);
-  const searchContainerAnimation = createReverseSearchContainerAnimation(references, sizes);
+  const effectAnimation = createReverseEffectAnimation(references, searchableEventCache.elementSizes, searchableEventCache.colorSelected);
+  const searchContainerAnimation = createReverseSearchContainerAnimation(references, searchableEventCache.elementSizes);
   const closeButtonsAnimation = createReverseCloseButtonsAnimation(references);
-  const tabBarAnimation = createReverseTabBarAnimation(ionTabBar, references, sizes);
-  const fabButtonAnimation = createReverseFabButtonAnimation(ionFabButton);
+  const tabBarAnimation = createReverseTabBarAnimation(ionTabBar, references, searchableEventCache.elementSizes);
+  const fabButtonAnimation = createReverseFabButtonAnimation(ionFabButton, searchableEventCache.elementSizes);
 
   // ベースアニメーションを作成して実行
   const toolbar = ionFooter.querySelector('ion-toolbar');
@@ -342,7 +354,7 @@ const defaultEvent = (
       ionFooter.style.pointerEvents = 'none';
       ionFooter.style.opacity = '0';
     })
-    .fromTo('opacity', '1', '0.8')
+    .fromTo('opacity', '1', '0')
     .addAnimation([tabBarAnimation, fabButtonAnimation, searchContainerAnimation, effectAnimation, closeButtonsAnimation])
     .play();
 };

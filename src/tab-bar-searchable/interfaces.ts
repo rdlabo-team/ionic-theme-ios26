@@ -5,6 +5,11 @@ export enum TabBarSearchableType {
 
 export type TabBarSearchableFunction = (event: MouseEvent, type: TabBarSearchableType) => void;
 
+export interface SearchableEventCache {
+  elementSizes: ElementSizes;
+  colorSelected: string;
+}
+
 // DOM要素とサイズ情報の型定義
 export interface ElementSizes {
   tabBar: { width: number; height: number };
