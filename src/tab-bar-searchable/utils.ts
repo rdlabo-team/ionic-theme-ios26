@@ -1,5 +1,11 @@
 import { ElementReferences, ElementSizes } from './interfaces';
 
+export const ANIMATION_DURATION = 400;
+export const ANIMATION_DELAY_BASE = 140;
+export const ANIMATION_DELAY_CLOSE_BUTTONS = 240;
+export const ANIMATION_EASING = 'cubic-bezier(0, 1, 0.22, 1)';
+export const OPACITY_TRANSITION = 'opacity 140ms ease';
+
 export const throwErrorByFailedToGet = (selector: string): Error => {
   return new Error('Function expect click Element is inner `' + selector + '`');
 };
