@@ -7,7 +7,7 @@ export const ANIMATION_EASING = 'cubic-bezier(0, 1, 0.22, 1)';
 export const OPACITY_TRANSITION = 'opacity 140ms ease';
 
 export const throwErrorByFailedClickElement = (selector: string): Error => {
-  return new Error('Function expect click element is inner `' + selector + '`');
+  return new Error('Expected click element to be inside `' + selector + '`');
 };
 
 export const throwErrorByFailedExistElement = (selector: string): Error => {
