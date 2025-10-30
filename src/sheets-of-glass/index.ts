@@ -26,6 +26,7 @@ export const registerEffect = (
   let scaleAnimationPromise: Promise<void> | undefined;
   let startAnimationPromise: Promise<void> | undefined;
   let maxVelocity = 0;
+  let wasRealUserClick = false;
   const effectElement = cloneElement(effectTagName);
 
   /**
@@ -38,6 +39,7 @@ export const registerEffect = (
     createAnimationGesture();
   };
   const onPointerUp = (event: PointerEvent) => {
+    wasRealUserClick = true;
     clearActivatedTimer = setTimeout(async () => {
       await onEndGesture();
       gesture.destroy();
@@ -68,12 +70,15 @@ export const registerEffect = (
     if (!currentTouchedElement) {
       return;
     }
-    currentTouchedElement!.click();
+    if (!wasRealUserClick) {
+      currentTouchedElement!.click();
+    }
     currentTouchedElement?.classList.remove('ion-activated');
     currentTouchedElement = undefined;
     effectElement.style.display = 'none';
     maxVelocity = 0;
     targetElement.classList.remove(ANIMATED_NAME);
+    wasRealUserClick = false;
   };
 
   const onStartGesture = (detail: GestureDetail): boolean | undefined => {
