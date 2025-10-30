@@ -53,6 +53,18 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
  */
 ```
 
+### How to prevent loading a theme file on iOS 18
+
+If you want to load a theme file only when the user's device is running iOS 26 (and let users on iOS 18 use the default Ionic iOS theme), you can achieve this by adding a supports-condition to your `import`.
+
+```css
+@import '@rdlabo/ionic-theme-ios26/dist/css/default-variables.css' supports(text-wrap: pretty);
+@import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.css' supports(text-wrap: pretty);
+@import '@rdlabo/ionic-theme-ios26/dist/css/md-remove-ios-class-effect.css' supports(text-wrap: pretty);
+@import '@rdlabo/ionic-theme-ios26/dist/css/md-ion-list-inset.css' supports(text-wrap: pretty);
+```
+
+
 ## Customization
 
 ### CSS Variables
@@ -246,7 +258,6 @@ You can see the difference in the following video. The first example shows `ion-
 [![Image from Gyazo](https://i.gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73.gif)](https://gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73)
 
 This is a known issue that has been shared with the Ionic team. We will update this library accordingly once Ionic Core addresses it.
-
 
 ## Migration Support
 
