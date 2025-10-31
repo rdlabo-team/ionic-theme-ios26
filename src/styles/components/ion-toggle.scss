@@ -32,6 +32,9 @@ ion-toggle.ios:not(.ios26-disabled) {
     transform: translateX(-4px) scale(1.4, 1.6) translateZ(0);
     -webkit-transform: translateX(-4px) scale(1.4, 1.6) translateZ(0);
   }
+  &.toggle-activated.toggle-checked::part(handle) {
+    transform: scale(1.4, 1.6) translateZ(0);
+  }
   &.toggle-activated::part(handle) {
     transform: scale(1.4, 1.6) translateZ(0);
     -webkit-transform: scale(1.4, 1.6) translateZ(0);
