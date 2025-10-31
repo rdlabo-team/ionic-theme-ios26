@@ -16,6 +16,9 @@ $scaleup-large-icon-only: 1.22;
   @include api.glass-background;
   border-radius: 25px;
   overflow: hidden;
+  &:hover {
+    opacity: 0.72;
+  }
 
   /**
    * compare .header-collapse-main ion-toolbar.in-toolbar ion-title, .header-collapse-main ion-toolbar.in-toolbar ion-buttons
@@ -286,6 +289,9 @@ $scaleup-large-icon-only: 1.22;
 
     &:not(.button-disabled) {
       opacity: 1; // for ion-back-button
+    }
+    &:hover {
+      opacity: 0.72;
     }
     --color: rgb(var(--ion-text-color-rgb, 0, 0, 0));
     &.ion-color {
