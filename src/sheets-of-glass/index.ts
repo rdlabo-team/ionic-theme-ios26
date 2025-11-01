@@ -35,23 +35,21 @@ export const registerEffect = (
    * They terminate the gesture using native events as a fallback.
    */
   const onPointerDown = (event: PointerEvent) => {
-    targetElement.setPointerCapture(event.pointerId);
     clearActivated();
     gesture.destroy();
     createAnimationGesture();
+    const onPointerUp = async (e: PointerEvent) => {
+      isRealUserClick = true;
+      clearActivatedTimer = setTimeout(async () => {
+        await onEndGesture();
+        gesture.destroy();
+        createAnimationGesture();
+      });
+      document.removeEventListener('pointerup', onPointerUp);
+    };
+    document.addEventListener('pointerup', onPointerUp);
   };
-  const onPointerUp = (event: PointerEvent) => {
-    targetElement.releasePointerCapture(event.pointerId);
-    isRealUserClick = true;
-    clearActivatedTimer = setTimeout(async () => {
-      await onEndGesture();
-      gesture.destroy();
-      createAnimationGesture();
-    });
-  };
-
   targetElement.addEventListener('pointerdown', onPointerDown);
-  targetElement.addEventListener('pointerup', onPointerUp);
 
   const createAnimationGesture = () => {
     targetElement.classList.add(GESTURE_NAME);
@@ -189,7 +187,6 @@ export const registerEffect = (
     destroy: () => {
       // Remove event listeners
       targetElement.removeEventListener('pointerdown', onPointerDown);
-      targetElement.removeEventListener('pointerup', onPointerUp);
 
       // Clear any pending timer
       if (clearActivatedTimer !== undefined) {
