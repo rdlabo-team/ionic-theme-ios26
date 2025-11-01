@@ -16,7 +16,7 @@ $scaleup-large-icon-only: 1.22;
   @include api.glass-background;
   border-radius: 25px;
   overflow: hidden;
-  &:hover {
+  &:not(:has(.ion-activated)):hover {
     opacity: 0.72;
   }
 
@@ -290,7 +290,7 @@ $scaleup-large-icon-only: 1.22;
     &:not(.button-disabled) {
       opacity: 1; // for ion-back-button
     }
-    &:hover {
+    &:not(.ion-activated):hover {
       opacity: 0.72;
     }
     --color: rgb(var(--ion-text-color-rgb, 0, 0, 0));
