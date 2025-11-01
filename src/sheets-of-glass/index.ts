@@ -34,12 +34,14 @@ export const registerEffect = (
    * These event listeners fix a bug where gestures don't complete properly.
    * They terminate the gesture using native events as a fallback.
    */
-  const onPointerDown = () => {
+  const onPointerDown = (event: PointerEvent) => {
+    targetElement.setPointerCapture(event.pointerId);
     clearActivated();
     gesture.destroy();
     createAnimationGesture();
   };
   const onPointerUp = (event: PointerEvent) => {
+    targetElement.releasePointerCapture(event.pointerId);
     isRealUserClick = true;
     clearActivatedTimer = setTimeout(async () => {
       await onEndGesture();
