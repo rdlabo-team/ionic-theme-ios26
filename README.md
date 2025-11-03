@@ -9,6 +9,7 @@ DEMO is here: https://ionic-theme-ios26.netlify.app/
 ## Overview
 
 This library provides CSS/JS files that bring the iOS26 design system to Ionic applications. It updates the look and feel of Ionic components to match the latest iOS26 design guidelines.
+
 I'm also working on the Android Design (Material Design 3) theme. Be sure to catch up!
 
 👉️[rdlabo-team/ionic-theme-md3](https://github.com/rdlabo-team/ionic-theme-md3)
