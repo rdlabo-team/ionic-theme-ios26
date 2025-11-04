@@ -51,5 +51,5 @@ export const changeSelectedElement = (
     element.classList.remove(selectedClassName);
     element.classList.remove('ion-activated');
   });
-  selectedElement.classList.add(selectedClassName, 'ion-activated');
+  selectedElement.classList.add('ion-activated');
 };

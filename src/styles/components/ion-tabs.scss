@@ -100,10 +100,6 @@ ion-tab-button.ios:not(.ios26-disabled) {
       background: rgba(var(--ios26-button-color-selected-rgb), 0.095);
       transition: background var(--ios26-activated-transition-duration) ease;
     }
-
-    &.ion-activated::part(native) {
-      background: rgba(var(--ios26-glass-box-shadow-color-rgb), 0.02);
-    }
   }
 
   &.ion-cloned-element {

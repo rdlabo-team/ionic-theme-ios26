@@ -26,8 +26,6 @@ export const registerEffect = (
   let scaleAnimationPromise: Promise<void> | undefined;
   let startAnimationPromise: Promise<void> | undefined;
   let maxVelocity = 0;
-  let isUseMove = false;
-  let isRealUserClick = false;
   const effectElement = cloneElement(effectTagName);
 
   /**
@@ -39,7 +37,6 @@ export const registerEffect = (
     gesture.destroy();
     createAnimationGesture();
     const onPointerUp = async (e: PointerEvent) => {
-      isRealUserClick = true;
       clearActivatedTimer = setTimeout(async () => {
         await onEndGesture();
         gesture.destroy();
@@ -71,15 +68,15 @@ export const registerEffect = (
     if (!currentTouchedElement) {
       return;
     }
-    if (!isRealUserClick || isUseMove) {
+    if (!currentTouchedElement.classList.contains(selectedClassName)) {
       currentTouchedElement!.click();
+      currentTouchedElement.classList.add(selectedClassName);
     }
-    currentTouchedElement?.classList.remove('ion-activated');
+    currentTouchedElement.classList.remove('ion-activated');
     currentTouchedElement = undefined;
     effectElement.style.display = 'none';
     maxVelocity = 0;
     targetElement.classList.remove(ANIMATED_NAME);
-    isRealUserClick = false;
   };
 
   const onStartGesture = (detail: GestureDetail): boolean | undefined => {
@@ -88,7 +85,6 @@ export const registerEffect = (
     if (currentTouchedElement === undefined || tabSelectedElement === null) {
       return false;
     }
-    isUseMove = false;
     animationPosition = {
       minPositionX: targetElement.getBoundingClientRect().left,
       maxPositionX: targetElement.getBoundingClientRect().right - tabSelectedElement.clientWidth,
@@ -118,7 +114,6 @@ export const registerEffect = (
   };
 
   const onMoveGesture = (detail: GestureDetail): boolean | undefined => {
-    isUseMove = true;
     if (currentTouchedElement === undefined || !moveAnimation) {
       return false; // Skip Animation
     }
