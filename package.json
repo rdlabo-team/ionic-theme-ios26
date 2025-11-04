@@ -1,6 +1,6 @@
 {
   "name": "@rdlabo/ionic-theme-ios26",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "iOS26 Theme for Ionic Framework",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
