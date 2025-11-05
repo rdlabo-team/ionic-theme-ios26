@@ -1,0 +1,77 @@
+@use '../utils/api';
+
+// TODO: Support right menu
+ion-split-pane.split-pane-visible:has(ion-menu) {
+  // TODO: #main-content should set by user
+  #main-content {
+    // TODO: min-width should set by user
+    @media (min-width: 992px) {
+      .ion-page:has(ion-content ion-header.header-collapse-condense) {
+        ion-header.header-collapse-main ion-toolbar {
+          padding-left: calc(var(--ios26-menu-width) + var(--ion-safe-area-left));
+        }
+        ion-content::part(scroll) {
+          --padding-start: var(--ios26-menu-width);
+        }
+        ion-footer ion-toolbar {
+          --padding-start: var(--ios26-menu-width);
+        }
+      }
+      .ion-page:not(:has(ion-content ion-header.header-collapse-condense)) {
+        ion-header ion-toolbar {
+          padding-left: calc(var(--ios26-menu-width) + var(--ion-safe-area-left));
+        }
+        ion-content::part(scroll) {
+          --padding-start: var(--ios26-menu-width);
+        }
+        ion-footer ion-toolbar {
+          --padding-start: var(--ios26-menu-width);
+        }
+      }
+      ion-tab-bar {
+        width: calc(
+          100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)) - 60px -
+            12px - var(--ios26-menu-width)
+        );
+        &:has(:nth-child(5)) {
+          width: calc(
+            100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)) - var(--ios26-menu-width)
+          );
+        }
+        &[slot='bottom'] {
+          left: calc(16px + var(--ion-safe-area-left, 0px) + var(--ios26-menu-width));
+        }
+      }
+      ion-alert,
+      ion-modal,
+      ion-toast {
+        --ion-safe-area-left: calc(var(--ion-safe-area-left) + var(--ios26-menu-width));
+      }
+    }
+  }
+}
+
+ion-menu.ios:not(.ios26-disabled) {
+  --border: none;
+  --background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+
+  &::part(backdrop) {
+    display: none;
+  }
+
+  ion-content {
+    --background: transparent;
+    --ios26-content-box-shadow-rgb: transparent;
+
+    &::part(scroll) {
+      @include api.glass-background;
+      margin: calc(16px + var(--ion-safe-area-top)) calc(16px + var(--ion-safe-area-right)) calc(10px + var(--ion-safe-area-bottom))
+        calc(16px + var(--ion-safe-area-left));
+      border-radius: 24px;
+    }
+  }
+}

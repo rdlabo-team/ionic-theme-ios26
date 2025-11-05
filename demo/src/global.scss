@@ -50,6 +50,10 @@ code {
   font-family: Menlo, Consolas, monospace;
 }
 
+#main-content {
+  width: 100%;
+}
+
 section.section-example {
   background: var(--ion-background-color, #fff);
   border-radius: 24px;

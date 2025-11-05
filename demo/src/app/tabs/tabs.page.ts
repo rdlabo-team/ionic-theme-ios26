@@ -13,6 +13,9 @@ import {
   IonContent,
   IonList,
   IonItem,
+  IonHeader,
+  IonToolbar,
+  IonItemGroup,
 } from '@ionic/angular/standalone';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
@@ -24,7 +27,21 @@ import { registeredEffect, registerTabBarEffect } from '../../../../src';
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss'],
-  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonSplitPane, IonMenu, IonContent, IonList, IonItem],
+  imports: [
+    IonTabs,
+    IonTabBar,
+    IonTabButton,
+    IonIcon,
+    IonLabel,
+    IonSplitPane,
+    IonMenu,
+    IonContent,
+    IonList,
+    IonItem,
+    IonHeader,
+    IonToolbar,
+    IonItemGroup,
+  ],
 })
 export class TabsPage implements OnInit, ViewDidEnter, ViewDidLeave {
   readonly #router = inject(Router);
