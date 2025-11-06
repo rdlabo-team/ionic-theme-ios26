@@ -3,30 +3,54 @@
 // TODO: Support right menu
 ion-split-pane.split-pane-visible:has(ion-menu.menu-pane-visible) {
   .split-pane-main {
-    ion-header ion-toolbar {
-      padding-left: calc(var(--ios26-menu-width) + var(--ion-safe-area-left));
-    }
-    ion-content {
-      --padding-start: var(--ios26-menu-width);
-      ion-header ion-toolbar {
-        padding-left: 0;
-      }
-    }
-    ion-footer ion-toolbar {
-      --padding-start: var(--ios26-menu-width);
-    }
     ion-tab-bar {
       width: calc(
         100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)) - 60px -
           12px - var(--ios26-menu-width)
       );
+
       &:has(:nth-child(5)) {
         width: calc(
           100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)) - var(--ios26-menu-width)
         );
       }
-      &[slot='bottom'] {
-        left: calc(16px + var(--ion-safe-area-left, 0px) + var(--ios26-menu-width));
+    }
+  }
+  &:has(ion-menu.menu-side-start) {
+    .split-pane-main {
+      ion-header ion-toolbar {
+        padding-left: calc(var(--ios26-menu-width) + var(--ion-safe-area-left));
+      }
+      ion-content {
+        --padding-start: var(--ios26-menu-width);
+        ion-header ion-toolbar {
+          padding-left: 0;
+        }
+      }
+      ion-footer ion-toolbar {
+        --padding-start: var(--ios26-menu-width);
+      }
+      ion-tab-bar {
+        &[slot='bottom'] {
+          left: calc(16px + var(--ion-safe-area-left, 0px) + var(--ios26-menu-width));
+        }
+      }
+    }
+  }
+
+  &:has(ion-menu.menu-side-end) {
+    .split-pane-main {
+      ion-header ion-toolbar {
+        padding-right: calc(var(--ios26-menu-width) + var(--ion-safe-area-left));
+      }
+      ion-content {
+        --padding-end: var(--ios26-menu-width);
+        ion-header ion-toolbar {
+          padding-right: 0;
+        }
+      }
+      ion-footer ion-toolbar {
+        --padding-end: var(--ios26-menu-width);
       }
     }
   }
@@ -37,8 +61,15 @@ ion-menu.ios:not(.ios26-disabled) {
   --background: transparent;
   position: absolute;
   top: 0;
-  left: 0;
   z-index: 999;
+  max-width: var(--ios26-menu-width);
+
+  &.menu-side-start {
+    left: 0;
+  }
+  &.menu-side-end {
+    left: calc(100vw - var(--ios26-menu-width));
+  }
 
   &::part(backdrop) {
     display: none;
