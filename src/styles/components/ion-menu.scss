@@ -1,46 +1,32 @@
 @use '../utils/api';
 
 // TODO: Support right menu
-ion-split-pane.split-pane-visible:has(ion-menu) {
-  // TODO: #main-content should set by user
-  #main-content {
-    // TODO: min-width should set by user
-    @media (min-width: 992px) {
-      .ion-page:has(ion-content ion-header.header-collapse-condense) {
-        ion-header.header-collapse-main ion-toolbar {
-          padding-left: calc(var(--ios26-menu-width) + var(--ion-safe-area-left));
-        }
-        ion-content::part(scroll) {
-          --padding-start: var(--ios26-menu-width);
-        }
-        ion-footer ion-toolbar {
-          --padding-start: var(--ios26-menu-width);
-        }
+ion-split-pane.split-pane-visible:has(ion-menu.menu-pane-visible) {
+  .split-pane-main {
+    ion-header ion-toolbar {
+      padding-left: calc(var(--ios26-menu-width) + var(--ion-safe-area-left));
+    }
+    ion-content {
+      --padding-start: var(--ios26-menu-width);
+      ion-header ion-toolbar {
+        padding-left: 0;
       }
-      .ion-page:not(:has(ion-content ion-header.header-collapse-condense)) {
-        ion-header ion-toolbar {
-          padding-left: calc(var(--ios26-menu-width) + var(--ion-safe-area-left));
-        }
-        ion-content::part(scroll) {
-          --padding-start: var(--ios26-menu-width);
-        }
-        ion-footer ion-toolbar {
-          --padding-start: var(--ios26-menu-width);
-        }
-      }
-      ion-tab-bar {
+    }
+    ion-footer ion-toolbar {
+      --padding-start: var(--ios26-menu-width);
+    }
+    ion-tab-bar {
+      width: calc(
+        100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)) - 60px -
+          12px - var(--ios26-menu-width)
+      );
+      &:has(:nth-child(5)) {
         width: calc(
-          100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)) - 60px -
-            12px - var(--ios26-menu-width)
+          100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)) - var(--ios26-menu-width)
         );
-        &:has(:nth-child(5)) {
-          width: calc(
-            100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)) - var(--ios26-menu-width)
-          );
-        }
-        &[slot='bottom'] {
-          left: calc(16px + var(--ion-safe-area-left, 0px) + var(--ios26-menu-width));
-        }
+      }
+      &[slot='bottom'] {
+        left: calc(16px + var(--ion-safe-area-left, 0px) + var(--ios26-menu-width));
       }
     }
   }
