@@ -48,9 +48,9 @@ const routes = [
 
 const prepareScreenShot = async (page: Page, routeName: string) => {
   await page.waitForTimeout(1000);
-  await page.waitForSelector('ion-content', { timeout: 10000 });
+  await page.waitForSelector('ion-content[role="main"]', { timeout: 10000 });
   if (!routeName.includes(':')) {
-    const scrollHeight = await page.locator('ion-content').evaluate(async (el: any) => {
+    const scrollHeight = await page.locator('ion-content[role="main"]').evaluate(async (el: any) => {
       const scrollEl = await el.getScrollElement();
       return scrollEl.scrollHeight;
     });
