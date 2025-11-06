@@ -2,7 +2,6 @@ import { Component, ElementRef, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  Gesture,
   IonBackButton,
   IonButton,
   IonButtons,
@@ -20,7 +19,7 @@ import {
   ViewDidEnter,
   ViewDidLeave,
 } from '@ionic/angular/standalone';
-import { registeredEffect, registerSegmentEffect, registerTabBarEffect } from '../../../../../../src';
+import { registeredEffect, registerSegmentEffect } from '../../../../../../src';
 
 @Component({
   selector: 'app-segment',
