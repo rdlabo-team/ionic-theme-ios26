@@ -1,6 +1,5 @@
 @use '../utils/api';
 
-// TODO: Support right menu
 ion-split-pane.split-pane-visible:has(ion-menu.menu-pane-visible) {
   .split-pane-main {
     ion-tab-bar {
