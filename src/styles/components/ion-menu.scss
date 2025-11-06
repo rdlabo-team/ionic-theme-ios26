@@ -18,12 +18,21 @@ ion-split-pane.split-pane-visible:has(ion-menu.menu-pane-visible) {
   &:has(ion-menu.menu-side-start) {
     .split-pane-main {
       ion-header ion-toolbar {
-        padding-left: calc(var(--ios26-menu-width) + var(--ion-safe-area-left));
+        /*
+         * 4px: https://github.com/ionic-team/ionic-framework/blob/main/core/src/components/toolbar/toolbar.ios.vars.scss#L28-L32
+         */
+        --padding-start: calc(var(--ios26-menu-width) + 4px);
+        ion-title.title-default {
+          /*
+           * 90px: https://github.com/ionic-team/ionic-framework/blob/main/core/src/components/title/title.ios.scss#L8
+           */
+          padding-left: calc(90px + var(--ios26-menu-width));
+        }
       }
       ion-content {
         --padding-start: var(--ios26-menu-width);
         ion-header ion-toolbar {
-          padding-left: 0;
+          --padding-start: 4px;
         }
       }
       ion-footer ion-toolbar {
@@ -40,12 +49,21 @@ ion-split-pane.split-pane-visible:has(ion-menu.menu-pane-visible) {
   &:has(ion-menu.menu-side-end) {
     .split-pane-main {
       ion-header ion-toolbar {
-        padding-right: calc(var(--ios26-menu-width) + var(--ion-safe-area-left));
+        /*
+         * 4px: https://github.com/ionic-team/ionic-framework/blob/main/core/src/components/toolbar/toolbar.ios.vars.scss#L28-L32
+         */
+        --padding-end: calc(var(--ios26-menu-width) + 4px);
+        ion-title.title-default {
+          /*
+           * 90px: https://github.com/ionic-team/ionic-framework/blob/main/core/src/components/title/title.ios.scss#L8
+           */
+          padding-right: calc(90px + var(--ios26-menu-width));
+        }
       }
       ion-content {
         --padding-end: var(--ios26-menu-width);
         ion-header ion-toolbar {
-          padding-right: 0;
+          --padding-start: 4px;
         }
       }
       ion-footer ion-toolbar {
