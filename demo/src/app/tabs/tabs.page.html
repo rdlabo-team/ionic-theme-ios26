@@ -1,23 +1,52 @@
-<ion-tabs>
-  <ion-tab-bar id="tab-bar-bottom" slot="bottom">
-    <ion-tab-button tab="index" href="/main/index">
-      <ion-icon aria-hidden="true" name="documents"></ion-icon>
-      <ion-label>Index</ion-label>
-    </ion-tab-button>
+<ion-split-pane contentId="main-content">
+  <ion-menu [swipeGesture]="false" contentId="main-content" type="overlay">
+    <ion-content>
+      <ion-list [inset]="true">
+        <ion-item-group>
+          <ion-item href="/main/index" lines="none">
+            <ion-icon aria-hidden="true" name="documents" slot="start"></ion-icon>
+            <ion-label>Index</ion-label>
+          </ion-item>
+          <ion-item href="/main/docs" lines="none">
+            <ion-icon aria-hidden="true" name="list" slot="start"></ion-icon>
+            <ion-label>Docs</ion-label>
+          </ion-item>
+          <ion-item href="/main/album" lines="none">
+            <ion-icon aria-hidden="true" name="images" slot="start"></ion-icon>
+            <ion-label>Library</ion-label>
+          </ion-item>
+          <ion-item href="/main/settings" lines="none">
+            <ion-icon aria-hidden="true" name="settings" slot="start"></ion-icon>
+            <ion-label>Settings</ion-label>
+          </ion-item>
+        </ion-item-group>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
 
-    <ion-tab-button tab="docs" href="/main/docs">
-      <ion-icon aria-hidden="true" name="list"></ion-icon>
-      <ion-label>Docs</ion-label>
-    </ion-tab-button>
+  <section id="main-content">
+    <ion-tabs>
+      <ion-tab-bar id="tab-bar-bottom" slot="bottom">
+        <ion-tab-button tab="index" href="/main/index">
+          <ion-icon aria-hidden="true" name="documents"></ion-icon>
+          <ion-label>Index</ion-label>
+        </ion-tab-button>
 
-    <ion-tab-button tab="album" href="/main/album">
-      <ion-icon aria-hidden="true" name="images"></ion-icon>
-      <ion-label>Library</ion-label>
-    </ion-tab-button>
+        <ion-tab-button tab="docs" href="/main/docs">
+          <ion-icon aria-hidden="true" name="list"></ion-icon>
+          <ion-label>Docs</ion-label>
+        </ion-tab-button>
 
-    <ion-tab-button tab="settings" href="/main/settings">
-      <ion-icon aria-hidden="true" name="cog"></ion-icon>
-      <ion-label>Settings</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
+        <ion-tab-button tab="album" href="/main/album">
+          <ion-icon aria-hidden="true" name="images"></ion-icon>
+          <ion-label>Library</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="settings" href="/main/settings">
+          <ion-icon aria-hidden="true" name="cog"></ion-icon>
+          <ion-label>Settings</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </section>
+</ion-split-pane>

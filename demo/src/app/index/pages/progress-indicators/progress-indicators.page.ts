@@ -18,8 +18,7 @@ import {
 } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { alertTypes, loadingTypes } from '../../../overlay-types';
-import { alertUtil } from '../alert/alert.util';
+import { loadingTypes } from '../../../overlay-types';
 
 @Component({
   selector: 'app-progress-indicators',

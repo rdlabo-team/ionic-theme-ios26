@@ -1,5 +1,19 @@
 import { Component, ElementRef, inject, OnInit } from '@angular/core';
-import { IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs, ViewDidEnter, ViewDidLeave, Gesture } from '@ionic/angular/standalone';
+import {
+  IonContent,
+  IonIcon,
+  IonItem,
+  IonItemGroup,
+  IonLabel,
+  IonList,
+  IonMenu,
+  IonSplitPane,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
+  ViewDidEnter,
+  ViewDidLeave,
+} from '@ionic/angular/standalone';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
@@ -10,7 +24,7 @@ import { registeredEffect, registerTabBarEffect } from '../../../../src';
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss'],
-  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
+  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonSplitPane, IonMenu, IonContent, IonList, IonItem, IonItemGroup],
 })
 export class TabsPage implements OnInit, ViewDidEnter, ViewDidLeave {
   readonly #router = inject(Router);

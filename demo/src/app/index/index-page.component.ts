@@ -12,6 +12,7 @@ import {
   IonLabel,
   IonList,
   IonListHeader,
+  IonMenuButton,
   IonTitle,
   IonToggle,
   IonToolbar,
@@ -44,6 +45,7 @@ interface IComponent {
     IonListHeader,
     IonItemGroup,
     IonToggle,
+    IonMenuButton,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
