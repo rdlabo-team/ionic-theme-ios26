@@ -53,7 +53,7 @@ export class SegmentPage implements OnInit, ViewDidEnter, ViewDidLeave {
   ngOnInit() {}
 
   ionViewDidEnter() {
-    this.#el.nativeElement.querySelectorAll('ion-segment:not(.segment-expand)').forEach((item: HTMLElement) => {
+    this.#el.nativeElement.querySelectorAll('ion-segment').forEach((item: HTMLElement) => {
       const registerGesture = registerSegmentEffect(item);
       if (registerGesture) {
         this.registeredGestures.push(registerGesture);
