@@ -5,28 +5,15 @@ ion-segment.ios:not(.ios26-disabled) {
   min-height: 48px;
   border-radius: 25px;
 
-  &.segment-expand {
-    min-height: 24px;
-    width: calc(100% - var(--ion-safe-area-left, 0) - var(--ion-safe-area-left, 0) - 24px);
-
-    &.segment-activated {
-      transform: scale(1);
-    }
-
-    ion-segment-button {
-      min-height: 24px;
-    }
-  }
-
   transition: transform var(--ios26-activated-transition-duration) ease-out;
 
   // will-change is optimized to only apply when needed for performance
-  &:has(ion-segment-button.ion-activated),
-  &:has(ion-segment-button.segment-activated) {
+  &.segment-activated,
+  &:has(ion-segment-button.ion-activated) {
     will-change: transform;
   }
 
-  &:not(:has(ion-segment-button.ion-activated)):not(:has(ion-segment-button.segment-activated)) {
+  &:not(.segment-activated):not(:has(ion-segment-button.ion-activated)) {
     will-change: auto;
   }
 
@@ -83,6 +70,50 @@ ion-segment.ios:not(.ios26-disabled) {
       }
     }
   }
+
+  &.segment-expand {
+    min-height: 24px;
+    width: calc(100% - var(--ion-safe-area-left, 0) - var(--ion-safe-area-left, 0) - 24px);
+
+    &.segment-activated {
+      transform: scale(1);
+      ion-segment-button.segment-button-checked::part(native) {
+        transform: scale(1);
+      }
+    }
+
+    ion-segment-button {
+      min-height: 24px;
+    }
+
+    &.ios26-enable-gesture {
+      &:has(ion-segment-button.ion-activated) {
+        transform: scale(1) translateZ(0);
+        -webkit-transform: scale(1) translateZ(0);
+        ion-segment-button {
+          transition: none;
+          &.segment-button-checked::part(native) {
+            transform: scale(1) translateZ(0);
+            -webkit-transform: scale(1) translateZ(0);
+          }
+          &::part(indicator-background) {
+            position: relative;
+            z-index: 1;
+            transform: scale(1) translateZ(0);
+            -webkit-transform: scale(1) translateZ(0);
+            transform-origin: center center;
+          }
+        }
+      }
+      &.ios26-animated {
+        ion-segment-button {
+          &::part(indicator-background) {
+            background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0);
+          }
+        }
+      }
+    }
+  }
 }
 
 ion-segment-button.ios:not(.ios26-disabled) {
@@ -112,8 +143,8 @@ ion-segment-button.ios:not(.ios26-disabled) {
     pointer-events: none;
     position: absolute;
     left: 0;
-    top: -2.5px;
-    transform-origin: center;
+    top: -3.25px;
+    transform-origin: center center;
     & > * {
       visibility: hidden;
     }

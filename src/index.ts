@@ -15,10 +15,18 @@ export const registerTabBarEffect = (targetElement: HTMLElement): registeredEffe
 };
 
 export const registerSegmentEffect = (targetElement: HTMLElement): registeredEffect | undefined => {
-  return registerEffect(targetElement, 'ion-segment-button', 'segment-button-checked', {
-    small: 'scale(1.35)',
-    medium: 'scale(1.45)',
-    large: 'scale(1.55)',
-    xlarge: 'scale(1.55, 1.65)',
-  });
+  const scale = !targetElement.classList.contains('segment-expand')
+    ? {
+        small: 'scale(1.35)',
+        medium: 'scale(1.45)',
+        large: 'scale(1.55)',
+        xlarge: 'scale(1.55, 1.65)',
+      }
+    : {
+        small: 'scale(1.02, 1.35)',
+        medium: 'scale(1.03, 1.45)',
+        large: 'scale(1.04, 1.55)',
+        xlarge: 'scale(1.05, 1.65)',
+      };
+  return registerEffect(targetElement, 'ion-segment-button', 'segment-button-checked', scale);
 };
