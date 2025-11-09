@@ -94,17 +94,17 @@ const createLargeTitleTransition = (
       enteringBackButtonTextEl,
       enteringBackButtonTextBox,
     );
-    animateBackButton(
-      rootAnimation,
-      rtl,
-      backDirection,
-      enteringBackButton,
-      enteringBackButtonBox,
-      enteringBackButtonTextEl,
-      enteringBackButtonTextBox,
-      leavingLargeTitle,
-      leavingLargeTitleTextBox,
-    );
+    // animateBackButton(
+    //   rootAnimation,
+    //   rtl,
+    //   backDirection,
+    //   enteringBackButton,
+    //   enteringBackButtonBox,
+    //   enteringBackButtonTextEl,
+    //   enteringBackButtonTextBox,
+    //   leavingLargeTitle,
+    //   leavingLargeTitleTextBox,
+    // );
   } else if (shouldAnimationBackward) {
     const enteringLargeTitleBox = enteringLargeTitle.getBoundingClientRect();
     const leavingBackButtonBox = leavingBackButton.getBoundingClientRect();
@@ -128,17 +128,17 @@ const createLargeTitleTransition = (
       leavingBackButtonTextEl,
       leavingBackButtonTextBox,
     );
-    animateBackButton(
-      rootAnimation,
-      rtl,
-      backDirection,
-      leavingBackButton,
-      leavingBackButtonBox,
-      leavingBackButtonTextEl,
-      leavingBackButtonTextBox,
-      enteringLargeTitle,
-      enteringLargeTitleTextBox,
-    );
+    // animateBackButton(
+    //   rootAnimation,
+    //   rtl,
+    //   backDirection,
+    //   leavingBackButton,
+    //   leavingBackButtonBox,
+    //   leavingBackButtonTextEl,
+    //   leavingBackButtonTextBox,
+    //   enteringLargeTitle,
+    //   enteringLargeTitleTextBox,
+    // );
   }
 
   return {
