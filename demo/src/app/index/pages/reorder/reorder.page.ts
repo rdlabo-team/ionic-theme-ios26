@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -38,6 +39,7 @@ import {
     IonText,
     IonReorder,
     IonReorderGroup,
+    IonButtons,
   ],
 })
 export class ReorderPage implements OnInit {

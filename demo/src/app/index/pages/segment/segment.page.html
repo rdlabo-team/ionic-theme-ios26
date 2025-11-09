@@ -1,6 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="light">
-    <ion-back-button slot="start" defaultHref="/main/index"></ion-back-button>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/main/index"></ion-back-button>
+    </ion-buttons>
     <!--    <ion-title>segment</ion-title>-->
     <ion-segment value="default">
       <ion-segment-button value="default">
@@ -10,7 +12,9 @@
         <ion-label>Replied</ion-label>
       </ion-segment-button>
     </ion-segment>
-    <ion-back-button slot="end" defaultHref="/main/index" style="visibility: hidden"></ion-back-button>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/main/index" style="visibility: hidden"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
     <ion-segment value="default" class="segment-expand">

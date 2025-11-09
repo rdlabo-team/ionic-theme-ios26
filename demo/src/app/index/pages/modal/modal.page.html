@@ -8,7 +8,9 @@
         <ion-button fill="solid" type="submit" color="primary"><ion-icon name="checkmark-outline" slot="icon-only"></ion-icon></ion-button>
       </ion-buttons>
     } @else {
-      <ion-back-button slot="start" defaultHref="/main/index"></ion-back-button>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/main/index"></ion-back-button>
+      </ion-buttons>
     }
     <ion-title>modal</ion-title>
   </ion-toolbar>

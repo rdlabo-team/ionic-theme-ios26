@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
+  IonButtons,
   IonCheckbox,
   IonContent,
   IonHeader,
@@ -36,6 +37,7 @@ import {
     IonList,
     IonText,
     IonCheckbox,
+    IonButtons,
   ],
 })
 export class CheckboxPage implements OnInit {

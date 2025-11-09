@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
   IonButton,
+  IonButtons,
   IonCard,
   IonCardContent,
   IonCardHeader,
@@ -48,6 +49,7 @@ import {
     IonCardContent,
     IonButton,
     IonThumbnail,
+    IonButtons,
   ],
 })
 export class CardPage implements OnInit {
