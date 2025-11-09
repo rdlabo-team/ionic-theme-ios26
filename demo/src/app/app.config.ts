@@ -6,6 +6,7 @@ import { routes } from './app.routes';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { popoverEnterAnimation, popoverLeaveAnimation } from '../../../src';
+import { iosTransitionAnimation } from '../../../src/transition/ios.transition';
 
 addIcons(allIcons);
 
@@ -23,6 +24,7 @@ export const appConfig: ApplicationConfig = {
       animated: !isE2ETesting,
       popoverEnter: popoverEnterAnimation,
       popoverLeave: popoverLeaveAnimation,
+      navAnimation: iosTransitionAnimation,
     }),
   ],
 };
