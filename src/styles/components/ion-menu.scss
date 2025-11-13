@@ -76,10 +76,10 @@ ion-split-pane.split-pane-visible:has(ion-menu.menu-pane-visible) {
 ion-menu.ios:not(.ios26-disabled) {
   --border: none;
   --background: transparent;
+  --max-width: var(--ios26-menu-width);
   position: absolute;
   top: 0;
   z-index: 999;
-  max-width: var(--ios26-menu-width);
 
   &.menu-side-start {
     left: 0;
