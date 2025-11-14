@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
+  IonButtons,
   IonContent,
   IonDatetime,
   IonDatetimeButton,
@@ -46,6 +47,7 @@ import {
     IonPickerColumnOption,
     IonModal,
     IonDatetimeButton,
+    IonButtons,
   ],
 })
 export class DateAndTimePickersPage implements OnInit {

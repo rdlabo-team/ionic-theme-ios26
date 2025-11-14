@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {
   AlertController,
   IonBackButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -39,6 +40,7 @@ import { alertTypes } from '../../../overlay-types';
     IonLabel,
     IonList,
     IonText,
+    IonButtons,
   ],
 })
 export class AlertPage implements OnInit {

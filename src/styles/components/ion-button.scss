@@ -377,7 +377,3 @@ ion-button.ios:not(.ios26-disabled) {
 ion-back-button.ios:not(.ios26-disabled) {
   @include theme-button;
 }
-
-ion-back-button.ion-cloned-element {
-  visibility: hidden;
-}
