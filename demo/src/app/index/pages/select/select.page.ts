@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -44,6 +45,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
     IonSelect,
     IonSelectOption,
     IonListHeader,
+    IonButtons,
   ],
 })
 export class SelectPage implements OnInit, ViewDidEnter {
