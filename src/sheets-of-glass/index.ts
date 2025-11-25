@@ -103,10 +103,13 @@ export const registerEffect = (
       }
     })();
     startAnimationPromise.then(() => {
+      if (!currentTouchedElement) {
+        return;
+      }
       moveAnimation = createMoveAnimation(effectElement, detail, tabSelectedElement, animationPosition!);
       moveAnimation.progressStart(
         true,
-        getStep(currentTouchedElement!.getBoundingClientRect().left + currentTouchedElement!.clientWidth / 2, animationPosition!),
+        getStep(currentTouchedElement.getBoundingClientRect().left + currentTouchedElement.clientWidth / 2, animationPosition!),
       );
     });
     getScaleAnimation(effectElement).duration(200).to('opacity', 1).to('transform', scales.large).play();
@@ -167,7 +170,10 @@ export const registerEffect = (
     }
 
     setTimeout(() => {
-      const targetX = currentTouchedElement!.getBoundingClientRect().left + currentTouchedElement!.clientWidth / 2;
+      if (!currentTouchedElement) {
+        return;
+      }
+      const targetX = currentTouchedElement.getBoundingClientRect().left + currentTouchedElement.clientWidth / 2;
       const step = getStep(targetX, animationPosition!);
       moveAnimation!.progressStep(step);
     });

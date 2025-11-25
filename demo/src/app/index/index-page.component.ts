@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, DOCUMENT, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import {
   IonButton,
@@ -34,7 +34,6 @@ interface IComponent {
     IonHeader,
     IonTitle,
     IonToolbar,
-    CommonModule,
     FormsModule,
     IonButton,
     IonButtons,
