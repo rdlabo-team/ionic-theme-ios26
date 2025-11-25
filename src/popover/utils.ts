@@ -628,6 +628,9 @@ export const calculateWindowAdjustment = (
    */
   if (left < bodyPadding + safeAreaMargin) {
     left = !eventElementRect ? bodyPadding : eventElementRect.left;
+    if (left === 0) {
+      left = safeAreaMargin;
+    }
     checkSafeAreaLeft = true;
     originX = 'left';
     /**
@@ -637,6 +640,9 @@ export const calculateWindowAdjustment = (
   } else if (contentWidth + bodyPadding + left + safeAreaMargin > bodyWidth) {
     checkSafeAreaRight = true;
     left = !eventElementRect ? bodyWidth - contentWidth - bodyPadding : eventElementRect.right - contentWidth;
+    if (left + contentWidth === bodyWidth) {
+      left = left - safeAreaMargin;
+    }
     originX = 'right';
   }
 
