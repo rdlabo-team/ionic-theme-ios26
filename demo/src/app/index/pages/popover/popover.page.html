@@ -89,5 +89,36 @@
         </div>
       </ng-template>
     </ion-popover>
+    <ion-popover trigger="click-trigger-cover" triggerAction="click" size="cover">
+      <ng-template>
+        <div class="ion-padding">
+          <ion-text
+            >Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello
+            World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!</ion-text
+          >
+        </div>
+      </ng-template>
+    </ion-popover>
   </ion-list>
+
+  <section style="background: #fff; margin-bottom: 3600px">
+    <h3>Both ends</h3>
+    <div style="display: flex; justify-content: space-between">
+      <button id="click-trigger-item-left" slot="start">Click ion-item self</button>
+      <button id="click-trigger-button-right" slot="end">Native HTML Button</button>
+    </div>
+    <ion-popover trigger="click-trigger-item-left" triggerAction="click">
+      <ng-template>
+        <div class="ion-padding">
+          <ion-text>Hello World!</ion-text>
+        </div>
+      </ng-template> </ion-popover
+    ><ion-popover trigger="click-trigger-button-right" triggerAction="click">
+      <ng-template>
+        <div class="ion-padding">
+          <ion-text>Hello World!</ion-text>
+        </div>
+      </ng-template>
+    </ion-popover>
+  </section>
 </ion-content>

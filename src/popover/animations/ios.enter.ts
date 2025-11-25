@@ -43,7 +43,7 @@ export const iosEnterAnimation = (baseEl: HTMLElement, opts?: any): Animation =>
   const results = getPopoverPosition(isRTL, contentWidth, contentHeight, reference, side, align, defaultPosition, trigger, ev);
 
   const padding = size === 'cover' ? 0 : POPOVER_IOS_BODY_PADDING;
-  const margin = size === 'cover' ? 0 : 25;
+  const margin = size === 'cover' ? 0 : POPOVER_IOS_BODY_MARGIN;
 
   const { originX, originY, top, left, bottom, checkSafeAreaLeft, checkSafeAreaRight, addPopoverBottomClass } = calculateWindowAdjustment(
     side,
