@@ -91,16 +91,31 @@ createApp(App)
 })
 ```
 
+## Important Notes
 
-## Customization
+### Using `ion-item-group`
+
+Under specific conditions, you need to use `ion-item-group`.
+
+```diff
+  <ion-list inset=true>
+    <ion-list-header><ion-label>Label</ion-label></ion-list-header>
++   <ion-item-group>
+      <ion-item>...</ion-item>
+      <ion-item>...</ion-item>
++   </ion-item-group>
+  </ion-list>
+```
+
+For details, please refer to [USING_ION_ITEM_GROUP.md](./USING_ION_ITEM_GROUP.md).
+
+
+## Features
 
 ### CSS Variables
 
 To customize the library's default styles to match your design, several CSS variables are provided. See this file for details:
 https://github.com/rdlabo-team/ionic-theme-ios26/blob/main/src/styles/default-variables.scss
-
-
-## Features
 
 ### `.ios26-disabled` Class
 
@@ -133,7 +148,7 @@ To achieve higher fidelity to iOS26 design, you can implement additional design 
 https://ionic-theme-ios26.netlify.app/main/docs
 
 
-## Experimental: Animation
+## Experimental Animation
 
 __This feature is experimental. The library can be used without this feature.__
 
@@ -212,24 +227,6 @@ const dismiss = (event: Event) => {
   searchableFun!(event, TabBarSearchableType.Leave);
 }
 ```
-
-## Important Notes
-
-### Using `ion-item-group`
-
-Under specific conditions, you need to use `ion-item-group`.
-
-```diff
-  <ion-list inset=true>
-    <ion-list-header><ion-label>Label</ion-label></ion-list-header>
-+   <ion-item-group>
-      <ion-item>...</ion-item>
-      <ion-item>...</ion-item>
-+   </ion-item-group>
-  </ion-list>
-```
-
-For details, please refer to [USING_ION_ITEM_GROUP.md](./USING_ION_ITEM_GROUP.md).
 
 
 ## Additional Information
