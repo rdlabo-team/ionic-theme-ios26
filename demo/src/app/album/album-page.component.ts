@@ -1,5 +1,5 @@
 import { Component, DOCUMENT, ElementRef, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import {
   IonButton,
@@ -26,7 +26,6 @@ import { attachTabBarSearchable, TabBarSearchableFunction, TabBarSearchableType 
     IonHeader,
     IonTitle,
     IonToolbar,
-    CommonModule,
     FormsModule,
     IonIcon,
     IonButton,

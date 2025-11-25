@@ -1,5 +1,5 @@
 import { Component, ElementRef, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
@@ -32,7 +32,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
     IonHeader,
     IonTitle,
     IonToolbar,
-    CommonModule,
     FormsModule,
     IonBackButton,
     IonIcon,
