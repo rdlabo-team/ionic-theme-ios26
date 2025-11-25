@@ -5,8 +5,7 @@ import * as allIcons from 'ionicons/icons';
 import { routes } from './app.routes';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { popoverEnterAnimation, popoverLeaveAnimation } from '../../../src';
-import { iosTransitionAnimation } from '../../../src/transition/ios.transition';
+import { popoverEnterAnimation, popoverLeaveAnimation, iosTransitionAnimation } from '../../../src';
 
 addIcons(allIcons);
 

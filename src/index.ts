@@ -4,6 +4,7 @@ export * from './sheets-of-glass/interfaces';
 export { iosEnterAnimation as popoverEnterAnimation } from './popover/animations/ios.enter';
 export { iosLeaveAnimation as popoverLeaveAnimation } from './popover/animations/ios.leave';
 export * from './tab-bar-searchable';
+export * from './transition/ios.transition';
 
 export const registerTabBarEffect = (targetElement: HTMLElement): registeredEffect | undefined => {
   return registerEffect(targetElement, 'ion-tab-button', 'tab-selected', {
