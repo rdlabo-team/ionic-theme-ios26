@@ -5,6 +5,7 @@ import {
   IonBackButton,
   IonBreadcrumb,
   IonBreadcrumbs,
+  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -37,6 +38,7 @@ import {
     IonText,
     IonBreadcrumbs,
     IonBreadcrumb,
+    IonButtons,
   ],
 })
 export class BreadcrumbsPage implements OnInit {

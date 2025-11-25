@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
   IonButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -39,6 +40,7 @@ import { loadingTypes } from '../../../overlay-types';
     IonList,
     IonText,
     IonButton,
+    IonButtons,
   ],
 })
 export class ProgressIndicatorsPage implements OnInit {

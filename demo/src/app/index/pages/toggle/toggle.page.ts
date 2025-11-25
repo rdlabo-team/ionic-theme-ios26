@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -39,6 +40,7 @@ import {
     IonNote,
     IonText,
     IonToggle,
+    IonButtons,
   ],
 })
 export class TogglePage implements OnInit {

@@ -3,6 +3,7 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -37,6 +38,7 @@ import { toastTypes } from '../../../overlay-types';
     IonLabel,
     IonList,
     IonText,
+    IonButtons,
   ],
 })
 export class ToastPage implements OnInit {

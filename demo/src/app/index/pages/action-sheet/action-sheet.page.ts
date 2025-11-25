@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {
   ActionSheetController,
   IonBackButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -38,6 +39,7 @@ import { actionSheetTypes } from '../../../overlay-types';
     IonLabel,
     IonIcon,
     IonText,
+    IonButtons,
   ],
 })
 export class ActionSheetPage implements OnInit {

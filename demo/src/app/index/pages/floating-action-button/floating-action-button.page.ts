@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
+  IonButtons,
   IonContent,
   IonFab,
   IonFabButton,
@@ -39,6 +40,7 @@ import {
     IonFab,
     IonFabButton,
     IonFabList,
+    IonButtons,
   ],
 })
 export class FloatingActionButtonPage implements OnInit {
