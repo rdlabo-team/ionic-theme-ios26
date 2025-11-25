@@ -59,15 +59,35 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
  */
 ```
 
-### How to prevent loading a theme file on iOS 18
+Next, configure the animations for iOS 26. Add the following to your Ionic configuration options.
 
-If you want to load a theme file only when the user's device is running iOS 26 (and let users on iOS 18 use the default Ionic iOS theme), you can achieve this by adding a supports-condition to your `import`.
+```ts
+import { iosTransitionAnimation, popoverEnterAnimation, popoverLeaveAnimation } from '@rdlabo/ionic-theme-ios26';
 
-```css
-@import '@rdlabo/ionic-theme-ios26/dist/css/default-variables.css' supports(text-wrap: pretty);
-@import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.css' supports(text-wrap: pretty);
-@import '@rdlabo/ionic-theme-ios26/dist/css/md-remove-ios-class-effect.css' supports(text-wrap: pretty);
-@import '@rdlabo/ionic-theme-ios26/dist/css/md-ion-list-inset.css' supports(text-wrap: pretty);
+// Angular
+provideIonicAngular({
+    ...
+    navAnimation: iosTransitionAnimation,
+    popoverEnter: popoverEnterAnimation,
+    popoverLeave: popoverLeaveAnimation,
+});
+
+// React
+setupIonicReact({
+    ...
+    navAnimation: iosTransitionAnimation,
+    popoverEnter: popoverEnterAnimation,
+    popoverLeave: popoverLeaveAnimation,
+});
+
+// Vue
+createApp(App)
+    .use(IonicVue, {
+        ...
+        navAnimation: iosTransitionAnimation,
+        popoverEnter: popoverEnterAnimation,
+        popoverLeave: popoverLeaveAnimation,
+})
 ```
 
 
@@ -116,37 +136,6 @@ https://ionic-theme-ios26.netlify.app/main/docs
 
 __This feature is experimental. The library can be used without this feature.__
 
-### Enter and Leave animation with `ion-popover`
-
-Animations designed iOS 26 can be configured via IonicConfig.
-
-[![Image from Gyazo](https://i.gyazo.com/f3609bdc38f936149caa1e8617f54857.gif)](https://gyazo.com/f3609bdc38f936149caa1e8617f54857)
-
-```js
-import { popoverEnterAnimation, popoverLeaveAnimation } from '@rdlabo/ionic-theme-ios26';
-
-// Angular
-provideIonicAngular({
-  ...
-  popoverEnter: popoverEnterAnimation,
-  popoverLeave: popoverLeaveAnimation,
-});
-
-// React
-setupIonicReact({
-  ...
-  popoverEnter: popoverEnterAnimation,
-  popoverLeave: popoverLeaveAnimation,
-});
-
-// Vue
-createApp(App)
-  .use(IonicVue, {
-    ...
-    popoverEnter: popoverEnterAnimation,
-    popoverLeave: popoverLeaveAnimation,
-  })
-```
 
 ### Sheet of Glass with `ion-tab-button` / `ion-segment-button`
 
@@ -241,29 +230,20 @@ Under specific conditions, you need to use `ion-item-group`.
 
 For details, please refer to [USING_ION_ITEM_GROUP.md](./USING_ION_ITEM_GROUP.md).
 
-### Make `ion-back-button` Smoother
 
-When the following conditions are met, the Ionic Framework programmatically generates and animates the `ion-back-button`:
+## Additional Information
 
-- The previous page uses `ion-header[collapse='condense']`
-- The navigated page has `ion-buttons ion-back-button`
+### How to prevent loading a theme file on iOS 18
 
-This is not the iOS26 UI behavior. Therefore, we hide the animation by default using `visibility: hidden;`. However, there is still a problem where the original `ion-back-button` disappears at the start and end of the animation. For a smoother experience, you can avoid placing `ion-back-button` inside `ion-buttons`:
+If you want to load a theme file only when the user's device is running iOS 26 (and let users on iOS 18 use the default Ionic iOS theme), you can achieve this by adding a supports-condition to your `import`.
 
-```diff
-  <ion-header>
--   <ion-buttons slot="start">
--   <ion-back-button></ion-back-button>
--   </ion-buttons>
-+   <ion-back-button slot="start"></ion-back-button>
-  </ion-header>
+```css
+@import '@rdlabo/ionic-theme-ios26/dist/css/default-variables.css' supports(text-wrap: pretty);
+@import '@rdlabo/ionic-theme-ios26/dist/css/ionic-theme-ios26.css' supports(text-wrap: pretty);
+@import '@rdlabo/ionic-theme-ios26/dist/css/md-remove-ios-class-effect.css' supports(text-wrap: pretty);
+@import '@rdlabo/ionic-theme-ios26/dist/css/md-ion-list-inset.css' supports(text-wrap: pretty);
 ```
 
-You can see the difference in the following video. The first example shows `ion-back-button` placed outside of `ion-buttons`, and the second shows the default behavior:
-
-[![Image from Gyazo](https://i.gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73.gif)](https://gyazo.com/e196a49d9f2dbd93cd0ebed67c258c73)
-
-This is a known issue that has been shared with the Ionic team. We will update this library accordingly once Ionic Core addresses it.
 
 ## Migration Support
 
