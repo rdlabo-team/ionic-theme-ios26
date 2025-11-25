@@ -62,31 +62,32 @@ And import the theme in your project's main CSS file (e.g., `src/styles.scss`).
 Next, configure the animations for iOS 26. Add the following to your Ionic configuration options.
 
 ```ts
+import { isPlatform } from '@ionic/core'; // or @ionic/angular/standalone, @ionic/react, @ionic/vue
 import { iosTransitionAnimation, popoverEnterAnimation, popoverLeaveAnimation } from '@rdlabo/ionic-theme-ios26';
 
 // Angular
 provideIonicAngular({
     ...
-    navAnimation: iosTransitionAnimation,
-    popoverEnter: popoverEnterAnimation,
-    popoverLeave: popoverLeaveAnimation,
+    navAnimation: isPlatform('ios') ? iosTransitionAnimation: undefined,
+    popoverEnter: isPlatform('ios') ? popoverEnterAnimation: undefined,
+    popoverLeave: isPlatform('ios') ? popoverLeaveAnimation: undefined,
 });
 
 // React
 setupIonicReact({
     ...
-    navAnimation: iosTransitionAnimation,
-    popoverEnter: popoverEnterAnimation,
-    popoverLeave: popoverLeaveAnimation,
+    navAnimation: isPlatform('ios') ? iosTransitionAnimation: undefined,
+    popoverEnter: isPlatform('ios') ? popoverEnterAnimation: undefined,
+    popoverLeave: isPlatform('ios') ? popoverLeaveAnimation: undefined,
 });
 
 // Vue
 createApp(App)
     .use(IonicVue, {
         ...
-        navAnimation: iosTransitionAnimation,
-        popoverEnter: popoverEnterAnimation,
-        popoverLeave: popoverLeaveAnimation,
+        navAnimation: isPlatform('ios') ? iosTransitionAnimation: undefined,
+        popoverEnter: isPlatform('ios') ? popoverEnterAnimation: undefined,
+        popoverLeave: isPlatform('ios') ? popoverLeaveAnimation: undefined,
 })
 ```
 

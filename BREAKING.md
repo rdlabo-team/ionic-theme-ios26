@@ -11,25 +11,26 @@ This animation is based on Ionic’s default iOS transition, but with the `anima
 You can configure it in your Ionic setup:
 
 ```ts
+import { isPlatform } from '@ionic/core'; // or @ionic/angular/standalone, @ionic/react, @ionic/vue
 import { iosTransitionAnimation } from '@rdlabo/ionic-theme-ios26';
 
 // Angular
 provideIonicAngular({
     ...
-    navAnimation: iosTransitionAnimation,
+    navAnimation: isPlatform('ios') ? iosTransitionAnimation: undefined,
 });
 
 // React
 setupIonicReact({
     ...
-    navAnimation: iosTransitionAnimation,
+    navAnimation: isPlatform('ios') ? iosTransitionAnimation: undefined,
 });
 
 // Vue
 createApp(App)
     .use(IonicVue, {
         ...
-        navAnimation: iosTransitionAnimation,
+        navAnimation: isPlatform('ios') ? iosTransitionAnimation: undefined,
 })
 ```
 
