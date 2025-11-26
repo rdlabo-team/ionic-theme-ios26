@@ -1,9 +1,19 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="light">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/main/index"></ion-back-button>
     </ion-buttons>
     <ion-title>button</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button>Example</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" class="ios26-disabled">
+      <ion-button fill="default">Example</ion-button>
+      <ion-button fill="solid">Example</ion-button>
+      <ion-button>Example</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
