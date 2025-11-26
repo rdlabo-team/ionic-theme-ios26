@@ -1,8 +1,8 @@
 @use '../utils/api';
 
-ion-split-pane.split-pane-visible:has(ion-menu.menu-pane-visible) {
+ion-split-pane.ios:not(.ios26-disabled).split-pane-visible:has(ion-menu.menu-pane-visible) {
   .split-pane-main {
-    ion-tab-bar {
+    ion-tab-bar.ios:not(.ios26-disabled) {
       width: calc(
         100% - calc(18px + var(--ion-safe-area-left, 0px)) - calc(18px + var(--ion-safe-area-left, 0px)) - 60px -
           12px - var(--ios26-menu-width)
@@ -38,7 +38,7 @@ ion-split-pane.split-pane-visible:has(ion-menu.menu-pane-visible) {
       ion-footer ion-toolbar {
         --padding-start: var(--ios26-menu-width);
       }
-      ion-tab-bar {
+      ion-tab-bar.ios:not(.ios26-disabled) {
         &[slot='bottom'] {
           left: calc(16px + var(--ion-safe-area-left, 0px) + var(--ios26-menu-width));
         }
@@ -46,7 +46,7 @@ ion-split-pane.split-pane-visible:has(ion-menu.menu-pane-visible) {
     }
   }
 
-  &:has(ion-menu.menu-side-end) {
+  &:has(ion-menu.ios:not(.ios26-disabled).menu-side-end) {
     .split-pane-main {
       ion-header ion-toolbar {
         /*
