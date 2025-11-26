@@ -146,6 +146,10 @@ $scaleup-large-icon-only: 1.22;
     transform var(--ios26-activated-transition-duration) ease-out,
     color 50ms ease;
 
+  &.in-toolbar:not(.ion-color):not(.in-toolbar-color)::part(native) {
+    color: inherit;
+  }
+
   // will-change is optimized to only apply when needed for performance
   &:not(.ios26-disabled):hover,
   &:not(.ios26-disabled):active,
