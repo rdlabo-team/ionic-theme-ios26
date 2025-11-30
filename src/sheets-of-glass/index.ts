@@ -161,6 +161,8 @@ export const registerEffect = (
       clearActivatedTimer = undefined;
     }
 
+    clearActivated();
+
     if (startAnimationPromise) {
       await startAnimationPromise;
     }
@@ -179,8 +181,6 @@ export const registerEffect = (
     });
     await getScaleAnimation(effectElement).duration(120).to('transform', `scale(1, 0.92)`).play();
     moveAnimation!.destroy();
-
-    clearActivated();
     return true;
   };
 
