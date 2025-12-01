@@ -21,7 +21,7 @@ ion-toggle.ios:not(.ios26-disabled) {
   --handle-height: 24px;
   --handle-max-width: none;
   --handle-max-height: none;
-  --track-background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.23);
+  --track-background: rgba(var(--ion-color-contrast-rgb, var(--ion-text-color-rgb, 0, 0, 0)), 0.23);
   &::part(track) {
     overflow: visible;
     width: 64px;
