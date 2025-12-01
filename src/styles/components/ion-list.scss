@@ -22,10 +22,6 @@ ion-list.list-inset.ios:not(.ios26-disabled) {
     border-radius: 24px;
     overflow: hidden;
 
-    &:not(:first-of-type) {
-      margin-top: 16px;
-    }
-
     ion-item {
       // To draw lines inside
       --inner-padding-end: 0;

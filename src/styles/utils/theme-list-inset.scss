@@ -60,6 +60,10 @@
   ion-reorder-group,
   ion-accordion-group,
   ion-radio-group {
+    &:not(:first-of-type) {
+      margin-top: 16px;
+    }
+
     ion-item {
       ion-text[slot='end'] {
         padding-left: 8px;
