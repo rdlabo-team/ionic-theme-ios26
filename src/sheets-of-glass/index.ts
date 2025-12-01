@@ -64,11 +64,11 @@ export const registerEffect = (
   };
   createAnimationGesture();
 
-  const clearActivated = () => {
+  const clearActivated = (isEndGesture: boolean = false) => {
     if (!currentTouchedElement) {
       return;
     }
-    if (!currentTouchedElement.classList.contains(selectedClassName)) {
+    if (!isEndGesture && !currentTouchedElement.classList.contains(selectedClassName)) {
       currentTouchedElement!.click();
       currentTouchedElement.classList.add(selectedClassName);
     }
@@ -161,6 +161,11 @@ export const registerEffect = (
       clearActivatedTimer = undefined;
     }
 
+    if (currentTouchedElement && !currentTouchedElement.classList.contains(selectedClassName)) {
+      currentTouchedElement.click();
+      currentTouchedElement.classList.add(selectedClassName);
+    }
+
     if (startAnimationPromise) {
       await startAnimationPromise;
     }
@@ -180,7 +185,7 @@ export const registerEffect = (
     await getScaleAnimation(effectElement).duration(120).to('transform', `scale(1, 0.92)`).play();
     moveAnimation!.destroy();
 
-    clearActivated();
+    clearActivated(true);
     return true;
   };
 
