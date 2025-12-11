@@ -23,7 +23,6 @@
     "build:css": "rm -rf dist/css && sass src/styles:dist/css --style=compressed --no-source-map",
     "build:ts": "tsc",
     "build:demo": "npm run build && cd demo && npm install && npm run build -- --configuration=production",
-    "prepare": "husky install",
     "lint": "prettier --check \"./**/*.{scss,ts}\" &&  prettier --parser angular --check \"./**/*.html\"",
     "fmt": "prettier --write \"./**/*.{scss,ts}\" &&  prettier --parser angular --write \"./**/*.html\"",
     "release": "np --no-tests",
