@@ -39,8 +39,8 @@ jobs:
           
           echo "Publishing $workspace..."
           if [ "$IS_STABLE" = "true" ]; then
-            npm publish --provenance --access public --workspace "$workspace"
+            npm publish --provenance --access public"
           else
-            npm publish --provenance --access public --tag next --workspace "$workspace"
+            npm publish --provenance --access public"
           fi
 
