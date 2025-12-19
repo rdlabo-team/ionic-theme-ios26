@@ -25,7 +25,7 @@
     "build:demo": "npm run build && cd demo && npm install && npm run build -- --configuration=production",
     "lint": "prettier --check \"./**/*.{scss,ts}\" &&  prettier --parser angular --check \"./**/*.html\"",
     "fmt": "prettier --write \"./**/*.{scss,ts}\" &&  prettier --parser angular --write \"./**/*.html\"",
-    "release": "np --no-tests",
+    "release": "np --no-tests --no-publish",
     "prepublishOnly": "npm run build"
   },
   "repository": {
