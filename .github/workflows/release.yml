@@ -44,9 +44,9 @@ jobs:
       - name: Publish packages
         run: |
           VERSION="${{ steps.tag_version.outputs.version }}"
-          IS_STABLE=$(echo "$VERSION" | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' && echo "true" || echo "false")
+          IS_STABLE=$(echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$' && echo true || echo false)
           
-          echo "Publishing $workspace..."
+          echo "Publishing... $IS_STABLE"
           if [ "$IS_STABLE" = "true" ]; then
             npm publish --provenance --access public
           else
