@@ -15,27 +15,29 @@ ion-list.list-inset.ios:not(.ios26-disabled) {
     display: block;
   }
 
-  ion-item-group,
-  ion-reorder-group,
-  ion-accordion-group,
-  ion-radio-group {
-    border-radius: 24px;
-    overflow: hidden;
+  $groups: ion-item-group, ion-reorder-group, ion-accordion-group, ion-radio-group;
 
-    ion-item {
-      // To draw lines inside
-      --inner-padding-end: 0;
-      &::part(native) {
-        padding-right: calc(var(--ion-safe-area-right, 0px) + 18px);
-      }
+  #{$groups} {
+    &:not(:has(#{$groups})) {
+      border-radius: 24px;
+      overflow: hidden;
 
-      --min-height: 52px;
+      ion-item {
+        // To draw lines inside
+        --inner-padding-end: 0;
 
-      & > ion-input[labelplacement='floating'] {
-        transition: transform 200ms ease;
+        &::part(native) {
+          padding-right: calc(var(--ion-safe-area-right, 0px) + 18px);
+        }
 
-        &:not(.label-floating) {
-          transform: translateY(-2px);
+        --min-height: 52px;
+
+        & > ion-input[labelplacement='floating'] {
+          transition: transform 200ms ease;
+
+          &:not(.label-floating) {
+            transform: translateY(-2px);
+          }
         }
       }
     }
