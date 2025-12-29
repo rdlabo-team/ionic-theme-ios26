@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import {
+  IonAccordion,
+  IonAccordionGroup,
   IonBackButton,
   IonButtons,
   IonContent,
@@ -13,6 +15,8 @@ import {
   IonList,
   IonListHeader,
   IonNote,
+  IonRadio,
+  IonRadioGroup,
   IonText,
   IonTitle,
   IonToolbar,
@@ -39,6 +43,10 @@ import {
     IonListHeader,
     IonNote,
     IonButtons,
+    IonRadioGroup,
+    IonAccordionGroup,
+    IonAccordion,
+    IonRadio,
   ],
 })
 export class ItemListPage implements OnInit {
