@@ -37,6 +37,27 @@
     <ion-note>Note additional information.</ion-note>
   </ion-list>
 
+  <ion-list [inset]="true">
+    <ion-list-header><ion-label>保存</ion-label></ion-list-header>
+    <ion-item-group>
+      <ion-item>
+        <ion-label>Item</ion-label>
+      </ion-item>
+      <ion-radio-group>
+        <ion-accordion-group>
+          <ion-accordion class="datetime-accordion" value="date">
+            <ion-item slot="header">
+              <ion-radio value="selectDate" labelPlacement="end">Radio item1</ion-radio>
+            </ion-item>
+          </ion-accordion>
+        </ion-accordion-group>
+        <ion-item lines="none">
+          <ion-radio value="daysLater" labelPlacement="end" justify="start">Radio item2</ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-item-group>
+  </ion-list>
+
   <ion-list>
     <ion-list-header><ion-label>Default List</ion-label></ion-list-header>
     <ion-item-group>

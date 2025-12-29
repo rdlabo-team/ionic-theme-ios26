@@ -17,27 +17,25 @@ ion-list.list-inset.ios:not(.ios26-disabled) {
 
   $groups: ion-item-group, ion-reorder-group, ion-accordion-group, ion-radio-group;
 
-  #{$groups} {
-    &:not(:has(#{$groups})) {
-      border-radius: 24px;
-      overflow: hidden;
+  :is(#{$groups}):not(:is(#{$groups}) :is(#{$groups})) {
+    border-radius: 24px;
+    overflow: hidden;
 
-      ion-item {
-        // To draw lines inside
-        --inner-padding-end: 0;
+    ion-item {
+      // To draw lines inside
+      --inner-padding-end: 0;
 
-        &::part(native) {
-          padding-right: calc(var(--ion-safe-area-right, 0px) + 18px);
-        }
+      &::part(native) {
+        padding-right: calc(var(--ion-safe-area-right, 0px) + 18px);
+      }
 
-        --min-height: 52px;
+      --min-height: 52px;
 
-        & > ion-input[labelplacement='floating'] {
-          transition: transform 200ms ease;
+      & > ion-input[labelplacement='floating'] {
+        transition: transform 200ms ease;
 
-          &:not(.label-floating) {
-            transform: translateY(-2px);
-          }
+        &:not(.label-floating) {
+          transform: translateY(-2px);
         }
       }
     }
