@@ -13,6 +13,7 @@ import {
   IonList,
   IonListHeader,
   IonNote,
+  IonSearchbar,
   IonSegment,
   IonSegmentButton,
   IonTitle,
@@ -42,6 +43,7 @@ import {
     IonLabel,
     IonNote,
     IonItemGroup,
+    IonSearchbar,
   ],
 })
 export class DocsPage {
