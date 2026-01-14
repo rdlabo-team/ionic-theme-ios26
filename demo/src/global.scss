@@ -42,12 +42,12 @@
 @use '../../src/styles/md-ion-list-inset';
 @use '../../src/styles/md-remove-ios-class-effect';
 
-code {
-  font-family: Menlo, Consolas, monospace;
+:root {
+  --ios26-menu-width: 300px;
 }
 
-ion-split-pane.ios:not(.ios26-disabled) {
-  --side-max-width: var(--ios26-menu-width);
+code {
+  font-family: Menlo, Consolas, monospace;
 }
 
 #main-content {
