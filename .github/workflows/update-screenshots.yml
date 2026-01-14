@@ -15,7 +15,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.56.0-noble
+      image: mcr.microsoft.com/playwright:v1.57.0-noble
     steps:
       - name: Add reaction to comment
         uses: peter-evans/create-or-update-comment@v5
@@ -53,13 +53,13 @@ jobs:
 
       - uses: actions/cache@v5
         with:
-          path: node_modules
+          path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
         working-directory: './demo'
 
       - name: Update screenshots

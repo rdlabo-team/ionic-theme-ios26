@@ -16,7 +16,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.56.0-noble
+      image: mcr.microsoft.com/playwright:v1.57.0-noble
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -24,15 +24,15 @@ jobs:
           node-version: 24.11.1
       - uses: actions/cache@v5
         with:
-          path: node_modules
+          path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - run: npm install
+      - run: npm ci
       - run: npm run build
 
-      - run: npm install
+      - run: npm ci
         working-directory: './demo'
 
       - name: Run Playwright tests
