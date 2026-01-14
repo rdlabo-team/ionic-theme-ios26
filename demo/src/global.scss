@@ -46,6 +46,10 @@ code {
   font-family: Menlo, Consolas, monospace;
 }
 
+ion-split-pane {
+  --side-max-width: var(--ios26-menu-width);
+}
+
 #main-content {
   width: 100%;
 }
