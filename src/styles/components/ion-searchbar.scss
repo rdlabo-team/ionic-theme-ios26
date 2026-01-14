@@ -11,7 +11,7 @@ ion-modal.ios {
   }
 }
 
-ion-searchbar.ios:not(.ios26-disabled) {
+ion-searchbar.ios:not(.ios26-disabled):not(.searchbar-classic) {
   min-height: 60px;
   padding: 0;
 
@@ -36,11 +36,26 @@ ion-searchbar.ios:not(.ios26-disabled) {
 }
 
 /**
- * This is an override for a class where cascading is specified too heavily.
+ * add searchbar-classic
  */
-ion-toolbar.ios:not(.ios26-disabled).ion-color.sc-ion-searchbar-ios-h:not(.ion-color) .searchbar-input.sc-ion-searchbar-ios,
-ion-toolbar:not(.ios26-disabled).ion-color
-  :not(.ios26-disabled).sc-ion-searchbar-ios-h:not(.ion-color)
-  .searchbar-input.sc-ion-searchbar-ios {
-  background: rgba(var(--ios26-glass-background-rgb), 0.72);
+ion-toolbar.ios:not(.ios26-disabled):has(ion-searchbar.searchbar-classic.ios:not(.ios26-disabled)) {
+  --min-height: auto !important;
+}
+ion-searchbar.ios:not(.ios26-disabled).searchbar-classic {
+  padding-bottom: 12px;
+  min-height: auto;
+  input.searchbar-input {
+    border-radius: 999px;
+    height: 44px;
+    font-size: 0.98rem;
+    padding-inline-start: 38px !important;
+    background: rgba(var(--ion-color-contrast-rgb), 0.078);
+  }
+  ion-icon.searchbar-search-icon {
+    inset-inline-start: 12px;
+    width: 1.18rem;
+  }
+  button.searchbar-clear-button {
+    right: 8px;
+  }
 }
