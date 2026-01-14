@@ -16,12 +16,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
-
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
           node-version: 24.11.1
           registry-url: 'https://registry.npmjs.org'
+      - uses: actions/cache@v5
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Update npm
         run: npm install -g npm@latest
@@ -36,7 +41,7 @@ jobs:
           echo "Extracted version: $VERSION from tag: $TAG_NAME"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build workspaces
         run: npm run build
