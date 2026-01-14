@@ -18,7 +18,7 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.56.0-noble
     steps:
       - name: Add reaction to comment
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v5
         with:
           comment-id: ${{ github.event.comment.id }}
           reactions: eyes
@@ -39,7 +39,7 @@ jobs:
               repo: pr.data.head.repo.full_name
             };
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ fromJson(steps.get-pr.outputs.result).ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -47,11 +47,11 @@ jobs:
       - name: Fix git safe directory
         run: git config --system --add safe.directory $GITHUB_WORKSPACE
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 24.11.1
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -82,7 +82,7 @@ jobs:
 
       - name: Comment success
         if: env.HAS_CHANGES == 'true'
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v5
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
@@ -92,7 +92,7 @@ jobs:
 
       - name: Comment no changes
         if: env.HAS_CHANGES == 'false'
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v5
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
@@ -102,7 +102,7 @@ jobs:
 
       - name: Comment failure
         if: failure()
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v5
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
