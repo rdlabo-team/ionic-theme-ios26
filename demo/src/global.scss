@@ -42,6 +42,10 @@
 @use '../../src/styles/md-ion-list-inset';
 @use '../../src/styles/md-remove-ios-class-effect';
 
+:root {
+  --ios26-menu-width: 300px;
+}
+
 code {
   font-family: Menlo, Consolas, monospace;
 }

@@ -1,5 +1,9 @@
 @use '../utils/api';
 
+ion-split-pane.ios:not(.ios26-disabled) {
+  --side-max-width: var(--ios26-menu-width);
+}
+
 ion-split-pane.ios:not(.ios26-disabled).split-pane-visible:has(ion-menu.menu-pane-visible) {
   .split-pane-main {
     ion-tab-bar.ios:not(.ios26-disabled) {
