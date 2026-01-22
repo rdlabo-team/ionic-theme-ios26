@@ -48,7 +48,7 @@
     "@angular/language-service": "^21.0.0",
     "@capacitor/cli": "7.4.3",
     "@ionic/angular-toolkit": "^12.0.0",
-    "@playwright/test": "^1.56.0",
+    "@playwright/test": "^1.57.0",
     "@rdlabo/eslint-plugin-rules": "^20.3.1",
     "@types/jasmine": "~5.1.0",
     "angular-eslint": "21.0.1",
