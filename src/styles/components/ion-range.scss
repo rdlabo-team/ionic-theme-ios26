@@ -1,34 +1,64 @@
 @use '../utils/api';
 
+@mixin scaled-transform($translate-x) {
+  transform: scale(1.56, 1.47) translateX(calc(#{$translate-x} * -0.1)) translateZ(0) !important;
+  -webkit-transform: scale(1.56, 1.47) translateX(calc(#{$translate-x} * -0.1)) translateZ(0) !important;
+}
+
 ion-range.ios:not(.ios26-disabled) {
   --knob-size: 20px;
+  --knob-width: 38px;
   --knob-border-radius: 24px;
+
   &.range-label-placement-start::part(label) {
     margin-inline: 0 24px;
   }
+
   &.range-label-placement-end::part(label) {
     margin-inline: 24px 0;
   }
+
   [slot='start'] {
     margin-inline: 0 24px;
   }
+
   [slot='end'] {
     margin-inline: 24px 0;
   }
 
   &::part(knob) {
-    width: 38px;
+    width: var(--knob-width);
     margin-inline-start: -8px;
-    transition: transform 300ms ease;
+    transition:
+      transform 300ms ease,
+      margin 300ms ease,
+      box-shadow 200ms ease;
   }
+
   &.range-pressed::part(knob) {
-    transform: scale(1.4, 1.6) translateX(calc(38px * -0.1)) translateZ(0);
-    -webkit-transform: scale(1.4, 1.6) translateX(calc(38px * -0.1)) translateZ(0);
-    @include api.glass-background(0.1, 0.5px, 120%);
+    @include scaled-transform(0px);
+    @include api.glass-background(0.1, 0, 120%);
+    border: none;
     box-shadow:
-      inset 0 8px 8px -8px var(--bar-background),
-      inset 0 -8px 8px -8px var(--bar-background),
-      inset 8px 0 8px -8px var(--bar-background),
-      inset -8px 0 8px -8px var(--bar-background);
+      0 0.5px 4px rgba(0, 0, 0, 0.12),
+      0 6px 4px rgba(0, 0, 0, 0.05),
+      inset 0.4px 0.4px 1px 0 var(--bar-background-active);
+  }
+
+  &:not([dual-knobs]).range-pressed {
+    &.range-value-min::part(knob) {
+      @include scaled-transform(calc(var(--knob-width) * -2));
+      box-shadow:
+        0 0.5px 4px rgba(0, 0, 0, 0.12),
+        0 6px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    &.range-value-max::part(knob) {
+      @include scaled-transform(calc(var(--knob-width) * 2));
+      box-shadow:
+        0 0.5px 4px rgba(0, 0, 0, 0.12),
+        0 6px 4px rgba(0, 0, 0, 0.05),
+        inset 0.4px 0.4px 1px 0.2px var(--bar-background-active);
+    }
   }
 }
