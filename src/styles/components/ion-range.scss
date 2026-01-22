@@ -9,15 +9,19 @@ ion-range.ios:not(.ios26-disabled) {
   --knob-size: 20px;
   --knob-width: 38px;
   --knob-border-radius: 24px;
+
   &.range-label-placement-start::part(label) {
     margin-inline: 0 24px;
   }
+
   &.range-label-placement-end::part(label) {
     margin-inline: 24px 0;
   }
+
   [slot='start'] {
     margin-inline: 0 24px;
   }
+
   [slot='end'] {
     margin-inline: 24px 0;
   }
@@ -30,6 +34,7 @@ ion-range.ios:not(.ios26-disabled) {
       margin 300ms ease,
       box-shadow 200ms ease;
   }
+
   &.range-pressed::part(knob) {
     @include scaled-transform(0px);
     @include api.glass-background(0.1, 0, 120%);
@@ -40,17 +45,15 @@ ion-range.ios:not(.ios26-disabled) {
       inset 0.4px 0.4px 1px 0 var(--bar-background-active);
   }
 
-  &:not([dual-knobs='true']).range-pressed.range-value-min {
-    &::part(knob) {
+  &:not([dual-knobs]).range-pressed {
+    &.range-value-min::part(knob) {
       @include scaled-transform(calc(var(--knob-width) * -2));
       box-shadow:
         0 0.5px 4px rgba(0, 0, 0, 0.12),
         0 6px 4px rgba(0, 0, 0, 0.05);
     }
-  }
 
-  &:not([dual-knobs='true']).range-pressed.range-value-max {
-    &::part(knob) {
+    &.range-value-max::part(knob) {
       @include scaled-transform(calc(var(--knob-width) * 2));
       box-shadow:
         0 0.5px 4px rgba(0, 0, 0, 0.12),
