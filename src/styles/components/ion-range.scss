@@ -45,7 +45,7 @@ ion-range.ios:not(.ios26-disabled) {
       inset 0.4px 0.4px 1px 0 var(--bar-background-active);
   }
 
-  &:not([dual-knobs]).range-pressed {
+  &:not(.range-dual-knob).range-pressed {
     &.range-value-min::part(knob) {
       @include scaled-transform(calc(var(--knob-width) * -2));
       box-shadow:
