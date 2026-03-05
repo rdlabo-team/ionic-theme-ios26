@@ -55,6 +55,6 @@
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "@ionic/core": "> 8.0.0"
+    "@ionic/core": ">= 8.8.0"
   }
 }
