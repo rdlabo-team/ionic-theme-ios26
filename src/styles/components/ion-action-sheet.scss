@@ -48,7 +48,7 @@ ion-action-sheet.ios:not(.ios26-disabled) {
         }
         font-weight: 550;
         &.action-sheet-cancel {
-          margin-top: auto;
+          margin-top: 12px;
           font-weight: 550;
         }
         border-radius: 32px;
@@ -65,10 +65,6 @@ ion-action-sheet.ios:not(.ios26-disabled) {
           margin-bottom: 8px;
         }
       }
-    }
-
-    button.action-sheet-cancel {
-      margin-top: 12px;
     }
   }
 }
