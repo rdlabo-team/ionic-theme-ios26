@@ -41,44 +41,11 @@ Currently, I work around this by not placing `ion-back-button` inside `ion-butto
 
 
 ## feat(): ion-content[fullscreen=true] will have .content-fullscreen class
-
-For implementing iOS 26's blurred safe area effects, a class indicating whether `ion-content` has fullscreen configuration is needed.
-I would like to use selectors like the following:
-
-```css
-.ion-page:has(ion-header.header-translucent) ion-content.content-fullscreen {
-}
-
-.ion-page:has(ion-header.footer-translucent) ion-content.content-fullscreen {
-}
-```
-
-Currently, I assume fullscreen is specified when using `translucent` elements, but this is not guaranteed.
+Resolved: https://github.com/ionic-team/ionic-framework/pull/30926
 
 
 ## feat(): add .range-knob-min and .range-knob-max directly to ion-range
-
-Currently, `.range-knob-min` and `.range-knob-max` are applied to DOM elements inside ShadowDOM, but since these represent the state of `ion-range` itself, they should be applied directly to the component.
-This would provide more flexibility for knob styling.
-
-Current:
-```html
-<ion-range>
-  #shadow-root
-  ...
-  <div class="range-knob-handle ... range-knob-min">...</div>
-</ion-range>
-```
-
-After:
-```html
-<ion-range class="range-knob-min">
-  #shadow-root
-  ...
-  <div class="range-knob-handle ... range-knob-min">...</div>
-</ion-range>
-```
-
+Resolved: https://github.com/ionic-team/ionic-framework/pull/30932
 
 ## feat(): add native shadow-part for design
 
