@@ -45,11 +45,11 @@
 }
 
 @mixin glass-background-overlay {
-  @include glass-background(0.6667, 8px);
+  @include glass-background($opacity: 0.6667, $blur: 8px);
 }
 
 @mixin glass-background-overlay-activated {
-  @include glass-background(0.6667, 8px);
+  @include glass-background($opacity: 0.6667, $blur: 8px);
 }
 
 @mixin glass-background-overlay-button {

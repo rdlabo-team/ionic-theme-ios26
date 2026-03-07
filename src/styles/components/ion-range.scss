@@ -37,7 +37,7 @@ ion-range.ios:not(.ios26-disabled) {
 
   &.range-pressed::part(knob) {
     @include scaled-transform(0px);
-    @include api.glass-background(0.1, 0, 120%);
+    @include api.glass-background($opacity: 0.1, $blur: 0, $saturate: 120%);
     border: none;
     box-shadow:
       0 0.5px 4px rgba(0, 0, 0, 0.12),
