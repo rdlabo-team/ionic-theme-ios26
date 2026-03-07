@@ -35,25 +35,52 @@ ion-range.ios:not(.ios26-disabled) {
       box-shadow 200ms ease;
   }
 
-  &.range-pressed::part(knob) {
-    @include scaled-transform(0px);
-    @include api.glass-background(0.1, 0, 120%);
-    border: none;
-    box-shadow:
-      0 0.5px 4px rgba(0, 0, 0, 0.12),
-      0 6px 4px rgba(0, 0, 0, 0.05),
-      inset 0.4px 0.4px 1px 0 var(--bar-background-active);
-  }
+  &:not(.range-dual-knobs).range-pressed {
+    &::part(knob) {
+      @include scaled-transform(0px);
+      @include api.glass-background(0.1, 0, 120%);
+      border: none;
+      box-shadow:
+        0 0.5px 4px rgba(0, 0, 0, 0.12),
+        0 6px 4px rgba(0, 0, 0, 0.05),
+        inset 0.4px 0.4px 1px 0 var(--bar-background-active);
+    }
 
-  &:not(.range-dual-knob).range-pressed {
     &.range-value-min::part(knob) {
       @include scaled-transform(calc(var(--knob-width) * -2));
       box-shadow:
         0 0.5px 4px rgba(0, 0, 0, 0.12),
         0 6px 4px rgba(0, 0, 0, 0.05);
     }
-
     &.range-value-max::part(knob) {
+      @include scaled-transform(calc(var(--knob-width) * 2));
+      box-shadow:
+        0 0.5px 4px rgba(0, 0, 0, 0.12),
+        0 6px 4px rgba(0, 0, 0, 0.05),
+        inset 0.4px 0.4px 1px 0.2px var(--bar-background-active);
+    }
+  }
+
+  &.range-dual-knobs.range-pressed {
+    &.range-pressed-a::part(knob-a),
+    &.range-pressed-b::part(knob-b) {
+      @include scaled-transform(0px);
+      @include api.glass-background(0.1, 0, 120%);
+      border: none;
+      box-shadow:
+        0 0.5px 4px rgba(0, 0, 0, 0.12),
+        0 6px 4px rgba(0, 0, 0, 0.05),
+        inset 0.4px 0.4px 1px 0 var(--bar-background-active);
+    }
+
+    &.range-value-min.range-pressed-lower::part(knob-lower) {
+      @include scaled-transform(calc(var(--knob-width) * -2));
+      box-shadow:
+        0 0.5px 4px rgba(0, 0, 0, 0.12),
+        0 6px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    &.range-value-max.range-pressed-upper::part(knob-upper) {
       @include scaled-transform(calc(var(--knob-width) * 2));
       box-shadow:
         0 0.5px 4px rgba(0, 0, 0, 0.12),
