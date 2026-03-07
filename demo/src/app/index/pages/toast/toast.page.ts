@@ -48,8 +48,11 @@ export class ToastPage implements OnInit {
 
   constructor() {
     effect(async () => {
-      if (this.#params()?.['type']) {
-        await this.present(this.#params()?.['type']);
+      const type = this.#params()?.['type'];
+      if (toastTypes.includes(type)) {
+        await this.present(type);
+      } else if (colorTypes.includes(type)) {
+        await this.presentColored(type);
       }
     });
   }
