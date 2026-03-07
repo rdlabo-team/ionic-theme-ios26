@@ -5,8 +5,13 @@ ion-toast.ios:not(.ios26-disabled) {
   --start: 16px;
   --end: 16px;
 
-  &::part(container) {
+  &::part(wrapper) {
     @include api.glass-background;
+    border-radius: 24px;
+  }
+
+  &.ion-color::part(wrapper) {
+    @include api.glass-background($background-rgb: var(--ion-color-base-rgb), $border-color-rgb: var(--ion-color-base-rgb));
     border-radius: 24px;
   }
 }

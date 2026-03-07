@@ -35,7 +35,7 @@ ion-modal.ios:not(.ios26-disabled) {
   &.modal-sheet {
     --border-radius: 30px;
     &::part(content) {
-      @include api.glass-background(1);
+      @include api.glass-background($opacity: 1);
     }
   }
 }

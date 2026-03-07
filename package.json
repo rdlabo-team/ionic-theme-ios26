@@ -46,7 +46,7 @@
   },
   "homepage": "https://github.com/rdlabo-team/ionic-theme-ios26#readme",
   "devDependencies": {
-    "@ionic/angular": "^8.8.0",
+    "@ionic/angular": "^8.8.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.1",
     "np": "^10.2.0",
@@ -55,6 +55,6 @@
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "@ionic/core": ">= 8.8.0"
+    "@ionic/core": ">= 8.8.1"
   }
 }
