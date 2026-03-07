@@ -2,10 +2,9 @@
 
 ## feat(): change `--knob-handle-size` to `--knob-handle-width` / `--knob-handle-height`
 
-現在、縦横が同じサイズしか配慮されておりません。`knob`自体の上書きは可能ですが、`--knob-handle-size`は `div.range-knob-handle` の `top` や `margin-inline-start` を決める重要な役割を果たしているため無視することはできません。
+Currently, only square sizes are taken into consideration.
+Overwriting the `knob` itself is possible, but `--knob-handle-size` cannot be ignored as it plays a crucial role in determining the `top` and `margin-inline-start` of `div.range-knob-handle`.
 
-## docs(): Naming conventions for Ionic theme classes
-Resolved.
 
 ## feat(): ion-config new property for `collapse`
 
@@ -28,24 +27,6 @@ export interface IonicConfig {
 }
 ```
 
-### should disable ion-back-button Animation
-
-When using `collapse` on the previous screen and specifying `ion-buttons ion-back-button` on the next screen, iOS 18 and earlier animation processing occurs. Since this is unnecessary for iOS 26+, a property to disable this would be beneficial.
-
-https://github.com/ionic-team/ionic-framework/blob/3b80473f2fd5ad4da5a9f5d66f783a69909c8965/core/src/utils/transition/ios.transition.ts#L333C31-L337
-- enteringBackButtonTextAnimation
-- enteringBackButtonIconAnimation 
-- enteringBackButtonAnimation
-
-Currently, I work around this by not placing `ion-back-button` inside `ion-buttons` due to the selector relationship `ion-buttons > ion-back-button`.
-
-
-## feat(): ion-content[fullscreen=true] will have .content-fullscreen class
-Resolved: https://github.com/ionic-team/ionic-framework/pull/30926
-
-
-## feat(): add .range-knob-min and .range-knob-max directly to ion-range
-Resolved: https://github.com/ionic-team/ionic-framework/pull/30932
 
 ## feat(): add native shadow-part for design
 
@@ -64,13 +45,18 @@ The styling for `ion-item[lines=inset]` is applied to `.item-inner`, which canno
 ```
 
 ### native part to ion-toast
-The default styling for `ion-toast` is applied to `div.toast-wrapper`, and CSS Custom Properties overrides work similarly. However, there's no way to directly override `div.toast-wrapper`. Currently, I disable this styling using CSS Custom Properties and then apply new styles to `::part(container)`. This is not ideal for styling, so adding `::part(native)` to allow direct override of `div.toast-wrapper` would be preferable.
 
-```diff
-  <ion-toast>
--   <div class="toast-wrapper">...</div>
-+   <div class="toast-wrapper" part="native">...</div>
-  </ion-toast>
-```
+Resolved: https://github.com/ionic-team/ionic-framework/pull/30992#event-23306774962
+
+## docs(): Naming conventions for Ionic theme classes
+Resolved.
+
+### should disable ion-back-button Animation
+Resolved: by created https://github.com/rdlabo-team/ionic-theme-ios26/tree/main/src/transition
+
+## feat(): ion-content[fullscreen=true] will have .content-fullscreen class
+Resolved: https://github.com/ionic-team/ionic-framework/pull/30926
 
 
+## feat(): add .range-knob-min and .range-knob-max directly to ion-range
+Resolved: https://github.com/ionic-team/ionic-framework/pull/30932
