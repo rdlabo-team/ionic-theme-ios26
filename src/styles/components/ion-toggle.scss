@@ -43,7 +43,7 @@ ion-toggle.ios:not(.ios26-disabled) {
   &.toggle-activated::part(handle) {
     transform: scale(1.4, 1.6) translateZ(0);
     -webkit-transform: scale(1.4, 1.6) translateZ(0);
-    @include api.glass-background(0.1, 0.5px, 120%);
+    @include api.glass-background($opacity: 0.1, $blur: 0.5px, $saturate: 120%);
     transition:
       transform 280ms,
       width 120ms ease-in-out 80ms,

@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { actionSheetTypes, alertTypes, loadingTypes, modalTypes, selectTypes, toastTypes } from '../src/app/overlay-types';
+import { actionSheetTypes, alertTypes, colorTypes, loadingTypes, modalTypes, selectTypes, toastTypes } from '../src/app/overlay-types';
 import type { Page } from 'playwright-core';
 
 /**
@@ -25,6 +25,7 @@ const routes = [
   { path: '/main/index/checkbox', name: 'checkbox' },
   { path: '/main/index/range', name: 'range' },
   ...typesPath({ path: '/main/index/toast', name: 'toast' }, toastTypes),
+  ...typesPath({ path: '/main/index/toast', name: 'toast' }, colorTypes),
   { path: '/main/index/toggle', name: 'toggle' },
   { path: '/main/index/segment', name: 'segment' },
   ...typesPath({ path: '/main/index/modal', name: 'modal' }, modalTypes),

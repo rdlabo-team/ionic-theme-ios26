@@ -18,7 +18,7 @@ import {
 } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { toastTypes } from '../../../overlay-types';
+import { colorTypes, toastTypes } from '../../../overlay-types';
 
 @Component({
   selector: 'app-toast',
@@ -48,8 +48,11 @@ export class ToastPage implements OnInit {
 
   constructor() {
     effect(async () => {
-      if (this.#params()?.['type']) {
-        await this.present(this.#params()?.['type']);
+      const type = this.#params()?.['type'];
+      if (toastTypes.includes(type)) {
+        await this.present(type);
+      } else if (colorTypes.includes(type)) {
+        await this.presentColored(type);
       }
     });
   }
@@ -72,6 +75,21 @@ export class ToastPage implements OnInit {
       return {
         ...toastDefault,
         position: type as 'top' | 'middle' | 'bottom',
+      };
+    })(type);
+    const actionSheet = await this.overlayCtrl.create(applyConfig);
+    await actionSheet.present();
+  }
+
+  async presentColored(type: (typeof colorTypes)[number]) {
+    const toastDefault = {
+      message: 'Hello World!',
+      buttons: ['Close'],
+    };
+    const applyConfig = ((type) => {
+      return {
+        ...toastDefault,
+        color: type,
       };
     })(type);
     const actionSheet = await this.overlayCtrl.create(applyConfig);
