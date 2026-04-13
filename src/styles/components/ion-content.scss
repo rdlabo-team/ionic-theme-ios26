@@ -5,9 +5,9 @@
  */
 .ion-page.ios:not(.ios26-disabled):has(ion-header.header-translucent)
   ion-content.ios:not(.ios26-disabled).content-fullscreen:has(.ion-content-scroll-host) {
+  --padding-top: calc(var(--offset-top) * -1);
   > *:not(.ion-content-scroll-host, ion-fab) {
     transform: translateY(var(--offset-top));
-    --padding-top: calc(var(--offset-top) * -1);
   }
   .ion-content-scroll-host {
     padding-top: var(--offset-top);
