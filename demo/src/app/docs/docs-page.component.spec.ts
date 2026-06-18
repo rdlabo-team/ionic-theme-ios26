@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HealthPage } from './docs-page.component';
+import { DocsPage } from './docs-page.component';
 import { testConfig } from '../../../util/test.config';
 
-describe('HealthPage', () => {
-  let component: HealthPage;
-  let fixture: ComponentFixture<HealthPage>;
+describe('DocsPage', () => {
+  let component: DocsPage;
+  let fixture: ComponentFixture<DocsPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: testConfig.providers,
     }).compileComponents();
-    fixture = TestBed.createComponent(HealthPage);
+    fixture = TestBed.createComponent(DocsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

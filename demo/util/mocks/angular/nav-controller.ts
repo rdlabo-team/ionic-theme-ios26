@@ -6,14 +6,14 @@ export class NavControllerMock extends BaseMock {
   constructor() {
     super('NavController', METHODS);
 
-    this.spyObj.navigateForward.and.returnValue(Promise.resolve());
-    this.spyObj.navigateBack.and.returnValue(Promise.resolve());
-    this.spyObj.navigateRoot.and.returnValue(Promise.resolve());
-    this.spyObj.back.and.returnValue(Promise.resolve());
-    this.spyObj.pop.and.returnValue(Promise.resolve());
-    this.spyObj.setDirection.and.returnValue();
-    this.spyObj.setTopOutlet.and.returnValue();
-    this.spyObj.consumeTransition.and.returnValue();
+    this.spyObj.navigateForward.mockReturnValue(Promise.resolve());
+    this.spyObj.navigateBack.mockReturnValue(Promise.resolve());
+    this.spyObj.navigateRoot.mockReturnValue(Promise.resolve());
+    this.spyObj.back.mockReturnValue(Promise.resolve());
+    this.spyObj.pop.mockReturnValue(Promise.resolve());
+    this.spyObj.setDirection.mockReturnValue(undefined);
+    this.spyObj.setTopOutlet.mockReturnValue(undefined);
+    this.spyObj.consumeTransition.mockReturnValue(undefined);
   }
 
   public static instance(): any {

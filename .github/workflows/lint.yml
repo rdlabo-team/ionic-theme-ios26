@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
-          node-version: 24.11.1
+          node-version: 24
       - uses: actions/cache@v5
         with:
           path: ~/.npm
@@ -28,14 +28,20 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
-          node-version: 24.11.1
+          node-version: 24
       - uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      # The demo depends on this package via `file:..`, so the root package
+      # must be installed and built (dist/) before the demo can compile.
+      - run: npm ci
+      - run: npm run build
       - run: npm ci
         working-directory: './demo'
       - run: npm run lint
+        working-directory: './demo'
+      - run: npm test -- --watch=false
         working-directory: './demo'
