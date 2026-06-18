@@ -30,7 +30,7 @@ export class IonRouterOutletMock extends BaseMock {
   constructor() {
     super('NavController', METHODS);
 
-    this.spyObj.nativeEl.and.returnValue();
+    this.spyObj.nativeEl.mockReturnValue(undefined);
   }
 
   public static instance(): any {

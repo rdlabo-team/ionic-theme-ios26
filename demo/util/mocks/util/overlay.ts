@@ -6,8 +6,8 @@ export class Overlay extends BaseMock {
   constructor() {
     super('Overlay', METHODS);
 
-    this.spyObj.create.and.returnValue(Promise.resolve());
-    this.spyObj.dismiss.and.returnValue(Promise.resolve());
-    this.spyObj.getTop.and.returnValue(Promise.resolve());
+    this.spyObj.create.mockReturnValue(Promise.resolve());
+    this.spyObj.dismiss.mockReturnValue(Promise.resolve());
+    this.spyObj.getTop.mockReturnValue(Promise.resolve());
   }
 }

@@ -49,21 +49,15 @@
     "@ionic/angular-toolkit": "^12.0.0",
     "@playwright/test": "^1.57.0",
     "@rdlabo/eslint-plugin-rules": "^20.3.1",
-    "@types/jasmine": "~5.1.0",
     "angular-eslint": "21.0.1",
     "eslint": "^9.35.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsdoc": "^48.2.1",
     "eslint-plugin-prefer-arrow": "1.2.2",
-    "jasmine-core": "~5.1.0",
-    "jasmine-spec-reporter": "~5.0.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
+    "jsdom": "^26.0.0",
     "typescript": "~5.9.3",
-    "typescript-eslint": "8.40.0"
+    "typescript-eslint": "8.40.0",
+    "vitest": "^4.0.0"
   },
   "description": "An Ionic project"
 }
