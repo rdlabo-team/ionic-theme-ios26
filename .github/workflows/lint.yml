@@ -39,3 +39,5 @@ jobs:
         working-directory: './demo'
       - run: npm run lint
         working-directory: './demo'
+      - run: npm test -- --watch=false --browsers=ChromeHeadless
+        working-directory: './demo'
