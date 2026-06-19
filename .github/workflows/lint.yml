@@ -1,10 +1,13 @@
 name: Lint
 on:
-  push:
-    branches:
-      - '**'
   pull_request:
-    types: [opened]
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+concurrency:
+  group: lint-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   prettier:
     runs-on: ubuntu-latest
@@ -13,12 +16,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 24
-      - uses: actions/cache@v5
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          cache: npm
+          cache-dependency-path: '**/package-lock.json'
       - run: npm ci
       - run: npm run lint
       - run: npm run build
@@ -29,12 +28,16 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 24
-      - uses: actions/cache@v5
+          cache: npm
+          cache-dependency-path: '**/package-lock.json'
+      - name: Cache Angular
+        uses: actions/cache@v5
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          path: demo/.angular/cache
+          key: ${{ runner.os }}-angular-${{ hashFiles('demo/package-lock.json') }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-angular-${{ hashFiles('demo/package-lock.json') }}-
+            ${{ runner.os }}-angular-
       # The demo depends on this package via `file:..`, so the root package
       # must be installed and built (dist/) before the demo can compile.
       - run: npm ci
