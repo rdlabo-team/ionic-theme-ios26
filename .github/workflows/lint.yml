@@ -1,10 +1,10 @@
 name: Lint
 on:
-  push:
-    branches:
-      - '**'
   pull_request:
-    types: [opened]
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
 concurrency:
   group: lint-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
